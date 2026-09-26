@@ -25,8 +25,11 @@ with lastPrice (last refresh check).
 
 Prefer repo-relative paths under images/ for deal photos so GitHub
 Pages serves them reliably. Do not clear image fields on refresh.
-Run scripts/heal_images.py (or refresh.py --heal-images) to audit and
-re-download broken/missing product photos.
+Run scripts/fix_product_links.py to resolve search CTAs to product
+pages when a confident SKU match exists, then scripts/heal_images.py
+(or refresh.py --heal-images) to audit and re-download photos from
+those product pages. Product URLs are preferred for hourly price
+verification — search URLs are harder / blocked more often.
 
 Category labels must be plural grammar (never apostrophe plurals):
 GPUs, CPUs, Monitors, TVs, PSUs, Mice, Keyboards. The UI also sorts
@@ -133,6 +136,11 @@ def main() -> int:
         action="store_true",
         help="After stamping, run scripts/heal_images.py to audit/fix photos",
     )
+    parser.add_argument(
+        "--fix-links",
+        action="store_true",
+        help="After stamping, run scripts/fix_product_links.py",
+    )
     args = parser.parse_args()
 
     if not OUT.exists():
@@ -204,6 +212,18 @@ def main() -> int:
         "Tip: use apply_verified_price(deal, new_price) when a scrape "
         "confirms a new number so lastPrice / priceDropped stay correct."
     )
+
+    if args.fix_links:
+        fix = ROOT / "scripts" / "fix_product_links.py"
+        print(f"\nRunning {fix.name} …")
+        venv_py = ROOT / ".venv" / "bin" / "python"
+        py = str(venv_py) if venv_py.is_file() else sys.executable
+        rc = subprocess.call([py, str(fix)])
+        if rc != 0:
+            print("fix_product_links.py failed", file=sys.stderr)
+            return rc
+        data = json.loads(OUT.read_text(encoding="utf-8"))
+        deals = data.get("deals") or []
 
     if args.heal_images:
         heal = ROOT / "scripts" / "heal_images.py"

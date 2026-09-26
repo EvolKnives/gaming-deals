@@ -39,7 +39,11 @@ python3 scripts/heal_images.py             # photos only
 
 ### Hourly deals refresh (intent)
 
-An automated (or agent-driven) hourly refresh should re-verify each deal URL, then:
+An automated (or agent-driven) hourly refresh should re-verify each deal URL.
+
+Prefer **product-page URLs** for price checks — search result pages are harder to scrape and more often blocked. Run `scripts/fix_product_links.py` when adding deals so CTAs stay on PDPs.
+
+Then:
 
 1. Compare the new verified price to the old `deal.price` (that value becomes `lastPrice`).
 2. If new < old → `priceDropped: true`, `dropAmount = old - new`.
@@ -65,9 +69,14 @@ Cards with `priceDropped: true` show a small green “Dropped” / “↓ $X” 
   "why": "1–3 sentences on why it’s a good deal right now.",
   "merchant": "Newegg",
   "url": "https://…",
-  "image": "images/slug.jpg"
+  "urlKind": "product",
+  "asin": "B0EXAMPLE1",
+  "image": "images/slug.jpg",
+  "imageSource": "product-page"
 }
 ```
+
+`urlKind`, `asin`/`sku`, and `imageSource` are optional audit fields — `app.js` ignores unknown keys.
 
 - `previousPrice` — list / MSRP for the “% off · save $X” badge (or `null`).
 - `lastPrice` — price at the previous successful refresh (`null` if never checked before).
@@ -81,18 +90,27 @@ Categories used in the UI (always plural, never apostrophe plurals): `GPUs`, `CP
 `app.js` sorts the visible list (All and each category filter) by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom. The sort runs on every render so it survives refresh and filter changes.
 
 
-## Product photos
+## Product photos & CTA links
 
 Every deal should have a real product photo at `images/<deal-id>.jpg` (JPEG, ~800–1200px on the long side) and `deal.image` set to that repo-relative path so GitHub Pages serves it.
 
-- Prefer official retailer / manufacturer shots (Newegg, Amazon, Best Buy, Micro Center, brand CDNs). **Never invent a product.**
+- **CTA `url` should be a product page** (Amazon `/dp/ASIN`, Newegg `/p/N82E…`, Best Buy `….p?skuId=…`, Micro Center `/product/…`, or manufacturer PDP) whenever a matching SKU can be verified. Search URLs (`/s?k=`, `/p/pl?`, Best Buy `searchpage.jsp`) are a last resort when the exact listing is ambiguous.
+- Optional audit fields (ignored by `app.js` if absent): `urlKind` (`product`|`search`), `asin` / `sku`, `imageSource` (`product-page`|`search`|`placeholder`).
+- Photos are pulled **from the product page** (og:image / primary CDN) first. Name-based merchant search is only a fallback. **Never invent a product.**
 - Category placeholders (clearly labeled “PHOTO PLACEHOLDER”) are a last resort only.
 
-### Self-heal
+### Fix links + self-heal
 
 ```bash
+# Resolve search → product URLs when a confident same-SKU match exists
+python3 scripts/fix_product_links.py
+python3 scripts/fix_product_links.py --dry-run
+
 # Audit + re-download any missing / null / too-small / unreadable photos
 python3 scripts/heal_images.py
+
+# Re-pull photos from product URLs (replace wrong search-sourced shots)
+python3 scripts/heal_images.py --force-from-url
 
 # Report only (exit 1 if anything is broken)
 python3 scripts/heal_images.py --audit-only
@@ -102,6 +120,8 @@ python3 scripts/refresh.py --heal-images
 ```
 
 `heal_images.py` exits non-zero if any deal is still broken after healing. Needs `Pillow` and `requests` (`python3 -m venv .venv && .venv/bin/pip install Pillow requests`).
+
+**Scraping blockers:** Amazon and Best Buy often block or time out from datacenter IPs (product CTAs still work in a browser). Newegg item pages, Micro Center, and many manufacturer PDPs remain fetchable for og:image. When a product URL is blocked, heal falls back to a name-matched Newegg product image when the title clearly matches.
 
 ## Design notes
 

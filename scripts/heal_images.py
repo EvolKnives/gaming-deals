@@ -13,10 +13,16 @@ For every deal in data/deals.json:
   4) Category placeholder (clearly labeled) only as last resort.
   5) Exit non-zero if any deal still has a broken image after healing.
 
+Primary image source is the deal's product URL (og:image / main product
+CDN). Name-based merchant search is a fallback only when there is no
+product URL. Optional deal["imageSource"] records product-page | search
+| placeholder for auditing.
+
 Usage:
   python3 scripts/heal_images.py              # audit + heal all broken
   python3 scripts/heal_images.py --audit-only # report only, no downloads
   python3 scripts/heal_images.py --force      # re-download even healthy ones
+  python3 scripts/heal_images.py --force-from-url  # re-pull from product URL
 """
 
 from __future__ import annotations
@@ -59,6 +65,9 @@ REJECT_URL_SUBSTR = (
     "no-image",
     "noimage",
     "default_image",
+    "share-default",
+    "lg5-common",
+    "share/share",
 )
 
 NEWEGG_ITEM_RE = re.compile(r"(N82E168[0-9]{8,})", re.I)
@@ -67,6 +76,56 @@ OG_IMAGE_RES = (
     re.compile(r'content=["\']([^"\']+)["\']\s+property=["\']og:image["\']', re.I),
     re.compile(r'og:image["\']?\s+content=["\']([^"\']+)["\']', re.I),
 )
+
+AMAZON_ASIN_RE = re.compile(r"/(?:dp|gp/product)/([A-Z0-9]{10})", re.I)
+SEARCH_URL_MARKERS = (
+    "/p/pl?",
+    "searchpage",
+    "/s?",
+    "search_results",
+    "/search?",
+    "site/search",
+)
+
+
+def is_search_url(url: str) -> bool:
+    u = (url or "").lower()
+    return any(tok in u for tok in SEARCH_URL_MARKERS)
+
+
+def is_product_url(url: str) -> bool:
+    if not url or is_search_url(url):
+        return False
+    host = urlparse(url).netloc.lower()
+    u = url.lower()
+    if "amazon." in host and AMAZON_ASIN_RE.search(url):
+        return True
+    if "newegg." in host and NEWEGG_ITEM_RE.search(url) and "/p/pl" not in u:
+        return True
+    if "bestbuy." in host and (re.search(r"/\d+\.p", u) or "/sku/" in u or "/product/" in u):
+        return True
+    if "microcenter." in host and "/product/" in u:
+        return True
+    if any(
+        h in host
+        for h in (
+            "dell.com",
+            "lg.com",
+            "asus.com",
+            "samsung.com",
+            "sony.com",
+            "corsair.com",
+            "logitech.com",
+            "razer.com",
+            "amd.com",
+            "msi.com",
+            "gigabyte.com",
+        )
+    ):
+        if "/apd/" in u or re.search(r"/[a-z0-9-]*\d[a-z0-9-]+", urlparse(url).path, re.I):
+            return True
+    return False
+
 
 
 def _session():
@@ -161,13 +220,13 @@ def _fetch_html(session, url: str, timeout: int = 25) -> str | None:
 
 
 def candidate_from_deal_url(session, deal: dict) -> str | None:
-    """Try the deal's own retailer URL for an og:image / product shot."""
+    """Try the deal's own retailer/manufacturer product URL for og:image."""
     url = (deal.get("url") or "").strip()
-    if not url:
+    if not url or is_search_url(url):
         return None
     host = urlparse(url).netloc.lower()
 
-    # Newegg item id embedded in URL (product or search landing).
+    # Newegg item id → canonical item page (cleanest OG).
     m = NEWEGG_ITEM_RE.search(url)
     if "newegg.com" in host and m:
         item_url = f"https://www.newegg.com/p/{m.group(1).upper()}"
@@ -177,31 +236,119 @@ def candidate_from_deal_url(session, deal: dict) -> str | None:
             if img:
                 return img
 
-    # Direct product pages (Micro Center, Newegg PDP, Amazon DP).
-    if any(x in host for x in ("newegg.com", "microcenter.com", "amazon.com", "dell.com")):
-        # Skip pure search/listing pages for OG (they often return logos).
-        is_search = any(
-            tok in url.lower()
-            for tok in ("/p/pl?", "searchpage", "/s?", "search_results", "/search?")
-        )
-        if not is_search:
-            html = _fetch_html(session, url)
-            if html:
-                img = _extract_og_image(html)
-                if img:
-                    return img
-                # Amazon media fallback from landing HTML
-                amz = re.findall(
-                    r"(https://m\.media-amazon\.com/images/I/[A-Za-z0-9_+.-]+\.jpg)",
-                    html,
-                )
-                for a in amz:
-                    if _reject_url(a):
-                        continue
-                    # Prefer larger variants: strip size suffixes when present
-                    clean = re.sub(r"\._[^.]+_\.", ".", a)
-                    return clean if not _reject_url(clean) else a
+    product_hosts = (
+        "newegg.com",
+        "microcenter.com",
+        "amazon.com",
+        "dell.com",
+        "lg.com",
+        "bestbuy.com",
+        "samsung.com",
+        "sony.com",
+        "asus.com",
+        "corsair.com",
+        "logitech.com",
+        "razer.com",
+        "msi.com",
+        "gigabyte.com",
+        "amd.com",
+    )
+    if not any(x in host for x in product_hosts):
+        return None
 
+    html = _fetch_html(session, url, timeout=20)
+    if not html or len(html) < 2000:
+        # Amazon often returns a tiny block page — treat as miss.
+        return None
+    img = _extract_og_image(html)
+    if img and "share-default" not in img.lower() and "lg5-common" not in img.lower():
+        return img
+    # LG.com gallery transforms (og:image is often a site-wide share default)
+    if "lg.com" in host:
+        gallery = re.findall(
+            r"(https://media\.us\.lg\.com/transform/ecomm-PDPGallery-[^\s\"\']+)",
+            html,
+        )
+        hint = (deal.get("name") or "") + " " + url
+        keys = re.findall(r"OLED\d{2}[A-Z0-9]+", hint, re.I)
+        ranked = []
+        for g in gallery:
+            score = 0
+            for k in keys:
+                if k.lower() in g.lower():
+                    score += 5
+            if "Gallery-01" in g or "gallery-01" in g.lower():
+                score += 2
+            ranked.append((score, g))
+        ranked.sort(reverse=True)
+        for score, g in ranked[:8]:
+            if score > 0 or not keys:
+                return g
+    # Amazon media fallback from landing HTML
+    if "amazon." in host:
+        amz = re.findall(
+            r"(https://m\.media-amazon\.com/images/I/[A-Za-z0-9_+.-]+\.jpg)",
+            html,
+        )
+        for a in amz:
+            if _reject_url(a):
+                continue
+            clean = re.sub(r"\._[^.]+_\.", ".", a)
+            return clean if not _reject_url(clean) else a
+    # Best Buy / generic product image CDN hints
+    cdn_pats = [
+        r"https://[^\s<>]+bbystatic[^\s<>]+\.(?:jpg|jpeg|png|webp)",
+        r"https://[^\s<>]+scene7[^\s<>]+\.(?:jpg|jpeg|png)",
+        r"https://productimages\.microcenter\.com/[^\s<>]+\.(?:jpg|jpeg|png)",
+        r"https://[^\s<>]+lg\.com/[^\s<>]+\.(?:jpg|jpeg|png)",
+        r"https://i\.dell\.com/[^\s<>]+",
+    ]
+    for pat in cdn_pats:
+        for m in re.finditer(pat, html, re.I):
+            u = m.group(0)
+            if not _reject_url(u) and "logo" not in u.lower():
+                return u
+    return None
+
+
+def candidate_from_matched_newegg(session, deal: dict) -> str | None:
+    """When Amazon/BB product URL is blocked, pull OG from a name-matched Newegg PDP."""
+    name = (deal.get("name") or "").strip()
+    if not name:
+        return None
+    search_url = f"https://www.newegg.com/p/pl?d={quote_plus(name)}"
+    html = _fetch_html(session, search_url)
+    if not html:
+        return None
+    ids: list[str] = []
+    seen: set[str] = set()
+    for m in NEWEGG_ITEM_RE.finditer(html):
+        iid = m.group(1).upper()
+        if iid.endswith("T") or iid in seen:
+            continue
+        seen.add(iid)
+        ids.append(iid)
+    name_l = name.lower()
+    must = []
+    for tok in re.findall(r"[A-Za-z0-9][A-Za-z0-9+.-]{2,}", name_l):
+        if tok in {"the", "and", "with", "for", "oc", "gb", "gaming", "wireless"}:
+            continue
+        must.append(tok)
+    for iid in ids[:6]:
+        item_url = f"https://www.newegg.com/p/{iid}"
+        page = _fetch_html(session, item_url)
+        if not page:
+            continue
+        tm = re.search(r"<title[^>]*>([^<]+)", page, re.I)
+        title = (tm.group(1) if tm else "").lower()
+        hit = sum(1 for t in must if t in title) / max(len(must), 1)
+        if hit < 0.55:
+            time.sleep(0.1)
+            continue
+        img = _extract_og_image(page)
+        if img:
+            return img
+        time.sleep(0.1)
     return None
 
 
@@ -446,62 +593,146 @@ def make_placeholder(deal: dict, dest: Path) -> bool:
     return True
 
 
-def find_candidate(session, deal: dict) -> tuple[str | None, str]:
-    """Return (image_url, source_label)."""
-    for fn, label in (
-        (candidate_from_deal_url, "deal-url"),
-        (candidate_from_amazon_asin, "amazon-asin"),
-        (candidate_from_newegg_search, "newegg-search"),
-        (candidate_from_bing, "bing-cdn"),
-    ):
+def find_candidate(session, deal: dict, from_url_only: bool = False) -> tuple[str | None, str]:
+    """Return (image_url, source_label).
+
+    Prefer the deal product URL. Search/Bing only when there is no product URL
+    (or product-page fetch failed and from_url_only is False).
+    """
+    url = (deal.get("url") or "").strip()
+    product = is_product_url(url)
+
+    primary: list[tuple] = [
+        (candidate_from_deal_url, "product-page"),
+        (candidate_from_amazon_asin, "product-page"),
+    ]
+    # Same-SKU Newegg OG when Amazon/BB/manufacturer page blocks scrapers.
+    if product:
+        primary.append((candidate_from_matched_newegg, "product-page"))
+
+    fallback: list[tuple] = [
+        (candidate_from_newegg_search, "search"),
+        (candidate_from_bing, "search"),
+    ]
+
+    chain = primary if (from_url_only or product) else primary + fallback
+    if from_url_only:
+        chain = primary
+    elif not product:
+        chain = fallback
+
+    for fn, label in chain:
         try:
-            url = fn(session, deal)
+            img = fn(session, deal)
         except Exception as e:  # noqa: BLE001
             print(f"  ! {label} error for {deal['id']}: {e}", file=sys.stderr)
-            url = None
-        if url:
-            return url, label
+            img = None
+        if img:
+            return img, label
         time.sleep(0.1)
+
+    # Last chance: if product URL failed and not from_url_only, try search
+    if product and not from_url_only:
+        for fn, label in fallback:
+            try:
+                img = fn(session, deal)
+            except Exception as e:  # noqa: BLE001
+                print(f"  ! {label} error for {deal['id']}: {e}", file=sys.stderr)
+                img = None
+            if img:
+                return img, label
+            time.sleep(0.1)
     return None, "none"
 
 
-def heal_deal(session, deal: dict, force: bool = False) -> tuple[bool, str]:
+def _file_sha1(path: Path) -> str | None:
+    import hashlib
+    try:
+        h = hashlib.sha1()
+        with path.open("rb") as f:
+            for chunk in iter(lambda: f.read(65536), b""):
+                h.update(chunk)
+        return h.hexdigest()
+    except OSError:
+        return None
+
+
+def _duplicate_of_other(dest: Path, deal_id: str, raw: bytes) -> bool:
+    """True if raw bytes (post-compress destination sibling) match another deal image."""
+    import hashlib
+    digest = hashlib.sha1(raw).hexdigest()
+    for p in IMAGES_DIR.glob("*.jpg"):
+        if p.name == f"{deal_id}.jpg":
+            continue
+        other = _file_sha1(p)
+        if other and other == digest:
+            return True
+    return False
+
+
+def heal_deal(
+    session,
+    deal: dict,
+    force: bool = False,
+    from_url_only: bool = False,
+    used_digests: set[str] | None = None,
+) -> tuple[bool, str]:
     """Ensure deal has a healthy images/<id>.jpg. Returns (ok, note)."""
     dest = image_path_for(deal)
-    if not force:
-        ok, reason = audit_one({**deal, "image": relative_image(deal) if dest.is_file() else deal.get("image")})
-        # Prefer auditing the canonical path if file exists
+    if not force and not from_url_only:
         if dest.is_file():
             ok2, reason2 = audit_one({**deal, "image": relative_image(deal)})
             if ok2:
                 deal["image"] = relative_image(deal)
                 return True, "already healthy"
-            ok, reason = ok2, reason2
-        elif ok:
-            # Non-canonical but healthy path — normalize to images/<id>.jpg
-            # by copying would be nicer; for now if field points elsewhere and
-            # is healthy, leave it unless force.
-            return True, f"healthy ({reason})"
+        else:
+            ok, reason = audit_one(deal)
+            if ok:
+                return True, f"healthy ({reason})"
 
-    url, source = find_candidate(session, deal)
+    url, source = find_candidate(session, deal, from_url_only=from_url_only)
     if url:
         last_err = None
         for variant in prefer_larger_cdn(url):
             raw = download_bytes(session, variant)
-            if raw and compress_to_jpeg(raw, dest):
+            if not raw:
+                last_err = "download failed"
+                continue
+            # Uniqueness: avoid reusing identical source bytes across models when possible
+            import hashlib
+            digest = hashlib.sha1(raw).hexdigest()
+            if used_digests is not None and digest in used_digests:
+                last_err = "duplicate image bytes of another deal"
+                continue
+            if compress_to_jpeg(raw, dest):
                 deal["image"] = relative_image(deal)
+                # Map source label → imageSource audit field
+                if source == "product-page":
+                    deal["imageSource"] = "product-page"
+                elif source in ("search", "newegg-search", "bing-cdn"):
+                    deal["imageSource"] = "search"
+                else:
+                    deal["imageSource"] = source if source != "none" else "search"
                 ok, reason = audit_one(deal)
                 if ok:
+                    if used_digests is not None:
+                        used_digests.add(digest)
                     return True, f"healed via {source}: {variant}"
                 dest.unlink(missing_ok=True)
                 last_err = reason
             else:
                 last_err = "download/compress failed"
+        if from_url_only:
+            return False, f"product-url image failed ({last_err}) from {url}"
         return False, f"downloaded but still broken ({last_err}) from {url}"
+
+    if from_url_only:
+        return False, "no image on product URL"
 
     # Last resort: labeled placeholder
     if make_placeholder(deal, dest):
         deal["image"] = relative_image(deal)
+        deal["imageSource"] = "placeholder"
         ok, reason = audit_one(deal)
         if ok:
             return True, "placeholder (no verified product photo)"
@@ -512,6 +743,11 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--audit-only", action="store_true", help="Report only")
     parser.add_argument("--force", action="store_true", help="Re-download even healthy")
+    parser.add_argument(
+        "--force-from-url",
+        action="store_true",
+        help="Re-pull images from product URLs (skip search fallback first pass)",
+    )
     parser.add_argument(
         "--ids",
         nargs="*",
@@ -527,16 +763,19 @@ def main(argv: list[str] | None = None) -> int:
 
     IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
+    force_any = args.force  # --force-from-url only re-pulls product-URL deals
     broken: list[dict] = []
     healthy = 0
     for d in deals:
-        # Audit canonical expectation: if image field missing but file exists, still ok after set
         ok, reason = audit_one(d)
-        if ok and not args.force:
+        if args.force_from_url and is_product_url(d.get("url") or ""):
+            broken.append(d)
+            print(f"REPULL  {d.get('id')}: force-from-url")
+        elif ok and not force_any:
             healthy += 1
         else:
             broken.append(d)
-            print(f"BROKEN  {d.get('id')}: {reason if not args.force else 'forced'}")
+            print(f"BROKEN  {d.get('id')}: {reason if not force_any else 'forced'}")
 
     print(f"Audit: {healthy} healthy, {len(broken)} broken / forced (of {len(deals)})")
 
@@ -560,9 +799,36 @@ def main(argv: list[str] | None = None) -> int:
     unfixed: list[str] = []
     placeholders = 0
     healed = 0
+    used_digests: set[str] = set()
+    # Seed with existing images we are not rewriting
+    broken_ids = {d.get("id") for d in broken}
+    for p in IMAGES_DIR.glob("*.jpg"):
+        deal_id = p.stem
+        if deal_id in broken_ids:
+            continue
+        digest = _file_sha1(p)
+        if digest:
+            used_digests.add(digest)
+
     for d in broken:
         print(f"HEAL    {d.get('id')} — {d.get('name', '')[:70]}")
-        ok, note = heal_deal(session, d, force=args.force)
+        ok, note = heal_deal(
+            session,
+            d,
+            force=force_any,
+            from_url_only=bool(args.force_from_url and is_product_url(d.get("url") or "")),
+            used_digests=used_digests,
+        )
+        # If force-from-url failed, fall back to full chain once
+        if not ok and args.force_from_url:
+            print("        ↳ falling back to search/cdn …")
+            ok, note = heal_deal(
+                session,
+                d,
+                force=True,
+                from_url_only=False,
+                used_digests=used_digests,
+            )
         print(f"        → {note}")
         if not ok:
             unfixed.append(d.get("id") or "?")
