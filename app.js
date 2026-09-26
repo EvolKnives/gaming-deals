@@ -8,6 +8,8 @@
   var sharePageBtn = document.getElementById("share-page");
   var filtersEl = document.getElementById("filters");
   var filterButtonsEl = document.getElementById("filter-buttons");
+  var budgetFiltersEl = document.getElementById("budget-filters");
+  var budgetButtonsEl = document.getElementById("budget-buttons");
   var toastEl = document.getElementById("toast");
   var lightboxEl = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightbox-img");
@@ -17,6 +19,8 @@
   var lightboxOpen = false;
   var allDeals = [];
   var activeFilter = "All";
+  var activeBudget = "All";
+  var siteUpdatedAt = null;
   var SITE_TITLE = "What's A Good Deal?";
 
   // Canonical plural filter labels (never apostrophe plurals).
@@ -60,11 +64,18 @@
     "Pen Display": "Art Tablets"
   };
 
+  var BUDGET_OPTIONS = [
+    { id: "All", label: "Any price" },
+    { id: "under50", label: "Under $50", min: 0, max: 50 },
+    { id: "50-150", label: "$50–150", min: 50, max: 150 },
+    { id: "150-400", label: "$150–400", min: 150, max: 400 },
+    { id: "400plus", label: "$400+", min: 400, max: Infinity }
+  ];
+
   function normalizeCategory(cat) {
     if (!cat) return "";
     var key = String(cat).trim();
     if (CATEGORY_ALIASES[key]) return CATEGORY_ALIASES[key];
-    // Fallback: strip trailing apostrophe-s / bare s already pluralized above
     return key.replace(/\u2019s$/i, "s").replace(/'s$/i, "s");
   }
 
@@ -111,7 +122,6 @@
       buckets[cat].push(deal);
     }
 
-    // Prefer canonical filter order, then any extras in first-seen order.
     var ordered = [];
     for (i = 0; i < CATEGORY_ORDER.length; i++) {
       var canon = CATEGORY_ORDER[i];
@@ -196,6 +206,45 @@
     );
   }
 
+  function formatChecked(iso) {
+    var d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    var now = Date.now();
+    var diffMs = now - d.getTime();
+    if (diffMs < 0) diffMs = 0;
+    var mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return "Checked just now";
+    if (mins < 60) return "Checked " + mins + "m ago";
+    var hours = Math.floor(mins / 60);
+    if (hours < 24) return "Checked " + hours + "h ago";
+    var days = Math.floor(hours / 24);
+    if (days < 7) return "Checked " + days + "d ago";
+    return (
+      "Checked " +
+      d.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: "America/Los_Angeles"
+      })
+    );
+  }
+
+  function formatEndsIn(iso) {
+    var d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    var ms = d.getTime() - Date.now();
+    if (ms <= 0) return "Ended";
+    var mins = Math.ceil(ms / 60000);
+    if (mins < 60) return "Ends in " + mins + "m";
+    var hours = Math.floor(mins / 60);
+    if (hours < 48) {
+      var remM = mins % 60;
+      return remM ? "Ends in " + hours + "h " + remM + "m" : "Ends in " + hours + "h";
+    }
+    var days = Math.floor(hours / 24);
+    return "Ends in " + days + "d";
+  }
+
   function slugify(str) {
     return (
       String(str || "deal")
@@ -229,7 +278,6 @@
   function pressFlash(el) {
     if (!el || reduceMotion) return;
     el.classList.remove("is-flash");
-    // force reflow so re-triggering works
     void el.offsetWidth;
     el.classList.add("is-flash");
     setTimeout(function () {
@@ -347,7 +395,6 @@
       n.classList.add("will-reveal");
       io.observe(n);
     });
-    // Failsafe: never leave cards untappable if IO misses
     setTimeout(function () {
       nodes.forEach(function (n) {
         if (!n.classList.contains("is-visible")) {
@@ -356,6 +403,193 @@
         }
       });
     }, 1200);
+  }
+
+  /** Honest price series: use priceHistory when present; else previous → last → current. Never invent lows. */
+  function priceSeries(deal) {
+    var pts = [];
+    var hist = deal && deal.priceHistory;
+    if (Array.isArray(hist) && hist.length) {
+      hist.forEach(function (item) {
+        var v = typeof item === "number" ? item : item && item.price;
+        var n = Number(v);
+        if (Number.isFinite(n) && n > 0) pts.push(n);
+      });
+    }
+    if (pts.length < 2) {
+      pts = [];
+      var prev = Number(deal && deal.previousPrice);
+      var last = Number(deal && deal.lastPrice);
+      var cur = Number(deal && deal.price);
+      if (Number.isFinite(prev) && prev > 0) pts.push(prev);
+      if (Number.isFinite(last) && last > 0) {
+        if (!pts.length || pts[pts.length - 1] !== last) pts.push(last);
+      }
+      if (Number.isFinite(cur) && cur > 0) {
+        if (!pts.length || pts[pts.length - 1] !== cur) pts.push(cur);
+      }
+    }
+    return pts;
+  }
+
+  function isNearLow(deal, series) {
+    var cur = Number(deal && deal.price);
+    if (!Number.isFinite(cur) || !series || series.length < 2) return false;
+    var min = Math.min.apply(null, series);
+    if (!Number.isFinite(min) || min <= 0) return false;
+    return cur <= min * 1.05;
+  }
+
+  function sparklineSvg(series) {
+    if (!series || series.length < 2) return "";
+    var w = 72;
+    var h = 28;
+    var pad = 2;
+    var min = Math.min.apply(null, series);
+    var max = Math.max.apply(null, series);
+    var range = max - min || 1;
+    var coords = series.map(function (v, i) {
+      var x = pad + (i / (series.length - 1)) * (w - pad * 2);
+      var y = pad + (1 - (v - min) / range) * (h - pad * 2);
+      return x.toFixed(1) + "," + y.toFixed(1);
+    });
+    var last = series[series.length - 1];
+    var lastX = pad + ((series.length - 1) / (series.length - 1)) * (w - pad * 2);
+    var lastY = pad + (1 - (last - min) / range) * (h - pad * 2);
+    var falling = last <= series[0];
+    var stroke = falling ? "var(--deal)" : "var(--text-tertiary)";
+    return (
+      '<svg class="deal-card__spark" viewBox="0 0 ' +
+      w +
+      " " +
+      h +
+      '" width="' +
+      w +
+      '" height="' +
+      h +
+      '" aria-hidden="true" focusable="false">' +
+      '<polyline fill="none" stroke="' +
+      stroke +
+      '" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" points="' +
+      coords.join(" ") +
+      '"/>' +
+      '<circle cx="' +
+      lastX.toFixed(1) +
+      '" cy="' +
+      lastY.toFixed(1) +
+      '" r="2.25" fill="' +
+      stroke +
+      '"/>' +
+      "</svg>"
+    );
+  }
+
+  /** Static client-side heat from % off + drop size. No voting. */
+  function dealHeat(deal) {
+    var price = Number(deal && deal.price);
+    var prev = Number(deal && deal.previousPrice);
+    var pct = pctOff(price, prev) || 0;
+    var drop = savings(price, prev) || 0;
+    var score = pct + Math.min(30, drop / 15);
+    if (deal && deal.priceDropped) score += 6;
+    var level;
+    var label;
+    if (score >= 42) {
+      level = "fire";
+      label = "Fire";
+    } else if (score >= 26) {
+      level = "hot";
+      label = "Hot";
+    } else if (score >= 12) {
+      level = "warm";
+      label = "Warm";
+    } else {
+      level = "cool";
+      label = "Cool";
+    }
+    var fill = Math.max(8, Math.min(100, Math.round(score * 1.6)));
+    return { level: level, label: label, fill: fill, score: score };
+  }
+
+  function dealPromoCode(deal) {
+    if (!deal) return "";
+    var raw = deal.promoCode || deal.promo || deal.couponCode || deal.code;
+    if (raw == null) return "";
+    var code = String(raw).trim();
+    return code || "";
+  }
+
+  function matchesBudget(deal, budgetId) {
+    if (!budgetId || budgetId === "All") return true;
+    var opt = null;
+    for (var i = 0; i < BUDGET_OPTIONS.length; i++) {
+      if (BUDGET_OPTIONS[i].id === budgetId) {
+        opt = BUDGET_OPTIONS[i];
+        break;
+      }
+    }
+    if (!opt || opt.min == null) return true;
+    var price = Number(deal && deal.price);
+    if (!Number.isFinite(price)) return false;
+    return price >= opt.min && price < opt.max;
+  }
+
+  function ensureBudgetDom() {
+    if (budgetFiltersEl && budgetButtonsEl) return true;
+    var filters = document.getElementById("filters");
+    if (!filters || !filters.parentNode) return false;
+    var section = document.getElementById("budget-filters");
+    if (!section) {
+      section = document.createElement("section");
+      section.className = "filters filters--budget";
+      section.id = "budget-filters";
+      section.setAttribute("aria-label", "Filter by budget");
+      section.hidden = true;
+      var inner = document.createElement("div");
+      inner.className = "filters__inner filters__inner--budget";
+      inner.id = "budget-buttons";
+      section.appendChild(inner);
+      filters.parentNode.insertBefore(section, filters.nextSibling);
+    }
+    budgetFiltersEl = section;
+    budgetButtonsEl = document.getElementById("budget-buttons");
+    return !!(budgetFiltersEl && budgetButtonsEl);
+  }
+
+  function renderBudgetFilters() {
+    if (!ensureBudgetDom()) return;
+    budgetButtonsEl.innerHTML = "";
+    BUDGET_OPTIONS.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-btn filter-btn--budget" + (opt.id === activeBudget ? " is-on" : "");
+      btn.textContent = opt.label;
+      btn.setAttribute("aria-pressed", opt.id === activeBudget ? "true" : "false");
+      btn.dataset.budget = opt.id;
+      btn.addEventListener("click", function () {
+        if (opt.id === activeBudget) {
+          pressFlash(btn);
+          return;
+        }
+        activeBudget = opt.id;
+        Array.prototype.forEach.call(budgetButtonsEl.children, function (b) {
+          var on = b.dataset.budget === activeBudget;
+          b.classList.toggle("is-on", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        pressFlash(btn);
+        try {
+          btn.scrollIntoView({
+            inline: "nearest",
+            block: "nearest",
+            behavior: reduceMotion ? "auto" : "smooth"
+          });
+        } catch (e) {}
+        renderDeals(allDeals);
+      });
+      budgetButtonsEl.appendChild(btn);
+    });
+    budgetFiltersEl.hidden = false;
   }
 
   function renderFilters(deals) {
@@ -369,7 +603,6 @@
     CATEGORY_ORDER.forEach(function (cat) {
       if (cat !== "All" && present[cat]) cats.push(cat);
     });
-    // Any unexpected categories still appear after the canonical set
     Object.keys(present).forEach(function (cat) {
       if (cats.indexOf(cat) === -1) cats.push(cat);
     });
@@ -393,13 +626,18 @@
         });
         pressFlash(btn);
         try {
-          btn.scrollIntoView({ inline: "nearest", block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+          btn.scrollIntoView({
+            inline: "nearest",
+            block: "nearest",
+            behavior: reduceMotion ? "auto" : "smooth"
+          });
         } catch (e) {}
         renderDeals(allDeals);
       });
       filterButtonsEl.appendChild(btn);
     });
     filtersEl.hidden = cats.length <= 2;
+    renderBudgetFilters();
   }
 
   function buildCard(deal, index) {
@@ -416,9 +654,16 @@
       if (saved != null) badgeText += " · save " + formatMoney(saved);
     }
 
+    var series = priceSeries(deal);
+    var nearLow = isNearLow(deal, series);
+    var sparkHtml = sparklineSvg(series);
+    var heat = dealHeat(deal);
+    var promo = dealPromoCode(deal);
+    var checkedIso = deal.updatedAt || siteUpdatedAt;
+    var checkedLabel = checkedIso ? formatChecked(checkedIso) : "";
+    var endsLabel = deal.endsAt ? formatEndsIn(deal.endsAt) : "";
+
     var dropBadge = "";
-    // Show Dropped when below list/MSRP (previousPrice) or down since last hourly check.
-    // Compute from existing fields only — never invent prices.
     var priceNum = Number(deal.price);
     var prevNum = Number(deal.previousPrice);
     var belowList =
@@ -433,13 +678,9 @@
       var dropLabel = hasShowAmt ? "↓ " + formatMoney(showAmt) : "Dropped";
       var ariaDrop;
       if (hasCheckAmt) {
-        ariaDrop =
-          "Price dropped " + formatMoney(dropAmt) + " since last refresh";
+        ariaDrop = "Price dropped " + formatMoney(dropAmt) + " since last refresh";
       } else if (belowList && hasShowAmt) {
-        ariaDrop =
-          "Price " +
-          formatMoney(showAmt) +
-          " below list/MSRP";
+        ariaDrop = "Price " + formatMoney(showAmt) + " below list/MSRP";
       } else if (fromCheck) {
         ariaDrop = "Price dropped since last refresh";
       } else {
@@ -481,14 +722,69 @@
         "</figure>";
     }
 
+    var nearLowHtml = nearLow
+      ? '<span class="deal-card__near-low" role="status">Near low</span>'
+      : "";
+
+    var sparkBlock = sparkHtml
+      ? '<div class="deal-card__spark-wrap" title="Price trend from known checks">' +
+        sparkHtml +
+        "</div>"
+      : "";
+
+    var heatHtml =
+      '<div class="deal-card__heat deal-card__heat--' +
+      escapeAttr(heat.level) +
+      '" role="img" aria-label="Deal heat: ' +
+      escapeAttr(heat.label) +
+      '">' +
+      '<span class="deal-card__heat-label">' +
+      escapeHtml(heat.label) +
+      "</span>" +
+      '<span class="deal-card__heat-track" aria-hidden="true">' +
+      '<span class="deal-card__heat-fill" style="width:' +
+      heat.fill +
+      '%"></span>' +
+      "</span></div>";
+
+    var promoHtml = promo
+      ? '<button type="button" class="deal-card__promo" data-promo="' +
+        escapeAttr(promo) +
+        '" aria-label="Copy promo code ' +
+        escapeAttr(promo) +
+        '">Code: ' +
+        escapeHtml(promo) +
+        " · tap to copy</button>"
+      : "";
+
+    var freshnessParts = [];
+    if (checkedLabel) freshnessParts.push(checkedLabel);
+    if (endsLabel) freshnessParts.push(endsLabel);
+    var freshnessHtml = freshnessParts.length
+      ? '<p class="deal-card__fresh">' +
+        freshnessParts
+          .map(function (p, i) {
+            var cls =
+              i === freshnessParts.length - 1 && endsLabel
+                ? "deal-card__fresh-ends"
+                : "deal-card__fresh-checked";
+            return '<span class="' + cls + '">' + escapeHtml(p) + "</span>";
+          })
+          .join('<span class="deal-card__fresh-sep"> · </span>') +
+        "</p>"
+      : "";
+
     article.innerHTML =
       mediaHtml +
       '<div class="deal-card__body">' +
+      '<div class="deal-card__top">' +
       '<p class="deal-card__meta">' +
       escapeHtml(normalizeCategory(deal.category) || deal.category || "Deal") +
       " · " +
       escapeHtml(deal.merchant || "") +
       "</p>" +
+      heatHtml +
+      "</div>" +
       '<h2 class="deal-card__title">' +
       escapeHtml(deal.name) +
       "</h2>" +
@@ -502,7 +798,11 @@
       (badgeText
         ? '<span class="deal-card__badge">' + escapeHtml(badgeText) + "</span>"
         : "") +
+      nearLowHtml +
+      sparkBlock +
       "</div>" +
+      promoHtml +
+      freshnessHtml +
       '<p class="deal-card__why">' +
       escapeHtml(deal.why || "") +
       "</p>" +
@@ -517,7 +817,6 @@
 
     if (deal.image) {
       var fig = article.querySelector(".deal-card__figure--zoom");
-      var img = fig && fig.querySelector("img");
       function zoom() {
         openLightbox(deal.image, deal.name);
       }
@@ -551,6 +850,21 @@
       });
     }
 
+    var promoBtn = article.querySelector("[data-promo]");
+    if (promoBtn) {
+      promoBtn.addEventListener("click", function () {
+        var code = promoBtn.getAttribute("data-promo") || promo;
+        pressFlash(promoBtn);
+        copyText(code)
+          .then(function () {
+            showToast("Code " + code + " copied");
+          })
+          .catch(function () {
+            showToast("Couldn’t copy code");
+          });
+      });
+    }
+
     return article;
   }
 
@@ -567,12 +881,12 @@
   }
 
   function renderDeals(deals) {
-    var list =
-      activeFilter === "All"
-        ? deals.slice()
-        : deals.filter(function (d) {
-            return normalizeCategory(d.category) === activeFilter;
-          });
+    var list = deals.filter(function (d) {
+      if (activeFilter !== "All" && normalizeCategory(d.category) !== activeFilter) {
+        return false;
+      }
+      return matchesBudget(d, activeBudget);
+    });
     if (activeFilter === "All") {
       list = interleaveByCategory(list);
     } else {
@@ -585,7 +899,10 @@
     if (!list.length) {
       var empty = document.createElement("p");
       empty.className = "status";
-      empty.textContent = "No deals in this category right now.";
+      empty.textContent =
+        activeBudget !== "All"
+          ? "No deals in this category and budget right now."
+          : "No deals in this category right now.";
       dealsEl.appendChild(empty);
       return;
     }
@@ -606,7 +923,6 @@
       0,
       window.scrollY || document.documentElement.scrollTop || 0
     );
-    // Faster, more obvious fade (~72px) so it reads clearly on phone.
     var rawProgress = Math.min(scrollY / 72, 1);
     var progress = rawProgress * rawProgress * (3 - 2 * rawProgress);
 
@@ -650,6 +966,7 @@
         return res.json();
       })
       .then(function (data) {
+        siteUpdatedAt = data.updatedAt || null;
         allDeals = (Array.isArray(data.deals) ? data.deals : []).map(function (d) {
           var copy = Object.assign({}, d);
           copy.category = normalizeCategory(d.category) || d.category;

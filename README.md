@@ -86,6 +86,22 @@ Cards show a small green “Dropped” / “↓ $X” pill when the current `pri
 
 Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
 
+
+### Inspiration UI (client-side)
+
+Cards also show:
+- **Sparkline + Near low** — SVG trend from `priceHistory[]` when present; otherwise an honest series from known points (`previousPrice` → `lastPrice` → `price`). Never invents fake lows. “Near low” only when current is within ~5% of the min of available points.
+- **Deal heat meter** — static cool → warm → hot → fire from % off + drop size (no voting backend).
+- **Promo chip** — if `promoCode` (or `promo` / `couponCode`) is set, shows “Code: X · tap to copy” via the existing toast. Do not invent codes.
+- **Budget ladder** — Under $50 / $50–150 / $150–400 / $400+ chips sit under categories and AND with the category filter.
+- **Freshness / ends-at** — “Checked …” from deal `updatedAt` or site `updatedAt`; countdown only when `endsAt` is present (never invent end dates).
+
+Optional deal fields for richer UI (all optional; omit when unknown):
+- `priceHistory` — array of numbers or `{ price }` objects
+- `promoCode` — real stack/coupon code string
+- `endsAt` — ISO datetime for limited-time deals
+- `updatedAt` — per-deal last check (falls back to site `updatedAt`)
+
 ### Sort order
 
 Single-category tabs (GPUs, TVs, Home Theater, Art Tablets, etc.) sort by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom.
