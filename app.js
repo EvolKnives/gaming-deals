@@ -481,83 +481,29 @@
     }, 1200);
   }
 
-  /** Honest price series: use priceHistory when present; else previous → last → current. Never invent lows. */
-  function priceSeries(deal) {
+  /** Real check history only — never treat list/MSRP as a trend. */
+  function priceHistorySeries(deal) {
     var pts = [];
     var hist = deal && deal.priceHistory;
-    if (Array.isArray(hist) && hist.length) {
-      hist.forEach(function (item) {
-        var v = typeof item === "number" ? item : item && item.price;
-        var n = Number(v);
-        if (Number.isFinite(n) && n > 0) pts.push(n);
-      });
-    }
-    if (pts.length < 2) {
-      pts = [];
-      var prev = Number(deal && deal.previousPrice);
-      var last = Number(deal && deal.lastPrice);
-      var cur = Number(deal && deal.price);
-      if (Number.isFinite(prev) && prev > 0) pts.push(prev);
-      if (Number.isFinite(last) && last > 0) {
-        if (!pts.length || pts[pts.length - 1] !== last) pts.push(last);
-      }
-      if (Number.isFinite(cur) && cur > 0) {
-        if (!pts.length || pts[pts.length - 1] !== cur) pts.push(cur);
-      }
-    }
+    if (!Array.isArray(hist) || !hist.length) return pts;
+    hist.forEach(function (item) {
+      var v = typeof item === "number" ? item : item && item.price;
+      var n = Number(v);
+      if (Number.isFinite(n) && n > 0) pts.push(n);
+    });
     return pts;
   }
 
-  function isNearLow(deal, series) {
+  /** Near low only with a real check history (3+ points), or a verified drop since last refresh. */
+  function isNearLow(deal) {
+    if (deal && deal.priceDropped) return true;
+    var series = priceHistorySeries(deal);
+    if (series.length < 3) return false;
     var cur = Number(deal && deal.price);
-    if (!Number.isFinite(cur) || !series || series.length < 2) return false;
+    if (!Number.isFinite(cur)) return false;
     var min = Math.min.apply(null, series);
     if (!Number.isFinite(min) || min <= 0) return false;
     return cur <= min * 1.05;
-  }
-
-  function sparklineSvg(series) {
-    if (!series || series.length < 2) return "";
-    var w = 72;
-    var h = 28;
-    var pad = 2;
-    var min = Math.min.apply(null, series);
-    var max = Math.max.apply(null, series);
-    var range = max - min || 1;
-    var coords = series.map(function (v, i) {
-      var x = pad + (i / (series.length - 1)) * (w - pad * 2);
-      var y = pad + (1 - (v - min) / range) * (h - pad * 2);
-      return x.toFixed(1) + "," + y.toFixed(1);
-    });
-    var last = series[series.length - 1];
-    var lastX = pad + ((series.length - 1) / (series.length - 1)) * (w - pad * 2);
-    var lastY = pad + (1 - (last - min) / range) * (h - pad * 2);
-    var falling = last <= series[0];
-    var stroke = falling ? "var(--deal)" : "var(--text-tertiary)";
-    return (
-      '<svg class="deal-card__spark" viewBox="0 0 ' +
-      w +
-      " " +
-      h +
-      '" width="' +
-      w +
-      '" height="' +
-      h +
-      '" aria-hidden="true" focusable="false">' +
-      '<polyline fill="none" stroke="' +
-      stroke +
-      '" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" points="' +
-      coords.join(" ") +
-      '"/>' +
-      '<circle cx="' +
-      lastX.toFixed(1) +
-      '" cy="' +
-      lastY.toFixed(1) +
-      '" r="2.25" fill="' +
-      stroke +
-      '"/>' +
-      "</svg>"
-    );
   }
 
   /** Static client-side heat from % off + drop size. No voting. */
@@ -730,9 +676,7 @@
       if (saved != null) badgeText += " · save " + formatMoney(saved);
     }
 
-    var series = priceSeries(deal);
-    var nearLow = isNearLow(deal, series);
-    var sparkHtml = sparklineSvg(series);
+    var nearLow = isNearLow(deal);
     var heat = dealHeat(deal);
     var promo = dealPromoCode(deal);
     var checkedIso = deal.updatedAt || siteUpdatedAt;
@@ -808,12 +752,6 @@
       ? '<span class="deal-card__ending-soon" role="status">Ending soon</span>'
       : "";
 
-    var sparkBlock = sparkHtml
-      ? '<div class="deal-card__spark-wrap" title="Price trend from known checks">' +
-        sparkHtml +
-        "</div>"
-      : "";
-
     var heatHtml =
       '<div class="deal-card__heat deal-card__heat--' +
       escapeAttr(heat.level) +
@@ -885,7 +823,6 @@
         : "") +
       nearLowHtml +
       endingSoonHtml +
-      sparkBlock +
       "</div>" +
       promoHtml +
       freshnessHtml +

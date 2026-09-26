@@ -90,7 +90,7 @@ Categories used in the UI (always plural, never apostrophe plurals — except `H
 ### Inspiration UI (client-side)
 
 Cards also show:
-- **Sparkline + Near low** — SVG trend from `priceHistory[]` when present; otherwise an honest series from known points (`previousPrice` → `lastPrice` → `price`). Never invents fake lows. “Near low” only when current is within ~5% of the min of available points.
+- **Near low** — only when `priceHistory[]` has 3+ real checks and current is within ~5% of that min, or when `priceDropped` since the last verified refresh. No sparkline (list/MSRP is not a trend).
 - **Deal heat meter** — static cool → warm → hot → fire from % off + drop size (no voting backend).
 - **Promo chip** — if `promoCode` (or `promo` / `couponCode`) is set, shows “Code: X · tap to copy” via the existing toast. Do not invent codes.
 - **Budget ladder** — Under $50 / $50–150 / $150–400 / $400+ chips sit under categories and AND with the category filter.

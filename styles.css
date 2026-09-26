@@ -693,17 +693,7 @@ a {
   line-height: 1.1;
 }
 
-.deal-card__spark-wrap {
-  display: inline-flex;
-  align-items: center;
-  margin-left: auto;
-  flex-shrink: 0;
-}
 
-.deal-card__spark {
-  display: block;
-  overflow: visible;
-}
 
 .deal-card__promo {
   appearance: none;
@@ -1109,10 +1099,6 @@ a {
     min-height: 34px;
   }
 
-  .deal-card__spark-wrap {
-    margin-left: 0;
-    width: 100%;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
