@@ -38,6 +38,29 @@
       <div class="filters__inner filters__inner--budget" id="budget-buttons"></div>
     </section>
 
+    <section class="search-panel" id="search-panel" hidden aria-label="Search deals">
+      <div class="search-panel__inner">
+        <label class="visually-hidden" for="deal-search">Search deals</label>
+        <div class="search-field">
+          <input
+            type="search"
+            id="deal-search"
+            class="search-field__input"
+            placeholder="Search deals — e.g. GPU, cases, Klipsch…"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            enterkeyhint="search"
+          >
+          <button type="button" class="search-field__clear" id="deal-search-clear" hidden aria-label="Clear search">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="search-recent" id="search-recent" hidden></div>
+      </div>
+    </section>
+
     <section class="deals" id="deals" aria-live="polite" aria-busy="true">
       <p class="status" id="status">Loading&hellip;</p>
     </section>

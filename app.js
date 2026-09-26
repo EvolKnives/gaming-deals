@@ -9,6 +9,10 @@
   var filterButtonsEl = document.getElementById("filter-buttons");
   var budgetFiltersEl = document.getElementById("budget-filters");
   var budgetButtonsEl = document.getElementById("budget-buttons");
+  var searchPanelEl = document.getElementById("search-panel");
+  var searchInputEl = document.getElementById("deal-search");
+  var searchClearEl = document.getElementById("deal-search-clear");
+  var searchRecentEl = document.getElementById("search-recent");
   var toastEl = document.getElementById("toast");
   var lightboxEl = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightbox-img");
@@ -21,6 +25,12 @@
   var allDeals = [];
   var activeFilter = "All";
   var activeBudget = "All";
+  var SEARCH_MODE = "Search";
+  var SEARCH_STORAGE_KEY = "wagd-search-state";
+  var MAX_RECENT_SEARCHES = 6;
+  var searchQuery = "";
+  var recentSearches = [];
+  var searchDebounceTimer = null;
   var siteUpdatedAt = null;
   var loadingDeals = false;
   var pullStartY = 0;
@@ -541,6 +551,189 @@
     return code || "";
   }
 
+  function loadSearchState() {
+    try {
+      var raw = sessionStorage.getItem(SEARCH_STORAGE_KEY);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      if (!data || typeof data !== "object") return;
+      if (typeof data.query === "string") searchQuery = data.query;
+      if (Array.isArray(data.recent)) {
+        recentSearches = data.recent
+          .filter(function (q) {
+            return typeof q === "string" && q.trim();
+          })
+          .map(function (q) {
+            return q.trim();
+          })
+          .slice(0, MAX_RECENT_SEARCHES);
+      }
+    } catch (e) {}
+  }
+
+  function saveSearchState() {
+    try {
+      sessionStorage.setItem(
+        SEARCH_STORAGE_KEY,
+        JSON.stringify({
+          query: searchQuery,
+          recent: recentSearches
+        })
+      );
+    } catch (e) {}
+  }
+
+  function rememberSearchQuery(query) {
+    var q = String(query || "").trim();
+    if (!q) return;
+    recentSearches = [q].concat(
+      recentSearches.filter(function (item) {
+        return item.toLowerCase() !== q.toLowerCase();
+      })
+    ).slice(0, MAX_RECENT_SEARCHES);
+    saveSearchState();
+  }
+
+  function dealSearchBlob(deal) {
+    if (!deal) return "";
+    return [
+      deal.name,
+      deal.title,
+      deal.brand,
+      deal.category,
+      deal.merchant,
+      deal.why,
+      deal.sku,
+      deal.urlKind
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+  }
+
+  function tokenizeQuery(query) {
+    return String(query || "")
+      .trim()
+      .toLowerCase()
+      .split(/\s+/)
+      .filter(Boolean);
+  }
+
+  function matchesSearchQuery(deal, query) {
+    var tokens = tokenizeQuery(query);
+    if (!tokens.length) return false;
+    var blob = dealSearchBlob(deal);
+    for (var i = 0; i < tokens.length; i++) {
+      if (blob.indexOf(tokens[i]) === -1) return false;
+    }
+    return true;
+  }
+
+  function renderRecentSearches() {
+    if (!searchRecentEl) return;
+    searchRecentEl.innerHTML = "";
+    if (!recentSearches.length) {
+      searchRecentEl.hidden = true;
+      return;
+    }
+    recentSearches.forEach(function (q) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "search-recent__chip";
+      chip.textContent = q;
+      chip.setAttribute("aria-label", "Search for " + q);
+      chip.addEventListener("click", function () {
+        applySearchQuery(q, { commit: true, focus: false });
+      });
+      searchRecentEl.appendChild(chip);
+    });
+    searchRecentEl.hidden = false;
+  }
+
+  function syncSearchClearButton() {
+    if (!searchClearEl) return;
+    searchClearEl.hidden = !String(searchQuery || "").trim();
+  }
+
+  function syncSearchPanel() {
+    if (!searchPanelEl) return;
+    var on = activeFilter === SEARCH_MODE;
+    searchPanelEl.hidden = !on;
+    if (searchInputEl && searchInputEl.value !== searchQuery) {
+      searchInputEl.value = searchQuery;
+    }
+    syncSearchClearButton();
+    if (on) renderRecentSearches();
+  }
+
+  function applySearchQuery(query, opts) {
+    opts = opts || {};
+    searchQuery = String(query == null ? "" : query);
+    if (searchInputEl && searchInputEl.value !== searchQuery) {
+      searchInputEl.value = searchQuery;
+    }
+    syncSearchClearButton();
+    saveSearchState();
+    if (opts.commit && String(searchQuery).trim()) {
+      rememberSearchQuery(searchQuery);
+      renderRecentSearches();
+    }
+    if (activeFilter === SEARCH_MODE) renderDeals(allDeals);
+    if (opts.focus && searchInputEl) {
+      try {
+        searchInputEl.focus();
+      } catch (e) {}
+    }
+  }
+
+  function ensureSearchUi() {
+    if (searchPanelEl && searchInputEl) return true;
+    searchPanelEl = document.getElementById("search-panel");
+    searchInputEl = document.getElementById("deal-search");
+    searchClearEl = document.getElementById("deal-search-clear");
+    searchRecentEl = document.getElementById("search-recent");
+    return !!(searchPanelEl && searchInputEl);
+  }
+
+  function initSearchUi() {
+    if (!ensureSearchUi()) return;
+    loadSearchState();
+    if (searchInputEl.value !== searchQuery) searchInputEl.value = searchQuery;
+    syncSearchClearButton();
+
+    searchInputEl.addEventListener("input", function () {
+      var value = searchInputEl.value;
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(function () {
+        applySearchQuery(value, { commit: false });
+      }, 180);
+    });
+
+    searchInputEl.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        clearTimeout(searchDebounceTimer);
+        applySearchQuery(searchInputEl.value, { commit: true });
+      } else if (e.key === "Escape") {
+        if (searchInputEl.value) {
+          e.preventDefault();
+          clearTimeout(searchDebounceTimer);
+          applySearchQuery("", { commit: false, focus: true });
+        }
+      }
+    });
+
+    if (searchClearEl) {
+      searchClearEl.addEventListener("click", function () {
+        clearTimeout(searchDebounceTimer);
+        applySearchQuery("", { commit: false, focus: true });
+        pressFlash(searchClearEl);
+      });
+    }
+
+    syncSearchPanel();
+  }
+
   function matchesBudget(deal, budgetId) {
     if (!budgetId || budgetId === "All") return true;
     var opt = null;
@@ -628,6 +821,8 @@
     Object.keys(present).forEach(function (cat) {
       if (cats.indexOf(cat) === -1) cats.push(cat);
     });
+    // Mode chip — not a deal.category; keep at end so real categories stay primary.
+    if (cats.indexOf(SEARCH_MODE) === -1) cats.push(SEARCH_MODE);
     filterButtonsEl.innerHTML = "";
     cats.forEach(function (cat) {
       var btn = document.createElement("button");
@@ -635,14 +830,24 @@
       btn.className = "filter-btn" + (cat === activeFilter ? " is-on" : "");
       btn.textContent = cat;
       btn.setAttribute("aria-pressed", cat === activeFilter ? "true" : "false");
+      if (cat === SEARCH_MODE) {
+        btn.setAttribute("aria-label", "Search deals");
+        btn.dataset.filter = SEARCH_MODE;
+      }
       btn.addEventListener("click", function () {
         if (cat === activeFilter) {
           pressFlash(btn);
+          if (cat === SEARCH_MODE && searchInputEl) {
+            try {
+              searchInputEl.focus();
+            } catch (e) {}
+          }
           return;
         }
         activeFilter = cat;
         Array.prototype.forEach.call(filterButtonsEl.children, function (b) {
-          var on = b.textContent === activeFilter;
+          var label = b.dataset.filter || b.textContent;
+          var on = label === activeFilter;
           b.classList.toggle("is-on", on);
           b.setAttribute("aria-pressed", on ? "true" : "false");
         });
@@ -654,12 +859,21 @@
             behavior: reduceMotion ? "auto" : "smooth"
           });
         } catch (e) {}
+        syncSearchPanel();
         renderDeals(allDeals);
+        if (cat === SEARCH_MODE && searchInputEl) {
+          setTimeout(function () {
+            try {
+              searchInputEl.focus();
+            } catch (e) {}
+          }, 30);
+        }
       });
       filterButtonsEl.appendChild(btn);
     });
     filtersEl.hidden = cats.length <= 2;
     renderBudgetFilters();
+    syncSearchPanel();
   }
 
 
@@ -940,8 +1154,22 @@
   }
 
   function renderDeals(deals) {
+    var trimmedQuery = String(searchQuery || "").trim();
+
+    if (activeFilter === SEARCH_MODE && !trimmedQuery) {
+      dealsEl.innerHTML = "";
+      dealsEl.setAttribute("aria-busy", "false");
+      var prompt = document.createElement("p");
+      prompt.className = "status";
+      prompt.textContent = "Type to search current deals";
+      dealsEl.appendChild(prompt);
+      return;
+    }
+
     var list = deals.filter(function (d) {
-      if (activeFilter === "Future") {
+      if (activeFilter === SEARCH_MODE) {
+        if (!matchesSearchQuery(d, searchQuery)) return false;
+      } else if (activeFilter === "Future") {
         if (!isFutureDeal(d)) return false;
       } else if (activeFilter !== "All" && normalizeCategory(d.category) !== activeFilter) {
         return false;
@@ -958,6 +1186,7 @@
         return String(a.name || "").localeCompare(String(b.name || ""));
       });
     } else {
+      // Category tabs and Search: biggest savings first
       list = sortBySavingsDesc(list);
     }
 
@@ -967,7 +1196,9 @@
     if (!list.length) {
       var empty = document.createElement("p");
       empty.className = "status";
-      if (activeFilter === "Future") {
+      if (activeFilter === SEARCH_MODE) {
+        empty.textContent = 'No deals match “' + trimmedQuery + '”';
+      } else if (activeFilter === "Future") {
         empty.textContent =
           activeBudget !== "All"
             ? "No upcoming deals in this budget yet."
@@ -1143,6 +1374,7 @@
   }
 
   function init() {
+    initSearchUi();
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
