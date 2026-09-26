@@ -32,7 +32,7 @@
   --chip-track: rgba(0, 0, 0, 0.045);
   --chip-bg: transparent;
   --chip-fg: #6e6e73;
-  --chip-on-bg: #1d1d1f;
+  --chip-on-bg: #0071e3;
   --chip-on-fg: #ffffff;
   --share-bg: rgba(0, 0, 0, 0.06);
   --share-fg: #1d1d1f;
@@ -64,8 +64,8 @@
     --chip-track: rgba(255, 255, 255, 0.06);
     --chip-bg: transparent;
     --chip-fg: #c7c7cc;
-    --chip-on-bg: #f5f5f7;
-    --chip-on-fg: #1c1c1e;
+    --chip-on-bg: #0a84ff;
+    --chip-on-fg: #ffffff;
     --share-bg: rgba(255, 255, 255, 0.1);
     --share-fg: #f5f5f7;
     --toast-bg: #3a3a3c;
@@ -307,7 +307,8 @@ a {
 .filter-btn.is-on {
   background: var(--chip-on-bg);
   color: var(--chip-on-fg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.06);
+  -webkit-text-fill-color: var(--chip-on-fg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .filter-btn:active {
