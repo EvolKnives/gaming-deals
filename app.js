@@ -27,6 +27,7 @@
     "Monitors",
     "TVs",
     "Home Theater",
+    "Art Tablets",
     "PSUs",
     "Mice",
     "Keyboards"
@@ -50,7 +51,13 @@
     "Home Theater": "Home Theater",
     "Home theatre": "Home Theater",
     "Home theatre equipment": "Home Theater",
-    HT: "Home Theater"
+    HT: "Home Theater",
+    "Art Tablets": "Art Tablets",
+    "Art Tablet": "Art Tablets",
+    "Drawing Tablets": "Art Tablets",
+    "Drawing Tablet": "Art Tablets",
+    "Pen Displays": "Art Tablets",
+    "Pen Display": "Art Tablets"
   };
 
   function normalizeCategory(cat) {

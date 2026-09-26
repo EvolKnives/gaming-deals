@@ -84,11 +84,11 @@ Cards show a small green “Dropped” / “↓ $X” pill when the current `pri
 - `dropAmount` — optional dollars fallen since last refresh.
 - **Dropped pill (UI)** — shown when `price < previousPrice` (below list/MSRP) **or** `priceDropped` (down since last check). Meaning: below list/MSRP or down since last check.
 
-Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
+Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
 
 ### Sort order
 
-Single-category tabs (GPUs, TVs, Home Theater, etc.) sort by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom.
+Single-category tabs (GPUs, TVs, Home Theater, Art Tablets, etc.) sort by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom.
 
 On the **All** tab, deals are grouped by category, each group is savings-sorted as above, then **round-robin interleaved** across categories so long same-category runs are avoided. Same category only lands back-to-back when every remaining deal shares that category. The sort runs on every render so it survives refresh and filter changes.
 
