@@ -348,13 +348,34 @@
     }
 
     var dropBadge = "";
-    if (deal.priceDropped) {
+    // Show Dropped when below list/MSRP (previousPrice) or down since last hourly check.
+    // Compute from existing fields only — never invent prices.
+    var priceNum = Number(deal.price);
+    var prevNum = Number(deal.previousPrice);
+    var belowList =
+      Number.isFinite(priceNum) && Number.isFinite(prevNum) && priceNum < prevNum;
+    var fromCheck = !!deal.priceDropped;
+    if (belowList || fromCheck) {
       var dropAmt = Number(deal.dropAmount);
-      var hasDropAmt = Number.isFinite(dropAmt) && dropAmt > 0;
-      var dropLabel = hasDropAmt ? "↓ " + formatMoney(dropAmt) : "Dropped";
-      var ariaDrop = hasDropAmt
-        ? "Price dropped " + formatMoney(dropAmt) + " since last refresh"
-        : "Price dropped since last refresh";
+      var hasCheckAmt = fromCheck && Number.isFinite(dropAmt) && dropAmt > 0;
+      var listSave = belowList ? prevNum - priceNum : null;
+      var showAmt = hasCheckAmt ? dropAmt : listSave;
+      var hasShowAmt = Number.isFinite(showAmt) && showAmt > 0;
+      var dropLabel = hasShowAmt ? "↓ " + formatMoney(showAmt) : "Dropped";
+      var ariaDrop;
+      if (hasCheckAmt) {
+        ariaDrop =
+          "Price dropped " + formatMoney(dropAmt) + " since last refresh";
+      } else if (belowList && hasShowAmt) {
+        ariaDrop =
+          "Price " +
+          formatMoney(showAmt) +
+          " below list/MSRP";
+      } else if (fromCheck) {
+        ariaDrop = "Price dropped since last refresh";
+      } else {
+        ariaDrop = "Price below list/MSRP";
+      }
       dropBadge =
         '<span class="deal-card__drop" role="status" aria-label="' +
         escapeAttr(ariaDrop) +

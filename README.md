@@ -51,7 +51,7 @@ Then:
 4. Keep `previousPrice` as list/MSRP for the “% off” badge — it is not the last-check price.
 5. Never invent prices. Prefer `scripts/refresh.apply_verified_price(deal, new_price)` so the fields stay consistent even while scraping remains manual.
 
-Cards with `priceDropped: true` show a small green “Dropped” / “↓ $X” pill on the product image.
+Cards show a small green “Dropped” / “↓ $X” pill when the current `price` is below list/MSRP (`previousPrice`) **or** when `priceDropped` is true from the last hourly check. The UI computes this client-side from existing fields so refresh flags and % off stay honest to the numbers on the card — never invent prices. Prefer the hourly `dropAmount` when present; otherwise show dollars below list/MSRP.
 
 ### Deal object shape
 
@@ -80,8 +80,9 @@ Cards with `priceDropped: true` show a small green “Dropped” / “↓ $X” 
 
 - `previousPrice` — list / MSRP for the “% off · save $X” badge (or `null`).
 - `lastPrice` — price at the previous successful refresh (`null` if never checked before).
-- `priceDropped` — `true` when current `price` < `lastPrice` from the prior refresh.
+- `priceDropped` — `true` when current `price` < `lastPrice` from the prior refresh (hourly signal only).
 - `dropAmount` — optional dollars fallen since last refresh.
+- **Dropped pill (UI)** — shown when `price < previousPrice` (below list/MSRP) **or** `priceDropped` (down since last check). Meaning: below list/MSRP or down since last check.
 
 Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
 
