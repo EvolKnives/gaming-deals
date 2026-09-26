@@ -13,6 +13,8 @@
   var lightboxEl = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightbox-img");
   var lightboxClose = document.getElementById("lightbox-close");
+  var pullRefreshEl = document.getElementById("pull-refresh");
+  var pullRefreshLabelEl = document.getElementById("pull-refresh-label");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var toastTimer = null;
   var lightboxOpen = false;
@@ -20,6 +22,12 @@
   var activeFilter = "All";
   var activeBudget = "All";
   var siteUpdatedAt = null;
+  var loadingDeals = false;
+  var pullStartY = 0;
+  var pullStartX = 0;
+  var pullDistance = 0;
+  var pullTracking = false;
+  var pullReady = false;
   var SITE_TITLE = "What's A Good Deal?";
 
   // Canonical plural filter labels (never apostrophe plurals).
@@ -1010,18 +1018,155 @@
     observeReveal(cards);
   }
 
+  function scrollTop() {
+    return Math.max(
+      0,
+      window.scrollY ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop ||
+        0
+    );
+  }
+
   function onScroll() {
     if (!headerEl) return;
 
-    var scrollY = Math.max(
-      0,
-      window.scrollY || document.documentElement.scrollTop || 0
-    );
+    var scrollY = scrollTop();
     var rawProgress = Math.min(scrollY / 72, 1);
     var progress = rawProgress * rawProgress * (3 - 2 * rawProgress);
 
     headerEl.style.setProperty("--header-progress", String(progress));
     headerEl.classList.toggle("is-scrolled", scrollY > 4);
+  }
+
+  function setPullIndicator(distance, state) {
+    if (!pullRefreshEl) return;
+    var maxDistance = 112;
+    var threshold = 72;
+    var clamped = Math.max(0, Math.min(maxDistance, distance || 0));
+    var progress = Math.min(1, clamped / threshold);
+    pullRefreshEl.style.setProperty("--pull-offset", clamped * 0.62 + "px");
+    pullRefreshEl.style.setProperty("--pull-progress", String(progress));
+    pullRefreshEl.classList.toggle("is-pulling", state === "pulling");
+    pullRefreshEl.classList.toggle("is-refreshing", state === "refreshing");
+    pullRefreshEl.setAttribute("aria-hidden", state === "idle" ? "true" : "false");
+    if (pullRefreshLabelEl) {
+      pullRefreshLabelEl.textContent =
+        state === "refreshing"
+          ? "Refreshing…"
+          : progress >= 1
+            ? "Release to refresh"
+            : "Pull to refresh";
+    }
+  }
+
+  function resetPullGesture() {
+    pullTracking = false;
+    pullReady = false;
+    pullDistance = 0;
+    setPullIndicator(0, "idle");
+  }
+
+  function onTouchStart(e) {
+    if (loadingDeals || lightboxOpen || !e.touches || e.touches.length !== 1) return;
+    if (scrollTop() > 0) return;
+    pullStartY = e.touches[0].clientY;
+    pullStartX = e.touches[0].clientX;
+    pullDistance = 0;
+    pullReady = false;
+    pullTracking = true;
+  }
+
+  function onTouchMove(e) {
+    if (!pullTracking || loadingDeals || !e.touches || e.touches.length !== 1) return;
+    if (scrollTop() > 0) {
+      resetPullGesture();
+      return;
+    }
+
+    var touch = e.touches[0];
+    var dy = touch.clientY - pullStartY;
+    var dx = touch.clientX - pullStartX;
+    if (dy <= 0 || Math.abs(dx) > Math.abs(dy) * 1.2) {
+      resetPullGesture();
+      return;
+    }
+
+    // Resistance keeps the gesture useful without hijacking ordinary scrolling.
+    pullDistance = Math.min(112, dy * 0.62);
+    pullReady = pullDistance >= 72;
+    setPullIndicator(pullDistance, "pulling");
+    e.preventDefault();
+  }
+
+  function onTouchEnd() {
+    if (!pullTracking) return;
+    var shouldRefresh = pullReady && scrollTop() <= 1;
+    resetPullGesture();
+    if (shouldRefresh) loadDeals(true);
+  }
+
+  function dataUrl(cacheBust) {
+    return cacheBust ? "data/deals.json?refresh=" + Date.now() : "data/deals.json";
+  }
+
+  function applyDealsData(data) {
+    siteUpdatedAt = data.updatedAt || null;
+    allDeals = (Array.isArray(data.deals) ? data.deals : []).map(function (d) {
+      var copy = Object.assign({}, d);
+      copy.category = normalizeCategory(d.category) || d.category;
+      return copy;
+    });
+    if (weekLabelEl) {
+      weekLabelEl.textContent =
+        data.weekLabel ||
+        (data.updatedAt ? formatUpdated(data.updatedAt) : "Updated recently");
+    }
+    if (data.title) SITE_TITLE = data.title;
+    renderFilters(allDeals);
+    renderDeals(allDeals);
+  }
+
+  function loadDeals(isRefresh) {
+    if (loadingDeals) return Promise.resolve(false);
+    loadingDeals = true;
+    var previousUpdatedAt = siteUpdatedAt;
+    if (isRefresh) {
+      setPullIndicator(72, "refreshing");
+      dealsEl.setAttribute("aria-busy", "true");
+    }
+
+    return fetch(dataUrl(!!isRefresh), { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        applyDealsData(data);
+        if (isRefresh) {
+          var changed = previousUpdatedAt !== siteUpdatedAt;
+          showToast(changed ? "Updated" : "Already up to date");
+        }
+        return true;
+      })
+      .catch(function () {
+        if (isRefresh) {
+          dealsEl.setAttribute("aria-busy", "false");
+          showToast("Couldn’t update — showing current deals");
+          return false;
+        }
+        if (statusEl) {
+          statusEl.className = "status status--error";
+          statusEl.textContent = "Couldn't load deals. Try refreshing.";
+        }
+        dealsEl.setAttribute("aria-busy", "false");
+        return false;
+      })
+      .then(function (ok) {
+        loadingDeals = false;
+        if (isRefresh) setPullIndicator(0, "idle");
+        return ok;
+      });
   }
 
   function init() {
@@ -1043,34 +1188,11 @@
       if (e.key === "Escape" && lightboxOpen) closeLightbox();
     });
 
-    fetch("data/deals.json", { cache: "no-cache" })
-      .then(function (res) {
-        if (!res.ok) throw new Error("HTTP " + res.status);
-        return res.json();
-      })
-      .then(function (data) {
-        siteUpdatedAt = data.updatedAt || null;
-        allDeals = (Array.isArray(data.deals) ? data.deals : []).map(function (d) {
-          var copy = Object.assign({}, d);
-          copy.category = normalizeCategory(d.category) || d.category;
-          return copy;
-        });
-        if (weekLabelEl) {
-          weekLabelEl.textContent =
-            data.weekLabel ||
-            (data.updatedAt ? formatUpdated(data.updatedAt) : "Updated recently");
-        }
-        if (data.title) SITE_TITLE = data.title;
-        renderFilters(allDeals);
-        renderDeals(allDeals);
-      })
-      .catch(function () {
-        if (statusEl) {
-          statusEl.className = "status status--error";
-          statusEl.textContent = "Couldn't load deals. Try refreshing.";
-        }
-        dealsEl.setAttribute("aria-busy", "false");
-      });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    window.addEventListener("touchcancel", resetPullGesture, { passive: true });
+    loadDeals(false);
   }
 
   if (document.readyState === "loading") {
