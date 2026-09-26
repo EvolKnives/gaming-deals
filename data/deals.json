@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T15:05:27Z",
+  "updatedAt": "2026-09-26T17:04:27Z",
   "weekLabel": "Week of Sep 21",
   "title": "What's A Good Deal?",
   "deals": [
@@ -131,7 +131,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 1679.99,
       "priceDropped": false,
       "id": "msi-ventus-rtx-5080-amazon",
       "name": "MSI Ventus 3X OC GeForce RTX 5080 16GB",
@@ -150,7 +150,7 @@
       "id": "zotac-solid-core-rtx-5080",
       "name": "ZOTAC Gaming SOLID CORE OC RTX 5080 16GB",
       "category": "GPUs",
-      "price": 1599.97,
+      "price": 1599.99,
       "previousPrice": 1649.98,
       "why": "Newegg listing at $1,599.97 (was $1,649.98). IceStorm cooler and full 16GB GDDR7—confirm seller/stock at checkout.",
       "merchant": "Newegg",
@@ -159,7 +159,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 799.5,
       "priceDropped": false,
       "id": "gigabyte-rx-9070-xt",
       "name": "GIGABYTE Gaming OC Radeon RX 9070 XT 16GB",
@@ -173,12 +173,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 171.95,
       "priceDropped": false,
       "id": "amd-ryzen-5-9600x",
       "name": "AMD Ryzen 5 9600X",
       "category": "CPUs",
-      "price": 171.95,
+      "price": 179.99,
       "previousPrice": 279.0,
       "why": "Amazon listing at $171.95 (list $279). Best budget AM5 gaming starter under $180 right now.",
       "merchant": "Amazon",
@@ -187,12 +187,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 158.85,
       "priceDropped": false,
       "id": "amd-ryzen-5-7600x",
       "name": "AMD Ryzen 5 7600X",
       "category": "CPUs",
-      "price": 158.85,
+      "price": 169.99,
       "previousPrice": 299.0,
       "why": "Amazon at $158.85 (list $299). Cheap Zen 4 6-core if you already own AM5 coolers/boards and don’t need 9000-series.",
       "merchant": "Amazon",
@@ -201,7 +201,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 444.0,
+      "lastPrice": 449.0,
       "priceDropped": false,
       "id": "amd-ryzen-7-9800x3d",
       "name": "AMD Ryzen 7 9800X3D",
@@ -215,21 +215,22 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 339.0,
+      "priceDropped": true,
       "id": "amd-ryzen-7-9700x",
       "name": "AMD Ryzen 7 9700X",
       "category": "CPUs",
-      "price": 339.0,
+      "price": 299.99,
       "previousPrice": 359.0,
       "why": "Amazon at $339 (list $359). 8-core Zen 5 without X3D premiums for mixed creator + gaming builds.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=AMD+Ryzen+7+9700X",
-      "image": "images/amd-ryzen-7-9700x.jpg"
+      "image": "images/amd-ryzen-7-9700x.jpg",
+      "dropAmount": 39.01
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 332.99,
       "priceDropped": false,
       "id": "amd-ryzen-9-9900x",
       "name": "AMD Ryzen 9 9900X",
@@ -243,7 +244,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 366.8,
       "priceDropped": false,
       "id": "amd-ryzen-7-7800x3d",
       "name": "AMD Ryzen 7 7800X3D",
@@ -257,7 +258,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 499.99,
       "priceDropped": false,
       "id": "amd-ryzen-9-9950x",
       "name": "AMD Ryzen 9 9950X",
@@ -271,7 +272,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 315.0,
       "priceDropped": false,
       "id": "amd-ryzen-9-7900x",
       "name": "AMD Ryzen 9 7900X",
@@ -285,17 +286,18 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 484.0,
+      "priceDropped": true,
       "id": "amd-ryzen-7-9850x3d-amazon",
       "name": "AMD Ryzen 7 9850X3D",
       "category": "CPUs",
-      "price": 484.0,
+      "price": 476.0,
       "previousPrice": null,
       "why": "Amazon search shows ~$484; Micro Center members have seen $399.99 in-store—compare local MC stock before paying Amazon.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=AMD+Ryzen+7+9850X3D",
-      "image": "images/amd-ryzen-7-9850x3d-amazon.jpg"
+      "image": "images/amd-ryzen-7-9850x3d-amazon.jpg",
+      "dropAmount": 8.0
     },
     {
       "currency": "USD",
@@ -355,7 +357,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 600.22,
+      "lastPrice": 601.36,
       "priceDropped": false,
       "id": "samsung-g60sd",
       "name": "Samsung Odyssey OLED G6 27\" 360Hz (G60SD)",
@@ -397,12 +399,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 485.0,
       "priceDropped": false,
       "id": "lg-27gx700a",
       "name": "LG UltraGear 27GX700A-B",
       "category": "Monitors",
-      "price": 485.0,
+      "price": 549.97,
       "previousPrice": 599.0,
       "why": "PC Guide deal tracker (Sep 21) had this UltraGear near $485 (was $599)—confirm live Amazon cart total.",
       "merchant": "Amazon",
@@ -436,20 +438,6 @@
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/searchpage.jsp?st=Odyssey+G70F",
       "image": "images/samsung-g70f.jpg"
-    },
-    {
-      "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
-      "id": "asus-xg34-qdoled",
-      "name": "ASUS ROG 34\" QD-OLED Ultrawide",
-      "category": "Monitors",
-      "price": 629.0,
-      "previousPrice": 749.0,
-      "why": "PC Guide highlighted ~$629 (was $749) on ASUS 34-inch QD-OLED ultrawide deals in September.",
-      "merchant": "Amazon",
-      "url": "https://www.amazon.com/s?k=ASUS+ROG+34+QD-OLED",
-      "image": "images/asus-xg34-qdoled.jpg"
     },
     {
       "currency": "USD",
@@ -607,12 +595,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 1199.99,
+      "lastPrice": 1399.99,
       "priceDropped": false,
       "id": "lg-oled65b6",
       "name": "LG B6 65\" OLED AI 4K TV (2026)",
       "category": "TVs",
-      "price": 1399.99,
+      "price": 1599.99,
       "previousPrice": 1999.99,
       "why": "Amazon at $1,399.99 (list $1,999.99). 65\" B6 OLED—still well under list after the listing moved up.",
       "merchant": "Amazon",
@@ -691,12 +679,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 69.99,
       "priceDropped": false,
       "id": "msi-mpg-a850gs",
       "name": "MSI MPG A850GS PCIE5 850W Gold Modular",
       "category": "PSUs",
-      "price": 69.99,
+      "price": 79.99,
       "previousPrice": 109.99,
       "why": "Deep promo pricing near $70 with dual 12V-2x6 cables and 10-year warranty class—verify live Amazon/Newegg total.",
       "merchant": "Amazon",
@@ -705,7 +693,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 109.99,
       "priceDropped": false,
       "id": "msi-mpg-a1000gs-ii",
       "name": "MSI MPG A1000GS PCIE5 II 1000W Gold",
@@ -761,20 +749,6 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 159.99,
-      "priceDropped": false,
-      "id": "seasonic-core-gx-1000",
-      "name": "SeaSonic CORE GX-1000 ATX 3.1 1000W Gold",
-      "category": "PSUs",
-      "price": 159.99,
-      "previousPrice": 159.99,
-      "why": "Sold by Newegg at $159.99. Compact fully modular Gold with 12V-2x6—check stock.",
-      "merchant": "Newegg",
-      "url": "https://www.newegg.com/seasonic-usa-atx-3-1-1000-w-80-plus-gold-certified-power-supply-core-gx-1000-atx3/p/N82E16817151283",
-      "image": "images/seasonic-core-gx-1000.jpg"
-    },
-    {
-      "currency": "USD",
       "lastPrice": 169.99,
       "priceDropped": false,
       "id": "corsair-rm1000x",
@@ -803,7 +777,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 89.99,
+      "lastPrice": 109.99,
       "priceDropped": false,
       "id": "thermaltake-gf-a3-850",
       "name": "Thermaltake Toughpower GF A3 850W Gold",
@@ -831,7 +805,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 127.99,
       "priceDropped": false,
       "id": "logitech-g502-x-plus",
       "name": "Logitech G502 X Plus LIGHTSPEED Mouse",
@@ -859,22 +833,23 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 89.99,
+      "priceDropped": true,
       "id": "razer-deathadder-v3-pro",
       "name": "Razer DeathAdder V3 Pro Wireless",
       "category": "Mice",
-      "price": 89.99,
+      "price": 79.99,
       "previousPrice": 149.99,
       "why": "Frequently near $90 on Amazon US (~40% off). 63 g ergonomic shape with Focus Pro 30K sensor.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Razer+DeathAdder+V3+Pro",
-      "image": "images/razer-deathadder-v3-pro.jpg"
+      "image": "images/razer-deathadder-v3-pro.jpg",
+      "dropAmount": 10.0
     },
     {
       "currency": "USD",
-      "lastPrice": 149.99,
-      "priceDropped": true,
+      "lastPrice": 146.49,
+      "priceDropped": false,
       "id": "logitech-g-pro-x-superlight-2",
       "name": "Logitech G Pro X Superlight 2",
       "category": "Mice",
@@ -883,8 +858,7 @@
       "why": "Amazon at $146.49 (list $159.99). PRO X Superlight 2 Black dropped a few dollars this refresh.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=G+Pro+X+Superlight+2",
-      "image": "images/logitech-g-pro-x-superlight-2.jpg",
-      "dropAmount": 3.5
+      "image": "images/logitech-g-pro-x-superlight-2.jpg"
     },
     {
       "currency": "USD",
@@ -930,12 +904,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 119.99,
       "priceDropped": false,
       "id": "razer-basilisk-v3-pro",
       "name": "Razer Basilisk V3 Pro Wireless",
       "category": "Mice",
-      "price": 119.99,
+      "price": 129.99,
       "previousPrice": 159.99,
       "why": "Feature-packed ergonomic wireless with HyperScroll—often ~$120 during Amazon Razer promos.",
       "merchant": "Amazon",
@@ -1014,12 +988,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 124.99,
       "priceDropped": false,
       "id": "razer-huntsman-v3-pro-tkl",
       "name": "Razer Huntsman V3 Pro TKL",
       "category": "Keyboards",
-      "price": 124.99,
+      "price": 139.99,
       "previousPrice": 249.99,
       "why": "Analog optical Rapid Trigger TKL frequently back near $125 on Amazon all-time-low posts.",
       "merchant": "Amazon",
@@ -1028,7 +1002,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 129.99,
       "priceDropped": false,
       "id": "corsair-k70-pro-tkl",
       "name": "Corsair K70 PRO TKL Hall Effect",
@@ -1042,12 +1016,12 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 173.71,
       "priceDropped": false,
       "id": "steelseries-apex-pro-tkl-gen3",
       "name": "SteelSeries Apex Pro TKL Gen 3",
       "category": "Keyboards",
-      "price": 173.71,
+      "price": 186.99,
       "previousPrice": 239.99,
       "why": "OmniPoint 3.0 hall-effect TKL often near $174—rapid trigger and OLED smart display.",
       "merchant": "Amazon",
@@ -1056,17 +1030,18 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 89.99,
+      "priceDropped": true,
       "id": "keychron-k2-v2",
       "name": "Keychron K2 V2 Wireless Mechanical",
       "category": "Keyboards",
-      "price": 89.99,
+      "price": 79.99,
       "previousPrice": 109.99,
       "why": "Compact wireless Mac/Windows board frequently ~$90—hot-swap friendly daily driver.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Keychron+K2+V2",
-      "image": "images/keychron-k2-v2.jpg"
+      "image": "images/keychron-k2-v2.jpg",
+      "dropAmount": 10.0
     },
     {
       "currency": "USD",
@@ -1084,17 +1059,18 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 99.99,
+      "priceDropped": true,
       "id": "logitech-g713",
       "name": "Logitech G713 TKL Mechanical",
       "category": "Keyboards",
-      "price": 99.99,
+      "price": 88.98,
       "previousPrice": 149.99,
       "why": "TKL GX mechanical board often near $100—clean aesthetic for mixed work/play.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Logitech+G713",
-      "image": "images/logitech-g713.jpg"
+      "image": "images/logitech-g713.jpg",
+      "dropAmount": 11.01
     },
     {
       "currency": "USD",
@@ -1123,21 +1099,6 @@
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/searchpage.jsp?st=SteelSeries+Apex+5",
       "image": "images/steelseries-apex-5.jpg"
-    },
-    {
-      "currency": "USD",
-      "lastPrice": 199.99,
-      "priceDropped": true,
-      "id": "asus-rog-azoth",
-      "name": "ASUS ROG Azoth 75% Wireless",
-      "category": "Keyboards",
-      "price": 189.99,
-      "previousPrice": 249.99,
-      "why": "Amazon at $189.99 (list $249.99). ROG Azoth wireless 75% with OLED and hot-swap NX switches.",
-      "merchant": "Amazon",
-      "url": "https://www.amazon.com/s?k=ASUS+ROG+Azoth",
-      "image": "images/asus-rog-azoth.jpg",
-      "dropAmount": 10.0
     }
   ]
 }
