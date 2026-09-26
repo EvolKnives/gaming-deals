@@ -662,6 +662,33 @@
     renderBudgetFilters();
   }
 
+
+  function formatRatingCount(n) {
+    var count = Number(n);
+    if (!Number.isFinite(count) || count <= 0) return "";
+    if (count >= 1000) {
+      var k = count / 1000;
+      var rounded = k >= 10 ? Math.round(k) : Math.round(k * 10) / 10;
+      return String(rounded).replace(/\.0$/, "") + "k";
+    }
+    return String(Math.round(count));
+  }
+
+  function formatRatingScore(r) {
+    var n = Number(r);
+    if (!Number.isFinite(n) || n <= 0) return "";
+    return (Math.round(n * 10) / 10).toFixed(1);
+  }
+
+  function ratingLine(deal) {
+    var score = formatRatingScore(deal && deal.rating);
+    if (!score) return "";
+    var countLabel = formatRatingCount(deal && deal.ratingCount);
+    // Compact: "★ 4.3" or "★ 4.3 · 1.2k" — never invent a score
+    if (countLabel) return "★ " + score + " · " + countLabel;
+    return "★ " + score;
+  }
+
   function buildCard(deal, index) {
     var id = deal.id || "deal-" + slugify(deal.name) + "-" + index;
     var article = document.createElement("article");
@@ -797,6 +824,14 @@
         "</p>"
       : "";
 
+
+    var ratingText = ratingLine(deal);
+    var ratingHtml = ratingText
+      ? '<span class="deal-card__rating" title="Product rating from retailer">' +
+        escapeHtml(ratingText) +
+        "</span>"
+      : "";
+
     article.innerHTML =
       mediaHtml +
       '<div class="deal-card__body">' +
@@ -823,6 +858,7 @@
         : "") +
       nearLowHtml +
       endingSoonHtml +
+      ratingHtml +
       "</div>" +
       promoHtml +
       freshnessHtml +

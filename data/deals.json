@@ -20,7 +20,10 @@
       "sku": "N82E16814932770",
       "imageSource": "product-page",
       "endsAt": "2026-10-05T06:59:59Z",
-      "startsAt": "2026-09-28T07:00:00Z"
+      "startsAt": "2026-09-28T07:00:00Z",
+      "rating": 4.8,
+      "ratingCount": 247,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -37,7 +40,10 @@
       "image": "images/msi-ventus-rtx-5070-ti.jpg",
       "urlKind": "product",
       "sku": "N82E16814137933",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 396,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -54,7 +60,10 @@
       "image": "images/msi-ventus-rtx-5060-ti-16g.jpg",
       "urlKind": "product",
       "sku": "N82E16814137992",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 170,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -73,7 +82,10 @@
       "sku": "N82E16814137938",
       "imageSource": "product-page",
       "endsAt": "2026-10-05T06:59:59Z",
-      "startsAt": "2026-09-28T07:00:00Z"
+      "startsAt": "2026-09-28T07:00:00Z",
+      "rating": 3.6,
+      "ratingCount": 7,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -92,7 +104,10 @@
       "sku": "N82E16814932773",
       "imageSource": "product-page",
       "endsAt": "2026-10-05T06:59:59Z",
-      "startsAt": "2026-09-28T07:00:00Z"
+      "startsAt": "2026-09-28T07:00:00Z",
+      "rating": 4.3,
+      "ratingCount": 147,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -109,7 +124,10 @@
       "image": "images/gigabyte-eagle-ice-rtx-5070.jpg",
       "urlKind": "product",
       "sku": "N82E16814932775",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.3,
+      "ratingCount": 147,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -126,7 +144,10 @@
       "image": "images/pny-argb-rtx-5070.jpg",
       "urlKind": "product",
       "sku": "N82E16814133903",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.5,
+      "ratingCount": 6,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -143,7 +164,10 @@
       "image": "images/asus-prime-white-rtx-5070.jpg",
       "urlKind": "product",
       "sku": "N82E16814126813",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.5,
+      "ratingCount": 176,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -160,7 +184,10 @@
       "image": "images/gigabyte-aorus-infinity-rtx-5070.jpg",
       "urlKind": "product",
       "sku": "N82E16814932832",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.3,
+      "ratingCount": 147,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -177,7 +204,10 @@
       "image": "images/msi-ventus-rtx-5080-amazon.jpg",
       "urlKind": "product",
       "asin": "B0GVGP3JG3",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 7,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -194,7 +224,10 @@
       "image": "images/zotac-solid-core-rtx-5080.jpg",
       "urlKind": "product",
       "sku": "N82E16814500648",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 5.0,
+      "ratingCount": 4,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -211,7 +244,10 @@
       "image": "images/gigabyte-rx-9070-xt.jpg",
       "urlKind": "product",
       "asin": "B0DT7B79K9",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.4,
+      "ratingCount": 628,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -228,7 +264,10 @@
       "image": "images/amd-ryzen-5-9600x.jpg",
       "urlKind": "product",
       "asin": "B0D6NN6TM7",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.9,
+      "ratingCount": 4124,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -245,7 +284,10 @@
       "image": "images/amd-ryzen-5-7600x.jpg",
       "urlKind": "product",
       "asin": "B0BBJDS62N",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 6067,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -262,7 +304,10 @@
       "image": "images/amd-ryzen-7-9800x3d.jpg",
       "urlKind": "product",
       "asin": "B0DKFMSMYK",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 6222,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -279,7 +324,10 @@
       "image": "images/amd-ryzen-7-9700x.jpg",
       "urlKind": "product",
       "asin": "B0D6NMDNNX",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 2691,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -296,7 +344,10 @@
       "image": "images/amd-ryzen-9-9900x.jpg",
       "urlKind": "product",
       "asin": "B0D6NN87T8",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 1715,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -313,7 +364,10 @@
       "image": "images/amd-ryzen-7-7800x3d.jpg",
       "urlKind": "product",
       "asin": "B0BTZB7F88",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 8095,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -330,7 +384,10 @@
       "image": "images/amd-ryzen-9-9950x.jpg",
       "urlKind": "product",
       "asin": "B0D6NNRBGP",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 1198,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -347,7 +404,10 @@
       "image": "images/amd-ryzen-9-7900x.jpg",
       "urlKind": "product",
       "asin": "B0BBJ59WJ4",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 2678,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -364,7 +424,10 @@
       "image": "images/amd-ryzen-7-9850x3d-amazon.jpg",
       "urlKind": "product",
       "asin": "B0G8JMLXNQ",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 461,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -381,7 +444,10 @@
       "image": "images/intel-ultra-5-245k-mc.jpg",
       "urlKind": "product",
       "sku": "685302",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.36,
+      "ratingCount": 11,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "currency": "USD",
@@ -415,7 +481,10 @@
       "image": "images/lg-27gx790a.jpg",
       "urlKind": "product",
       "asin": "B0DMPTN8DG",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.1,
+      "ratingCount": 139,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -432,7 +501,10 @@
       "image": "images/samsung-g60sd.jpg",
       "urlKind": "product",
       "asin": "B0D1DPFZLZ",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.3,
+      "ratingCount": 360,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -466,7 +538,10 @@
       "image": "images/acer-nitro-kg271u.jpg",
       "urlKind": "product",
       "asin": "B0H5CYF8FP",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.3,
+      "ratingCount": 8,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -483,7 +558,10 @@
       "image": "images/lg-27gx700a.jpg",
       "urlKind": "product",
       "asin": "B0FLLNVXFG",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.0,
+      "ratingCount": 168,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -533,7 +611,10 @@
       "image": "images/msi-mpg-271qrx.jpg",
       "urlKind": "product",
       "sku": "N82E16824475359",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.8,
+      "ratingCount": 169,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -566,7 +647,10 @@
       "url": "https://www.dell.com/en-us/shop/alienware-27-360hz-qd-oled-gaming-monitor-aw2725df/apd/210-bljd/monitors-monitor-accessories",
       "image": "images/dell-aw2725df.jpg",
       "urlKind": "product",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 475,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "currency": "USD",
@@ -777,7 +861,10 @@
       "urlKind": "product",
       "sku": "N82E16817701021",
       "imageSource": "product-page",
-      "endsAt": "2026-09-28T06:59:59Z"
+      "endsAt": "2026-09-28T06:59:59Z",
+      "rating": 3.6,
+      "ratingCount": 7,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -794,7 +881,10 @@
       "image": "images/msi-mag-a650gn-ii.jpg",
       "urlKind": "product",
       "asin": "B0GZJ6CMMP",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.1,
+      "ratingCount": 11,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -811,7 +901,10 @@
       "image": "images/msi-mpg-a850gs.jpg",
       "urlKind": "product",
       "asin": "B0DT2V39K4",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.7,
+      "ratingCount": 242,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -828,7 +921,10 @@
       "image": "images/msi-mpg-a1000gs-ii.jpg",
       "urlKind": "product",
       "asin": "B0FXNTC1S8",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.3,
+      "ratingCount": 41,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -845,7 +941,10 @@
       "image": "images/nzxt-c1000-gold.jpg",
       "urlKind": "product",
       "asin": "B0FQ6MH33Q",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.7,
+      "ratingCount": 84,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -863,7 +962,10 @@
       "urlKind": "product",
       "sku": "N82E16817116049",
       "imageSource": "product-page",
-      "dropAmount": 9.1
+      "dropAmount": 9.1,
+      "rating": 4.0,
+      "ratingCount": 4,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -880,7 +982,10 @@
       "image": "images/phanteks-amp-gh-1200.jpg",
       "urlKind": "product",
       "sku": "N82E16817987031",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.0,
+      "ratingCount": 4,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -898,7 +1003,10 @@
       "urlKind": "product",
       "sku": "N82E16817139334",
       "imageSource": "product-page",
-      "endsAt": "2026-09-28T06:59:59Z"
+      "endsAt": "2026-09-28T06:59:59Z",
+      "rating": 5.0,
+      "ratingCount": 9,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -916,7 +1024,10 @@
       "urlKind": "product",
       "sku": "N82E16817955008",
       "imageSource": "product-page",
-      "endsAt": "2026-09-28T06:59:59Z"
+      "endsAt": "2026-09-28T06:59:59Z",
+      "rating": 5.0,
+      "ratingCount": 9,
+      "ratingSource": "newegg-RatingOneDecimal"
     },
     {
       "currency": "USD",
@@ -949,7 +1060,10 @@
       "image": "images/logitech-g305.jpg",
       "urlKind": "product",
       "asin": "B07CMS5Q6P",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 40065,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -966,7 +1080,10 @@
       "image": "images/logitech-g502-x-plus.jpg",
       "urlKind": "product",
       "asin": "B092CB69Q4",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.4,
+      "ratingCount": 2653,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -999,7 +1116,10 @@
       "image": "images/razer-deathadder-v3-pro.jpg",
       "urlKind": "product",
       "asin": "B0B6XZLNHQ",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.3,
+      "ratingCount": 2209,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1016,7 +1136,10 @@
       "image": "images/logitech-g-pro-x-superlight-2.jpg",
       "urlKind": "product",
       "asin": "B09NBWL8J5",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.5,
+      "ratingCount": 2451,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1033,7 +1156,10 @@
       "image": "images/razer-viper-v3-pro.jpg",
       "urlKind": "product",
       "asin": "B0CW25XR5R",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 2265,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1051,7 +1177,10 @@
       "dropAmount": 7.99,
       "urlKind": "product",
       "asin": "B0C8523DT8",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 773,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1069,7 +1198,10 @@
       "urlKind": "product",
       "asin": "B0CTN26P3Z",
       "imageSource": "product-page",
-      "dropAmount": 15.0
+      "dropAmount": 15.0,
+      "rating": 4.3,
+      "ratingCount": 189,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1087,7 +1219,10 @@
       "urlKind": "product",
       "asin": "B0B6Y3XYFG",
       "imageSource": "product-page",
-      "dropAmount": 30.0
+      "dropAmount": 30.0,
+      "rating": 4.4,
+      "ratingCount": 1880,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1169,7 +1304,10 @@
       "image": "images/corsair-k70-core.jpg",
       "urlKind": "product",
       "asin": "B0CH3MRGK7",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.0,
+      "ratingCount": 621,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1202,7 +1340,10 @@
       "image": "images/corsair-k70-pro-tkl.jpg",
       "urlKind": "product",
       "asin": "B0D83TJ5RB",
-      "imageSource": "product-page"
+      "imageSource": "product-page",
+      "rating": 4.6,
+      "ratingCount": 318,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "currency": "USD",
@@ -1315,7 +1456,10 @@
       "urlKind": "product",
       "image": "images/onkyo-tx-rz50.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $1,399.99 (was $1,699.99). Onkyo home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $1,399.99 (was $1,699.99). Onkyo home theater gear with a clear list-price cut.",
+      "rating": 4.5,
+      "ratingCount": 257,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "onkyo-tx-nr5100",
@@ -1332,7 +1476,10 @@
       "urlKind": "product",
       "image": "images/onkyo-tx-nr5100.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $599.99 (was $699.99). Onkyo home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $599.99 (was $699.99). Onkyo home theater gear with a clear list-price cut.",
+      "rating": 4.5,
+      "ratingCount": 143,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "jbl-bar-700mk2",
@@ -1349,7 +1496,10 @@
       "urlKind": "product",
       "image": "images/jbl-bar-700mk2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $549.95 (was $899.95). JBL home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $549.95 (was $899.95). JBL home theater gear with a clear list-price cut.",
+      "rating": 4.5,
+      "ratingCount": 12,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "jbl-bar-500mk2",
@@ -1366,7 +1516,10 @@
       "urlKind": "product",
       "image": "images/jbl-bar-500mk2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $399.95 (was $649.95). JBL home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $399.95 (was $649.95). JBL home theater gear with a clear list-price cut.",
+      "rating": 4.5,
+      "ratingCount": 11,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "jbl-bar-21-deep-bass-mk2",
@@ -1383,7 +1536,10 @@
       "urlKind": "product",
       "image": "images/jbl-bar-21-deep-bass-mk2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $229.95 (was $379.95). JBL home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $229.95 (was $379.95). JBL home theater gear with a clear list-price cut.",
+      "rating": 4.5,
+      "ratingCount": 23,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "klipsch-rp-8000f",
@@ -1400,7 +1556,10 @@
       "urlKind": "product",
       "image": "images/klipsch-rp-8000f.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $399.99 (was $829). Klipsch home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $399.99 (was $829). Klipsch home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 570,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "klipsch-rp-600m",
@@ -1417,7 +1576,10 @@
       "urlKind": "product",
       "image": "images/klipsch-rp-600m.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $349 (was $769). Klipsch home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $349 (was $769). Klipsch home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 658,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "klipsch-spl-120",
@@ -1434,7 +1596,10 @@
       "urlKind": "product",
       "image": "images/klipsch-spl-120.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $429.99 (was $849). Klipsch home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $429.99 (was $849). Klipsch home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 422,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "klipsch-r-120sw",
@@ -1451,7 +1616,10 @@
       "urlKind": "product",
       "image": "images/klipsch-r-120sw.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $329.99 (was $599). Klipsch home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $329.99 (was $599). Klipsch home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 802,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "elac-debut-f62",
@@ -1468,7 +1636,10 @@
       "urlKind": "product",
       "image": "images/elac-debut-f62.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $419 (was $529.98). ELAC home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $419 (was $529.98). ELAC home theater gear with a clear list-price cut.",
+      "rating": 4.5,
+      "ratingCount": 88,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "elac-debut-b62",
@@ -1485,7 +1656,10 @@
       "urlKind": "product",
       "image": "images/elac-debut-b62.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $329 (was $399.98). ELAC home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $329 (was $399.98). ELAC home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 334,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "elac-debut-c62",
@@ -1502,7 +1676,10 @@
       "urlKind": "product",
       "image": "images/elac-debut-c62.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $299 (was $379.98). ELAC home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $299 (was $379.98). ELAC home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 38,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "elac-debut-f52",
@@ -1519,7 +1696,10 @@
       "urlKind": "product",
       "image": "images/elac-debut-f52.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $319 (was $399.98). ELAC home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $319 (was $399.98). ELAC home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 43,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "klipsch-rp-8000f-ii",
@@ -1536,7 +1716,10 @@
       "urlKind": "product",
       "image": "images/klipsch-rp-8000f-ii.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $579.99 (was $799.99). Klipsch home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $579.99 (was $799.99). Klipsch home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 187,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "jbl-bar-20-mk2",
@@ -1553,7 +1736,10 @@
       "urlKind": "product",
       "image": "images/jbl-bar-20-mk2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $129.95 (was $219.95). JBL home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $129.95 (was $219.95). JBL home theater gear with a clear list-price cut.",
+      "rating": 4.0,
+      "ratingCount": 15,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "klipsch-rp-6000f",
@@ -1570,7 +1756,10 @@
       "urlKind": "product",
       "image": "images/klipsch-rp-6000f.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Crutchfield at $369.99 (was $689). Klipsch home theater gear with a clear list-price cut."
+      "why": "Sold by Crutchfield at $369.99 (was $689). Klipsch home theater gear with a clear list-price cut.",
+      "rating": 5.0,
+      "ratingCount": 157,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-ultra-16",
@@ -1587,7 +1776,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-ultra-16.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $592.99 (was $899.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $592.99 (was $899.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.8,
+      "ratingCount": 4,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-ultra-14",
@@ -1621,7 +1813,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-24-fhd.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $370.49 (was $569.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $370.49 (was $569.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.8,
+      "ratingCount": 6,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-pro-16-gen2",
@@ -1638,7 +1833,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-pro-16-gen2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $499.99 (was $599.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $499.99 (was $599.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.9,
+      "ratingCount": 20,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-22-plus",
@@ -1655,7 +1853,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-22-plus.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $439.99 (was $549.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $439.99 (was $549.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 5.0,
+      "ratingCount": 1,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-pro-14-gen2",
@@ -1672,7 +1873,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-pro-14-gen2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $302.99 (was $419.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $302.99 (was $419.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.9,
+      "ratingCount": 7,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-16-gen2",
@@ -1689,7 +1893,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-16-gen2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $259.99 (was $399.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $259.99 (was $399.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.2,
+      "ratingCount": 25,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-15-6-pro-v2",
@@ -1706,7 +1913,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-15-6-pro-v2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $299.99 (was $379.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $299.99 (was $379.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.8,
+      "ratingCount": 10,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-magic-note-pad",
@@ -1723,7 +1933,10 @@
       "urlKind": "product",
       "image": "images/xppen-magic-note-pad.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $319.99 (was $439.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $319.99 (was $439.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.7,
+      "ratingCount": 27,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "xppen-artist-13-3-pro-v2",
@@ -1740,7 +1953,10 @@
       "urlKind": "product",
       "image": "images/xppen-artist-13-3-pro-v2.jpg",
       "imageSource": "product-page",
-      "why": "Sold by XPPen at $229.99 (was $299.99). Official store sale on a drawing tablet / pen display for digital art."
+      "why": "Sold by XPPen at $229.99 (was $299.99). Official store sale on a drawing tablet / pen display for digital art.",
+      "rating": 4.7,
+      "ratingCount": 3,
+      "ratingSource": "jsonld-aggregateRating"
     },
     {
       "id": "denon-avr-x3800h",
@@ -1808,7 +2024,10 @@
       "urlKind": "product",
       "image": "images/bose-smart-ultra-soundbar.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $749.00 (list $999.00). Clear list-price cut on Bose’s flagship Atmos soundbar with A.I. Dialogue Mode."
+      "why": "Sold by Amazon at $749.00 (list $999.00). Clear list-price cut on Bose’s flagship Atmos soundbar with A.I. Dialogue Mode.",
+      "rating": 4.2,
+      "ratingCount": 836,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "id": "samsung-hw-q990h",
@@ -1825,7 +2044,10 @@
       "urlKind": "product",
       "image": "images/samsung-hw-q990h.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $1,697.99 (list $1,997.99). Verified cut on Samsung’s flagship wireless Atmos surround soundbar system."
+      "why": "Sold by Amazon at $1,697.99 (list $1,997.99). Verified cut on Samsung’s flagship wireless Atmos surround soundbar system.",
+      "rating": 3.8,
+      "ratingCount": 21,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "id": "wacom-one-hd",
@@ -1842,7 +2064,10 @@
       "urlKind": "product",
       "image": "images/wacom-one-hd.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $320.00 (list $399.95). Verified cut on Wacom’s entry pen display for digital art."
+      "why": "Sold by Amazon at $320.00 (list $399.95). Verified cut on Wacom’s entry pen display for digital art.",
+      "rating": 4.5,
+      "ratingCount": 3318,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "id": "huion-kamvas-13-gen3",
@@ -1859,7 +2084,10 @@
       "urlKind": "product",
       "image": "images/huion-kamvas-13-gen3.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $229.00 (list $269.00). Verified cut on Huion’s portable 13.3\" Gen 3 pen display."
+      "why": "Sold by Amazon at $229.00 (list $269.00). Verified cut on Huion’s portable 13.3\" Gen 3 pen display.",
+      "rating": 4.5,
+      "ratingCount": 832,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "id": "huion-kamvas-16-gen3",
@@ -1876,7 +2104,10 @@
       "urlKind": "product",
       "image": "images/huion-kamvas-16-gen3.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $459.00 (list $499.00). Verified cut on Huion’s 15.8\" 2.5K Gen 3 pen display with PenTech 4.0."
+      "why": "Sold by Amazon at $459.00 (list $499.00). Verified cut on Huion’s 15.8\" 2.5K Gen 3 pen display with PenTech 4.0.",
+      "rating": 4.2,
+      "ratingCount": 131,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "id": "gaomon-pd156-pro",
@@ -1893,7 +2124,10 @@
       "urlKind": "product",
       "image": "images/gaomon-pd156-pro.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $279.99 (list $359.00). Verified cut on Gaomon’s full-laminated 15.6\" dial pen display."
+      "why": "Sold by Amazon at $279.99 (list $359.00). Verified cut on Gaomon’s full-laminated 15.6\" dial pen display.",
+      "rating": 4.3,
+      "ratingCount": 2028,
+      "ratingSource": "amazon-rating-out-of-text"
     },
     {
       "id": "gaomon-pd2200",
@@ -1910,7 +2144,10 @@
       "urlKind": "product",
       "image": "images/gaomon-pd2200.jpg",
       "imageSource": "product-page",
-      "why": "Sold by Amazon at $319.99 (list $399.00). Verified cut on Gaomon’s large 21.5\" full-laminated drawing display."
+      "why": "Sold by Amazon at $319.99 (list $399.00). Verified cut on Gaomon’s large 21.5\" full-laminated drawing display.",
+      "rating": 4.3,
+      "ratingCount": 6810,
+      "ratingSource": "amazon-rating-out-of-text"
     }
   ]
 }

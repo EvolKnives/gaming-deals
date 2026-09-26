@@ -95,6 +95,7 @@ Cards also show:
 - **Promo chip** — if `promoCode` (or `promo` / `couponCode`) is set, shows “Code: X · tap to copy” via the existing toast. Do not invent codes.
 - **Budget ladder** — Under $50 / $50–150 / $150–400 / $400+ chips sit under categories and AND with the category filter.
 - **Freshness / ends-at** — “Checked …” from deal `updatedAt` or site `updatedAt`; countdown only when `endsAt` is present (never invent end dates). Soft **Ending soon** badge when `endsAt` is within 48h.
+- **Product rating** — compact `★ 4.3` / `★ 4.3 · 1.2k` on the card when `rating` was scraped from the product page (never invent scores; omit when blocked/missing).
 - **Future tab** — filter chip listing deals with `startsAt` between 1 day and 1 month ahead. Empty copy: “No upcoming deals found yet.” Never invent start dates.
 
 Optional deal fields for richer UI (all optional; omit when unknown):
@@ -103,6 +104,9 @@ Optional deal fields for richer UI (all optional; omit when unknown):
 - `endsAt` — ISO datetime for limited-time deals (omit when unknown)
 - `startsAt` — ISO datetime when a scheduled promo/sale begins (Future tab)
 - `updatedAt` — per-deal last check (falls back to site `updatedAt`)
+- `rating` — product score out of 5 (scraped only; omit when unknown)
+- `ratingCount` — review/rating count when available
+- `ratingSource` — short scrape note e.g. `newegg-RatingOneDecimal`
 
 ### Sort order
 
@@ -142,6 +146,9 @@ python3 scripts/refresh.py --heal-images
 # Fill endsAt / startsAt from retailer pages when confidently found
 python3 scripts/fetch_deal_dates.py
 python3 scripts/refresh.py --fetch-dates
+# Fill rating / ratingCount from retailer product pages when found
+python3 scripts/fetch_ratings.py
+python3 scripts/fetch_ratings.py --dry-run
 ```
 
 `heal_images.py` exits non-zero if any deal is still broken after healing. Needs `Pillow` and `requests` (`python3 -m venv .venv && .venv/bin/pip install Pillow requests`).
