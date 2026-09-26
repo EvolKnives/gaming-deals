@@ -25,6 +25,7 @@
   // Canonical plural filter labels (never apostrophe plurals).
   var CATEGORY_ORDER = [
     "All",
+    "Future",
     "GPUs",
     "CPUs",
     "Monitors",
@@ -241,7 +242,75 @@
       return remM ? "Ends in " + hours + "h " + remM + "m" : "Ends in " + hours + "h";
     }
     var days = Math.floor(hours / 24);
-    return "Ends in " + days + "d";
+    if (days < 7) {
+      return (
+        "Ends " +
+        d.toLocaleDateString("en-US", {
+          weekday: "short",
+          timeZone: "America/Los_Angeles"
+        })
+      );
+    }
+    return (
+      "Ends " +
+      d.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: "America/Los_Angeles"
+      })
+    );
+  }
+
+  function formatStartsIn(iso) {
+    var d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "";
+    var ms = d.getTime() - Date.now();
+    if (ms <= 0) return "";
+    var mins = Math.ceil(ms / 60000);
+    if (mins < 60) return "Starts in " + mins + "m";
+    var hours = Math.floor(mins / 60);
+    if (hours < 48) {
+      var remM = mins % 60;
+      return remM
+        ? "Starts in " + hours + "h " + remM + "m"
+        : "Starts in " + hours + "h";
+    }
+    var days = Math.floor(hours / 24);
+    if (days < 7) {
+      return (
+        "Starts " +
+        d.toLocaleDateString("en-US", {
+          weekday: "short",
+          timeZone: "America/Los_Angeles"
+        })
+      );
+    }
+    return (
+      "Starts " +
+      d.toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        timeZone: "America/Los_Angeles"
+      })
+    );
+  }
+
+  /** Upcoming promo: startsAt between +1 day and +30 days from now. */
+  function isFutureDeal(deal) {
+    if (!deal || !deal.startsAt) return false;
+    var t = new Date(deal.startsAt).getTime();
+    if (Number.isNaN(t)) return false;
+    var now = Date.now();
+    var day = 24 * 60 * 60 * 1000;
+    return t >= now + day && t <= now + 30 * day;
+  }
+
+  function endsWithinMs(deal, ms) {
+    if (!deal || !deal.endsAt) return false;
+    var t = new Date(deal.endsAt).getTime();
+    if (Number.isNaN(t)) return false;
+    var delta = t - Date.now();
+    return delta > 0 && delta <= ms;
   }
 
   function slugify(str) {
@@ -598,9 +667,9 @@
       var c = normalizeCategory(d.category);
       if (c) present[c] = true;
     });
-    var cats = ["All"];
+    var cats = ["All", "Future"];
     CATEGORY_ORDER.forEach(function (cat) {
-      if (cat !== "All" && present[cat]) cats.push(cat);
+      if (cat !== "All" && cat !== "Future" && present[cat]) cats.push(cat);
     });
     Object.keys(present).forEach(function (cat) {
       if (cats.indexOf(cat) === -1) cats.push(cat);
@@ -661,6 +730,8 @@
     var checkedIso = deal.updatedAt || siteUpdatedAt;
     var checkedLabel = checkedIso ? formatChecked(checkedIso) : "";
     var endsLabel = deal.endsAt ? formatEndsIn(deal.endsAt) : "";
+    var startsLabel = deal.startsAt ? formatStartsIn(deal.startsAt) : "";
+    var endingSoon = endsWithinMs(deal, 48 * 60 * 60 * 1000);
 
     var dropBadge = "";
     var priceNum = Number(deal.price);
@@ -725,6 +796,10 @@
       ? '<span class="deal-card__near-low" role="status">Near low</span>'
       : "";
 
+    var endingSoonHtml = endingSoon
+      ? '<span class="deal-card__ending-soon" role="status">Ending soon</span>'
+      : "";
+
     var sparkBlock = sparkHtml
       ? '<div class="deal-card__spark-wrap" title="Price trend from known checks">' +
         sparkHtml +
@@ -757,17 +832,20 @@
       : "";
 
     var freshnessParts = [];
-    if (checkedLabel) freshnessParts.push(checkedLabel);
-    if (endsLabel) freshnessParts.push(endsLabel);
+    if (checkedLabel) freshnessParts.push({ text: checkedLabel, kind: "checked" });
+    if (startsLabel) freshnessParts.push({ text: startsLabel, kind: "starts" });
+    if (endsLabel) freshnessParts.push({ text: endsLabel, kind: "ends" });
     var freshnessHtml = freshnessParts.length
       ? '<p class="deal-card__fresh">' +
         freshnessParts
-          .map(function (p, i) {
+          .map(function (p) {
             var cls =
-              i === freshnessParts.length - 1 && endsLabel
+              p.kind === "ends"
                 ? "deal-card__fresh-ends"
-                : "deal-card__fresh-checked";
-            return '<span class="' + cls + '">' + escapeHtml(p) + "</span>";
+                : p.kind === "starts"
+                  ? "deal-card__fresh-starts"
+                  : "deal-card__fresh-checked";
+            return '<span class="' + cls + '">' + escapeHtml(p.text) + "</span>";
           })
           .join('<span class="deal-card__fresh-sep"> · </span>') +
         "</p>"
@@ -798,6 +876,7 @@
         ? '<span class="deal-card__badge">' + escapeHtml(badgeText) + "</span>"
         : "") +
       nearLowHtml +
+      endingSoonHtml +
       sparkBlock +
       "</div>" +
       promoHtml +
@@ -881,13 +960,22 @@
 
   function renderDeals(deals) {
     var list = deals.filter(function (d) {
-      if (activeFilter !== "All" && normalizeCategory(d.category) !== activeFilter) {
+      if (activeFilter === "Future") {
+        if (!isFutureDeal(d)) return false;
+      } else if (activeFilter !== "All" && normalizeCategory(d.category) !== activeFilter) {
         return false;
       }
       return matchesBudget(d, activeBudget);
     });
     if (activeFilter === "All") {
       list = interleaveByCategory(list);
+    } else if (activeFilter === "Future") {
+      list = list.slice().sort(function (a, b) {
+        var ta = new Date(a.startsAt).getTime();
+        var tb = new Date(b.startsAt).getTime();
+        if (ta !== tb) return ta - tb;
+        return String(a.name || "").localeCompare(String(b.name || ""));
+      });
     } else {
       list = sortBySavingsDesc(list);
     }
@@ -898,10 +986,17 @@
     if (!list.length) {
       var empty = document.createElement("p");
       empty.className = "status";
-      empty.textContent =
-        activeBudget !== "All"
-          ? "No deals in this category and budget right now."
-          : "No deals in this category right now.";
+      if (activeFilter === "Future") {
+        empty.textContent =
+          activeBudget !== "All"
+            ? "No upcoming deals in this budget yet."
+            : "No upcoming deals found yet.";
+      } else {
+        empty.textContent =
+          activeBudget !== "All"
+            ? "No deals in this category and budget right now."
+            : "No deals in this category right now.";
+      }
       dealsEl.appendChild(empty);
       return;
     }

@@ -43,6 +43,7 @@ Usage:
   python3 scripts/refresh.py                 # stamp updatedAt only
   python3 scripts/refresh.py --check         # print URLs to re-verify
   python3 scripts/refresh.py --heal-images   # stamp + audit/heal product photos
+  python3 scripts/refresh.py --fetch-dates  # stamp + fill endsAt/startsAt when known
 """
 
 from __future__ import annotations
@@ -141,6 +142,11 @@ def main() -> int:
         action="store_true",
         help="After stamping, run scripts/fix_product_links.py",
     )
+    parser.add_argument(
+        "--fetch-dates",
+        action="store_true",
+        help="After stamping, run scripts/fetch_deal_dates.py for endsAt/startsAt",
+    )
     args = parser.parse_args()
 
     if not OUT.exists():
@@ -224,6 +230,21 @@ def main() -> int:
             return rc
         data = json.loads(OUT.read_text(encoding="utf-8"))
         deals = data.get("deals") or []
+
+    if args.fetch_dates:
+        fetch_dates = ROOT / "scripts" / "fetch_deal_dates.py"
+        print(f"\nRunning {fetch_dates.name} …")
+        venv_py = ROOT / ".venv" / "bin" / "python"
+        py = str(venv_py) if venv_py.is_file() else sys.executable
+        rc = subprocess.call([py, str(fetch_dates)])
+        if rc != 0:
+            print("fetch_deal_dates.py failed", file=sys.stderr)
+            return rc
+        data = json.loads(OUT.read_text(encoding="utf-8"))
+        deals = data.get("deals") or []
+        with_ends = sum(1 for d in deals if d.get("endsAt"))
+        with_starts = sum(1 for d in deals if d.get("startsAt"))
+        print(f"Post-fetch-dates endsAt: {with_ends}/{len(deals)} startsAt: {with_starts}/{len(deals)}")
 
     if args.heal_images:
         heal = ROOT / "scripts" / "heal_images.py"
