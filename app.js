@@ -51,6 +51,10 @@
     "Home Theater",
     "Art Tablets",
     "PSUs",
+    "Cases",
+    "Motherboards",
+    "RAM",
+    "SSDs",
     "Mice",
     "Keyboards"
   ];
@@ -79,7 +83,21 @@
     "Drawing Tablets": "Art Tablets",
     "Drawing Tablet": "Art Tablets",
     "Pen Displays": "Art Tablets",
-    "Pen Display": "Art Tablets"
+    "Pen Display": "Art Tablets",
+    Case: "Cases",
+    Cases: "Cases",
+    Chassis: "Cases",
+    "Computer Cases": "Cases",
+    "PC Cases": "Cases",
+    Motherboard: "Motherboards",
+    Motherboards: "Motherboards",
+    Mobo: "Motherboards",
+    Mobos: "Motherboards",
+    RAM: "RAM",
+    Memory: "RAM",
+    SSD: "SSDs",
+    SSDs: "SSDs",
+    "Solid State Drives": "SSDs"
   };
 
   var BUDGET_OPTIONS = [
@@ -624,7 +642,12 @@
     if (!tokens.length) return false;
     var blob = dealSearchBlob(deal);
     for (var i = 0; i < tokens.length; i++) {
-      if (blob.indexOf(tokens[i]) === -1) return false;
+      var t = tokens[i];
+      // Match at a word start so "ram" does not hit "frame" / "vram",
+      // while "case" still matches "cases" / "Cases".
+      var escaped = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      var re = new RegExp("(^|[^a-z0-9])" + escaped, "i");
+      if (!re.test(blob)) return false;
     }
     return true;
   }
@@ -1322,9 +1345,14 @@
       return copy;
     });
     if (weekLabelEl) {
-      weekLabelEl.textContent =
+      var weekText =
         data.weekLabel ||
         (data.updatedAt ? formatUpdated(data.updatedAt) : "Updated recently");
+      var lr = data.lastRefresh;
+      if (lr && lr.at && data.catalogueRevision) {
+        weekText += " · catalogue v" + data.catalogueRevision;
+      }
+      weekLabelEl.textContent = weekText;
     }
     if (data.title) SITE_TITLE = data.title;
     renderFilters(allDeals);

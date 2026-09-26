@@ -1,6 +1,6 @@
 # What's A Good Deal?
 
-A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, power supplies, mice, keyboards, TVs, and home theater.
+A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, cases, motherboards, RAM, SSDs, power supplies, mice, keyboards, TVs, and home theater.
 
 Live: **https://evolknives.github.io/gaming-deals/**
 
@@ -21,6 +21,31 @@ python3 -m http.server 8080
 Or any static server that serves the repo root.
 
 ## Updating deals
+
+### Dynamic catalogue refresh
+
+The live site is still static GitHub Pages — **Search only filters `data/deals.json`**. To make the catalogue change over time (and so queries like “computer cases” return hits), refresh the JSON on a machine that can fetch retailer pages, then push:
+
+```bash
+# Prune dead/OOS Newegg listings + seed/grow Cases, RAM, SSDs, Motherboards
+python3 scripts/catalogue_refresh.py
+
+# Search-then-fetch: fill misses for a query (e.g. Search had 0 hits)
+python3 scripts/search_ingest.py "computer cases"
+python3 scripts/search_ingest.py "ddr5 32gb" --category RAM --limit 10
+
+# Stamp week metadata / heal photos / ratings for new URLs
+python3 scripts/refresh.py
+python3 scripts/heal_images.py
+python3 scripts/fetch_ratings.py   # optional; never invents scores
+
+git add data/deals.json images && git commit -m "Refresh catalogue" && git push
+```
+
+`catalogue_refresh.py` **removes** deals when a Newegg product page is verified dead or out of stock. Transient fetch failures keep the deal (no catalogue wipe). Duplicates are collapsed by SKU/ASIN/product URL (never by Amazon/Best Buy search hubs).
+
+Client pull-to-refresh still reloads `deals.json` with cache-bust — do **not** reinstate an hourly client timer that pings.
+
 
 1. Re-check each product on the retailer page (Best Buy, Amazon, Newegg, Micro Center, manufacturer store).
 2. Edit `data/deals.json` — set `price`, `previousPrice` (list/MSRP, or `null` if unknown), `why`, `merchant`, and `url`.
@@ -84,7 +109,7 @@ Cards show a small green “Dropped” / “↓ $X” pill when the current `pri
 - `dropAmount` — optional dollars fallen since last refresh.
 - **Dropped pill (UI)** — shown when `price < previousPrice` (below list/MSRP) **or** `priceDropped` (down since last check). Meaning: below list/MSRP or down since last check.
 
-Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
+Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Cases`, `Motherboards`, `RAM`, `SSDs`, `Mice`, `Keyboards` (plus `All` / `Future` / Search). Map legacy singular labels (GPU→GPUs, Case→Cases, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
 
 
 ### Inspiration UI (client-side)
