@@ -26,6 +26,7 @@
     "CPUs",
     "Monitors",
     "TVs",
+    "Home Theater",
     "PSUs",
     "Mice",
     "Keyboards"
@@ -45,7 +46,11 @@
     Mouse: "Mice",
     Mice: "Mice",
     Keyboard: "Keyboards",
-    Keyboards: "Keyboards"
+    Keyboards: "Keyboards",
+    "Home Theater": "Home Theater",
+    "Home theatre": "Home Theater",
+    "Home theatre equipment": "Home Theater",
+    HT: "Home Theater"
   };
 
   function normalizeCategory(cat) {
@@ -196,12 +201,17 @@
       url: data.url || pageUrl()
     };
     if (canNativeShare()) {
-      return navigator.share(payload).catch(function (err) {
-        if (err && err.name === "AbortError") return;
-        return copyText(payload.url).then(function () {
-          showToast("Link copied");
+      return navigator
+        .share(payload)
+        .then(function () {
+          showToast("Shared");
+        })
+        .catch(function (err) {
+          if (err && err.name === "AbortError") return;
+          return copyText(payload.url).then(function () {
+            showToast("Link copied");
+          });
         });
-      });
     }
     return copyText(payload.url).then(function () {
       showToast("Link copied");
@@ -519,7 +529,7 @@
         pressFlash(sharePageBtn);
         sharePayload({
           title: SITE_TITLE,
-          text: "Current gaming PC deals — GPUs, monitors, CPUs, and more.",
+          text: "Current deals — GPUs, monitors, home theater, and more.",
           url: pageUrl()
         });
       });

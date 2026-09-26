@@ -32,7 +32,7 @@ those product pages. Product URLs are preferred for hourly price
 verification — search URLs are harder / blocked more often.
 
 Category labels must be plural grammar (never apostrophe plurals):
-GPUs, CPUs, Monitors, TVs, PSUs, Mice, Keyboards. The UI also sorts
+GPUs, CPUs, Monitors, TVs, Home Theater, PSUs, Mice, Keyboards. The UI also sorts
 visible deals by biggest list/MSRP savings first (see app.js).
 
 For fully automated price scraping, wire in retailer APIs or a

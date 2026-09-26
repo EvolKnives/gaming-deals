@@ -1,6 +1,6 @@
 # What's A Good Deal?
 
-A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, power supplies, mice, keyboards, and TVs.
+A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, power supplies, mice, keyboards, TVs, and home theater.
 
 Live: **https://evolknives.github.io/gaming-deals/**
 
@@ -83,7 +83,7 @@ Cards with `priceDropped: true` show a small green “Dropped” / “↓ $X” 
 - `priceDropped` — `true` when current `price` < `lastPrice` from the prior refresh.
 - `dropAmount` — optional dollars fallen since last refresh.
 
-Categories used in the UI (always plural, never apostrophe plurals): `GPUs`, `CPUs`, `Monitors`, `TVs`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
+Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `PSUs`, `Mice`, `Keyboards` (plus `All`). Map legacy singular labels (GPU→GPUs, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
 
 ### Sort order
 
