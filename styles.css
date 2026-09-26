@@ -155,22 +155,39 @@ a {
   }
 }
 
-/* Header — progress-linked frosted surface, fading cleanly on scroll */
+/* Header — frosted ::before fades out on scroll (Safari-safe; no rgba(calc)) */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
   padding-top: env(safe-area-inset-top);
-  backdrop-filter: saturate(180%) blur(var(--header-blur));
-  -webkit-backdrop-filter: saturate(180%) blur(var(--header-blur));
-  background: rgba(
-    var(--header-bg-rgb),
-    calc(var(--header-base-alpha) * (1 - var(--header-progress)))
-  );
+  background: transparent;
   border-bottom: 1px solid transparent;
-  transition: background 0.12s var(--ease), backdrop-filter 0.12s var(--ease),
-    -webkit-backdrop-filter 0.12s var(--ease);
+  isolation: isolate;
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: rgba(var(--header-bg-rgb), var(--header-base-alpha));
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  opacity: calc(1 - var(--header-progress, 0));
+  transition: opacity 0.15s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header::before {
+    transition: none;
+  }
+}
+
+.site-header.is-scrolled {
+  border-bottom-color: transparent;
 }
 
 .site-header__inner {
