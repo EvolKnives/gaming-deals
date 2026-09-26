@@ -25,6 +25,8 @@ with lastPrice (last refresh check).
 
 Prefer repo-relative paths under images/ for deal photos so GitHub
 Pages serves them reliably. Do not clear image fields on refresh.
+Run scripts/heal_images.py (or refresh.py --heal-images) to audit and
+re-download broken/missing product photos.
 
 Category labels must be plural grammar (never apostrophe plurals):
 GPUs, CPUs, Monitors, TVs, PSUs, Mice, Keyboards. The UI also sorts
@@ -35,13 +37,15 @@ trusted deal feed — never guess a number. If a price cannot be
 verified, remove that deal rather than fabricating one.
 
 Usage:
-  python3 scripts/refresh.py            # stamp updatedAt only
-  python3 scripts/refresh.py --check    # print URLs to re-verify
+  python3 scripts/refresh.py                 # stamp updatedAt only
+  python3 scripts/refresh.py --check         # print URLs to re-verify
+  python3 scripts/refresh.py --heal-images   # stamp + audit/heal product photos
 """
 
 from __future__ import annotations
 
 import argparse
+import subprocess
 import json
 import sys
 from datetime import datetime, timezone
@@ -124,6 +128,11 @@ def main() -> int:
         default=True,
         help="Only bump updatedAt / weekLabel (default)",
     )
+    parser.add_argument(
+        "--heal-images",
+        action="store_true",
+        help="After stamping, run scripts/heal_images.py to audit/fix photos",
+    )
     args = parser.parse_args()
 
     if not OUT.exists():
@@ -195,6 +204,23 @@ def main() -> int:
         "Tip: use apply_verified_price(deal, new_price) when a scrape "
         "confirms a new number so lastPrice / priceDropped stay correct."
     )
+
+    if args.heal_images:
+        heal = ROOT / "scripts" / "heal_images.py"
+        print(f"\nRunning {heal.name} …")
+        # Prefer venv interpreter when present so Pillow/requests resolve.
+        venv_py = ROOT / ".venv" / "bin" / "python"
+        py = str(venv_py) if venv_py.is_file() else sys.executable
+        rc = subprocess.call([py, str(heal)])
+        if rc != 0:
+            print("heal_images.py failed — photos still broken", file=sys.stderr)
+            return rc
+        # Re-read counts after heal
+        data = json.loads(OUT.read_text(encoding="utf-8"))
+        deals = data.get("deals") or []
+        with_img = sum(1 for d in deals if d.get("image"))
+        print(f"Post-heal images: {with_img}/{len(deals)}")
+
     return 0
 
 

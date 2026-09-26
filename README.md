@@ -26,11 +26,13 @@ Or any static server that serves the repo root.
 2. Edit `data/deals.json` — set `price`, `previousPrice` (list/MSRP, or `null` if unknown), `why`, `merchant`, and `url`.
 3. When the verified price is lower than the prior check, set `lastPrice` to the old `price`, `priceDropped: true`, and optional `dropAmount`. If the price rose, stayed flat, or the deal is first seen, set `priceDropped: false` and clear `dropAmount`.
 4. **Never invent prices.** If you cannot verify a listing, remove that deal.
-5. Stamp the file:
+5. Stamp the file (and heal photos if any are missing/broken):
 
 ```bash
 python3 scripts/refresh.py
-python3 scripts/refresh.py --check   # print URLs to re-verify
+python3 scripts/refresh.py --check         # print URLs to re-verify
+python3 scripts/refresh.py --heal-images   # stamp + audit/heal photos
+python3 scripts/heal_images.py             # photos only
 ```
 
 6. Commit and push to `main`. Pages will pick up `data/deals.json` within a minute or two.
@@ -77,6 +79,29 @@ Categories used in the UI (always plural, never apostrophe plurals): `GPUs`, `CP
 ### Sort order
 
 `app.js` sorts the visible list (All and each category filter) by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom. The sort runs on every render so it survives refresh and filter changes.
+
+
+## Product photos
+
+Every deal should have a real product photo at `images/<deal-id>.jpg` (JPEG, ~800–1200px on the long side) and `deal.image` set to that repo-relative path so GitHub Pages serves it.
+
+- Prefer official retailer / manufacturer shots (Newegg, Amazon, Best Buy, Micro Center, brand CDNs). **Never invent a product.**
+- Category placeholders (clearly labeled “PHOTO PLACEHOLDER”) are a last resort only.
+
+### Self-heal
+
+```bash
+# Audit + re-download any missing / null / too-small / unreadable photos
+python3 scripts/heal_images.py
+
+# Report only (exit 1 if anything is broken)
+python3 scripts/heal_images.py --audit-only
+
+# Stamp week metadata and heal photos in one pass
+python3 scripts/refresh.py --heal-images
+```
+
+`heal_images.py` exits non-zero if any deal is still broken after healing. Needs `Pillow` and `requests` (`python3 -m venv .venv && .venv/bin/pip install Pillow requests`).
 
 ## Design notes
 
