@@ -88,7 +88,9 @@ Categories used in the UI (always plural, never apostrophe plurals — except `H
 
 ### Sort order
 
-`app.js` sorts the visible list (All and each category filter) by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom. The sort runs on every render so it survives refresh and filter changes.
+Single-category tabs (GPUs, TVs, Home Theater, etc.) sort by **biggest savings first**. Savings = `previousPrice - price` when `previousPrice > price`. Deals with no measurable savings sink to the bottom.
+
+On the **All** tab, deals are grouped by category, each group is savings-sorted as above, then **round-robin interleaved** across categories so long same-category runs are avoided. Same category only lands back-to-back when every remaining deal shares that category. The sort runs on every render so it survives refresh and filter changes.
 
 
 ## Product photos & CTA links

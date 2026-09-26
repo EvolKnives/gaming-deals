@@ -88,6 +88,68 @@
     });
   }
 
+  // All-tab only: round-robin across categories so cards feel fresh.
+  // Within each category, keep biggest list/MSRP savings first.
+  function interleaveByCategory(list) {
+    var buckets = Object.create(null);
+    var catOrder = [];
+    var i;
+    for (i = 0; i < list.length; i++) {
+      var deal = list[i];
+      var cat = normalizeCategory(deal && deal.category) || "Other";
+      if (!buckets[cat]) {
+        buckets[cat] = [];
+        catOrder.push(cat);
+      }
+      buckets[cat].push(deal);
+    }
+
+    // Prefer canonical filter order, then any extras in first-seen order.
+    var ordered = [];
+    for (i = 0; i < CATEGORY_ORDER.length; i++) {
+      var canon = CATEGORY_ORDER[i];
+      if (canon !== "All" && buckets[canon]) ordered.push(canon);
+    }
+    for (i = 0; i < catOrder.length; i++) {
+      if (ordered.indexOf(catOrder[i]) === -1) ordered.push(catOrder[i]);
+    }
+
+    for (i = 0; i < ordered.length; i++) {
+      buckets[ordered[i]] = sortBySavingsDesc(buckets[ordered[i]]);
+    }
+
+    var lastPickAt = Object.create(null);
+    for (i = 0; i < ordered.length; i++) lastPickAt[ordered[i]] = -1e9;
+
+    var result = [];
+    var lastCat = null;
+    var remaining = ordered.filter(function (c) {
+      return buckets[c].length > 0;
+    });
+
+    while (remaining.length) {
+      var candidates = remaining.filter(function (c) {
+        return c !== lastCat;
+      });
+      if (!candidates.length) candidates = remaining.slice();
+
+      candidates.sort(function (a, b) {
+        if (lastPickAt[a] !== lastPickAt[b]) return lastPickAt[a] - lastPickAt[b];
+        return ordered.indexOf(a) - ordered.indexOf(b);
+      });
+
+      var pick = candidates[0];
+      result.push(buckets[pick].shift());
+      lastPickAt[pick] = result.length - 1;
+      lastCat = pick;
+      remaining = remaining.filter(function (c) {
+        return buckets[c].length > 0;
+      });
+    }
+
+    return result;
+  }
+
   document.documentElement.classList.add("js");
 
   function formatMoney(n) {
@@ -504,7 +566,11 @@
         : deals.filter(function (d) {
             return normalizeCategory(d.category) === activeFilter;
           });
-    list = sortBySavingsDesc(list);
+    if (activeFilter === "All") {
+      list = interleaveByCategory(list);
+    } else {
+      list = sortBySavingsDesc(list);
+    }
 
     dealsEl.innerHTML = "";
     dealsEl.setAttribute("aria-busy", "false");
