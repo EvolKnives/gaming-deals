@@ -147,9 +147,20 @@
     toastTimer = setTimeout(function () {
       toastEl.classList.remove("is-on");
       setTimeout(function () {
-        toastEl.hidden = true;
+        if (!toastEl.classList.contains("is-on")) toastEl.hidden = true;
       }, 280);
     }, 1800);
+  }
+
+  function pressFlash(el) {
+    if (!el || reduceMotion) return;
+    el.classList.remove("is-flash");
+    // force reflow so re-triggering works
+    void el.offsetWidth;
+    el.classList.add("is-flash");
+    setTimeout(function () {
+      el.classList.remove("is-flash");
+    }, 560);
   }
 
   function copyText(text) {
@@ -207,7 +218,13 @@
     lightboxOpen = true;
     document.body.style.overflow = "hidden";
     document.body.classList.add("lightbox-open");
-    if (lightboxClose) lightboxClose.focus();
+    if (lightboxClose) {
+      try {
+        lightboxClose.focus({ preventScroll: true });
+      } catch (e) {
+        lightboxClose.focus();
+      }
+    }
   }
 
   function closeLightbox() {
@@ -219,8 +236,12 @@
     document.body.style.overflow = "";
     document.body.classList.remove("lightbox-open");
     if (lightboxImg) {
-      lightboxImg.removeAttribute("src");
-      lightboxImg.alt = "";
+      var img = lightboxImg;
+      setTimeout(function () {
+        if (lightboxOpen) return;
+        img.removeAttribute("src");
+        img.alt = "";
+      }, reduceMotion ? 0 : 280);
     }
   }
 
@@ -281,12 +302,20 @@
       btn.textContent = cat;
       btn.setAttribute("aria-pressed", cat === activeFilter ? "true" : "false");
       btn.addEventListener("click", function () {
+        if (cat === activeFilter) {
+          pressFlash(btn);
+          return;
+        }
         activeFilter = cat;
         Array.prototype.forEach.call(filterButtonsEl.children, function (b) {
           var on = b.textContent === activeFilter;
           b.classList.toggle("is-on", on);
           b.setAttribute("aria-pressed", on ? "true" : "false");
         });
+        pressFlash(btn);
+        try {
+          btn.scrollIntoView({ inline: "nearest", block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+        } catch (e) {}
         renderDeals(allDeals);
       });
       filterButtonsEl.appendChild(btn);
@@ -406,6 +435,7 @@
     var shareBtn = article.querySelector("[data-share]");
     if (shareBtn) {
       shareBtn.addEventListener("click", function () {
+        pressFlash(shareBtn);
         var text =
           deal.name +
           " — " +
@@ -476,6 +506,7 @@
 
     if (sharePageBtn) {
       sharePageBtn.addEventListener("click", function () {
+        pressFlash(sharePageBtn);
         sharePayload({
           title: SITE_TITLE,
           text: "Current gaming PC deals — GPUs, monitors, CPUs, and more.",
