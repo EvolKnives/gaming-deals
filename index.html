@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="What's A Good Deal? — current prices on popular gaming PC gear from reputable retailers.">
+  <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>What's A Good Deal?</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <p class="week-label" id="week-label">Updated recently</p>
+      <button type="button" class="share-btn share-btn--header" id="share-page" aria-label="Share this page">
+        Share
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <h1 id="hero-title">What's A<br>Good Deal?</h1>
+        <p class="hero__lede">Current prices on popular gaming-PC gear — GPUs, CPUs, monitors, PSUs, peripherals, and TVs.</p>
+      </div>
+    </section>
+
+    <section class="filters" id="filters" aria-label="Filter by category" hidden>
+      <div class="filters__inner" id="filter-buttons"></div>
+    </section>
+
+    <section class="deals" id="deals" aria-live="polite" aria-busy="true">
+      <p class="status" id="status">Loading&hellip;</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Prices checked from retailer listings. Always confirm the live cart total before buying.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true">
+    <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Close photo">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" id="lightbox-img" alt="">
+    </figure>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
