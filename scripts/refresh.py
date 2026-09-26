@@ -26,6 +26,10 @@ with lastPrice (last refresh check).
 Prefer repo-relative paths under images/ for deal photos so GitHub
 Pages serves them reliably. Do not clear image fields on refresh.
 
+Category labels must be plural grammar (never apostrophe plurals):
+GPUs, CPUs, Monitors, TVs, PSUs, Mice, Keyboards. The UI also sorts
+visible deals by biggest list/MSRP savings first (see app.js).
+
 For fully automated price scraping, wire in retailer APIs or a
 trusted deal feed — never guess a number. If a price cannot be
 verified, remove that deal rather than fabricating one.

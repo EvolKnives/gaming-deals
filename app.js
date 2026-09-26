@@ -19,6 +19,70 @@
   var activeFilter = "All";
   var SITE_TITLE = "What's A Good Deal?";
 
+  // Canonical plural filter labels (never apostrophe plurals).
+  var CATEGORY_ORDER = [
+    "All",
+    "GPUs",
+    "CPUs",
+    "Monitors",
+    "TVs",
+    "PSUs",
+    "Mice",
+    "Keyboards"
+  ];
+  var CATEGORY_ALIASES = {
+    GPU: "GPUs",
+    GPUs: "GPUs",
+    CPU: "CPUs",
+    CPUs: "CPUs",
+    Monitor: "Monitors",
+    Monitors: "Monitors",
+    TV: "TVs",
+    TVs: "TVs",
+    "Power Supply": "PSUs",
+    PSU: "PSUs",
+    PSUs: "PSUs",
+    Mouse: "Mice",
+    Mice: "Mice",
+    Keyboard: "Keyboards",
+    Keyboards: "Keyboards"
+  };
+
+  function normalizeCategory(cat) {
+    if (!cat) return "";
+    var key = String(cat).trim();
+    if (CATEGORY_ALIASES[key]) return CATEGORY_ALIASES[key];
+    // Fallback: strip trailing apostrophe-s / bare s already pluralized above
+    return key.replace(/\u2019s$/i, "s").replace(/'s$/i, "s");
+  }
+
+  function dealSavings(deal) {
+    var price = Number(deal && deal.price);
+    var prev = Number(deal && deal.previousPrice);
+    if (!Number.isFinite(price) || !Number.isFinite(prev) || prev <= price) {
+      return null;
+    }
+    return prev - price;
+  }
+
+  function sortBySavingsDesc(list) {
+    return list.slice().sort(function (a, b) {
+      var sa = dealSavings(a);
+      var sb = dealSavings(b);
+      var ha = sa != null;
+      var hb = sb != null;
+      if (ha && hb) {
+        if (sb !== sa) return sb - sa;
+      } else if (ha !== hb) {
+        return ha ? -1 : 1;
+      }
+      var pa = Number(a && a.price);
+      var pb = Number(b && b.price);
+      if (Number.isFinite(pa) && Number.isFinite(pb) && pa !== pb) return pa - pb;
+      return String((a && a.name) || "").localeCompare(String((b && b.name) || ""));
+    });
+  }
+
   document.documentElement.classList.add("js");
 
   function formatMoney(n) {
@@ -196,9 +260,18 @@
 
   function renderFilters(deals) {
     if (!filtersEl || !filterButtonsEl) return;
-    var cats = ["All"];
+    var present = {};
     deals.forEach(function (d) {
-      if (d.category && cats.indexOf(d.category) === -1) cats.push(d.category);
+      var c = normalizeCategory(d.category);
+      if (c) present[c] = true;
+    });
+    var cats = ["All"];
+    CATEGORY_ORDER.forEach(function (cat) {
+      if (cat !== "All" && present[cat]) cats.push(cat);
+    });
+    // Any unexpected categories still appear after the canonical set
+    Object.keys(present).forEach(function (cat) {
+      if (cats.indexOf(cat) === -1) cats.push(cat);
     });
     filterButtonsEl.innerHTML = "";
     cats.forEach(function (cat) {
@@ -273,7 +346,7 @@
       mediaHtml =
         '<figure class="deal-card__figure deal-card__figure--placeholder" aria-hidden="true">' +
         '<span class="deal-card__cat-mark">' +
-        escapeHtml(deal.category || "Deal") +
+        escapeHtml(normalizeCategory(deal.category) || deal.category || "Deal") +
         "</span>" +
         dropBadge +
         "</figure>";
@@ -283,7 +356,7 @@
       mediaHtml +
       '<div class="deal-card__body">' +
       '<p class="deal-card__meta">' +
-      escapeHtml(deal.category || "Deal") +
+      escapeHtml(normalizeCategory(deal.category) || deal.category || "Deal") +
       " · " +
       escapeHtml(deal.merchant || "") +
       "</p>" +
@@ -366,10 +439,11 @@
   function renderDeals(deals) {
     var list =
       activeFilter === "All"
-        ? deals
+        ? deals.slice()
         : deals.filter(function (d) {
-            return d.category === activeFilter;
+            return normalizeCategory(d.category) === activeFilter;
           });
+    list = sortBySavingsDesc(list);
 
     dealsEl.innerHTML = "";
     dealsEl.setAttribute("aria-busy", "false");
@@ -431,7 +505,11 @@
         return res.json();
       })
       .then(function (data) {
-        allDeals = Array.isArray(data.deals) ? data.deals : [];
+        allDeals = (Array.isArray(data.deals) ? data.deals : []).map(function (d) {
+          var copy = Object.assign({}, d);
+          copy.category = normalizeCategory(d.category) || d.category;
+          return copy;
+        });
         if (weekLabelEl) {
           weekLabelEl.textContent =
             data.weekLabel ||
