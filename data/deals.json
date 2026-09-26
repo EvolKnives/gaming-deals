@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T11:46:44Z",
+  "updatedAt": "2026-09-26T13:00:33Z",
   "weekLabel": "Week of Sep 21",
   "title": "What's A Good Deal?",
   "deals": [
@@ -175,20 +175,6 @@
       "currency": "USD",
       "lastPrice": null,
       "priceDropped": false,
-      "id": "intel-ultra-7-270k-plus",
-      "name": "Intel Core Ultra 7 270K Plus",
-      "category": "CPUs",
-      "price": 199.99,
-      "previousPrice": 269.99,
-      "why": "Micro Center member pricing at $199.99 (pickup). 24-core Arrow Lake that still games well—pair with MC board+RAM bundles.",
-      "merchant": "Micro Center",
-      "url": "https://www.microcenter.com/product/707437/intel-core-ultra-7-270k-plus-arrow-lake-37ghz-twenty-four-core-lga-1851-boxed-processor-heatsink-not-included",
-      "image": "images/intel-ultra-7-270k-plus.jpg"
-    },
-    {
-      "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
       "id": "amd-ryzen-5-9600x",
       "name": "AMD Ryzen 5 9600X",
       "category": "CPUs",
@@ -313,8 +299,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 179.99,
-      "priceDropped": true,
+      "lastPrice": 169.99,
+      "priceDropped": false,
       "id": "intel-ultra-5-245k-mc",
       "name": "Intel Core Ultra 5 245K",
       "category": "CPUs",
@@ -323,8 +309,7 @@
       "why": "Micro Center lists Ultra 5 245K near $179.99—14-core Arrow Lake value on LGA 1851 with easy board bundles.",
       "merchant": "Micro Center",
       "url": "https://www.microcenter.com/product/685302/intel-core-ultra-5-245k-arrow-lake-fourteen-core-lga-1851-boxed-processor-heatsink-not-included",
-      "image": "images/intel-ultra-5-245k-mc.jpg",
-      "dropAmount": 10.0
+      "image": "images/intel-ultra-5-245k-mc.jpg"
     },
     {
       "currency": "USD",
@@ -370,7 +355,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 600.0,
+      "lastPrice": 600.22,
       "priceDropped": false,
       "id": "samsung-g60sd",
       "name": "Samsung Odyssey OLED G6 27\" 360Hz (G60SD)",
@@ -734,8 +719,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 129.99,
-      "priceDropped": true,
+      "lastPrice": 114.99,
+      "priceDropped": false,
       "id": "nzxt-c1000-gold",
       "name": "NZXT C1000 Gold Core 1000W ATX 3.1",
       "category": "PSUs",
@@ -744,8 +729,7 @@
       "why": "Slickdeals: $129.99 on Amazon for quiet C1000 Gold Core with native 12V-2x6.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/dp/B0FQ6MH33Q",
-      "image": "images/nzxt-c1000-gold.jpg",
-      "dropAmount": 15.0
+      "image": "images/nzxt-c1000-gold.jpg"
     },
     {
       "currency": "USD",
@@ -777,7 +761,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 139.9,
+      "lastPrice": 159.99,
       "priceDropped": false,
       "id": "seasonic-core-gx-1000",
       "name": "SeaSonic CORE GX-1000 ATX 3.1 1000W Gold",
@@ -791,7 +775,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 134.99,
       "priceDropped": false,
       "id": "corsair-rm850x",
       "name": "Corsair RM850x 850W Gold Modular",
@@ -919,7 +903,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 119.99,
+      "lastPrice": 122.55,
       "priceDropped": false,
       "id": "razer-viper-v3-pro",
       "name": "Razer Viper V3 Pro Wireless Mouse",
