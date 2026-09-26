@@ -497,7 +497,18 @@
 
   function onScroll() {
     if (!headerEl) return;
-    headerEl.classList.toggle("is-scrolled", window.scrollY > 8);
+
+    var scrollY = Math.max(0, window.scrollY || 0);
+    var rawProgress = Math.min(scrollY / 112, 1);
+    // Smoothstep keeps the fade gentle at both ends instead of snapping.
+    var progress = rawProgress * rawProgress * (3 - 2 * rawProgress);
+
+    headerEl.style.setProperty("--header-progress", progress.toFixed(3));
+    headerEl.style.setProperty(
+      "--header-blur",
+      ((1 - progress) * 22).toFixed(2) + "px"
+    );
+    headerEl.classList.toggle("is-scrolled", scrollY > 8);
   }
 
   function init() {

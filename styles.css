@@ -40,8 +40,10 @@
       rgba(94, 106, 210, 0.06),
       transparent 65%
     );
-  --header-bg: rgba(251, 251, 253, 0.72);
-  --header-bg-scrolled: rgba(251, 251, 253, 0.88);
+  --header-bg-rgb: 251, 251, 253;
+  --header-base-alpha: 0.72;
+  --header-progress: 0;
+  --header-blur: 22px;
   --figure-bg: #ececf0;
   --figure-placeholder: linear-gradient(145deg, #ececf0, #d8d8dd);
   --chip-track: rgba(0, 0, 0, 0.045);
@@ -89,8 +91,8 @@
         rgba(124, 133, 255, 0.08),
         transparent 60%
       );
-    --header-bg: rgba(28, 28, 30, 0.78);
-    --header-bg-scrolled: rgba(28, 28, 30, 0.92);
+    --header-bg-rgb: 28, 28, 30;
+    --header-base-alpha: 0.78;
     --figure-bg: #3a3a3c;
     --figure-placeholder: linear-gradient(145deg, #3a3a3c, #48484a);
     --chip-track: rgba(255, 255, 255, 0.06);
@@ -153,25 +155,22 @@ a {
   }
 }
 
-/* Header — soft dark in dark mode via --header-bg (never flash bright) */
+/* Header — progress-linked frosted surface, fading cleanly on scroll */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
   padding-top: env(safe-area-inset-top);
-  backdrop-filter: saturate(180%) blur(22px);
-  -webkit-backdrop-filter: saturate(180%) blur(22px);
-  background: var(--header-bg);
+  backdrop-filter: saturate(180%) blur(var(--header-blur));
+  -webkit-backdrop-filter: saturate(180%) blur(var(--header-blur));
+  background: rgba(
+    var(--header-bg-rgb),
+    calc(var(--header-base-alpha) * (1 - var(--header-progress)))
+  );
   border-bottom: 1px solid transparent;
-  transition: background 0.28s var(--ease), box-shadow 0.28s var(--ease),
-    border-color 0.28s var(--ease);
-}
-
-.site-header.is-scrolled {
-  background: var(--header-bg-scrolled);
-  border-bottom-color: var(--rule);
-  box-shadow: none;
+  transition: background 0.12s var(--ease), backdrop-filter 0.12s var(--ease),
+    -webkit-backdrop-filter 0.12s var(--ease);
 }
 
 .site-header__inner {
