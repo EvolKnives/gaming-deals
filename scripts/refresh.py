@@ -9,6 +9,20 @@ This script does NOT invent prices or product photos. It:
   3) Bumps updatedAt and weekLabel
   4) Writes the file back, preserving deal["image"] fields
 
+Price-drop fields (set when a refresh verifies a new price):
+  - lastPrice     — price at the previous successful refresh (number or null)
+  - priceDropped  — true when current price < lastPrice from the prior refresh
+  - dropAmount    — optional; how much it fell since last refresh (old - new)
+
+On each refresh that verifies a new price, call apply_verified_price():
+  1. Compare new price to the old deal.price (that becomes lastPrice).
+  2. If new < old → priceDropped true, dropAmount = old - new.
+  3. If new >= old or first seen → priceDropped false, clear dropAmount.
+  4. Never invent prices.
+
+previousPrice remains list/MSRP for "% off" badges — do not confuse it
+with lastPrice (last refresh check).
+
 Prefer repo-relative paths under images/ for deal photos so GitHub
 Pages serves them reliably. Do not clear image fields on refresh.
 
@@ -28,6 +42,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "deals.json"
@@ -39,6 +54,57 @@ def week_label_now(dt: datetime) -> str:
     monday = d.fromordinal(d.toordinal() - d.weekday())
     day = str(monday.day)  # no leading zero
     return f"Week of {monday.strftime('%b')} {day}"
+
+
+def _as_price(value: Any) -> float | None:
+    """Return a finite non-negative float, or None if missing/invalid."""
+    if value is None:
+        return None
+    try:
+        n = float(value)
+    except (TypeError, ValueError):
+        return None
+    if n != n or n < 0:  # NaN or negative
+        return None
+    return n
+
+
+def apply_verified_price(deal: dict, new_price: Any) -> dict:
+    """Apply a verified live price to a deal dict (mutates and returns it).
+
+    Sets lastPrice from the prior deal["price"], then updates priceDropped
+    / dropAmount when the new verified price is lower. Never invents
+    prices — pass only numbers checked on a retailer page or trusted feed.
+    If new_price cannot be parsed, the deal is left unchanged.
+    """
+    new = _as_price(new_price)
+    if new is None:
+        return deal
+
+    old = _as_price(deal.get("price"))
+    if old is not None:
+        deal["lastPrice"] = round(old, 2)
+        if new < old:
+            deal["priceDropped"] = True
+            deal["dropAmount"] = round(old - new, 2)
+        else:
+            deal["priceDropped"] = False
+            deal.pop("dropAmount", None)
+    else:
+        # First time we have a price for this deal.
+        deal["lastPrice"] = None
+        deal["priceDropped"] = False
+        deal.pop("dropAmount", None)
+
+    deal["price"] = round(new, 2)
+    return deal
+
+
+def clear_price_drop(deal: dict) -> dict:
+    """Mark a deal as not dropped (e.g. after first sighting or a rise)."""
+    deal["priceDropped"] = False
+    deal.pop("dropAmount", None)
+    return deal
 
 
 def main() -> int:
@@ -68,13 +134,30 @@ def main() -> int:
         print(f"{len(deals)} deals to verify:\n")
         for i, d in enumerate(deals, 1):
             img = d.get("image") or "(no image)"
+            dropped = d.get("priceDropped")
+            last = d.get("lastPrice")
+            drop_amt = d.get("dropAmount")
+            drop_note = ""
+            if dropped:
+                drop_note = f"  [DROPPED since last refresh"
+                if drop_amt is not None:
+                    drop_note += f" by ${drop_amt}"
+                drop_note += "]"
             print(f"{i:2}. [{d.get('category','?')}] {d.get('name')}")
-            print(f"    {d.get('price')} (was {d.get('previousPrice')}) @ {d.get('merchant')}")
+            print(
+                f"    {d.get('price')} (list/MSRP {d.get('previousPrice')}; "
+                f"last refresh {last}) @ {d.get('merchant')}{drop_note}"
+            )
             print(f"    image: {img}")
             print(f"    {d.get('url')}\n")
         print(
             "Re-check each retailer page. If a price cannot be verified, "
             "remove the deal from data/deals.json — never invent prices."
+        )
+        print(
+            "When a verified price is lower than the prior deal['price'], "
+            "set lastPrice to the old price, priceDropped true, and "
+            "dropAmount = old - new (see apply_verified_price)."
         )
         print(
             "Keep deal['image'] as a repo-relative path under images/ "
@@ -89,6 +172,7 @@ def main() -> int:
 
     # Preserve existing image fields; never invent product photos here.
     missing_images = [d.get("id") or d.get("name") for d in deals if not d.get("image")]
+    dropped_count = sum(1 for d in deals if d.get("priceDropped"))
 
     OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Updated {OUT}")
@@ -97,11 +181,16 @@ def main() -> int:
     print(f"  deals:     {len(deals)}")
     with_img = sum(1 for d in deals if d.get("image"))
     print(f"  images:    {with_img}/{len(deals)}")
+    print(f"  dropped:   {dropped_count}/{len(deals)} (priceDropped)")
     if missing_images:
         print("  missing images:")
         for mid in missing_images:
             print(f"    - {mid}")
     print("Remember: re-verify live retailer prices before publishing.")
+    print(
+        "Tip: use apply_verified_price(deal, new_price) when a scrape "
+        "confirms a new number so lastPrice / priceDropped stay correct."
+    )
     return 0
 
 

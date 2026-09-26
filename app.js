@@ -235,6 +235,27 @@
       if (saved != null) badgeText += " · save " + formatMoney(saved);
     }
 
+    var dropBadge = "";
+    if (deal.priceDropped) {
+      var dropAmt = Number(deal.dropAmount);
+      var hasDropAmt = Number.isFinite(dropAmt) && dropAmt > 0;
+      var dropLabel = hasDropAmt ? "↓ " + formatMoney(dropAmt) : "Dropped";
+      var ariaDrop = hasDropAmt
+        ? "Price dropped " + formatMoney(dropAmt) + " since last refresh"
+        : "Price dropped since last refresh";
+      dropBadge =
+        '<span class="deal-card__drop" role="status" aria-label="' +
+        escapeAttr(ariaDrop) +
+        '">' +
+        '<svg class="deal-card__drop-icon" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false">' +
+        '<path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M3 5.5 L6.5 10 L9 7.25 L13 12.5"/>' +
+        '<path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M10.25 12.5 H13 V9.75"/>' +
+        "</svg>" +
+        '<span class="deal-card__drop-label">' +
+        escapeHtml(dropLabel) +
+        "</span></span>";
+    }
+
     var mediaHtml = "";
     if (deal.image) {
       mediaHtml =
@@ -246,13 +267,16 @@
         '" alt="' +
         escapeAttr(deal.name) +
         '" loading="lazy" decoding="async">' +
+        dropBadge +
         "</figure>";
     } else {
       mediaHtml =
         '<figure class="deal-card__figure deal-card__figure--placeholder" aria-hidden="true">' +
         '<span class="deal-card__cat-mark">' +
         escapeHtml(deal.category || "Deal") +
-        "</span></figure>";
+        "</span>" +
+        dropBadge +
+        "</figure>";
     }
 
     article.innerHTML =
