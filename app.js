@@ -5,7 +5,6 @@
   var statusEl = document.getElementById("status");
   var weekLabelEl = document.getElementById("week-label");
   var headerEl = document.getElementById("site-header");
-  var sharePageBtn = document.getElementById("share-page");
   var filtersEl = document.getElementById("filters");
   var filterButtonsEl = document.getElementById("filter-buttons");
   var budgetFiltersEl = document.getElementById("budget-filters");
@@ -933,17 +932,6 @@
   function init() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-
-    if (sharePageBtn) {
-      sharePageBtn.addEventListener("click", function () {
-        pressFlash(sharePageBtn);
-        sharePayload({
-          title: SITE_TITLE,
-          text: "Current deals — GPUs, monitors, home theater, and more.",
-          url: pageUrl()
-        });
-      });
-    }
 
     if (lightboxEl) {
       closeLightbox();
