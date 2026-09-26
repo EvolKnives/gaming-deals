@@ -1,17 +1,22 @@
 /* what's a good deal? — phone-first, Apple-clean, butter motion */
 
 :root {
+  /* Electric indigo — Linear / Stripe–inspired cohesive accent */
   --bg: #fbfbfd;
   --text: #1d1d1f;
   --text-secondary: #6e6e73;
   --text-tertiary: #86868b;
   --rule: rgba(0, 0, 0, 0.06);
-  --link: #0066cc;
-  --accent: #0071e3;
-  --accent-press: #0077ed;
-  --deal: #248a3d;
-  --deal-bg: rgba(36, 138, 61, 0.1);
+  --link: #5e6ad2;
+  --accent: #5e6ad2;
+  --accent-press: #4f5bc4;
+  --accent-muted: rgba(94, 106, 210, 0.14);
+  --accent-glow: rgba(94, 106, 210, 0.28);
+  --accent-ring: rgba(94, 106, 210, 0.45);
+  --deal: #1f7a35;
+  --deal-bg: rgba(31, 122, 53, 0.11);
   --card: #ffffff;
+  --card-border: rgba(94, 106, 210, 0.1);
   --radius: 24px;
   --radius-sm: 18px;
   --shadow: 0 2px 16px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.035);
@@ -25,6 +30,16 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur: 0.45s;
   --hero-band: #f5f5f7;
+  --hero-glow: radial-gradient(
+      ellipse 80% 55% at 50% -10%,
+      rgba(94, 106, 210, 0.16),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 85% 30%,
+      rgba(94, 106, 210, 0.06),
+      transparent 65%
+    );
   --header-bg: rgba(251, 251, 253, 0.72);
   --header-bg-scrolled: rgba(251, 251, 253, 0.88);
   --figure-bg: #ececf0;
@@ -32,13 +47,16 @@
   --chip-track: rgba(0, 0, 0, 0.045);
   --chip-bg: transparent;
   --chip-fg: #6e6e73;
-  --chip-on-bg: #0071e3;
+  --chip-on-bg: #5e6ad2;
   --chip-on-fg: #ffffff;
+  --chip-on-shadow: 0 1px 3px rgba(94, 106, 210, 0.28),
+    0 4px 14px rgba(94, 106, 210, 0.18);
   --share-bg: rgba(0, 0, 0, 0.06);
   --share-fg: #1d1d1f;
   --toast-bg: #1d1d1f;
   --toast-fg: #f5f5f7;
-  --drop-bg: color-mix(in srgb, var(--deal-bg) 92%, #fff);
+  --drop-bg: color-mix(in srgb, var(--deal-bg) 88%, #fff);
+  --drop-border: rgba(31, 122, 53, 0.18);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,15 +66,29 @@
     --text-secondary: #a1a1a6;
     --text-tertiary: #8e8e93;
     --rule: rgba(255, 255, 255, 0.08);
-    --link: #2997ff;
-    --accent: #0a84ff;
-    --accent-press: #409cff;
+    --link: #9aa3ff;
+    --accent: #7c85ff;
+    --accent-press: #959bff;
+    --accent-muted: rgba(124, 133, 255, 0.16);
+    --accent-glow: rgba(124, 133, 255, 0.32);
+    --accent-ring: rgba(124, 133, 255, 0.5);
     --deal: #30d158;
     --deal-bg: rgba(48, 209, 88, 0.16);
     --card: #2c2c2e;
+    --card-border: rgba(124, 133, 255, 0.14);
     --shadow: 0 2px 14px rgba(0, 0, 0, 0.28), 0 10px 36px rgba(0, 0, 0, 0.32);
     --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.42);
     --hero-band: #161618;
+    --hero-glow: radial-gradient(
+        ellipse 85% 60% at 50% -8%,
+        rgba(124, 133, 255, 0.22),
+        transparent 68%
+      ),
+      radial-gradient(
+        ellipse 45% 35% at 90% 25%,
+        rgba(124, 133, 255, 0.08),
+        transparent 60%
+      );
     --header-bg: rgba(28, 28, 30, 0.78);
     --header-bg-scrolled: rgba(28, 28, 30, 0.92);
     --figure-bg: #3a3a3c;
@@ -64,13 +96,16 @@
     --chip-track: rgba(255, 255, 255, 0.06);
     --chip-bg: transparent;
     --chip-fg: #c7c7cc;
-    --chip-on-bg: #0a84ff;
+    --chip-on-bg: #6e75f0;
     --chip-on-fg: #ffffff;
+    --chip-on-shadow: 0 1px 3px rgba(0, 0, 0, 0.28),
+      0 4px 16px rgba(110, 117, 240, 0.35);
     --share-bg: rgba(255, 255, 255, 0.1);
     --share-fg: #f5f5f7;
     --toast-bg: #3a3a3c;
     --toast-fg: #f5f5f7;
-    --drop-bg: color-mix(in srgb, var(--deal-bg) 88%, #2c2c2e);
+    --drop-bg: color-mix(in srgb, var(--deal-bg) 82%, #2c2c2e);
+    --drop-border: rgba(48, 209, 88, 0.28);
   }
 }
 
@@ -108,7 +143,7 @@ img {
 a {
   color: var(--link);
   text-decoration: none;
-  -webkit-tap-highlight-color: rgba(0, 102, 204, 0.1);
+  -webkit-tap-highlight-color: var(--accent-muted);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -191,6 +226,11 @@ a {
   }
 }
 
+.share-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .share-btn:active {
   transform: scale(0.94);
 }
@@ -216,15 +256,28 @@ a {
 /* Hero */
 
 .hero {
+  position: relative;
   width: 100%;
   margin: 0;
   padding: 0;
   text-align: center;
   background: var(--hero-band);
   border-bottom: 1px solid var(--rule);
+  overflow: clip;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-glow);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .hero__inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--max);
   margin: 0 auto;
   padding: clamp(4.75rem, 15vw, 8rem) var(--pad) clamp(3.5rem, 10vw, 5.75rem)
@@ -308,7 +361,12 @@ a {
   background: var(--chip-on-bg);
   color: var(--chip-on-fg);
   -webkit-text-fill-color: var(--chip-on-fg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--chip-on-shadow);
+}
+
+.filter-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .filter-btn:active {
@@ -355,10 +413,11 @@ a {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--card-border);
   width: 100%;
   max-width: 100%;
-  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease);
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease),
+    border-color 0.35s var(--ease);
 }
 
 .js .deal-card.will-reveal {
@@ -412,6 +471,7 @@ a {
 .deal-card__figure--zoom:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
+  box-shadow: inset 0 0 0 3px var(--accent-ring);
 }
 
 .deal-card__figure--placeholder {
@@ -441,13 +501,14 @@ a {
   border-radius: 980px;
   background: var(--drop-bg);
   color: var(--deal);
+  border: 1px solid var(--drop-border);
   font-size: 0.6875rem;
   font-weight: 650;
   letter-spacing: -0.012em;
   line-height: 1;
-  backdrop-filter: blur(10px) saturate(140%);
-  -webkit-backdrop-filter: blur(10px) saturate(140%);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
   pointer-events: none;
   user-select: none;
 }
@@ -529,13 +590,15 @@ a {
 .deal-card__badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.28rem 0.65rem;
+  padding: 0.28rem 0.7rem;
   border-radius: 980px;
   background: var(--deal-bg);
   color: var(--deal);
+  border: 1px solid var(--drop-border);
   font-size: 0.8125rem;
   font-weight: 620;
   letter-spacing: -0.016em;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
 }
 
 .deal-card__why {
@@ -572,9 +635,16 @@ a {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12),
+    0 4px 14px color-mix(in srgb, var(--accent) 28%, transparent);
   transition: background 0.2s var(--ease), transform 0.16s var(--ease-out),
     box-shadow 0.2s var(--ease);
   will-change: transform;
+}
+
+.deal-card__cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -611,6 +681,11 @@ a {
   transition: transform 0.16s var(--ease-out), opacity 0.16s var(--ease),
     background 0.2s var(--ease);
   will-change: transform;
+}
+
+.deal-card__share:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .deal-card__share:active {
@@ -734,6 +809,11 @@ a {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition: transform 0.16s var(--ease-out), background 0.2s var(--ease);
+}
+
+.lightbox__close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .lightbox__close:active {
