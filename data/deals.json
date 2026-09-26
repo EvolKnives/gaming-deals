@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T13:50:36Z",
+  "updatedAt": "2026-09-26T15:05:27Z",
   "weekLabel": "Week of Sep 21",
   "title": "What's A Good Deal?",
   "deals": [
@@ -360,9 +360,9 @@
       "id": "samsung-g60sd",
       "name": "Samsung Odyssey OLED G6 27\" 360Hz (G60SD)",
       "category": "Monitors",
-      "price": 600.22,
+      "price": 601.36,
       "previousPrice": 899.99,
-      "why": "PC Guide verified ~$600 Amazon deal (Sep 2026) for the 360Hz QD-OLED G60SD—competitive 1440p OLED.",
+      "why": "Amazon at $601.36 (list $899.99). 27\" 360Hz QD-OLED G60SD—still a strong 1440p OLED cut.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/samsung-oled-freesync-anti-glare-warranty-ls27dg602snxza/dp/B0D1DPFZLZ",
       "image": "images/samsung-g60sd.jpg"
@@ -453,7 +453,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 599.99,
+      "lastPrice": 609.99,
       "priceDropped": false,
       "id": "msi-mpg-271qrx",
       "name": "MSI MPG 271QRX 27\" QD-OLED 360Hz",
@@ -607,14 +607,14 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 1199.99,
       "priceDropped": false,
       "id": "lg-oled65b6",
       "name": "LG B6 65\" OLED AI 4K TV (2026)",
       "category": "TVs",
-      "price": 1199.99,
+      "price": 1399.99,
       "previousPrice": 1999.99,
-      "why": "Slickdeals/Amazon have listed 65-inch B6 near $1,200—big OLED for less than a discounted C6.",
+      "why": "Amazon at $1,399.99 (list $1,999.99). 65\" B6 OLED—still well under list after the listing moved up.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=OLED65B6",
       "image": "images/lg-oled65b6.jpg"
@@ -733,7 +733,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 124.99,
+      "lastPrice": 250.89,
       "priceDropped": false,
       "id": "nzxt-c1200-gold",
       "name": "NZXT C1200 Gold 1200W ATX 3.1 Modular",
@@ -747,7 +747,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 129.99,
+      "lastPrice": 149.99,
       "priceDropped": false,
       "id": "phanteks-amp-gh-1200",
       "name": "Phanteks AMP GH 1200W Platinum ATX 3.1",
@@ -775,8 +775,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 179.99,
-      "priceDropped": true,
+      "lastPrice": 169.99,
+      "priceDropped": false,
       "id": "corsair-rm1000x",
       "name": "Corsair RM1000x 1000W Gold ATX 3.1",
       "category": "PSUs",
@@ -785,13 +785,12 @@
       "why": "RMx 1000W ATX 3.1 frequently under $180 at Newegg/Amazon with native 12V-2x6.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/p/pl?d=Corsair+RM1000x+ATX+3.1",
-      "image": "images/corsair-rm1000x.jpg",
-      "dropAmount": 10.0
+      "image": "images/corsair-rm1000x.jpg"
     },
     {
       "currency": "USD",
-      "lastPrice": 129.99,
-      "priceDropped": true,
+      "lastPrice": 99.99,
+      "priceDropped": false,
       "id": "asrock-sl-1000g",
       "name": "ASRock Steel Legend SL-1000G 1000W Gold",
       "category": "PSUs",
@@ -800,19 +799,18 @@
       "why": "Cybenetics Platinum / 80+ Gold modular ATX 3.1 with dual-color 12V-2x6—often near $130 on Newegg.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/p/pl?d=ASRock+Steel+Legend+SL-1000G",
-      "image": "images/asrock-sl-1000g.jpg",
-      "dropAmount": 30.0
+      "image": "images/asrock-sl-1000g.jpg"
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 89.99,
       "priceDropped": false,
       "id": "thermaltake-gf-a3-850",
       "name": "Thermaltake Toughpower GF A3 850W Gold",
       "category": "PSUs",
-      "price": 89.99,
+      "price": 109.99,
       "previousPrice": 129.99,
-      "why": "GF A3 850W ATX 3.x Gold modular often under $90 on Amazon—budget native 12VHPWR for 5070-class builds.",
+      "why": "Amazon at $109.99 (list $129.99). Toughpower GF A3 850W Gold ATX 3.1 with native 12V-2x6.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Thermaltake+Toughpower+GF+A3+850",
       "image": "images/thermaltake-gf-a3-850.jpg"
@@ -875,17 +873,18 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 149.99,
+      "priceDropped": true,
       "id": "logitech-g-pro-x-superlight-2",
       "name": "Logitech G Pro X Superlight 2",
       "category": "Mice",
-      "price": 149.99,
+      "price": 146.49,
       "previousPrice": 159.99,
-      "why": "Deal trackers show ~$149.99 (about 6% off) on Amazon for the sub-60 g esports staple.",
+      "why": "Amazon at $146.49 (list $159.99). PRO X Superlight 2 Black dropped a few dollars this refresh.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=G+Pro+X+Superlight+2",
-      "image": "images/logitech-g-pro-x-superlight-2.jpg"
+      "image": "images/logitech-g-pro-x-superlight-2.jpg",
+      "dropAmount": 3.5
     },
     {
       "currency": "USD",
@@ -1073,20 +1072,6 @@
       "currency": "USD",
       "lastPrice": null,
       "priceDropped": false,
-      "id": "logitech-g915-tkl",
-      "name": "Logitech G915 TKL LIGHTSPEED",
-      "category": "Keyboards",
-      "price": 179.99,
-      "previousPrice": 229.99,
-      "why": "Low-profile wireless TKL often near $180—LIGHTSPEED/Bluetooth dual mode.",
-      "merchant": "Amazon",
-      "url": "https://www.amazon.com/s?k=Logitech+G915+TKL",
-      "image": "images/logitech-g915-tkl.jpg"
-    },
-    {
-      "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
       "id": "razer-blackwidow-v4-x",
       "name": "Razer BlackWidow V4 X",
       "category": "Keyboards",
@@ -1113,7 +1098,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 34.99,
       "priceDropped": false,
       "id": "corsair-k55-core",
       "name": "Corsair K55 CORE RGB Membrane",
@@ -1141,17 +1126,18 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 199.99,
+      "priceDropped": true,
       "id": "asus-rog-azoth",
       "name": "ASUS ROG Azoth 75% Wireless",
       "category": "Keyboards",
-      "price": 199.99,
+      "price": 189.99,
       "previousPrice": 249.99,
-      "why": "Premium gasket-mount 75% with OLED often dips near $200 on Amazon.",
+      "why": "Amazon at $189.99 (list $249.99). ROG Azoth wireless 75% with OLED and hot-swap NX switches.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=ASUS+ROG+Azoth",
-      "image": "images/asus-rog-azoth.jpg"
+      "image": "images/asus-rog-azoth.jpg",
+      "dropAmount": 10.0
     }
   ]
 }
