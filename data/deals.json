@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T10:31:45Z",
+  "updatedAt": "2026-09-26T10:39:20Z",
   "weekLabel": "Week of Sep 21",
   "title": "What's A Good Deal?",
   "deals": [
@@ -13,7 +13,7 @@
       "why": "One of the more approachable partner 5070 Ti cards right now, with a clear $71 cut on Newegg. Same 16GB GDDR7 class as pricier boards—strong 1440p/4K value if you can skip the premium coolers.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/gigabyte-gv-n507teagle-oc-16gd-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans/p/N82E16814932770",
-      "image": null
+      "image": "images/gigabyte-eagle-rtx-5070-ti.jpg"
     },
     {
       "id": "msi-ventus-rtx-5070-ti",
@@ -25,7 +25,7 @@
       "why": "Matches the current street floor for many 5070 Ti cards at Newegg. Triple-fan Ventus cooler, 16GB GDDR7, and DLSS 4—among the better-priced ways into a popular Blackwell card today.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/msi-rtx-5070-ti-16g-ventus-3x-oc-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans/p/N82E16814137933",
-      "image": null
+      "image": "images/msi-ventus-rtx-5070-ti.jpg"
     },
     {
       "id": "gigabyte-mo32u24",
@@ -37,7 +37,7 @@
       "why": "20% off list on Amazon for a current-gen 4K 240Hz QD-OLED. HDMI 2.1, FreeSync Premium Pro / G-SYNC Compatible, and a 3-year burn-in warranty—rare discount on a new panel, not clearance of last year’s model.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/dp/B0HB7NWZYK",
-      "image": null
+      "image": "images/gigabyte-mo32u24.jpg"
     },
     {
       "id": "lg-oled65c6",
@@ -49,7 +49,7 @@
       "why": "About $1,100 off MSRP at Best Buy. Four HDMI 2.1 ports, up to 165Hz from a PC, VRR, and Dolby Vision—still one of the strongest mid-range gaming OLEDs you can buy this year.",
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/searchpage.jsp?st=OLED65C6PUA",
-      "image": null
+      "image": "images/lg-oled65c6.jpg"
     },
     {
       "id": "lg-oled55c6",
@@ -61,7 +61,7 @@
       "why": "$500 off on LG’s own store (and matching big-box pricing). Same Alpha 11 Gen3 brain and gaming feature set as the 65-inch in a desk-friendlier size for consoles or a living-room PC.",
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/searchpage.jsp?st=OLED55C6PUA",
-      "image": null
+      "image": "images/lg-oled55c6.jpg"
     },
     {
       "id": "lg-b6e-55",
@@ -73,7 +73,7 @@
       "why": "$500 off at Best Buy for a 2026 OLED with 4K 120Hz gaming, Dolby Vision, and webOS. Skips a few C6 processing niceties, but the panel deal is hard to beat if you want OLED without the C-series premium.",
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/searchpage.jsp?st=OLED55B6EUA",
-      "image": null
+      "image": "images/lg-b6e-55.jpg"
     },
     {
       "id": "lg-91a-65",
@@ -85,7 +85,7 @@
       "why": "Roughly half off list at Best Buy. Mini-LED brightness without OLED burn-in worry—solid big-screen pick for bright rooms and mixed gaming/movie use.",
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/searchpage.jsp?st=LG+91A+65",
-      "image": null
+      "image": "images/lg-91a-65.jpg"
     },
     {
       "id": "intel-ultra-7-270k-plus",
@@ -97,7 +97,7 @@
       "why": "Member pricing drops this 24-core Arrow Lake chip to $199.99 at Micro Center (pickup). Strong productivity CPU that still games well—especially with Micro Center’s nearby motherboard + RAM bundles.",
       "merchant": "Micro Center",
       "url": "https://www.microcenter.com/product/707437/intel-core-ultra-7-270k-plus-arrow-lake-37ghz-twenty-four-core-lga-1851-boxed-processor-heatsink-not-included",
-      "image": null
+      "image": "images/intel-ultra-7-270k-plus.jpg"
     },
     {
       "id": "msi-mag-a850gl",
@@ -109,7 +109,7 @@
       "why": "ATX 3.1 / native 12V-2x6 for modern GPUs, fully modular, and $20 off at Newegg. Sensible 850W headroom for a 5070 Ti-class build without overspending on the PSU.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/msi-atx12v-850-w-80-plus-gold-certified-power-supplies-black-mag-a850gl-pcie5/p/N82E16817701021",
-      "image": null
+      "image": "images/msi-mag-a850gl.jpg"
     },
     {
       "id": "logitech-g305",
@@ -121,7 +121,7 @@
       "why": "40% off list on Amazon. Hero sensor, 1 ms LIGHTSPEED, and ~250-hour AA battery—still one of the best cheap wireless gaming mice you can buy.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/Logitech-LIGHTSPEED-Wireless-Gaming-Mouse/dp/B07CMS5Q6P",
-      "image": null
+      "image": "images/logitech-g305.jpg"
     },
     {
       "id": "steelseries-apex-3-tkl",
@@ -133,7 +133,7 @@
       "why": "Quiet Whisper switches, tenkeyless desk space, and water resistance at a clearance-friendly $35. Easy daily-driver keyboard when you don’t need hall-effect premium pricing.",
       "merchant": "Best Buy",
       "url": "https://www.bestbuy.com/site/steelseries-apex-3-tkl-wired-membrane-whisper-quiet-switch-gaming-keyboard-with-8-zone-rgb-backlighting-black/6480560.p?skuId=6480560",
-      "image": null
+      "image": "images/steelseries-apex-3-tkl.jpg"
     },
     {
       "id": "lg-c6h-77",
@@ -145,7 +145,7 @@
       "why": "$1,000 off on LG.com for the brighter Hyper Radiant C6H panel in a true living-room size. Same gaming ports and 165Hz PC mode as the C6, with extra brightness for daytime viewing.",
       "merchant": "LG",
       "url": "https://www.lg.com/us/tvs/lg-oled65c6pua-oled-4k-tv",
-      "image": null
+      "image": "images/lg-c6h-77.jpg"
     }
   ]
 }

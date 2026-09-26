@@ -27,7 +27,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #000000;
+    --bg: #1c1c1e;
     --text: #f5f5f7;
     --text-secondary: #a1a1a6;
     --text-tertiary: #6e6e73;
@@ -36,45 +36,45 @@
     --accent: #0a84ff;
     --deal: #30d158;
     --deal-bg: rgba(48, 209, 88, 0.14);
-    --card: #1c1c1e;
+    --card: #2c2c2e;
     --shadow: 0 4px 28px rgba(0, 0, 0, 0.35);
     --shadow-soft: 0 8px 40px rgba(0, 0, 0, 0.4);
-    --hero-band: #1c1c1e;
+    --hero-band: #2c2c2e;
   }
 
   .site-header {
-    background: rgba(0, 0, 0, 0.72);
+    background: rgba(28, 28, 30, 0.78);
   }
 
   .site-header.is-scrolled {
-    background: rgba(0, 0, 0, 0.88);
+    background: rgba(28, 28, 30, 0.92);
   }
 
   .deal-card__figure {
-    background: #2c2c2e;
+    background: #3a3a3c;
   }
 
   .deal-card__figure--placeholder {
-    background: linear-gradient(145deg, #2c2c2e, #3a3a3c);
+    background: linear-gradient(145deg, #3a3a3c, #48484a);
   }
 
   .filter-btn {
-    background: #2c2c2e;
+    background: #3a3a3c;
     color: var(--text-secondary);
   }
 
   .filter-btn.is-on {
     background: var(--text);
-    color: #000;
+    color: #1c1c1e;
   }
 
   .share-btn {
-    background: #2c2c2e;
+    background: #3a3a3c;
     color: var(--text);
   }
 
   .toast {
-    background: #2c2c2e;
+    background: #3a3a3c;
     color: var(--text);
   }
 }
@@ -169,8 +169,9 @@ a {
   flex-shrink: 0;
   border: 0;
   margin: 0;
-  padding: 0.45rem 0.95rem;
-  min-height: 34px;
+  padding: 0.55rem 1.05rem;
+  min-height: 44px;
+  min-width: 44px;
   border-radius: 980px;
   background: rgba(0, 0, 0, 0.05);
   color: var(--text);
@@ -257,8 +258,8 @@ a {
   flex-shrink: 0;
   border: 0;
   margin: 0;
-  padding: 0.5rem 0.95rem;
-  min-height: 36px;
+  padding: 0.55rem 1.05rem;
+  min-height: 44px;
   border-radius: 980px;
   background: rgba(0, 0, 0, 0.05);
   color: var(--text-secondary);
@@ -319,12 +320,14 @@ a {
 .js .deal-card.will-reveal {
   opacity: 0;
   transform: translate3d(0, 10px, 0);
+  pointer-events: none;
 }
 
 .js .deal-card.is-visible,
 .deal-card {
   opacity: 1;
   transform: none;
+  pointer-events: auto;
 }
 
 .js .deal-card.will-reveal,
@@ -339,12 +342,16 @@ a {
   width: 100%;
   overflow: hidden;
   contain: layout paint;
+  border-radius: 0;
 }
 
 .deal-card__figure img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
 }
 
 .deal-card__figure--zoom {
@@ -537,12 +544,20 @@ a {
   transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
 }
 
+.toast[hidden] {
+  display: none !important;
+  pointer-events: none !important;
+}
+
 .toast.is-on {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
-/* Lightbox */
+/* Lightbox
+   Critical: .lightbox sets display:flex which would override the UA
+   [hidden] { display:none }. Without the rule below, a closed lightbox
+   stays as an invisible full-viewport layer and blocks every tap. */
 
 .lightbox {
   position: fixed;
@@ -555,27 +570,41 @@ a {
     max(1rem, env(safe-area-inset-right))
     max(1rem, env(safe-area-inset-bottom))
     max(1rem, env(safe-area-inset-left));
-  background: rgba(0, 0, 0, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(12, 12, 14, 0.82);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   opacity: 0;
-  transition: opacity 0.3s var(--ease);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+  cursor: zoom-out;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lightbox[hidden] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .lightbox:not([hidden]) {
   opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .lightbox__close {
   position: absolute;
   top: max(0.75rem, env(safe-area-inset-top));
   right: max(0.75rem, env(safe-area-inset-right));
+  z-index: 2;
   appearance: none;
   border: 0;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(44, 44, 46, 0.88);
   color: #fff;
   font-size: 1.75rem;
   line-height: 1;
@@ -584,21 +613,28 @@ a {
   align-items: center;
   justify-content: center;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .lightbox__figure {
   margin: 0;
   max-width: min(960px, 100%);
   max-height: 85dvh;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.45);
+  background: #1c1c1e;
+  cursor: default;
 }
 
 .lightbox__img {
+  display: block;
   max-width: 100%;
   max-height: 85dvh;
   width: auto;
   height: auto;
   margin: 0 auto;
-  border-radius: var(--radius-sm);
+  border-radius: 18px;
   object-fit: contain;
 }
 

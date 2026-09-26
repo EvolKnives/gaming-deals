@@ -138,18 +138,22 @@
     lightboxImg.src = src;
     lightboxImg.alt = alt || "";
     lightboxEl.hidden = false;
+    lightboxEl.removeAttribute("hidden");
     lightboxEl.setAttribute("aria-hidden", "false");
     lightboxOpen = true;
     document.body.style.overflow = "hidden";
+    document.body.classList.add("lightbox-open");
     if (lightboxClose) lightboxClose.focus();
   }
 
   function closeLightbox() {
-    if (!lightboxEl || !lightboxOpen) return;
+    if (!lightboxEl) return;
     lightboxEl.hidden = true;
+    lightboxEl.setAttribute("hidden", "");
     lightboxEl.setAttribute("aria-hidden", "true");
     lightboxOpen = false;
     document.body.style.overflow = "";
+    document.body.classList.remove("lightbox-open");
     if (lightboxImg) {
       lightboxImg.removeAttribute("src");
       lightboxImg.alt = "";
@@ -168,6 +172,7 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
+            entry.target.classList.remove("will-reveal");
             io.unobserve(entry.target);
           }
         });
@@ -178,6 +183,15 @@
       n.classList.add("will-reveal");
       io.observe(n);
     });
+    // Failsafe: never leave cards untappable if IO misses
+    setTimeout(function () {
+      nodes.forEach(function (n) {
+        if (!n.classList.contains("is-visible")) {
+          n.classList.add("is-visible");
+          n.classList.remove("will-reveal");
+        }
+      });
+    }, 1200);
   }
 
   function renderFilters(deals) {
@@ -372,11 +386,16 @@
       });
     }
 
-    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
     if (lightboxEl) {
+      closeLightbox();
       lightboxEl.addEventListener("click", function (e) {
         if (e.target === lightboxEl) closeLightbox();
       });
+    }
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (toastEl) {
+      toastEl.hidden = true;
+      toastEl.classList.remove("is-on");
     }
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && lightboxOpen) closeLightbox();
