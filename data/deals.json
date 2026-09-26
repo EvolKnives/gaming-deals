@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-26T17:04:27Z",
+  "updatedAt": "2026-09-26T17:56:27Z",
   "weekLabel": "Week of Sep 21",
   "title": "What's A Good Deal?",
   "deals": [
@@ -145,7 +145,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 1599.97,
+      "lastPrice": 1599.99,
       "priceDropped": false,
       "id": "zotac-solid-core-rtx-5080",
       "name": "ZOTAC Gaming SOLID CORE OC RTX 5080 16GB",
@@ -173,7 +173,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 171.95,
+      "lastPrice": 179.99,
       "priceDropped": false,
       "id": "amd-ryzen-5-9600x",
       "name": "AMD Ryzen 5 9600X",
@@ -187,7 +187,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 158.85,
+      "lastPrice": 169.99,
       "priceDropped": false,
       "id": "amd-ryzen-5-7600x",
       "name": "AMD Ryzen 5 7600X",
@@ -215,18 +215,17 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 339.0,
-      "priceDropped": true,
+      "lastPrice": 299.99,
+      "priceDropped": false,
       "id": "amd-ryzen-7-9700x",
       "name": "AMD Ryzen 7 9700X",
       "category": "CPUs",
       "price": 299.99,
       "previousPrice": 359.0,
-      "why": "Amazon at $339 (list $359). 8-core Zen 5 without X3D premiums for mixed creator + gaming builds.",
+      "why": "Amazon at $299.99 (list $359). 8-core Zen 5 without X3D premiums for mixed creator + gaming builds.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=AMD+Ryzen+7+9700X",
-      "image": "images/amd-ryzen-7-9700x.jpg",
-      "dropAmount": 39.01
+      "image": "images/amd-ryzen-7-9700x.jpg"
     },
     {
       "currency": "USD",
@@ -286,8 +285,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 484.0,
-      "priceDropped": true,
+      "lastPrice": 476.0,
+      "priceDropped": false,
       "id": "amd-ryzen-7-9850x3d-amazon",
       "name": "AMD Ryzen 7 9850X3D",
       "category": "CPUs",
@@ -296,8 +295,7 @@
       "why": "Amazon search shows ~$484; Micro Center members have seen $399.99 in-store—compare local MC stock before paying Amazon.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=AMD+Ryzen+7+9850X3D",
-      "image": "images/amd-ryzen-7-9850x3d-amazon.jpg",
-      "dropAmount": 8.0
+      "image": "images/amd-ryzen-7-9850x3d-amazon.jpg"
     },
     {
       "currency": "USD",
@@ -312,20 +310,6 @@
       "merchant": "Micro Center",
       "url": "https://www.microcenter.com/product/685302/intel-core-ultra-5-245k-arrow-lake-fourteen-core-lga-1851-boxed-processor-heatsink-not-included",
       "image": "images/intel-ultra-5-245k-mc.jpg"
-    },
-    {
-      "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
-      "id": "intel-ultra-7-270k-bundle",
-      "name": "Ultra 7 270K Plus + Z890 + 32GB DDR5 Bundle",
-      "category": "CPUs",
-      "price": 599.99,
-      "previousPrice": null,
-      "why": "Micro Center CPU+motherboard+32GB DDR5 bundle at $599.99 (Slickdeals, Sep 2026)—hundreds under separate street totals. Pickup only.",
-      "merchant": "Micro Center",
-      "url": "https://www.microcenter.com/search/search_results.aspx?Ntt=270K+Plus+bundle",
-      "image": "images/intel-ultra-7-270k-bundle.jpg"
     },
     {
       "currency": "USD",
@@ -358,16 +342,17 @@
     {
       "currency": "USD",
       "lastPrice": 601.36,
-      "priceDropped": false,
+      "priceDropped": true,
       "id": "samsung-g60sd",
       "name": "Samsung Odyssey OLED G6 27\" 360Hz (G60SD)",
       "category": "Monitors",
-      "price": 601.36,
+      "price": 600.19,
       "previousPrice": 899.99,
-      "why": "Amazon at $601.36 (list $899.99). 27\" 360Hz QD-OLED G60SD—still a strong 1440p OLED cut.",
+      "why": "Amazon at $600.19 (list $899.99). 27\" 360Hz QD-OLED G60SD—still a strong 1440p OLED cut.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/samsung-oled-freesync-anti-glare-warranty-ls27dg602snxza/dp/B0D1DPFZLZ",
-      "image": "images/samsung-g60sd.jpg"
+      "image": "images/samsung-g60sd.jpg",
+      "dropAmount": 1.17
     },
     {
       "currency": "USD",
@@ -399,7 +384,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 485.0,
+      "lastPrice": 549.97,
       "priceDropped": false,
       "id": "lg-27gx700a",
       "name": "LG UltraGear 27GX700A-B",
@@ -595,7 +580,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 1399.99,
+      "lastPrice": 1599.99,
       "priceDropped": false,
       "id": "lg-oled65b6",
       "name": "LG B6 65\" OLED AI 4K TV (2026)",
@@ -833,8 +818,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 89.99,
-      "priceDropped": true,
+      "lastPrice": 79.99,
+      "priceDropped": false,
       "id": "razer-deathadder-v3-pro",
       "name": "Razer DeathAdder V3 Pro Wireless",
       "category": "Mice",
@@ -843,8 +828,7 @@
       "why": "Frequently near $90 on Amazon US (~40% off). 63 g ergonomic shape with Focus Pro 30K sensor.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Razer+DeathAdder+V3+Pro",
-      "image": "images/razer-deathadder-v3-pro.jpg",
-      "dropAmount": 10.0
+      "image": "images/razer-deathadder-v3-pro.jpg"
     },
     {
       "currency": "USD",
@@ -876,17 +860,18 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
-      "priceDropped": false,
+      "lastPrice": 69.99,
+      "priceDropped": true,
       "id": "logitech-g309",
       "name": "Logitech G309 LIGHTSPEED Wireless Mouse",
       "category": "Mice",
-      "price": 69.99,
+      "price": 58.99,
       "previousPrice": 99.99,
-      "why": "G309 often near $70—Hero sensor with LIGHTSPEED/Bluetooth and AA power for work + play.",
+      "why": "Amazon around $59 (list $99.99)—Hero sensor with LIGHTSPEED/Bluetooth and AA power for work + play.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Logitech+G309",
-      "image": "images/logitech-g309.jpg"
+      "image": "images/logitech-g309.jpg",
+      "dropAmount": 11.0
     },
     {
       "currency": "USD",
@@ -904,7 +889,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 119.99,
+      "lastPrice": 129.99,
       "priceDropped": false,
       "id": "razer-basilisk-v3-pro",
       "name": "Razer Basilisk V3 Pro Wireless",
@@ -918,14 +903,14 @@
     },
     {
       "currency": "USD",
-      "lastPrice": null,
+      "lastPrice": 19.99,
       "priceDropped": false,
       "id": "logitech-g203",
       "name": "Logitech G203 LIGHTSYNC Wired Mouse",
       "category": "Mice",
-      "price": 19.99,
+      "price": 25.5,
       "previousPrice": 39.99,
-      "why": "Wired Hero-sensor classic often $20 or less—perfect spare/LAN mouse.",
+      "why": "Wired Hero-sensor classic near $25.50 (list $39.99)—solid spare/LAN mouse.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Logitech+G203",
       "image": "images/logitech-g203.jpg"
@@ -988,7 +973,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 124.99,
+      "lastPrice": 139.99,
       "priceDropped": false,
       "id": "razer-huntsman-v3-pro-tkl",
       "name": "Razer Huntsman V3 Pro TKL",
@@ -1016,7 +1001,7 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 173.71,
+      "lastPrice": 186.99,
       "priceDropped": false,
       "id": "steelseries-apex-pro-tkl-gen3",
       "name": "SteelSeries Apex Pro TKL Gen 3",
@@ -1030,8 +1015,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 89.99,
-      "priceDropped": true,
+      "lastPrice": 79.99,
+      "priceDropped": false,
       "id": "keychron-k2-v2",
       "name": "Keychron K2 V2 Wireless Mechanical",
       "category": "Keyboards",
@@ -1040,8 +1025,7 @@
       "why": "Compact wireless Mac/Windows board frequently ~$90—hot-swap friendly daily driver.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Keychron+K2+V2",
-      "image": "images/keychron-k2-v2.jpg",
-      "dropAmount": 10.0
+      "image": "images/keychron-k2-v2.jpg"
     },
     {
       "currency": "USD",
@@ -1059,8 +1043,8 @@
     },
     {
       "currency": "USD",
-      "lastPrice": 99.99,
-      "priceDropped": true,
+      "lastPrice": 88.98,
+      "priceDropped": false,
       "id": "logitech-g713",
       "name": "Logitech G713 TKL Mechanical",
       "category": "Keyboards",
@@ -1069,8 +1053,7 @@
       "why": "TKL GX mechanical board often near $100—clean aesthetic for mixed work/play.",
       "merchant": "Amazon",
       "url": "https://www.amazon.com/s?k=Logitech+G713",
-      "image": "images/logitech-g713.jpg",
-      "dropAmount": 11.01
+      "image": "images/logitech-g713.jpg"
     },
     {
       "currency": "USD",
