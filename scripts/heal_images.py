@@ -321,6 +321,27 @@ def candidate_from_bing(session, deal: dict) -> str | None:
     return None
 
 
+def prefer_larger_cdn(url: str) -> list[str]:
+    """Return URL variants to try, largest first (Newegg 1280 → original)."""
+    out = [url]
+    if "neweggimages.com" in url and "/ProductImage/" in url and "CompressAll" not in url:
+        out.insert(0, url.replace("/ProductImage/", "/ProductImageCompressAll1280/"))
+        out.append(url.replace("/ProductImage/", "/ProductImageCompressAll800/"))
+    # Amazon: strip size suffixes for fuller asset
+    if "media-amazon.com" in url:
+        clean = re.sub(r"\._[^.]+_\.", ".", url)
+        if clean != url:
+            out.insert(0, clean)
+    # dedupe preserve order
+    seen: set[str] = set()
+    uniq: list[str] = []
+    for u in out:
+        if u not in seen:
+            seen.add(u)
+            uniq.append(u)
+    return uniq
+
+
 def download_bytes(session, url: str) -> bytes | None:
     try:
         r = session.get(url, timeout=40, allow_redirects=True)
@@ -464,14 +485,19 @@ def heal_deal(session, deal: dict, force: bool = False) -> tuple[bool, str]:
 
     url, source = find_candidate(session, deal)
     if url:
-        raw = download_bytes(session, url)
-        if raw and compress_to_jpeg(raw, dest):
-            deal["image"] = relative_image(deal)
-            ok, reason = audit_one(deal)
-            if ok:
-                return True, f"healed via {source}: {url}"
-            dest.unlink(missing_ok=True)
-            return False, f"downloaded but still broken ({reason}) from {url}"
+        last_err = None
+        for variant in prefer_larger_cdn(url):
+            raw = download_bytes(session, variant)
+            if raw and compress_to_jpeg(raw, dest):
+                deal["image"] = relative_image(deal)
+                ok, reason = audit_one(deal)
+                if ok:
+                    return True, f"healed via {source}: {variant}"
+                dest.unlink(missing_ok=True)
+                last_err = reason
+            else:
+                last_err = "download/compress failed"
+        return False, f"downloaded but still broken ({last_err}) from {url}"
 
     # Last resort: labeled placeholder
     if make_placeholder(deal, dest):
