@@ -10,6 +10,21 @@ Live: **https://evolknives.github.io/gaming-deals/**
 - Deal data in [`data/deals.json`](data/deals.json)
 - GitHub Pages from `main` `/`
 
+
+## Live Search
+
+The Search chip filters the local catalogue instantly, then (after ~300ms debounce,
+query length ≥ 2) calls a Cloudflare Worker for live Newegg results. Live hits
+render in the **same deal cards**; catalogue matches for the query are merged in
+and deduped by SKU/URL. If the Worker is unreachable, Search falls back to
+catalogue-only with a calm status line.
+
+- Worker source: [`workers/live-search/`](workers/live-search/)
+- Config: `LIVE_SEARCH_URL` near the top of [`app.js`](app.js)
+- Deploy: see [`workers/live-search/README.md`](workers/live-search/README.md) (`npx wrangler login` once, then `npx wrangler deploy`)
+
+Pull-to-refresh still only reloads `data/deals.json` — no hourly client spam.
+
 ## Local preview
 
 ```bash
@@ -24,7 +39,7 @@ Or any static server that serves the repo root.
 
 ### Dynamic catalogue refresh
 
-The live site is still static GitHub Pages — **Search only filters `data/deals.json`**. To make the catalogue change over time (and so queries like “computer cases” return hits), refresh the JSON on a machine that can fetch retailer pages, then push:
+The catalogue still lives in static `data/deals.json` on GitHub Pages. **Search** also calls the live Worker when configured (`LIVE_SEARCH_URL`). To make the catalogue change over time (and so queries like “computer cases” return hits), refresh the JSON on a machine that can fetch retailer pages, then push:
 
 ```bash
 # Prune dead/OOS Newegg listings + seed/grow Cases, RAM, SSDs, Motherboards

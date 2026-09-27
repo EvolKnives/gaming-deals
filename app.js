@@ -40,6 +40,20 @@
   var pullReady = false;
   var SITE_TITLE = "What's A Good Deal?";
 
+  // Deployed Cloudflare Worker for live Newegg search (Search tab).
+  // Set after `npx wrangler deploy` in workers/live-search/.
+  var LIVE_SEARCH_URL = "https://gaming-deals-search.different-cartoon.workers.dev";
+  var LIVE_SEARCH_MIN_CHARS = 2;
+  var LIVE_SEARCH_DEBOUNCE_MS = 300;
+  var liveSearchDeals = [];
+  var liveSearchQuery = "";
+  var liveSearchLoading = false;
+  var liveSearchError = "";
+  var liveSearchTimer = null;
+  var liveSearchAbort = null;
+  var liveSearchSeq = 0;
+  var searchLiveStatusEl = null;
+
   // Canonical plural filter labels (never apostrophe plurals).
   var CATEGORY_ORDER = [
     "All",
@@ -715,12 +729,254 @@
       rememberSearchQuery(searchQuery);
       renderRecentSearches();
     }
-    if (activeFilter === SEARCH_MODE) renderDeals(allDeals);
+    if (activeFilter === SEARCH_MODE) {
+      renderDeals(allDeals);
+      scheduleLiveSearch(searchQuery, { immediate: !!opts.commit });
+    } else {
+      clearLiveSearch();
+    }
     if (opts.focus && searchInputEl) {
       try {
         searchInputEl.focus();
       } catch (e) {}
     }
+  }
+
+  function dealIdentityKeys(deal) {
+    var keys = [];
+    if (deal && deal.sku) keys.push("sku:" + String(deal.sku).toUpperCase());
+    if (deal && deal.url) {
+      var u = String(deal.url).split("?")[0].replace(/\/$/, "").toLowerCase();
+      keys.push("url:" + u);
+      var m = u.match(/\/p\/([a-z0-9-]+)/i);
+      if (m) keys.push("sku:" + m[1].toUpperCase());
+    }
+    if (deal && deal.id) keys.push("id:" + String(deal.id).toLowerCase());
+    return keys;
+  }
+
+  function clearLiveSearch() {
+    clearTimeout(liveSearchTimer);
+    liveSearchTimer = null;
+    if (liveSearchAbort) {
+      try {
+        liveSearchAbort.abort();
+      } catch (e) {}
+      liveSearchAbort = null;
+    }
+    liveSearchDeals = [];
+    liveSearchQuery = "";
+    liveSearchLoading = false;
+    liveSearchError = "";
+    syncSearchLiveStatus();
+  }
+
+  function ensureSearchLiveStatusEl() {
+    if (searchLiveStatusEl && searchLiveStatusEl.isConnected) return searchLiveStatusEl;
+    if (!ensureSearchUi() || !searchPanelEl) return null;
+    var inner = searchPanelEl.querySelector(".search-panel__inner");
+    if (!inner) return null;
+    var el = document.getElementById("search-live-status");
+    if (!el) {
+      el = document.createElement("p");
+      el.id = "search-live-status";
+      el.className = "search-live-status";
+      el.hidden = true;
+      el.setAttribute("aria-live", "polite");
+      inner.appendChild(el);
+    }
+    searchLiveStatusEl = el;
+    return el;
+  }
+
+  function syncSearchLiveStatus() {
+    var el = ensureSearchLiveStatusEl();
+    if (!el) return;
+    if (activeFilter !== SEARCH_MODE) {
+      el.hidden = true;
+      el.textContent = "";
+      return;
+    }
+    var q = String(searchQuery || "").trim();
+    if (q.length < LIVE_SEARCH_MIN_CHARS) {
+      el.hidden = true;
+      el.textContent = "";
+      el.classList.remove("is-loading", "is-error");
+      return;
+    }
+    if (!LIVE_SEARCH_URL) {
+      el.hidden = true;
+      el.textContent = "";
+      return;
+    }
+    if (liveSearchLoading) {
+      el.hidden = false;
+      el.classList.add("is-loading");
+      el.classList.remove("is-error");
+      el.textContent = "Searching live deals…";
+      return;
+    }
+    if (liveSearchError) {
+      el.hidden = false;
+      el.classList.remove("is-loading");
+      el.classList.add("is-error");
+      el.textContent = liveSearchError;
+      return;
+    }
+    if (liveSearchQuery === q && liveSearchDeals.length) {
+      el.hidden = false;
+      el.classList.remove("is-loading", "is-error");
+      el.textContent =
+        "Showing " +
+        liveSearchDeals.length +
+        " live result" +
+        (liveSearchDeals.length === 1 ? "" : "s") +
+        " from Newegg";
+      return;
+    }
+    el.hidden = true;
+    el.textContent = "";
+    el.classList.remove("is-loading", "is-error");
+  }
+
+  function scheduleLiveSearch(query, opts) {
+    opts = opts || {};
+    clearTimeout(liveSearchTimer);
+    var q = String(query || "").trim();
+    if (!LIVE_SEARCH_URL || activeFilter !== SEARCH_MODE) {
+      if (liveSearchDeals.length || liveSearchLoading || liveSearchError) {
+        liveSearchDeals = [];
+        liveSearchQuery = "";
+        liveSearchLoading = false;
+        liveSearchError = "";
+        syncSearchLiveStatus();
+      }
+      return;
+    }
+    if (q.length < LIVE_SEARCH_MIN_CHARS) {
+      if (liveSearchAbort) {
+        try {
+          liveSearchAbort.abort();
+        } catch (e) {}
+        liveSearchAbort = null;
+      }
+      liveSearchDeals = [];
+      liveSearchQuery = "";
+      liveSearchLoading = false;
+      liveSearchError = "";
+      syncSearchLiveStatus();
+      return;
+    }
+    // Already have fresh results for this exact query
+    if (!opts.force && liveSearchQuery === q && liveSearchDeals.length && !liveSearchLoading) {
+      syncSearchLiveStatus();
+      return;
+    }
+    var run = function () {
+      fetchLiveSearch(q);
+    };
+    if (opts.immediate) run();
+    else liveSearchTimer = setTimeout(run, LIVE_SEARCH_DEBOUNCE_MS);
+  }
+
+  function fetchLiveSearch(query) {
+    var q = String(query || "").trim();
+    if (!LIVE_SEARCH_URL || q.length < LIVE_SEARCH_MIN_CHARS) return;
+    if (liveSearchAbort) {
+      try {
+        liveSearchAbort.abort();
+      } catch (e) {}
+    }
+    var seq = ++liveSearchSeq;
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    liveSearchAbort = controller;
+    liveSearchLoading = true;
+    liveSearchError = "";
+    syncSearchLiveStatus();
+    if (activeFilter === SEARCH_MODE) {
+      dealsEl.setAttribute("aria-busy", "true");
+    }
+
+    var endpoint =
+      LIVE_SEARCH_URL.replace(/\/$/, "") + "/search?q=" + encodeURIComponent(q);
+    var fetchOpts = { method: "GET", credentials: "omit" };
+    if (controller) fetchOpts.signal = controller.signal;
+
+    fetch(endpoint, fetchOpts)
+      .then(function (res) {
+        return res.json().then(function (body) {
+          return { res: res, body: body };
+        });
+      })
+      .then(function (pack) {
+        if (seq !== liveSearchSeq) return;
+        liveSearchLoading = false;
+        liveSearchAbort = null;
+        var body = pack.body || {};
+        if (!pack.res.ok || body.ok === false) {
+          liveSearchError = "Live search unavailable — showing catalogue matches";
+          liveSearchDeals = [];
+          liveSearchQuery = q;
+          syncSearchLiveStatus();
+          if (activeFilter === SEARCH_MODE && String(searchQuery || "").trim() === q) {
+            renderDeals(allDeals);
+          }
+          return;
+        }
+        var deals = Array.isArray(body.deals) ? body.deals : [];
+        // Trust only objects with a real numeric price + url (never invent)
+        liveSearchDeals = deals.filter(function (d) {
+          return (
+            d &&
+            typeof d.name === "string" &&
+            d.name &&
+            typeof d.url === "string" &&
+            d.url &&
+            Number.isFinite(Number(d.price)) &&
+            Number(d.price) > 0
+          );
+        });
+        liveSearchQuery = q;
+        liveSearchError = "";
+        syncSearchLiveStatus();
+        if (activeFilter === SEARCH_MODE && String(searchQuery || "").trim() === q) {
+          renderDeals(allDeals);
+        }
+      })
+      .catch(function (err) {
+        if (seq !== liveSearchSeq) return;
+        if (err && err.name === "AbortError") return;
+        liveSearchLoading = false;
+        liveSearchAbort = null;
+        liveSearchDeals = [];
+        liveSearchQuery = q;
+        liveSearchError = "Live search unavailable — showing catalogue matches";
+        syncSearchLiveStatus();
+        if (activeFilter === SEARCH_MODE && String(searchQuery || "").trim() === q) {
+          renderDeals(allDeals);
+        }
+      });
+  }
+
+  function mergeSearchResults(catalogueMatches, liveDeals) {
+    var seen = Object.create(null);
+    var out = [];
+    function take(deal) {
+      if (!deal) return;
+      var keys = dealIdentityKeys(deal);
+      for (var i = 0; i < keys.length; i++) {
+        if (seen[keys[i]]) return;
+      }
+      keys.forEach(function (k) {
+        seen[k] = true;
+      });
+      out.push(deal);
+    }
+    // Live hits primary
+    (liveDeals || []).forEach(take);
+    // Then catalogue matches that also match the query
+    (catalogueMatches || []).forEach(take);
+    return out;
   }
 
   function ensureSearchUi() {
@@ -743,7 +999,7 @@
       clearTimeout(searchDebounceTimer);
       searchDebounceTimer = setTimeout(function () {
         applySearchQuery(value, { commit: false });
-      }, 180);
+      }, 200);
     });
 
     searchInputEl.addEventListener("keydown", function (e) {
@@ -892,6 +1148,7 @@
           return;
         }
         activeFilter = cat;
+        if (cat !== SEARCH_MODE) clearLiveSearch();
         Array.prototype.forEach.call(filterButtonsEl.children, function (b) {
           var label = b.dataset.filter || b.textContent;
           var on = label === activeFilter;
@@ -908,12 +1165,15 @@
         } catch (e) {}
         syncSearchPanel();
         renderDeals(allDeals);
-        if (cat === SEARCH_MODE && searchInputEl) {
-          setTimeout(function () {
-            try {
-              searchInputEl.focus();
-            } catch (e) {}
-          }, 30);
+        if (cat === SEARCH_MODE) {
+          scheduleLiveSearch(searchQuery, { immediate: true });
+          if (searchInputEl) {
+            setTimeout(function () {
+              try {
+                searchInputEl.focus();
+              } catch (e) {}
+            }, 30);
+          }
         }
       });
       filterButtonsEl.appendChild(btn);
@@ -1213,6 +1473,7 @@
       prompt.className = "status";
       prompt.textContent = "Type to search current deals";
       dealsEl.appendChild(prompt);
+      syncSearchLiveStatus();
       return;
     }
 
@@ -1226,7 +1487,16 @@
       }
       return matchesBudget(d, activeBudget);
     });
-    if (activeFilter === "All") {
+    if (activeFilter === SEARCH_MODE) {
+      var liveForQuery =
+        liveSearchQuery === trimmedQuery && !liveSearchLoading ? liveSearchDeals : [];
+      // Budget filter applies to live results too
+      var liveBudgeted = (liveForQuery || []).filter(function (d) {
+        return matchesBudget(d, activeBudget);
+      });
+      list = mergeSearchResults(sortBySavingsDesc(list), liveBudgeted);
+      // Re-order: live primary already in mergeSearchResults
+    } else if (activeFilter === "All") {
       list = interleaveByCategory(list);
     } else if (activeFilter === "Future") {
       list = list.slice().sort(function (a, b) {
@@ -1236,19 +1506,30 @@
         return String(a.name || "").localeCompare(String(b.name || ""));
       });
     } else {
-      // Category tabs and Search: biggest savings first
+      // Category tabs: biggest savings first
       list = sortBySavingsDesc(list);
     }
 
     dealsEl.innerHTML = "";
-    dealsEl.setAttribute("aria-busy", "false");
+    var waitingLive =
+      activeFilter === SEARCH_MODE &&
+      !!LIVE_SEARCH_URL &&
+      trimmedQuery.length >= LIVE_SEARCH_MIN_CHARS &&
+      liveSearchLoading;
+    dealsEl.setAttribute("aria-busy", waitingLive ? "true" : "false");
+    syncSearchLiveStatus();
 
     if (!list.length) {
       var empty = document.createElement("p");
       empty.className = "status";
       if (activeFilter === SEARCH_MODE) {
-        empty.textContent =
-          "No deals in the catalogue for that yet.";
+        if (waitingLive) {
+          empty.textContent = "Searching live deals…";
+        } else if (liveSearchError && LIVE_SEARCH_URL) {
+          empty.textContent = 'No catalogue matches for “' + trimmedQuery + '”.';
+        } else {
+          empty.textContent = 'No deals match “' + trimmedQuery + '”.';
+        }
       } else if (activeFilter === "Future") {
         empty.textContent =
           activeBudget !== "All"

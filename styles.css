@@ -647,6 +647,35 @@ a {
   }
 }
 
+
+.search-live-status {
+  margin: 0.15rem 0 0;
+  padding: 0 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-tertiary);
+  min-height: 1.1em;
+}
+
+.search-live-status[hidden] {
+  display: none !important;
+}
+
+.search-live-status.is-loading {
+  color: var(--text-secondary);
+}
+
+.search-live-status.is-error {
+  color: #b42318;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-live-status.is-error {
+    color: #ff8a7a;
+  }
+}
+
 /* Deals */
 
 .deals {

@@ -1,0 +1,15 @@
+{
+  "name": "gaming-deals-live-search",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Live Newegg search API for What's A Good Deal?",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.141.0"
+  }
+}

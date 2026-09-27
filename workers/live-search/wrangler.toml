@@ -1,0 +1,10 @@
+name = "gaming-deals-search"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+# Optional KV for query cache / rate limit (Cache API used as primary).
+# Uncomment and bind after `wrangler kv namespace create SEARCH_CACHE`:
+# [[kv_namespaces]]
+# binding = "SEARCH_CACHE"
+# id = "REPLACE_ME"
