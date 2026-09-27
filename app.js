@@ -837,15 +837,18 @@
       var c = normalizeCategory(d.category);
       if (c) present[c] = true;
     });
-    var cats = ["All", "Future"];
+    var cats = [SEARCH_MODE, "All", "Future"];
     CATEGORY_ORDER.forEach(function (cat) {
       if (cat !== "All" && cat !== "Future" && present[cat]) cats.push(cat);
     });
     Object.keys(present).forEach(function (cat) {
       if (cats.indexOf(cat) === -1) cats.push(cat);
     });
-    // Mode chip — not a deal.category; keep at end so real categories stay primary.
-    if (cats.indexOf(SEARCH_MODE) === -1) cats.push(SEARCH_MODE);
+    // Mode chip — not a deal.category; keep first so Search is easy to hit.
+    if (cats.indexOf(SEARCH_MODE) === -1) cats.unshift(SEARCH_MODE);
+    else if (cats[0] !== SEARCH_MODE) {
+      cats = [SEARCH_MODE].concat(cats.filter(function (c) { return c !== SEARCH_MODE; }));
+    }
     filterButtonsEl.innerHTML = "";
     cats.forEach(function (cat) {
       var btn = document.createElement("button");
