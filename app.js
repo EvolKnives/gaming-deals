@@ -854,11 +854,18 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "filter-btn" + (cat === activeFilter ? " is-on" : "");
-      btn.textContent = cat;
       btn.setAttribute("aria-pressed", cat === activeFilter ? "true" : "false");
       if (cat === SEARCH_MODE) {
+        btn.className += " filter-btn--search";
         btn.setAttribute("aria-label", "Search deals");
         btn.dataset.filter = SEARCH_MODE;
+        btn.innerHTML =
+          '<svg class="filter-btn__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">' +
+          '<circle cx="10.5" cy="10.5" r="6.25" fill="none" stroke="currentColor" stroke-width="2"/>' +
+          '<path d="M15.4 15.4L20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+          "</svg>";
+      } else {
+        btn.textContent = cat;
       }
       btn.addEventListener("click", function () {
         if (cat === activeFilter) {

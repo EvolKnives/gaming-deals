@@ -413,6 +413,20 @@ a {
   will-change: transform;
 }
 
+.filter-btn--search {
+  min-width: 2.5rem;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-btn__icon {
+  display: block;
+  flex-shrink: 0;
+}
+
 .filter-btn.is-on {
   background: var(--chip-on-bg);
   color: var(--chip-on-fg);
