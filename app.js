@@ -55,6 +55,8 @@
     "Motherboards",
     "RAM",
     "SSDs",
+    "Phones",
+    "Laptops",
     "Mice",
     "Keyboards"
   ];
@@ -97,7 +99,19 @@
     Memory: "RAM",
     SSD: "SSDs",
     SSDs: "SSDs",
-    "Solid State Drives": "SSDs"
+    "Solid State Drives": "SSDs",
+    Phone: "Phones",
+    Phones: "Phones",
+    iPhone: "Phones",
+    iPhones: "Phones",
+    Smartphone: "Phones",
+    Smartphones: "Phones",
+    Laptop: "Laptops",
+    Laptops: "Laptops",
+    Notebook: "Laptops",
+    Notebooks: "Laptops",
+    MacBook: "Laptops",
+    MacBooks: "Laptops"
   };
 
   var BUDGET_OPTIONS = [
@@ -1233,7 +1247,8 @@
       var empty = document.createElement("p");
       empty.className = "status";
       if (activeFilter === SEARCH_MODE) {
-        empty.textContent = 'No deals match “' + trimmedQuery + '”';
+        empty.textContent =
+          "No deals in the catalogue for that yet.";
       } else if (activeFilter === "Future") {
         empty.textContent =
           activeBudget !== "All"

@@ -74,6 +74,15 @@ SEED_QUERIES: dict[str, list[tuple[str, str]]] = {
     "Motherboards": [
         ("AM5 B650 motherboard", r"\b(motherboard|B650|X670|B850|X870|Z790|B760)\b"),
     ],
+    "Phones": [
+        ("iphone 15 unlocked", r"\biPhone\b"),
+        ("iphone 14 unlocked", r"\biPhone\b"),
+    ],
+    "Laptops": [
+        ("gaming laptop", r"\b(laptop|notebook)\b"),
+        ("MSI gaming laptop", r"\b(laptop|notebook)\b"),
+        ("MacBook Pro", r"\bMacBook\b"),
+    ],
 }
 
 CATEGORY_FLOORS = {
@@ -81,6 +90,8 @@ CATEGORY_FLOORS = {
     "RAM": 45.0,
     "SSDs": 35.0,
     "Motherboards": 70.0,
+    "Phones": 200.0,
+    "Laptops": 400.0,
 }
 
 TARGET_PER_SEED_CAT = 12
@@ -259,6 +270,10 @@ def build_deal(cat: str, item: dict[str, Any], verified: dict[str, Any]) -> dict
     deal_id = slugify(item["title"], item["sku"])
     if cat == "Cases":
         why = f"Verified Newegg computer case listing at ${price:,.2f}"
+    elif cat == "Phones":
+        why = f"Verified Newegg phone listing at ${price:,.2f}"
+    elif cat == "Laptops":
+        why = f"Verified Newegg laptop listing at ${price:,.2f}"
     else:
         why = f"Verified Newegg listing at ${price:,.2f}"
     if prev:

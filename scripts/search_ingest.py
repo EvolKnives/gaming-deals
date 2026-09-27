@@ -64,6 +64,16 @@ QUERY_CATEGORY_HINTS: list[tuple[re.Pattern[str], str, str]] = [
         "Motherboards",
         r"\b(motherboard|B650|X670|B850|X870|Z790|B760)\b",
     ),
+    (
+        re.compile(r"\b(iphone|phone|pixel|galaxy|smartphone)\b", re.I),
+        "Phones",
+        r"\b(iPhone|Pixel|Galaxy|phone)\b",
+    ),
+    (
+        re.compile(r"\b(macbook|laptop|notebook|chromebook)\b", re.I),
+        "Laptops",
+        r"\b(MacBook|laptop|notebook|Chromebook)\b",
+    ),
 ]
 
 
@@ -112,6 +122,18 @@ def main() -> int:
     searches = [query]
     if cat == "Cases" and "tower" not in query.lower():
         searches.append(query + " mid tower")
+    if cat == "Phones":
+        ql = query.lower()
+        if "iphone" in ql and "unlocked" not in ql:
+            searches.append(query + " unlocked")
+        if "iphone" not in ql and "phone" not in ql:
+            searches.append(query + " phone")
+    if cat == "Laptops":
+        ql = query.lower()
+        if "laptop" not in ql and "macbook" not in ql:
+            searches.append(query + " laptop")
+        if "gaming" in ql and "rtx" not in ql:
+            searches.append(query + " RTX")
 
     candidates: list[dict[str, Any]] = []
     for q in searches:

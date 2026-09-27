@@ -1,6 +1,6 @@
 # What's A Good Deal?
 
-A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, cases, motherboards, RAM, SSDs, power supplies, mice, keyboards, TVs, and home theater.
+A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, cases, motherboards, RAM, SSDs, phones, laptops, power supplies, mice, keyboards, TVs, and home theater.
 
 Live: **https://evolknives.github.io/gaming-deals/**
 
