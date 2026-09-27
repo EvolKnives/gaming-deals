@@ -475,6 +475,39 @@ a {
   background: color-mix(in srgb, var(--chip-on-bg) 88%, #1d1d1f);
 }
 
+.filters--sort {
+  padding-top: 0.45rem;
+}
+
+.filters__inner--sort {
+  background: transparent;
+  border: 1px dashed var(--rule);
+  padding: 0.22rem;
+}
+
+.filter-btn--sort {
+  font-size: 0.78rem;
+  padding: 0.42rem 0.85rem;
+  min-height: 36px;
+  letter-spacing: -0.01em;
+}
+
+.filter-btn--sort.is-on {
+  background: color-mix(in srgb, var(--chip-on-bg) 88%, #1d1d1f);
+}
+
+@media (prefers-color-scheme: dark) {
+  .filters__inner--sort {
+    border-color: color-mix(in srgb, var(--accent, #7dd3fc) 22%, var(--rule));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent, #7dd3fc) 8%, transparent);
+  }
+
+  .filter-btn--sort.is-on {
+    box-shadow: var(--chip-on-shadow), 0 0 18px color-mix(in srgb, var(--accent, #7dd3fc) 18%, transparent);
+  }
+}
+
+
 /* Search panel — only visible inside the Search tab */
 
 .visually-hidden {

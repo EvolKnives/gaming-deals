@@ -9,6 +9,8 @@
   var filterButtonsEl = document.getElementById("filter-buttons");
   var budgetFiltersEl = document.getElementById("budget-filters");
   var budgetButtonsEl = document.getElementById("budget-buttons");
+  var sortFiltersEl = document.getElementById("sort-filters");
+  var sortButtonsEl = document.getElementById("sort-buttons");
   var searchPanelEl = document.getElementById("search-panel");
   var searchInputEl = document.getElementById("deal-search");
   var searchClearEl = document.getElementById("deal-search-clear");
@@ -25,6 +27,7 @@
   var allDeals = [];
   var activeFilter = "All";
   var activeBudget = "All";
+  var activeSort = "savings";
   var SEARCH_MODE = "Search";
   var SEARCH_STORAGE_KEY = "wagd-search-state";
   var MAX_RECENT_SEARCHES = 6;
@@ -136,6 +139,13 @@
     { id: "400plus", label: "$400+", min: 400, max: Infinity }
   ];
 
+  var SORT_OPTIONS = [
+    { id: "savings", label: "Best savings" },
+    { id: "rating", label: "Top rated" },
+    { id: "price-asc", label: "Low to high" },
+    { id: "price-desc", label: "High to low" }
+  ];
+
   function normalizeCategory(cat) {
     if (!cat) return "";
     var key = String(cat).trim();
@@ -168,6 +178,55 @@
       if (Number.isFinite(pa) && Number.isFinite(pb) && pa !== pb) return pa - pb;
       return String((a && a.name) || "").localeCompare(String((b && b.name) || ""));
     });
+  }
+
+  function dealRating(deal) {
+    var r = Number(deal && deal.rating);
+    return Number.isFinite(r) && r > 0 ? r : null;
+  }
+
+  function applySort(list, sortId) {
+    var mode = sortId || activeSort || "savings";
+    if (mode === "price-asc") {
+      return list.slice().sort(function (a, b) {
+        var pa = Number(a && a.price);
+        var pb = Number(b && b.price);
+        var ha = Number.isFinite(pa);
+        var hb = Number.isFinite(pb);
+        if (ha && hb && pa !== pb) return pa - pb;
+        if (ha !== hb) return ha ? -1 : 1;
+        return String((a && a.name) || "").localeCompare(String((b && b.name) || ""));
+      });
+    }
+    if (mode === "price-desc") {
+      return list.slice().sort(function (a, b) {
+        var pa = Number(a && a.price);
+        var pb = Number(b && b.price);
+        var ha = Number.isFinite(pa);
+        var hb = Number.isFinite(pb);
+        if (ha && hb && pa !== pb) return pb - pa;
+        if (ha !== hb) return ha ? -1 : 1;
+        return String((a && a.name) || "").localeCompare(String((b && b.name) || ""));
+      });
+    }
+    if (mode === "rating") {
+      return list.slice().sort(function (a, b) {
+        var ra = dealRating(a);
+        var rb = dealRating(b);
+        var ha = ra != null;
+        var hb = rb != null;
+        if (ha && hb && rb !== ra) return rb - ra;
+        if (ha !== hb) return ha ? -1 : 1;
+        var ca = Number(a && a.ratingCount);
+        var cb = Number(b && b.ratingCount);
+        if (Number.isFinite(ca) && Number.isFinite(cb) && cb !== ca) return cb - ca;
+        var sa = dealSavings(a);
+        var sb = dealSavings(b);
+        if (sa != null && sb != null && sb !== sa) return sb - sa;
+        return String((a && a.name) || "").localeCompare(String((b && b.name) || ""));
+      });
+    }
+    return sortBySavingsDesc(list);
   }
 
   // All-tab only: round-robin across categories so cards feel fresh.
@@ -665,19 +724,52 @@
       .filter(Boolean);
   }
 
+  var SEARCH_ALIASES = {
+    samsung: ["samsung", "galaxy", "odyssey"],
+    microsoft: ["microsoft", "surface", "xbox"],
+    apple: ["apple", "iphone", "ipad", "macbook", "imac", "airpods"],
+    google: ["google", "pixel"],
+    sony: ["sony", "playstation", "ps5"],
+    nvidia: ["nvidia", "geforce", "rtx", "gtx"],
+    amd: ["amd", "radeon", "ryzen"],
+    intel: ["intel"],
+    lg: ["lg"],
+    asus: ["asus", "rog", "tuf"],
+    logitech: ["logitech", "logi"],
+    wacom: ["wacom"],
+    klipsch: ["klipsch"],
+    svs: ["svs"]
+  };
+
   function matchesSearchQuery(deal, query) {
     var tokens = tokenizeQuery(query);
     if (!tokens.length) return false;
     var blob = dealSearchBlob(deal);
     for (var i = 0; i < tokens.length; i++) {
       var t = tokens[i];
-      // Match at a word start so "ram" does not hit "frame" / "vram",
-      // while "case" still matches "cases" / "Cases".
-      var escaped = t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      var re = new RegExp("(^|[^a-z0-9])" + escaped, "i");
-      if (!re.test(blob)) return false;
+      var opts = SEARCH_ALIASES[t] || [t];
+      var hit = false;
+      for (var j = 0; j < opts.length; j++) {
+        var escaped = opts[j].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        var re = new RegExp("(^|[^a-z0-9])" + escaped, "i");
+        if (re.test(blob)) {
+          hit = true;
+          break;
+        }
+      }
+      if (!hit) return false;
     }
     return true;
+  }
+
+  function isPricedDeal(deal) {
+    var price = Number(deal && deal.price);
+    var prev = Number(deal && deal.previousPrice);
+    if (!Number.isFinite(price) || price <= 0) return false;
+    if (!Number.isFinite(prev) || prev <= price) return false;
+    var save = prev - price;
+    var pct = (save / prev) * 100;
+    return save >= 5 && pct >= 5;
   }
 
   function renderRecentSearches() {
@@ -829,9 +921,9 @@
       el.textContent =
         "Showing " +
         liveSearchDeals.length +
-        " live result" +
+        " live deal" +
         (liveSearchDeals.length === 1 ? "" : "s") +
-        " from Newegg";
+        " with real price cuts";
       return;
     }
     el.hidden = true;
@@ -933,7 +1025,9 @@
             typeof d.url === "string" &&
             d.url &&
             Number.isFinite(Number(d.price)) &&
-            Number(d.price) > 0
+            Number(d.price) > 0 &&
+            isPricedDeal(d) &&
+            matchesSearchQuery(d, q)
           );
         });
         liveSearchQuery = q;
@@ -1100,6 +1194,67 @@
     budgetFiltersEl.hidden = false;
   }
 
+
+  function ensureSortDom() {
+    if (sortFiltersEl && sortButtonsEl) return true;
+    var budget = document.getElementById("budget-filters");
+    var filters = document.getElementById("filters");
+    var anchor = budget || filters;
+    if (!anchor || !anchor.parentNode) return false;
+    var section = document.getElementById("sort-filters");
+    if (!section) {
+      section = document.createElement("section");
+      section.className = "filters filters--sort";
+      section.id = "sort-filters";
+      section.setAttribute("aria-label", "Sort deals");
+      section.hidden = true;
+      var inner = document.createElement("div");
+      inner.className = "filters__inner filters__inner--sort";
+      inner.id = "sort-buttons";
+      section.appendChild(inner);
+      anchor.parentNode.insertBefore(section, anchor.nextSibling);
+    }
+    sortFiltersEl = section;
+    sortButtonsEl = document.getElementById("sort-buttons");
+    return !!(sortFiltersEl && sortButtonsEl);
+  }
+
+  function renderSortFilters() {
+    if (!ensureSortDom()) return;
+    sortButtonsEl.innerHTML = "";
+    SORT_OPTIONS.forEach(function (opt) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "filter-btn filter-btn--sort" + (opt.id === activeSort ? " is-on" : "");
+      btn.textContent = opt.label;
+      btn.setAttribute("aria-pressed", opt.id === activeSort ? "true" : "false");
+      btn.dataset.sort = opt.id;
+      btn.addEventListener("click", function () {
+        if (opt.id === activeSort) {
+          pressFlash(btn);
+          return;
+        }
+        activeSort = opt.id;
+        Array.prototype.forEach.call(sortButtonsEl.children, function (b) {
+          var on = b.dataset.sort === activeSort;
+          b.classList.toggle("is-on", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        pressFlash(btn);
+        try {
+          btn.scrollIntoView({
+            inline: "nearest",
+            block: "nearest",
+            behavior: reduceMotion ? "auto" : "smooth"
+          });
+        } catch (e) {}
+        renderDeals(allDeals);
+      });
+      sortButtonsEl.appendChild(btn);
+    });
+    sortFiltersEl.hidden = false;
+  }
+
   function renderFilters(deals) {
     if (!filtersEl || !filterButtonsEl) return;
     var present = {};
@@ -1183,6 +1338,7 @@
       filterButtonsEl.scrollLeft = 0;
     } catch (e) {}
     renderBudgetFilters();
+    renderSortFilters();
     syncSearchPanel();
   }
 
@@ -1490,15 +1646,21 @@
     if (activeFilter === SEARCH_MODE) {
       var liveForQuery =
         liveSearchQuery === trimmedQuery && !liveSearchLoading ? liveSearchDeals : [];
-      // Budget filter applies to live results too
       var liveBudgeted = (liveForQuery || []).filter(function (d) {
-        return matchesBudget(d, activeBudget);
+        return (
+          matchesBudget(d, activeBudget) &&
+          isPricedDeal(d) &&
+          matchesSearchQuery(d, trimmedQuery)
+        );
       });
-      list = mergeSearchResults(sortBySavingsDesc(list), liveBudgeted);
-      // Re-order: live primary already in mergeSearchResults
-    } else if (activeFilter === "All") {
+      // Catalogue search hits should also be real cuts when possible; keep soft matches
+      // only if they have a previousPrice drop.
+      list = list.filter(isPricedDeal);
+      list = mergeSearchResults(applySort(list, activeSort), applySort(liveBudgeted, activeSort));
+      list = applySort(list, activeSort);
+    } else if (activeFilter === "All" && activeSort === "savings") {
       list = interleaveByCategory(list);
-    } else if (activeFilter === "Future") {
+    } else if (activeFilter === "Future" && activeSort === "savings") {
       list = list.slice().sort(function (a, b) {
         var ta = new Date(a.startsAt).getTime();
         var tb = new Date(b.startsAt).getTime();
@@ -1506,8 +1668,7 @@
         return String(a.name || "").localeCompare(String(b.name || ""));
       });
     } else {
-      // Category tabs: biggest savings first
-      list = sortBySavingsDesc(list);
+      list = applySort(list, activeSort);
     }
 
     dealsEl.innerHTML = "";

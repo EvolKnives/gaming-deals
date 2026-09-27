@@ -24,9 +24,11 @@ const UA =
 const NEWEGG_MCP_URL = "https://apis.newegg.com/ex-mcp/endpoint/product-search";
 const MIN_QUERY_LEN = 2;
 const MAX_QUERY_LEN = 80;
-const RESULT_LIMIT = 16;
+const RESULT_LIMIT = 20;
+const MIN_DEAL_PCT = 5;
+const MIN_DEAL_SAVE = 5;
 const MIN_PRICE = 15;
-const CACHE_TTL_SECONDS = 90;
+const CACHE_TTL_SECONDS = 180;
 const RATE_WINDOW_MS = 60_000;
 const RATE_MAX_PER_IP = 30;
 
@@ -61,8 +63,7 @@ export default {
 
     const url = new URL(request.url);
 
-
-if (url.pathname === "/" || url.pathname === "/health") {
+    if (url.pathname === "/" || url.pathname === "/health") {
       return json(
         { ok: true, service: "gaming-deals-search", endpoints: ["/search?q="] },
         200,
@@ -115,7 +116,7 @@ if (url.pathname === "/" || url.pathname === "/health") {
     }
 
     const cacheKey = new Request(
-      `https://gaming-deals-search.cache/v2/search?q=${encodeURIComponent(q.toLowerCase())}`,
+      `https://gaming-deals-search.cache/v6/search?q=${encodeURIComponent(q.toLowerCase())}`,
       { method: "GET" }
     );
     const cache = caches.default;
@@ -129,12 +130,14 @@ if (url.pathname === "/" || url.pathname === "/health") {
 
     try {
       const { deals, via } = await searchNewegg(q);
+      const topMerchant =
+        deals[0] && deals[0].merchant ? deals[0].merchant : "live";
       const payload = {
         ok: true,
         query: q,
         source: "live",
         via,
-        merchant: "Newegg",
+        merchant: topMerchant,
         count: deals.length,
         deals,
       };
@@ -289,6 +292,7 @@ function mapApiProducts(products, query) {
     if (!p || typeof p !== "object") continue;
     const title = String(p.WebDescription || "").trim();
     if (!title || title.length < 4) continue;
+    if (!titleMatchesQuery(title, query)) continue;
 
     const itemNumber = String(p.ItemNumber || "").trim();
     if (!itemNumber) continue;
@@ -355,7 +359,7 @@ function mapApiProducts(products, query) {
     const bN = /^N82E168/i.test(b.sku) ? 1 : 0;
     return bN - aN;
   });
-  return out.slice(0, RESULT_LIMIT);
+  return finalizeDealList(out, query);
 }
 
 function itemNumberToSku(itemNumber) {
@@ -452,12 +456,7 @@ function parseSearchHtml(html, query) {
     if (parsed.length >= RESULT_LIMIT) break;
   }
 
-  parsed.sort((a, b) => {
-    const aNewegg = /^N82E168/i.test(a.sku) ? 1 : 0;
-    const bNewegg = /^N82E168/i.test(b.sku) ? 1 : 0;
-    return bNewegg - aNewegg;
-  });
-  return parsed.slice(0, RESULT_LIMIT);
+  return finalizeDealList(parsed, query);
 }
 
 function extractProductUrl(cell) {
@@ -542,21 +541,213 @@ function extractRating(cell) {
 }
 
 
-async function searchViaAmazon(query) {
-  const searchUrl =
-    "https://www.amazon.com/s?k=" + encodeURIComponent(query);
-  const res = await fetch(searchUrl, {
-    headers: {
-      "User-Agent": UA,
-      Accept: "text/html,application/xhtml+xml",
-      "Accept-Language": "en-US,en;q=0.9",
-    },
-    redirect: "follow",
+
+/** Query tokens + brand/product aliases so "Samsung" matches Galaxy titles. */
+const QUERY_ALIASES = {
+  samsung: ["samsung", "galaxy", "odyssey"],
+  microsoft: ["microsoft", "surface", "xbox"],
+  apple: ["apple", "iphone", "ipad", "macbook", "imac", "airpods"],
+  iphone: ["iphone", "apple"],
+  ipad: ["ipad", "apple"],
+  google: ["google", "pixel"],
+  sony: ["sony", "playstation", "ps5", "wh-1000"],
+  logitech: ["logitech", "logi"],
+  nvidia: ["nvidia", "geforce", "rtx", "gtx"],
+  amd: ["amd", "radeon", "ryzen"],
+  intel: ["intel", "core ultra", "core i"],
+  lg: ["lg", "gram"],
+  asus: ["asus", "rog", "tuf", "zenbook"],
+  acer: ["acer", "predator", "nitro"],
+  dell: ["dell", "alienware", "xps"],
+  hp: ["hp", "omen", "hyperx"],
+  lenovo: ["lenovo", "thinkpad", "legion", "yoga"],
+  corsair: ["corsair"],
+  razer: ["razer"],
+  wacom: ["wacom"],
+  klipsch: ["klipsch"],
+  svs: ["svs"],
+};
+
+function tokenizeQuery(query) {
+  return String(query || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9+]+/g, " ")
+    .trim()
+    .split(/\s+/)
+    .filter((t) => t.length >= 2);
+}
+
+function expandQueryTokens(query) {
+  const tokens = tokenizeQuery(query);
+  const out = new Set();
+  for (const t of tokens) {
+    out.add(t);
+    const aliases = QUERY_ALIASES[t];
+    if (aliases) aliases.forEach((a) => out.add(a));
+  }
+  return [...out];
+}
+
+function titleMatchesQuery(title, query) {
+  const tokens = tokenizeQuery(query);
+  if (!tokens.length) return false;
+  const hay = String(title || "").toLowerCase().replace(/\s+/g, " ");
+  if (!hay) return false;
+  const hayCompact = hay.replace(/[^a-z0-9]+/g, "");
+  // Every original token must match either itself or one of its aliases in the title.
+  for (const t of tokens) {
+    const opts = QUERY_ALIASES[t] || [t];
+    const hit = opts.some((opt) => {
+      const escaped = opt.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      if (new RegExp("(^|[^a-z0-9])" + escaped, "i").test(hay)) return true;
+      // Compact match: "rtx4070" in "rtx 4070" / "rtx-4070"
+      const compact = opt.replace(/[^a-z0-9]+/g, "");
+      return compact.length >= 2 && hayCompact.includes(compact);
+    });
+    if (!hit) return false;
+  }
+  // Keep model families tight: "4070" should not rank "4070 Ti / Super" first unless asked.
+  const qLow = String(query || "").toLowerCase();
+  const hayLow = hay;
+  const modelNums = tokens.filter((t) => /^\d{3,4}$/.test(t));
+  for (const num of modelNums) {
+    const askedTi = /\bti\b/.test(qLow) || qLow.includes(num + "ti");
+    const askedSuper = /\bsuper\b/.test(qLow);
+    const titleHasTi = new RegExp(num + "\\s*ti\\b|" + num + "ti", "i").test(hayLow);
+    const titleHasSuper = new RegExp(num + "[\\s-]*super\\b", "i").test(hayLow);
+    if (titleHasTi && !askedTi) return false;
+    if (titleHasSuper && !askedSuper && !askedTi) return false;
+  }
+  return true;
+}
+
+function relevanceScore(title, query) {
+  const hay = String(title || "").toLowerCase();
+  const tokens = tokenizeQuery(query);
+  if (!tokens.length || !hay) return 0;
+  let score = 0;
+  for (const t of tokens) {
+    const opts = QUERY_ALIASES[t] || [t];
+    let best = 0;
+    for (const opt of opts) {
+      if (hay.includes(opt)) {
+        best = Math.max(best, opt === t ? 12 : 8);
+        if (hay.startsWith(opt) || new RegExp("(^|\\s)" + opt.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).test(hay)) {
+          best += 4;
+        }
+      }
+    }
+    score += best;
+  }
+  return score;
+}
+
+function isRealDeal(price, previousPrice) {
+  if (!Number.isFinite(price) || price < MIN_PRICE) return false;
+  if (!Number.isFinite(previousPrice) || previousPrice <= price) return false;
+  const save = previousPrice - price;
+  const pct = (save / previousPrice) * 100;
+  return save >= MIN_DEAL_SAVE && pct >= MIN_DEAL_PCT;
+}
+
+function finalizeDealList(deals, query) {
+  const seen = new Set();
+  const scored = [];
+  for (const deal of deals || []) {
+    if (!deal || !deal.name || !deal.url) continue;
+    if (!titleMatchesQuery(deal.name, query)) continue;
+    const price = Number(deal.price);
+    const prev = Number(deal.previousPrice);
+    if (!isRealDeal(price, prev)) continue;
+    const key = String(deal.sku || deal.url || deal.id).toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const rel = relevanceScore(deal.name, query);
+    const savePct = ((prev - price) / prev) * 100;
+    scored.push({ deal, rel, savePct, save: prev - price });
+  }
+  scored.sort((a, b) => {
+    if (b.rel !== a.rel) return b.rel - a.rel;
+    if (b.savePct !== a.savePct) return b.savePct - a.savePct;
+    return b.save - a.save;
   });
-  if (!res.ok) throw new Error(`Amazon HTML HTTP ${res.status}`);
-  const html = await res.text();
-  if (!html || html.length < 2000) throw new Error("Empty Amazon HTML");
-  return parseAmazonHtml(html, query);
+  return scored.slice(0, RESULT_LIMIT).map((x) => x.deal);
+}
+
+
+function amazonSearchTerms(query) {
+  const q = String(query || "").trim();
+  const lower = q.toLowerCase();
+  const terms = [q];
+  // GPU shorthand → fuller Amazon title language
+  if (/\b(rtx|gtx)\s*\d{3,4}\b/i.test(q) && !/geforce|radeon/i.test(q)) {
+    terms.push("GeForce " + q);
+  }
+  if (/\b(rx)\s*\d{3,4}\b/i.test(q) && !/radeon/i.test(q)) {
+    terms.push("Radeon " + q);
+  }
+  // Prefer a deals-flavored query as a second pass
+  if (!/\bdeal(s)?\b/i.test(lower)) {
+    terms.push(q + " deal");
+  }
+  // Dedupe
+  const seen = new Set();
+  const out = [];
+  for (const term of terms) {
+    const key = term.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(term);
+  }
+  return out.slice(0, 3);
+}
+
+async function searchViaAmazon(query) {
+  const headers = {
+    "User-Agent": UA,
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Cache-Control": "no-cache",
+    "Upgrade-Insecure-Requests": "1",
+  };
+  const terms = amazonSearchTerms(query).slice(0, 2);
+  const urls = terms.map(
+    (term) => "https://www.amazon.com/s?k=" + encodeURIComponent(term)
+  );
+
+  const merged = [];
+  const seen = new Set();
+  let lastErr = null;
+  for (const searchUrl of urls) {
+    // Stop early once we have a solid set of real deals — fewer Amazon hits = less throttling
+    if (finalizeDealList(merged, query).length >= 8) break;
+    try {
+      const res = await fetch(searchUrl, { headers, redirect: "follow" });
+      if (!res.ok) {
+        lastErr = new Error(`Amazon HTML HTTP ${res.status}`);
+        continue;
+      }
+      const html = await res.text();
+      if (!html || html.length < 5000) {
+        lastErr = new Error("Amazon HTML empty/blocked");
+        continue;
+      }
+      const batch = parseAmazonHtml(html, query);
+      for (const d of batch) {
+        const key = String(d.sku || d.url).toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        merged.push(d);
+      }
+    } catch (err) {
+      lastErr = err;
+    }
+  }
+  const final = finalizeDealList(merged, query);
+  if (final.length) return final;
+  if (merged.length) return []; // had products but no real deals
+  if (lastErr) throw lastErr;
+  return [];
 }
 
 function parseAmazonHtml(html, query) {
@@ -569,7 +760,7 @@ function parseAmazonHtml(html, query) {
     if (!asinM) continue;
     const asin = asinM[1];
     // Take a bounded slice of the card body for parsing.
-    const cell = chunk.slice(0, 12000);
+    const cell = chunk.slice(0, 20000);
     if (cell.length < 200) continue;
     blocks.push({ asin, cell });
     if (blocks.length > 40) break;
@@ -590,6 +781,9 @@ function parseAmazonHtml(html, query) {
     if (price == null || price < MIN_PRICE) continue;
 
     const previousPrice = extractAmazonWasPrice(cell, price);
+    if (!isRealDeal(price, previousPrice)) continue;
+    if (!titleMatchesQuery(title, query)) continue;
+
     const image = extractAmazonImage(cell);
     const rating = extractAmazonRating(cell);
     const url = "https://www.amazon.com/dp/" + asin;
@@ -600,7 +794,7 @@ function parseAmazonHtml(html, query) {
       id: "live-" + id,
       name: title,
       price,
-      previousPrice: previousPrice != null ? previousPrice : null,
+      previousPrice,
       url,
       urlKind: "product",
       merchant: "Amazon",
@@ -619,21 +813,45 @@ function parseAmazonHtml(html, query) {
 
     seen.add(asin);
     out.push(deal);
-    if (out.length >= RESULT_LIMIT) break;
+    if (out.length >= 40) break;
   }
   return out;
 }
 
 function extractAmazonTitle(cell) {
-  let m = cell.match(/<h2[^>]*>[\s\S]*?<span[^>]*>([^<]{8,200})<\/span>/i);
-  if (m) return decodeHtml(m[1]).trim();
-  m = cell.match(/a-size-base-plus a-color-base a-text-normal[^>]*>\s*([^<]{8,200})/i);
-  if (m) return decodeHtml(m[1]).trim();
-  m = cell.match(/a-size-medium a-color-base a-text-normal[^>]*>\s*([^<]{8,200})/i);
-  if (m) return decodeHtml(m[1]).trim();
-  m = cell.match(/alt="([^"]{8,200})"/i);
-  if (m) return decodeHtml(m[1]).trim();
-  return null;
+  const junk =
+    /^(results? for|check each product|show\/hide|amazon renewed|sponsored|best seller|overall pick|climate pledge|limited time deal|today'?s deal|only \d+ left|in stock|free shipping)$/i;
+  const candidates = [];
+  const push = (raw) => {
+    if (!raw) return;
+    const title = decodeHtml(raw).replace(/\s+/g, " ").trim();
+    if (title.length < 8 || title.length > 220) return;
+    if (junk.test(title)) return;
+    if (/^\$?[0-9,.]+$/.test(title)) return;
+    candidates.push(title);
+  };
+
+  // Prefer explicit product title classes first.
+  let re = /a-size-(?:base-plus|medium|mini|base)\s+a-color-base\s+a-text-normal[^>]*>\s*([^<]{8,220})/gi;
+  let m;
+  while ((m = re.exec(cell)) !== null) push(m[1]);
+
+  // h2 / aria-label on product links
+  re = /<h2[^>]*>[\s\S]*?<span[^>]*>([^<]{8,220})<\/span>/gi;
+  while ((m = re.exec(cell)) !== null) push(m[1]);
+  re = /aria-label="([^"]{12,220})"/gi;
+  while ((m = re.exec(cell)) !== null) {
+    const label = m[1];
+    if (/rated|stars|out of|currency|dollars|add to/i.test(label)) continue;
+    push(label);
+  }
+  re = /alt="([^"]{12,220})"/gi;
+  while ((m = re.exec(cell)) !== null) push(m[1]);
+
+  if (!candidates.length) return null;
+  // Prefer the longest specific title (product names beat short badges).
+  candidates.sort((a, b) => b.length - a.length);
+  return candidates[0];
 }
 
 function extractAmazonPrice(cell) {
@@ -653,13 +871,42 @@ function extractAmazonPrice(cell) {
 }
 
 function extractAmazonWasPrice(cell, current) {
-  const m = cell.match(
-    /a-price a-text-price[\s\S]*?a-offscreen">\s*\$([0-9,]+\.[0-9]{2})/i
-  );
-  if (!m) return null;
-  const was = parseFloat(m[1].replace(/,/g, ""));
-  if (!Number.isFinite(was) || was <= current) return null;
-  return round2(was);
+  const patterns = [
+    /a-price\s+a-text-price[\s\S]{0,280}?a-offscreen">\s*\$([0-9,]+\.[0-9]{2})/gi,
+    /data-a-strike="true"[\s\S]{0,220}?a-offscreen">\s*\$([0-9,]+\.[0-9]{2})/gi,
+    /aria-label="[^"]*(?:List Price|Was|Typical price)[^"]*\$([0-9,]+\.[0-9]{2})/gi,
+    /(?:List Price|Was|Typical price|MRP):?\s*\$([0-9,]+\.[0-9]{2})/gi,
+    /You save:?\s*\$([0-9,]+\.[0-9]{2})/gi,
+    /Save\s*\$?([0-9,]+\.[0-9]{2})/gi,
+  ];
+  let best = null;
+  for (let i = 0; i < patterns.length; i++) {
+    const re = patterns[i];
+    re.lastIndex = 0;
+    let m;
+    while ((m = re.exec(cell)) !== null) {
+      let was = parseFloat(m[1].replace(/,/g, ""));
+      // Save / You save → previous = current + save
+      if (i >= 4 && Number.isFinite(was)) {
+        was = round2(current + was);
+      }
+      if (!Number.isFinite(was) || was <= current) continue;
+      // Ignore absurd "was" (often wrong parse)
+      if (was > current * 4 && was - current > 2000) continue;
+      if (best == null || was > best) best = round2(was);
+    }
+  }
+  // Badge like "23% off"
+  if (best == null) {
+    const pctM = cell.match(/(\d{1,2})%\s*off/i);
+    if (pctM) {
+      const pct = parseInt(pctM[1], 10);
+      if (pct >= MIN_DEAL_PCT && pct < 90) {
+        best = round2(current / (1 - pct / 100));
+      }
+    }
+  }
+  return best;
 }
 
 function extractAmazonImage(cell) {
