@@ -42,7 +42,7 @@
 
   // Deployed Cloudflare Worker for live Newegg search (Search tab).
   // Set after `npx wrangler deploy` in workers/live-search/.
-  var LIVE_SEARCH_URL = "https://gaming-deals-search.different-cartoon.workers.dev";
+  var LIVE_SEARCH_URL = "https://gaming-deals-search.evolknives.workers.dev";
   var LIVE_SEARCH_MIN_CHARS = 2;
   var LIVE_SEARCH_DEBOUNCE_MS = 300;
   var liveSearchDeals = [];

@@ -25,7 +25,7 @@ in-isolate rate limit ~30 req/min/IP.
 
 A preview deploy may be live at:
 
-`https://gaming-deals-search.different-cartoon.workers.dev`
+`https://gaming-deals-search.evolknives.workers.dev`
 
 Temporary preview accounts **expire unless claimed**. To keep it:
 
