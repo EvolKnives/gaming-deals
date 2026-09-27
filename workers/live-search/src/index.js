@@ -61,49 +61,6 @@ export default {
 
     const url = new URL(request.url);
 
-        if (url.pathname === "/debug-amazon") {
-      const q = (url.searchParams.get("q") || "rtx 4070").trim();
-      const searchUrl = "https://www.amazon.com/s?k=" + encodeURIComponent(q);
-      const res = await fetch(searchUrl, {
-        headers: {
-          "User-Agent": UA,
-          Accept: "text/html",
-          "Accept-Language": "en-US,en;q=0.9",
-        },
-      });
-      const html = await res.text();
-      const parts = html.split(/data-component-type="s-search-result"/i);
-      const cards = [];
-      for (let i = 1; i < parts.length && cards.length < 5; i++) {
-        const chunk = parts[i];
-        const asinM = chunk.match(/data-asin="([A-Z0-9]{10})"/i);
-        if (!asinM) continue;
-        const cell = chunk.slice(0, 12000);
-        cards.push({
-          asin: asinM[1],
-          len: cell.length,
-          title: extractAmazonTitle(cell),
-          price: extractAmazonPrice(cell),
-          hasH2: /<h2/i.test(cell),
-          hasOffscreen: /a-offscreen/i.test(cell),
-          hasPriceWhole: /a-price-whole/i.test(cell),
-          snippet: cell.slice(0, 400),
-          priceArea: (cell.match(/a-price[\s\S]{0,300}/i) || [""])[0].slice(0, 280),
-          h2Area: (cell.match(/<h2[\s\S]{0,400}/i) || [""])[0].slice(0, 280),
-        });
-      }
-      let deals = [], err = null;
-      try {
-        deals = await searchViaAmazon(q);
-      } catch (e) {
-        err = String(e && e.message ? e.message : e);
-      }
-      return json(
-        { status: res.status, len: html.length, parts: parts.length, cards, deals: deals.length, err, first: deals[0] || null },
-        200,
-        cors
-      );
-    }
 
 if (url.pathname === "/" || url.pathname === "/health") {
       return json(
