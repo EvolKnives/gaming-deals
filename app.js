@@ -898,6 +898,9 @@
       filterButtonsEl.appendChild(btn);
     });
     filtersEl.hidden = cats.length <= 2;
+    try {
+      filterButtonsEl.scrollLeft = 0;
+    } catch (e) {}
     renderBudgetFilters();
     syncSearchPanel();
   }
@@ -1348,14 +1351,9 @@
       return copy;
     });
     if (weekLabelEl) {
-      var weekText =
+      weekLabelEl.textContent =
         data.weekLabel ||
         (data.updatedAt ? formatUpdated(data.updatedAt) : "Updated recently");
-      var lr = data.lastRefresh;
-      if (lr && lr.at && data.catalogueRevision) {
-        weekText += " · catalogue v" + data.catalogueRevision;
-      }
-      weekLabelEl.textContent = weekText;
     }
     if (data.title) SITE_TITLE = data.title;
     renderFilters(allDeals);
