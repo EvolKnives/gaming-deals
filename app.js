@@ -49,6 +49,7 @@
   var LIVE_SEARCH_MIN_CHARS = 2;
   var LIVE_SEARCH_DEBOUNCE_MS = 300;
   var liveSearchDeals = [];
+  var lastSearchShown = { total: 0, live: 0, catalogue: 0 };
   var liveSearchQuery = "";
   var liveSearchLoading = false;
   var liveSearchError = "";
@@ -128,7 +129,19 @@
     Notebook: "Laptops",
     Notebooks: "Laptops",
     MacBook: "Laptops",
-    MacBooks: "Laptops"
+    MacBooks: "Laptops",
+    Headset: "Home Theater",
+    Headsets: "Home Theater",
+    Headphone: "Home Theater",
+    Headphones: "Home Theater",
+    Earbuds: "Home Theater",
+    Earphones: "Home Theater",
+    Xbox: "Other",
+    PlayStation: "Other",
+    Console: "Other",
+    Controller: "Other",
+    Controllers: "Other",
+    Gamepad: "Other"
   };
 
   var BUDGET_OPTIONS = [
@@ -738,13 +751,143 @@
     logitech: ["logitech", "logi"],
     wacom: ["wacom"],
     klipsch: ["klipsch"],
-    svs: ["svs"]
+    svs: ["svs"],
+    gpu: ["gpu", "graphics card", "geforce", "radeon", "rtx", "gtx"],
+    gpus: ["gpu", "graphics card", "geforce", "radeon", "rtx", "gtx"],
+    graphics: ["graphics card", "geforce", "radeon", "rtx", "gtx"],
+    cpu: ["cpu", "processor", "ryzen", "core"],
+    cpus: ["cpu", "processor", "ryzen", "core"],
+    ram: ["ram", "ddr4", "ddr5", "ddr", "dimm", "desktop memory"],
+    memory: ["ddr4", "ddr5", "desktop memory", "dimm"],
+    ssd: ["ssd", "nvme", "solid state"],
+    ssds: ["ssd", "nvme", "solid state"],
+    headset: ["headset", "headphones", "headphone"],
+    headphones: ["headphones", "headset", "headphone"],
+    mouse: ["mouse", "mice"],
+    mice: ["mice", "mouse"],
+    keyboard: ["keyboard", "keyboards"],
+    keyboards: ["keyboards", "keyboard"],
+    laptop: ["laptop", "notebook", "macbook", "chromebook"],
+    laptops: ["laptop", "notebook", "macbook", "chromebook"],
+    xbox: ["xbox"],
+    playstation: ["playstation", "ps5", "ps4"],
+    console: ["console", "xbox", "playstation", "switch"],
+    psu: ["psu", "power supply"],
+    monitor: ["monitor", "ultrawide"]
   };
+
+  function getSearchIntent(query) {
+    var q = String(query || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9+]+/g, " ")
+      .trim();
+    if (!q) return null;
+    if (/^(gpu|gpus)$/.test(q) || /^graphics\s+cards?$/.test(q)) return "GPUs";
+    if (/^(cpu|cpus|processor|processors)$/.test(q)) return "CPUs";
+    if (/^(ram|ddr4|ddr5|ddr)$/.test(q) || /^desktop\s+memory$/.test(q)) return "RAM";
+    if (/^(ssd|ssds|nvme)$/.test(q) || /^solid\s+state/.test(q)) return "SSDs";
+    if (/^(laptop|laptops|notebook|notebooks|macbook|chromebook)$/.test(q)) return "Laptops";
+    if (/^(mouse|mice)$/.test(q)) return "Mice";
+    if (/^(keyboard|keyboards)$/.test(q)) return "Keyboards";
+    if (/^(headset|headsets|headphone|headphones)$/.test(q)) return "Home Theater";
+    if (/^(psu|psus)$/.test(q) || /^power\s+supply/.test(q)) return "PSUs";
+    if (/^(case|cases|chassis)$/.test(q) || /^pc\s+case/.test(q)) return "Cases";
+    if (/^(monitor|monitors|ultrawide)$/.test(q)) return "Monitors";
+    if (/^(motherboard|motherboards|mobo|mobos)$/.test(q)) return "Motherboards";
+    if (/^(phone|phones|iphone|smartphone)$/.test(q)) return "Phones";
+    if (/^(tv|tvs|television)$/.test(q)) return "TVs";
+    if (/^(xbox|playstation|ps5|ps4|console|consoles|controller|controllers|gamepad)$/.test(q))
+      return "Other";
+    return null;
+  }
+
+  function titleLooksLikeSearchIntent(title, intent) {
+    var hay = String(title || "").toLowerCase();
+    if (!hay || !intent) return false;
+    if (intent === "GPUs") {
+      if (/\b(laptop|notebook|chromebook|macbook|headset|headphones|mouse\b|keyboard|prebuilt|desktop\s*(pc|computer)|anti-?sag|pc\s*case|mid-?tower|computer\s*case|gpu\s*bracket|gpu\s*support|gpu\s*riser)\b/i.test(hay))
+        return false;
+      if (/\b(geforce|radeon|rtx\s*\d|gtx\s*\d|graphics\s*card|intel\s*arc|arc\s*a\d{3})\b/i.test(hay))
+        return true;
+      return /\bgpu\b/i.test(hay) && !/\b(arm|bracket|support|holder|riser|cable|adapter)\b/i.test(hay);
+    }
+    if (intent === "CPUs") {
+      if (!/\b(ryzen|core\s*ultra|core\s*i[3579]|threadripper|\bcpu\b|processor)\b/i.test(hay)) return false;
+      if (/\b(laptop|notebook|motherboard|graphics\s*card)\b/i.test(hay)) return false;
+      return true;
+    }
+    if (intent === "RAM") {
+      if (!/\b(ddr[45]|sodimm|udimm|\bdimm\b|desktop\s*memory|pc\s*ram|system\s*memory|288-?pin)\b/i.test(hay))
+        return false;
+      if (/\b(laptop|notebook|chromebook|headset|headphones|memory\s*foam|ssd|console|motherboard|\bmobo\b)\b/i.test(hay))
+        return false;
+      return true;
+    }
+    if (intent === "SSDs") {
+      if (!/\b(ssd|nvme|solid\s*state)\b/i.test(hay)) return false;
+      if (/\b(laptop|notebook|chromebook|macbook)\b/i.test(hay)) return false;
+      return true;
+    }
+    if (intent === "Laptops") return /\b(laptop|notebook|macbook|chromebook)\b/i.test(hay);
+    if (intent === "Mice") return /\b(mouse|mice)\b/i.test(hay);
+    if (intent === "Keyboards") return /\b(keyboard|keychron)\b/i.test(hay);
+    if (intent === "Home Theater") {
+      return /\b(headset|headphones?|earbuds?|earphones?|soundbar|subwoofer|speaker|receiver|home\s*theat)/i.test(hay);
+    }
+    if (intent === "PSUs") return /\b(psu|power\s*supply)\b/i.test(hay);
+    if (intent === "Cases")
+      return /\b((mid|full|mini)[\s-]?tower|pc\s*case|computer\s*case|atx\s*case|gaming\s*case|chassis)\b/i.test(hay);
+    if (intent === "Monitors")
+      return /\b(monitor|ultrawide|gaming\s*display)\b/i.test(hay) && !/\blaptop\b/i.test(hay);
+    if (intent === "Motherboards")
+      return /\b(motherboard|mobo|b650|x670|b850|z790|b760|x870)\b/i.test(hay);
+    if (intent === "Phones")
+      return /\b(iphone|pixel|galaxy|smartphone|\bphone\b)\b/i.test(hay);
+    if (intent === "TVs")
+      return /\b(\d{2,3}["']?\s*(inch\s*)?tv|oled\s*tv|qled|television)\b/i.test(hay);
+    if (intent === "Other") {
+      if (/\b(headset|headphones?|earbuds?|earphones?|stand|mount|holder|skin|cover|charger|charging\s*dock|cable)\b/i.test(hay)) {
+        return false;
+      }
+      return /\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|(?:gaming|game|video\s*game)\s*console|wireless\s*controller|game\s*controller|gamepad)\b/i.test(hay);
+    }
+    return false;
+  }
 
   function matchesSearchQuery(deal, query) {
     var tokens = tokenizeQuery(query);
     if (!tokens.length) return false;
+    var intent = getSearchIntent(query);
+    var cat = normalizeCategory(deal && deal.category) || "";
+    var name = String((deal && (deal.name || deal.title)) || "");
     var blob = dealSearchBlob(deal);
+
+    // Category-ish queries: require the product to BE that category/intent.
+    // Prefer empty-with-clear message over noisy Cases/PSUs for "GPU".
+    if (intent) {
+      if (intent === "Other") {
+        // Title only — blob often says "PC/console living rooms" on TVs etc.
+        return titleLooksLikeSearchIntent(name, intent);
+      }
+      if (intent === "Home Theater" && /^(headset|headsets|headphone|headphones)$/i.test(String(query || "").trim())) {
+        return /\b(headset|headphones?|earbuds?|earphones?)\b/i.test(name + " " + blob);
+      }
+      if (cat === intent) {
+        // Category match is strong, but reject obvious cross-type titles
+        // (laptop filed as SSD, memory-foam headset filed as RAM, etc.).
+        if (intent === "GPUs" || intent === "RAM" || intent === "SSDs" || intent === "CPUs") {
+          if (titleLooksLikeSearchIntent(name, intent)) return true;
+          // Trust catalogue category only when the title is not clearly another product.
+          if (intent === "SSDs" && /\b(laptop|notebook|chromebook|macbook)\b/i.test(name)) return false;
+          if (intent === "RAM" && /\b(laptop|notebook|headset|headphones|memory\s*foam)\b/i.test(name)) return false;
+          if (intent === "GPUs" && /\b(laptop|notebook|prebuilt|pc\s*case|mid-?tower|anti-?sag)\b/i.test(name)) return false;
+          return true;
+        }
+        return true;
+      }
+      return titleLooksLikeSearchIntent(name, intent);
+    }
+
     for (var i = 0; i < tokens.length; i++) {
       var t = tokens[i];
       var opts = SEARCH_ALIASES[t] || [t];
@@ -752,7 +895,7 @@
       for (var j = 0; j < opts.length; j++) {
         var escaped = opts[j].replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
         var re = new RegExp("(^|[^a-z0-9])" + escaped, "i");
-        if (re.test(blob)) {
+        if (re.test(blob) || re.test(name)) {
           hit = true;
           break;
         }
@@ -834,6 +977,22 @@
     }
   }
 
+  function normalizeDealTitleStem(name) {
+    return String(name || "")
+      .toLowerCase()
+      .replace(/sponsored\s*ad\s*-?\s*/g, " ")
+      .replace(/\([^)]{0,40}\)/g, " ")
+      .replace(
+        /\b(black|white|red|blue|green|pink|purple|orange|yellow|grey|gray|silver|gold|space\s*gray|graphite|midnight|starlight|obsidian)\b/g,
+        " "
+      )
+      .replace(/\b(wired|wireless|bluetooth|rgb|edition|series|gaming|new|renewed)\b/g, " ")
+      .replace(/[^a-z0-9+]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 72);
+  }
+
   function dealIdentityKeys(deal) {
     var keys = [];
     if (deal && deal.sku) keys.push("sku:" + String(deal.sku).toUpperCase());
@@ -842,8 +1001,16 @@
       keys.push("url:" + u);
       var m = u.match(/\/p\/([a-z0-9-]+)/i);
       if (m) keys.push("sku:" + m[1].toUpperCase());
+      var asin = u.match(/\/(?:dp|gp\/product)\/([a-z0-9]{10})/i);
+      if (asin) keys.push("asin:" + asin[1].toUpperCase());
     }
     if (deal && deal.id) keys.push("id:" + String(deal.id).toLowerCase());
+    var stem = normalizeDealTitleStem(deal && (deal.name || deal.title));
+    if (stem && stem.length >= 8) {
+      var price = Number(deal && deal.price);
+      var bucket = Number.isFinite(price) ? Math.round(price / 5) * 5 : "x";
+      keys.push("stem:" + stem + "|" + bucket);
+    }
     return keys;
   }
 
@@ -908,22 +1075,49 @@
       el.textContent = "Searching live deals…";
       return;
     }
+    var shown = lastSearchShown || { total: 0, live: 0, catalogue: 0 };
+    var plural = function (n, one, many) {
+      return n + " " + (n === 1 ? one : many);
+    };
     if (liveSearchError) {
       el.hidden = false;
       el.classList.remove("is-loading");
       el.classList.add("is-error");
-      el.textContent = liveSearchError;
+      if (shown.catalogue > 0) {
+        el.textContent =
+          "Live search unavailable — showing " +
+          plural(shown.catalogue, "catalogue deal", "catalogue deals");
+      } else {
+        el.textContent =
+          "Live search unavailable — no strong catalogue matches for “" + q + "”";
+      }
       return;
     }
-    if (liveSearchQuery === q && liveSearchDeals.length) {
+    if (liveSearchQuery === q) {
       el.hidden = false;
       el.classList.remove("is-loading", "is-error");
+      if (shown.total <= 0) {
+        el.textContent = "No deals found for “" + q + "”";
+        return;
+      }
+      if (shown.live > 0 && shown.catalogue > 0) {
+        el.textContent =
+          "Showing " +
+          shown.live +
+          " live + " +
+          shown.catalogue +
+          " catalogue (" +
+          plural(shown.total, "deal", "deals") +
+          ")";
+        return;
+      }
+      if (shown.live > 0) {
+        el.textContent =
+          "Showing " + plural(shown.live, "live deal", "live deals") + " with real price cuts";
+        return;
+      }
       el.textContent =
-        "Showing " +
-        liveSearchDeals.length +
-        " live deal" +
-        (liveSearchDeals.length === 1 ? "" : "s") +
-        " with real price cuts";
+        "Showing " + plural(shown.catalogue || shown.total, "catalogue deal", "catalogue deals");
       return;
     }
     el.hidden = true;
@@ -1017,19 +1211,23 @@
         }
         var deals = Array.isArray(body.deals) ? body.deals : [];
         // Trust only objects with a real numeric price + url (never invent)
-        liveSearchDeals = deals.filter(function (d) {
-          return (
-            d &&
-            typeof d.name === "string" &&
-            d.name &&
-            typeof d.url === "string" &&
-            d.url &&
-            Number.isFinite(Number(d.price)) &&
-            Number(d.price) > 0 &&
-            isPricedDeal(d) &&
-            matchesSearchQuery(d, q)
-          );
-        });
+        liveSearchDeals = deals
+          .filter(function (d) {
+            return (
+              d &&
+              typeof d.name === "string" &&
+              d.name &&
+              typeof d.url === "string" &&
+              d.url &&
+              Number.isFinite(Number(d.price)) &&
+              Number(d.price) > 0 &&
+              isPricedDeal(d) &&
+              matchesSearchQuery(d, q)
+            );
+          })
+          .map(function (d) {
+            return refineLiveDealCategory(d);
+          });
         liveSearchQuery = q;
         liveSearchError = "";
         syncSearchLiveStatus();
@@ -1052,6 +1250,39 @@
       });
   }
 
+  function refineLiveDealCategory(deal) {
+    if (!deal) return deal;
+    var name = String(deal.name || deal.title || "");
+    var cat = normalizeCategory(deal.category) || deal.category || "";
+    // Prefer title-derived category when Worker sent Other / empty / clearly wrong.
+    var guessed = null;
+    if (/\b(headset|headphones?|earbuds?|earphones?)\b/i.test(name)) guessed = "Home Theater";
+    else if (/\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|wireless\s*controller|gamepad)\b/i.test(name) &&
+             !/\b(headset|headphones?)\b/i.test(name))
+      guessed = "Other";
+    else if (/\b(macbook|laptop|notebook|chromebook)\b/i.test(name)) guessed = "Laptops";
+    else if (/\b(geforce|radeon|rtx\s*\d|gtx\s*\d|graphics\s*card|\bgpu\b)\b/i.test(name) &&
+             !/\b(laptop|notebook)\b/i.test(name))
+      guessed = "GPUs";
+    else if (/\b(ddr[45]|sodimm|desktop\s*memory|288-?pin)\b/i.test(name) &&
+             !/\b(laptop|headset|memory\s*foam)\b/i.test(name))
+      guessed = "RAM";
+    else if (/\b(nvme|solid\s*state|\bssd\b)\b/i.test(name) && !/\b(laptop|notebook|console)\b/i.test(name))
+      guessed = "SSDs";
+    else if (/\b(mouse|mice)\b/i.test(name)) guessed = "Mice";
+    else if (/\b(keyboard)\b/i.test(name)) guessed = "Keyboards";
+    else if (/\b(monitor|ultrawide)\b/i.test(name) && !/\blaptop\b/i.test(name)) guessed = "Monitors";
+
+    if (guessed && guessed !== cat) {
+      // Title-derived category wins whenever Worker/catalogue tag is missing or wrong
+      // (headset→RAM, Xbox→Other/RAM, laptop SSD→SSDs, GPU→Cases, etc.).
+      deal.category = guessed;
+    } else if (guessed && !cat) {
+      deal.category = guessed;
+    }
+    return deal;
+  }
+
   function mergeSearchResults(catalogueMatches, liveDeals) {
     var seen = Object.create(null);
     var out = [];
@@ -1060,6 +1291,20 @@
       var keys = dealIdentityKeys(deal);
       for (var i = 0; i < keys.length; i++) {
         if (seen[keys[i]]) return;
+      }
+      // Extra near-dupe: same title stem within ~8% price, even if stem bucket differs.
+      var stem = normalizeDealTitleStem(deal.name || deal.title);
+      var price = Number(deal.price);
+      if (stem && Number.isFinite(price)) {
+        for (var j = 0; j < out.length; j++) {
+          var other = out[j];
+          var oStem = normalizeDealTitleStem(other.name || other.title);
+          var oPrice = Number(other.price);
+          if (oStem !== stem || !Number.isFinite(oPrice)) continue;
+          var diff = Math.abs(price - oPrice);
+          var base = Math.max(price, oPrice);
+          if (diff <= 8 || (base > 0 && diff / base <= 0.08)) return;
+        }
       }
       keys.forEach(function (k) {
         seen[k] = true;
@@ -1625,6 +1870,7 @@
     if (activeFilter === SEARCH_MODE && !trimmedQuery) {
       dealsEl.innerHTML = "";
       dealsEl.setAttribute("aria-busy", "false");
+      lastSearchShown = { total: 0, live: 0, catalogue: 0 };
       var prompt = document.createElement("p");
       prompt.className = "status";
       prompt.textContent = "Type to search current deals";
@@ -1658,6 +1904,13 @@
       list = list.filter(isPricedDeal);
       list = mergeSearchResults(applySort(list, activeSort), applySort(liveBudgeted, activeSort));
       list = applySort(list, activeSort);
+      var liveN = 0;
+      var catN = 0;
+      for (var si = 0; si < list.length; si++) {
+        if (list[si] && list[si].source === "live") liveN += 1;
+        else catN += 1;
+      }
+      lastSearchShown = { total: list.length, live: liveN, catalogue: catN };
     } else if (activeFilter === "All" && activeSort === "savings") {
       list = interleaveByCategory(list);
     } else if (activeFilter === "Future" && activeSort === "savings") {
@@ -1687,9 +1940,11 @@
         if (waitingLive) {
           empty.textContent = "Searching live deals…";
         } else if (liveSearchError && LIVE_SEARCH_URL) {
-          empty.textContent = 'No catalogue matches for “' + trimmedQuery + '”.';
+          empty.textContent =
+            'No strong catalogue matches for “' + trimmedQuery + '”. Try a model name (e.g. RTX 4070).';
         } else {
-          empty.textContent = 'No deals match “' + trimmedQuery + '”.';
+          empty.textContent =
+            'No deals match “' + trimmedQuery + '”. Try a more specific model or category.';
         }
       } else if (activeFilter === "Future") {
         empty.textContent =

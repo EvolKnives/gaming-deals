@@ -35,21 +35,25 @@ const RATE_MAX_PER_IP = 30;
 const rateBuckets = new Map();
 
 const CATEGORY_HINTS = [
-  { re: /\b(rtx|gtx|radeon|gpu|graphics\s*card|geforce)\b/i, cat: "GPUs" },
-  { re: /\b(ryzen|core\s*i[3579]|cpu|processor|threadripper)\b/i, cat: "CPUs" },
+  // Specific accessories / form-factors first (avoid "memory foam" → RAM, laptop SSD → SSDs).
+  { re: /\b(headset|headphones?|earbuds?|earphones?|earpiece|earbuds)\b/i, cat: "Home Theater" },
+  { re: /\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|gaming\s*console|game\s*console|wireless\s*controller|game\s*controller|gamepad)\b/i, cat: "Other" },
+  { re: /\b(macbook|laptop|notebook|chromebook)\b/i, cat: "Laptops" },
+  { re: /\b(rtx|gtx|radeon\s*rx|geforce|graphics\s*card|\bgpu\b|intel\s*arc|arc\s*a\d{3})\b/i, cat: "GPUs" },
+  { re: /\b(ryzen|core\s*ultra|core\s*i[3579]|\bcpu\b|threadripper)\b/i, cat: "CPUs" },
   { re: /\b(monitor|ultrawide|gaming\s*display)\b/i, cat: "Monitors" },
   { re: /\b(\d{2,3}["']?\s*(inch\s*)?tv|oled\s*tv|qled|television)\b/i, cat: "TVs" },
-  { re: /\b(soundbar|receiver|speaker|klipsch|home\s*theater|subwoofer)\b/i, cat: "Home Theater" },
+  { re: /\b(soundbar|av\s*receiver|bookshelf\s*speaker|floor[\s-]?standing\s*speaker|subwoofer|home\s*theat(?:er|re)|klipsch|surround\s*speaker)\b/i, cat: "Home Theater" },
   { re: /\b(wacom|drawing\s*tablet|pen\s*display|art\s*tablet)\b/i, cat: "Art Tablets" },
   { re: /\b(psu|power\s*supply|modular\s*psu)\b/i, cat: "PSUs" },
-  { re: /\b(case|chassis|tower|mid.?tower)\b/i, cat: "Cases" },
-  { re: /\b(motherboard|mobo|b650|x670|b850|z790|b760|x870)\b/i, cat: "Motherboards" },
-  { re: /\b(ddr[45]|memory|ram\b|dimm)\b/i, cat: "RAM" },
-  { re: /\b(ssd|nvme|solid.?state)\b/i, cat: "SSDs" },
-  { re: /\b(iphone|pixel|galaxy|smartphone|phone)\b/i, cat: "Phones" },
-  { re: /\b(macbook|laptop|notebook|chromebook)\b/i, cat: "Laptops" },
-  { re: /\b(mouse|mice|g502|deathadder)\b/i, cat: "Mice" },
-  { re: /\b(keyboard|keychron|mechanical\s*key)\b/i, cat: "Keyboards" },
+  { re: /\b((mid|full|mini)[\s-]?tower|pc\s*case|computer\s*case|atx\s*case|gaming\s*case|\bchassis\b)\b/i, cat: "Cases" },
+  { re: /\b(motherboard|\bmobo\b|b650|x670|b850|z790|b760|x870)\b/i, cat: "Motherboards" },
+  // Avoid bare "memory" (headsets say "memory foam") and bare "ram" in laptop titles.
+  { re: /\b(ddr[45]\b|sodimm|udimm|\bdimm\b|desktop\s*memory|pc\s*ram|system\s*memory|288-?pin)\b/i, cat: "RAM" },
+  { re: /\b(nvme|m\.2\s*(2280|2230|ssd)|solid\s*state\s*drive|\bssd\b|portable\s*ssd)\b/i, cat: "SSDs" },
+  { re: /\b(iphone|google\s*pixel|galaxy\s*s\d+|smartphone)\b|\bphone\b/i, cat: "Phones" },
+  { re: /\b(mouse|\bmice\b|g502|deathadder|viper\s*v\d|g\s*pro\s*x\s*superlight)\b/i, cat: "Mice" },
+  { re: /\b(keyboard|keychron|mechanical\s*key|keycaps)\b/i, cat: "Keyboards" },
 ];
 
 export default {
@@ -116,7 +120,7 @@ export default {
     }
 
     const cacheKey = new Request(
-      `https://gaming-deals-search.cache/v6/search?q=${encodeURIComponent(q.toLowerCase())}`,
+      `https://gaming-deals-search.cache/v10/search?q=${encodeURIComponent(q.toLowerCase())}`,
       { method: "GET" }
     );
     const cache = caches.default;
@@ -129,7 +133,7 @@ export default {
     }
 
     try {
-      const { deals, via } = await searchNewegg(q);
+      const { deals, via, note } = await searchNewegg(q);
       const topMerchant =
         deals[0] && deals[0].merchant ? deals[0].merchant : "live";
       const payload = {
@@ -141,6 +145,7 @@ export default {
         count: deals.length,
         deals,
       };
+      if (note && !deals.length) payload.note = note;
       const response = json(payload, 200, {
         ...cors,
         "Cache-Control": `public, max-age=${CACHE_TTL_SECONDS}`,
@@ -220,6 +225,9 @@ async function searchNewegg(query) {
   const errors = [];
   // Newegg first (best fit for this site). From Workers, Newegg often returns
   // "Please use IPv4…" over IPv6 — then we fall through to Amazon.
+  // Prefer HTTP 200 + empty deals over 502 when upstreams are empty/blocked —
+  // the frontend then shows filtered catalogue or a clean "no deals" instead of
+  // dumping unrelated Cases/PSUs for category queries like "GPU".
   try {
     const deals = await searchViaMcpApi(query);
     if (deals.length) return { deals, via: "newegg-mcp-api" };
@@ -244,7 +252,7 @@ async function searchNewegg(query) {
     errors.push("amazon:" + String(err && err.message ? err.message : err));
   }
 
-  throw new Error(errors.join(" | ") || "no results");
+  return { deals: [], via: "empty", note: errors.join(" | ") || "no results" };
 }
 
 async function searchViaMcpApi(query) {
@@ -284,7 +292,6 @@ async function searchViaMcpApi(query) {
 }
 
 function mapApiProducts(products, query) {
-  const queryCat = inferCategory(query, query);
   const seen = new Set();
   const out = [];
 
@@ -321,7 +328,7 @@ function mapApiProducts(products, query) {
     if (previousPrice != null && previousPrice <= price) previousPrice = null;
 
     const image = imageUrlFromName(p.ImageName);
-    const category = queryCat || inferCategory(title, "") || "Other";
+    const category = inferCategory(title, query) || "Other";
     const id = slugify(title, sku);
     const url = productUrlFromItem(itemNumber, sku);
 
@@ -408,7 +415,6 @@ function parseSearchHtml(html, query) {
     if (containers.length > 60) break;
   }
 
-  const queryCat = inferCategory(query, query);
   const seen = new Set();
   const parsed = [];
 
@@ -427,7 +433,7 @@ function parseSearchHtml(html, query) {
     const previousPrice = extractWasPrice(cell, price);
     const image = extractImage(cell);
     const rating = extractRating(cell);
-    const category = queryCat || inferCategory(title, "") || "Other";
+    const category = inferCategory(title, query) || "Other";
     const id = slugify(title, sku);
 
     const deal = {
@@ -566,6 +572,37 @@ const QUERY_ALIASES = {
   wacom: ["wacom"],
   klipsch: ["klipsch"],
   svs: ["svs"],
+  // Category / product-type shorthand — titles rarely say "GPU" literally.
+  gpu: ["gpu", "graphics card", "geforce", "radeon", "rtx", "gtx", "intel arc"],
+  gpus: ["gpu", "graphics card", "geforce", "radeon", "rtx", "gtx", "intel arc"],
+  graphics: ["graphics card", "geforce", "radeon", "rtx", "gtx"],
+  card: ["graphics card", "geforce", "radeon"],
+  cpu: ["cpu", "processor", "ryzen", "core i", "core ultra", "threadripper"],
+  cpus: ["cpu", "processor", "ryzen", "core i", "core ultra", "threadripper"],
+  processor: ["processor", "cpu", "ryzen", "core i", "core ultra"],
+  ram: ["ram", "ddr4", "ddr5", "ddr", "dimm", "desktop memory"],
+  memory: ["ddr4", "ddr5", "desktop memory", "system memory", "dimm"],
+  ssd: ["ssd", "nvme", "solid state"],
+  ssds: ["ssd", "nvme", "solid state"],
+  nvme: ["nvme", "ssd"],
+  headset: ["headset", "headphones", "headphone"],
+  headphones: ["headphones", "headset", "headphone"],
+  headphone: ["headphone", "headphones", "headset"],
+  mouse: ["mouse", "mice"],
+  mice: ["mice", "mouse"],
+  keyboard: ["keyboard", "keyboards"],
+  keyboards: ["keyboards", "keyboard"],
+  laptop: ["laptop", "notebook", "macbook", "chromebook"],
+  laptops: ["laptop", "notebook", "macbook", "chromebook"],
+  notebook: ["notebook", "laptop"],
+  xbox: ["xbox"],
+  playstation: ["playstation", "ps5", "ps4"],
+  ps5: ["ps5", "playstation"],
+  console: ["console", "xbox", "playstation", "switch"],
+  psu: ["psu", "power supply"],
+  psus: ["psu", "power supply"],
+  monitor: ["monitor", "ultrawide"],
+  monitors: ["monitor", "ultrawide"],
 };
 
 function tokenizeQuery(query) {
@@ -588,11 +625,119 @@ function expandQueryTokens(query) {
   return [...out];
 }
 
+function getQueryIntent(query) {
+  const q = String(query || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9+]+/g, " ")
+    .trim();
+  if (!q) return null;
+  if (/^(gpu|gpus)$/.test(q) || /^graphics\s+cards?$/.test(q)) return "gpus";
+  if (/^(cpu|cpus|processor|processors)$/.test(q)) return "cpus";
+  if (/^(ram|ddr4|ddr5|ddr)$/.test(q) || /^desktop\s+memory$/.test(q)) return "ram";
+  if (/^(ssd|ssds|nvme)$/.test(q) || /^solid\s+state/.test(q)) return "ssds";
+  if (/^(laptop|laptops|notebook|notebooks|macbook|chromebook)$/.test(q)) return "laptops";
+  if (/^(mouse|mice)$/.test(q)) return "mice";
+  if (/^(keyboard|keyboards)$/.test(q)) return "keyboards";
+  if (/^(headset|headsets|headphone|headphones)$/.test(q)) return "headset";
+  if (/^(psu|psus)$/.test(q) || /^power\s+supply/.test(q)) return "psus";
+  if (/^(case|cases|chassis)$/.test(q) || /^pc\s+case/.test(q)) return "cases";
+  if (/^(monitor|monitors|ultrawide)$/.test(q)) return "monitors";
+  if (/^(motherboard|motherboards|mobo|mobos)$/.test(q)) return "motherboards";
+  if (/^(phone|phones|iphone|smartphone)$/.test(q)) return "phones";
+  if (/^(tv|tvs|television)$/.test(q)) return "tvs";
+  if (/^(xbox|playstation|ps5|ps4|console|consoles|switch|controller|controllers|gamepad)$/.test(q))
+    return "console";
+  return null;
+}
+
+function titleLooksLikeIntent(title, intent) {
+  const hay = String(title || "").toLowerCase().replace(/\s+/g, " ");
+  if (!hay || !intent) return false;
+  if (intent === "gpus") {
+    // Exclude laptops / cases / brackets that merely mention a GPU.
+    if (/\b(laptop|notebook|chromebook|macbook|headset|headphones|mouse\b|keyboard|prebuilt|desktop\s*(pc|computer)|gaming\s*pc\b|anti-?sag|pc\s*case|mid-?tower|computer\s*case|gpu\s*bracket|gpu\s*support|gpu\s*riser)\b/i.test(hay))
+      return false;
+    if (/\b(geforce|radeon|rtx\s*\d|gtx\s*\d|graphics\s*card|intel\s*arc|arc\s*a\d{3})\b/i.test(hay))
+      return true;
+    // Bare "gpu" only when it looks like a card, not an accessory.
+    return /\bgpu\b/i.test(hay) && !/\b(arm|bracket|support|holder|riser|cable|adapter)\b/i.test(hay);
+  }
+  if (intent === "cpus") {
+    if (!/\b(ryzen|core\s*ultra|core\s*i[3579]|threadripper|\bcpu\b|processor)\b/i.test(hay)) return false;
+    if (/\b(laptop|notebook|motherboard|graphics\s*card|gpu)\b/i.test(hay)) return false;
+    return true;
+  }
+  if (intent === "ram") {
+    if (!/\b(ddr[45]|sodimm|udimm|\bdimm\b|desktop\s*memory|pc\s*ram|system\s*memory|288-?pin)\b/i.test(hay))
+      return false;
+    if (/\b(laptop|notebook|chromebook|headset|headphones|memory\s*foam|ssd|console|controller|motherboard|\bmobo\b)\b/i.test(hay))
+      return false;
+    return true;
+  }
+  if (intent === "ssds") {
+    if (!/\b(ssd|nvme|solid\s*state)\b/i.test(hay)) return false;
+    // Whole laptops that list an SSD capacity are not SSD products.
+    if (/\b(laptop|notebook|chromebook|macbook)\b/i.test(hay)) return false;
+    if (/\b(xbox|playstation|console)\b/i.test(hay) && !/\b(external|portable)\s*ssd\b/i.test(hay))
+      return false;
+    return true;
+  }
+  if (intent === "laptops") {
+    return /\b(laptop|notebook|macbook|chromebook)\b/i.test(hay);
+  }
+  if (intent === "mice") {
+    if (!/\b(mouse|mice)\b/i.test(hay)) return false;
+    if (/\b(mouse\s*pad|mousepad|keyboard\s*and\s*mouse\s*combo)\b/i.test(hay) && !/\bmouse\b/i.test(hay))
+      return false;
+    return true;
+  }
+  if (intent === "keyboards") {
+    return /\b(keyboard|keychron|keycaps)\b/i.test(hay);
+  }
+  if (intent === "headset") {
+    return /\b(headset|headphones?|earbuds?|earphones?)\b/i.test(hay);
+  }
+  if (intent === "psus") {
+    return /\b(psu|power\s*supply)\b/i.test(hay);
+  }
+  if (intent === "cases") {
+    return /\b((mid|full|mini)[\s-]?tower|pc\s*case|computer\s*case|atx\s*case|gaming\s*case|chassis)\b/i.test(hay);
+  }
+  if (intent === "monitors") {
+    return /\b(monitor|ultrawide|gaming\s*display)\b/i.test(hay) && !/\blaptop\b/i.test(hay);
+  }
+  if (intent === "motherboards") {
+    return /\b(motherboard|mobo|b650|x670|b850|z790|b760|x870)\b/i.test(hay);
+  }
+  if (intent === "phones") {
+    return /\b(iphone|pixel|galaxy|smartphone|\bphone\b)\b/i.test(hay) && !/\b(headphone|microphone|phone\s*case)\b/i.test(hay);
+  }
+  if (intent === "tvs") {
+    return /\b(\d{2,3}["']?\s*(inch\s*)?tv|oled\s*tv|qled|television)\b/i.test(hay);
+  }
+  if (intent === "console") {
+    // Avoid bare "console" (TVs say "PC/console living rooms") and accessories
+    // (Xbox-compatible headsets/skins should not count as console hits).
+    if (/\b(headset|headphones?|earbuds?|earphones?|stand|mount|holder|skin|cover|charger|charging\s*dock|cable)\b/i.test(hay)) {
+      return false;
+    }
+    return /\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|(?:gaming|game|video\s*game)\s*console|wireless\s*controller|game\s*controller|gamepad)\b/i.test(hay);
+  }
+  return false;
+}
+
 function titleMatchesQuery(title, query) {
   const tokens = tokenizeQuery(query);
   if (!tokens.length) return false;
   const hay = String(title || "").toLowerCase().replace(/\s+/g, " ");
   if (!hay) return false;
+  const intent = getQueryIntent(query);
+
+  // Category-ish queries: product must BE that thing, not merely mention a token.
+  if (intent) {
+    return titleLooksLikeIntent(hay, intent);
+  }
+
   const hayCompact = hay.replace(/[^a-z0-9]+/g, "");
   // Every original token must match either itself or one of its aliases in the title.
   for (const t of tokens) {
@@ -626,6 +771,8 @@ function relevanceScore(title, query) {
   const tokens = tokenizeQuery(query);
   if (!tokens.length || !hay) return 0;
   let score = 0;
+  const intent = getQueryIntent(query);
+  if (intent && titleLooksLikeIntent(hay, intent)) score += 30;
   for (const t of tokens) {
     const opts = QUERY_ALIASES[t] || [t];
     let best = 0;
@@ -650,8 +797,34 @@ function isRealDeal(price, previousPrice) {
   return save >= MIN_DEAL_SAVE && pct >= MIN_DEAL_PCT;
 }
 
+function normalizeTitleStem(name) {
+  return String(name || "")
+    .toLowerCase()
+    .replace(/sponsored\s*ad\s*-?\s*/g, " ")
+    .replace(/\([^)]{0,40}\)/g, " ")
+    .replace(
+      /\b(black|white|red|blue|green|pink|purple|orange|yellow|grey|gray|silver|gold|space\s*gray|graphite|midnight|starlight|obsidian)\b/g,
+      " "
+    )
+    .replace(/\b(wired|wireless|bluetooth|rgb|edition|series|gaming|new|renewed)\b/g, " ")
+    .replace(/[^a-z0-9+]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 72);
+}
+
+function pricesNear(a, b) {
+  const pa = Number(a);
+  const pb = Number(b);
+  if (!Number.isFinite(pa) || !Number.isFinite(pb)) return false;
+  const diff = Math.abs(pa - pb);
+  const base = Math.max(pa, pb);
+  return diff <= 8 || (base > 0 && diff / base <= 0.08);
+}
+
 function finalizeDealList(deals, query) {
-  const seen = new Set();
+  const seenIds = new Set();
+  const kept = [];
   const scored = [];
   for (const deal of deals || []) {
     if (!deal || !deal.name || !deal.url) continue;
@@ -659,12 +832,33 @@ function finalizeDealList(deals, query) {
     const price = Number(deal.price);
     const prev = Number(deal.previousPrice);
     if (!isRealDeal(price, prev)) continue;
-    const key = String(deal.sku || deal.url || deal.id).toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
+    const idKey = String(deal.sku || deal.url || deal.id).toLowerCase();
+    if (seenIds.has(idKey)) continue;
+    seenIds.add(idKey);
+
+    const stem = normalizeTitleStem(deal.name);
+    const dup = kept.find(
+      (k) => k.stem === stem && pricesNear(k.deal.price, price)
+    );
+    if (dup) {
+      // Keep the stronger discount / longer name.
+      const dupSave = Number(dup.deal.previousPrice) - Number(dup.deal.price);
+      const save = prev - price;
+      if (save > dupSave || (save === dupSave && deal.name.length > dup.deal.name.length)) {
+        dup.deal = deal;
+        dup.stem = stem;
+        dup.rel = relevanceScore(deal.name, query);
+        dup.savePct = (save / prev) * 100;
+        dup.save = save;
+      }
+      continue;
+    }
+
     const rel = relevanceScore(deal.name, query);
     const savePct = ((prev - price) / prev) * 100;
-    scored.push({ deal, rel, savePct, save: prev - price });
+    const row = { deal, rel, savePct, save: prev - price, stem };
+    kept.push(row);
+    scored.push(row);
   }
   scored.sort((a, b) => {
     if (b.rel !== a.rel) return b.rel - a.rel;
@@ -677,18 +871,39 @@ function finalizeDealList(deals, query) {
 
 function amazonSearchTerms(query) {
   const q = String(query || "").trim();
-  const lower = q.toLowerCase();
-  const terms = [q];
-  // GPU shorthand → fuller Amazon title language
+  const lower = q.toLowerCase().replace(/\s+/g, " ");
+  const intent = getQueryIntent(q);
+  const terms = [];
+
+  // Category shorthand → Amazon title language that actually returns products.
+  if (intent === "gpus") {
+    terms.push("graphics card", "GeForce RTX graphics card", "Radeon RX graphics card");
+  } else if (intent === "ram") {
+    terms.push("DDR5 desktop memory", "DDR4 desktop RAM");
+  } else if (intent === "ssds") {
+    terms.push("NVMe SSD", "internal SSD");
+  } else if (intent === "headset") {
+    terms.push("gaming headset", "wireless headset");
+  } else if (intent === "console") {
+    terms.push(q, q + " controller");
+  } else if (intent === "cpus") {
+    terms.push(q, "desktop processor");
+  } else {
+    terms.push(q);
+  }
+
+  // Model shorthand → fuller Amazon title language
   if (/\b(rtx|gtx)\s*\d{3,4}\b/i.test(q) && !/geforce|radeon/i.test(q)) {
     terms.push("GeForce " + q);
   }
   if (/\b(rx)\s*\d{3,4}\b/i.test(q) && !/radeon/i.test(q)) {
     terms.push("Radeon " + q);
   }
-  // Prefer a deals-flavored query as a second pass
-  if (!/\bdeal(s)?\b/i.test(lower)) {
+  // Prefer a deals-flavored query as a second pass (skip for already-expanded intents)
+  if (!intent && !/\bdeal(s)?\b/i.test(lower)) {
     terms.push(q + " deal");
+  } else if (intent === "gpus" && !/\bdeal(s)?\b/i.test(lower)) {
+    terms.push("graphics card deal");
   }
   // Dedupe
   const seen = new Set();
@@ -702,36 +917,56 @@ function amazonSearchTerms(query) {
   return out.slice(0, 3);
 }
 
+function amazonDepartment(query) {
+  const intent = getQueryIntent(query);
+  if (
+    intent === "gpus" ||
+    intent === "cpus" ||
+    intent === "ram" ||
+    intent === "ssds" ||
+    intent === "psus" ||
+    intent === "cases" ||
+    intent === "motherboards"
+  ) {
+    return "computers";
+  }
+  if (intent === "mice" || intent === "keyboards" || intent === "headset" || intent === "monitors") {
+    return "electronics";
+  }
+  if (intent === "console") return "videogames";
+  if (intent === "laptops") return "computers";
+  return "";
+}
+
 async function searchViaAmazon(query) {
   const headers = {
     "User-Agent": UA,
-    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
     "Cache-Control": "no-cache",
     "Upgrade-Insecure-Requests": "1",
+    Referer: "https://www.amazon.com/",
   };
-  const terms = amazonSearchTerms(query).slice(0, 2);
-  const urls = terms.map(
-    (term) => "https://www.amazon.com/s?k=" + encodeURIComponent(term)
-  );
+  const terms = amazonSearchTerms(query).slice(0, 3);
+  const dept = amazonDepartment(query);
+  const urls = terms.map((term) => {
+    let u = "https://www.amazon.com/s?k=" + encodeURIComponent(term);
+    if (dept) u += "&i=" + encodeURIComponent(dept);
+    return u;
+  });
 
   const merged = [];
   const seen = new Set();
-  let lastErr = null;
+  let sawHtml = false;
   for (const searchUrl of urls) {
     // Stop early once we have a solid set of real deals — fewer Amazon hits = less throttling
     if (finalizeDealList(merged, query).length >= 8) break;
     try {
       const res = await fetch(searchUrl, { headers, redirect: "follow" });
-      if (!res.ok) {
-        lastErr = new Error(`Amazon HTML HTTP ${res.status}`);
-        continue;
-      }
+      if (!res.ok) continue;
       const html = await res.text();
-      if (!html || html.length < 5000) {
-        lastErr = new Error("Amazon HTML empty/blocked");
-        continue;
-      }
+      if (!html || html.length < 5000) continue;
+      sawHtml = true;
       const batch = parseAmazonHtml(html, query);
       for (const d of batch) {
         const key = String(d.sku || d.url).toLowerCase();
@@ -739,14 +974,14 @@ async function searchViaAmazon(query) {
         seen.add(key);
         merged.push(d);
       }
-    } catch (err) {
-      lastErr = err;
+    } catch (_) {
+      /* try next term */
     }
   }
   const final = finalizeDealList(merged, query);
   if (final.length) return final;
-  if (merged.length) return []; // had products but no real deals
-  if (lastErr) throw lastErr;
+  // Soft-empty: blocked HTML or products without was-price cuts. Caller maps to empty list.
+  if (!sawHtml && !merged.length) return [];
   return [];
 }
 
@@ -766,7 +1001,6 @@ function parseAmazonHtml(html, query) {
     if (blocks.length > 40) break;
   }
 
-  const queryCat = inferCategory(query, query);
   const seen = new Set();
   const out = [];
 
@@ -787,7 +1021,7 @@ function parseAmazonHtml(html, query) {
     const image = extractAmazonImage(cell);
     const rating = extractAmazonRating(cell);
     const url = "https://www.amazon.com/dp/" + asin;
-    const category = queryCat || inferCategory(title, "") || "Other";
+    const category = inferCategory(title, query) || "Other";
     const id = slugify(title, asin);
 
     const deal = {
@@ -935,9 +1169,33 @@ function extractAmazonRating(cell) {
 
 
 function inferCategory(text, query) {
-  const hay = `${query || ""} ${text || ""}`;
+  // Prefer classifying the product title; fall back to the query intent.
+  const title = String(text || "");
+  const q = String(query || "");
   for (const h of CATEGORY_HINTS) {
-    if (h.re.test(hay)) return h.cat;
+    if (h.re.test(title)) return h.cat;
+  }
+  const intent = getQueryIntent(q || title);
+  const intentToCat = {
+    gpus: "GPUs",
+    cpus: "CPUs",
+    ram: "RAM",
+    ssds: "SSDs",
+    laptops: "Laptops",
+    mice: "Mice",
+    keyboards: "Keyboards",
+    headset: "Home Theater",
+    psus: "PSUs",
+    cases: "Cases",
+    monitors: "Monitors",
+    motherboards: "Motherboards",
+    phones: "Phones",
+    tvs: "TVs",
+    console: "Other",
+  };
+  if (intent && intentToCat[intent]) return intentToCat[intent];
+  for (const h of CATEGORY_HINTS) {
+    if (h.re.test(q)) return h.cat;
   }
   return null;
 }
