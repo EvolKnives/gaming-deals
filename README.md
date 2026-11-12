@@ -54,10 +54,10 @@ and can be run by hand from the Actions tab (*Run workflow*). It needs no secret
    catalogue if the price can be verified, or kept until `endsAt` and then dropped.
 3. Tops each category back up to 10 with fresh, in-stock, best-discount Newegg listings
    (Prebuilts require a real was-price / discount).
-4. Writes and commits `data/deals.json` (+ removed photos) **only when deal data
-   meaningfully changed** (prices, membership, sale dates). Timestamp-only
-   `updatedAt` / "checked" bumps are not committed, so the repo is not spammed with
-   24 identical commits a day. A Pages rebuild is requested only when a commit happened.
+4. Writes and commits `data/deals.json` (+ removed photos) **every run**, so the
+   site's "Updated X ago" and per-deal "Checked X ago" stay current even in hours when
+   no price changed. `catalogueRevision` only bumps on meaningful changes (prices,
+   membership, sale dates). Each commit triggers a GitHub Pages rebuild.
 
 If the Newegg API is unreachable, or returns HTTP 403/429, the script exits without
 writing, so a throttled or bad run never wipes the site. Pull-to-refresh on the site

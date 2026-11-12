@@ -616,13 +616,15 @@ def main() -> int:
     proposed["deals"] = deals
     meaningful = catalogue_fingerprint(proposed) != before_fp
     if not meaningful:
-        print("No meaningful deal changes — not writing (skips hourly timestamp-only commits).")
-        return 0
+        # Still write: the site's "Updated / Checked X ago" labels read these
+        # timestamps, so skipping the save made hourly checks look stale.
+        print("No meaningful deal changes — saving fresh check timestamps only.")
 
     data["deals"] = deals
     data["updatedAt"] = stamp
     data["weekLabel"] = week_label_now(now)
-    data["catalogueRevision"] = int(data.get("catalogueRevision", 0)) + 1
+    if meaningful:
+        data["catalogueRevision"] = int(data.get("catalogueRevision", 0)) + 1
     data["lastRefresh"] = last_refresh
 
     if args.dry_run:
