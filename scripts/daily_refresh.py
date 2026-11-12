@@ -44,6 +44,7 @@ import requests
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from refresh import apply_verified_price, week_label_now  # noqa: E402
+import categorize  # noqa: E402
 
 DEALS_PATH = ROOT / "data" / "deals.json"
 IMAGES_DIR = ROOT / "images"
@@ -55,6 +56,8 @@ UA = (
 STALE_DAYS = 3          # drop unverifiable deals after this many calendar days (not runs)
 TARGET_PER_CAT = 20     # top categories up to this many deals (per-category "target" overrides)
 MAX_PER_CAT = 24        # trim weakest (no discount) beyond this
+BRAND_PER_TAB = 3       # best sale items kept per brand in one tab
+BRAND_MAX_PER_TAB = 9   # brand-site deals per tab, on top of the store deals
 VERIFY_EVERY_HOURS = 3  # each deal is re-checked on a rotation, about a third per hourly run
 MIN_RATING = 3.5        # skip poorly rated seeds (unrated allowed)
 
@@ -391,6 +394,8 @@ def refresh_build_parts(api: Newegg, now: datetime, stamp: str) -> None:
                     continue
                 if not must_re.search(title) or (not_re and not_re.search(title)) or BAD_TITLE.search(title):
                     continue
+                if categorize.product_type(title, "", off["price"]) != cat:
+                    continue  # e.g. a prebuilt PC that mentions an SSD
                 if off["rating"] is not None and off["rating"] < MIN_RATING:
                     continue
                 sku = item_to_sku(p.get("ItemNumber", ""))
@@ -430,19 +435,42 @@ def product_key(title: str) -> str:
     return re.sub(r"\W+", "", t)[:50]
 
 
+# A title naming both a processor model and a graphics card, or Windows,
+# describes a whole computer: it only belongs in these tabs.
+WHOLE_SYSTEM = re.compile(
+    r"windows 1[01]\b|\bw1[01] (home|pro)\b|"
+    r"(?=.*\b(core (i[3579]|ultra [3579])|ryzen [3579]|ryzen ai)\b)(?=.*\b(rtx|gtx|geforce|radeon rx|arc [ab]\d))",
+    re.I)
+SYSTEM_TABS = {"Prebuilts", "Laptops", "Tablets", "Phones"}
+# Bigger product types win: a product matching one of these never goes to a
+# smaller tab (e.g. a monitor with built-in speakers is not a speaker).
+PRIORITY_TABS = ["Prebuilts", "Laptops", "Tablets", "Phones", "TVs", "Monitors"]
+
+
+def _matches(cat: str, text: str, title: str, price: float) -> bool:
+    spec = SEEDS.get(cat)
+    if not spec:
+        return False
+    _q, must, mustnot, floor = spec
+    return (price >= floor and bool(re.search(must, text, re.I))
+            and not (mustnot and re.search(mustnot, title, re.I)))
+
+
+def wrong_tab(cat: str, title: str, price: float, hint: str = "") -> str | None:
+    """Why `title` doesn't belong in `cat`, or None if it does."""
+    if cat not in SYSTEM_TABS and WHOLE_SYSTEM.search(title):
+        return "whole computer"
+    for big in PRIORITY_TABS:
+        if big != cat and _matches(big, f"{title} {hint}", title, price):
+            return f"belongs in {big}"
+    return None
+
+
 def classify(title: str, hint: str, price: float) -> str | None:
-    """Tab for a product from another store: the first category whose title
-    rules match (hint words such as "gaming mouse" count as title words; the
-    must-not list is checked against the real title only)."""
+    """Tab for a product from another store (see scripts/categorize.py)."""
     if BAD_TITLE.search(title):
         return None
-    text = f"{title} {hint}"
-    for cat, (_q, must, mustnot, floor) in SEEDS.items():
-        if price < floor:
-            continue
-        if re.search(must, text, re.I) and not (mustnot and re.search(mustnot, title, re.I)):
-            return cat
-    return None
+    return categorize.product_type(title, hint, price)
 
 
 def fits_category(d: dict[str, Any]) -> bool:
@@ -458,7 +486,8 @@ def fits_category(d: dict[str, Any]) -> bool:
         return False
     if mustnot and re.search(mustnot, title, re.I):
         return False
-    return True
+    price = float(d.get("price") or 0)
+    return wrong_tab(str(d.get("category")), title, price) is None
 
 
 def main() -> int:
@@ -572,7 +601,7 @@ def main() -> int:
         if last is None or last < cutoff:
             removed.append(f"{d.get('id')} (unverified since {d.get('verifiedAt') or 'before automation'})")
             continue
-        if d.get("autoSeeded") and not fits_category(d):
+        if (d.get("autoSeeded") or d.get("source") == "brand-site") and not fits_category(d):
             removed.append(f"{d.get('id')} (no longer matches {d.get('category')} filters)")
             continue
         if started:
@@ -584,6 +613,15 @@ def main() -> int:
             stats["expired_dates_cleared"] += 1
         kept.append(d)
     deals = kept
+
+    # every deal's tab is re-checked each run: misfiled deals move to the right
+    # tab, auto-added ones that fit no tab are dropped
+    for name, old, new in categorize.audit(deals):
+        print(f"  ~ [{old} → {new or 'removed'}] {name[:70]}")
+        stats["recategorized" if new else "misfits_removed"] += 1
+    for d in [d for d in deals if d.pop("_misfit", False)]:
+        removed.append(f"{d.get('id')} (fits no tab)")
+        deals.remove(d)
 
     # colour variants of one auto-seeded product: keep the best saving only
     best: dict[tuple[str, str], dict[str, Any]] = {}
@@ -611,10 +649,22 @@ def main() -> int:
         except Exception as e:  # noqa: BLE001 — never let a brand site break the run
             print(f"Brand sales skipped: {e}", file=sys.stderr)
             brand = [d for d in deals if d.get("source") == "brand-site"]
+        # the best few per brand and per tab, so one store-wide sale can't flood a tab
+        per_brand: Counter = Counter()
+        per_tab: Counter = Counter()
+        best_brand = []
+        for d in sorted(brand, key=savings_pct, reverse=True):
+            cat, key = d.get("category"), (d.get("merchant"), d.get("category"))
+            if per_brand[key] >= BRAND_PER_TAB or per_tab[cat] >= BRAND_MAX_PER_TAB:
+                continue
+            per_brand[key] += 1
+            per_tab[cat] += 1
+            best_brand.append(d)
         ids_now = {d.get("id") for d in deals if d.get("source") != "brand-site"}
         deals = [d for d in deals if d.get("source") != "brand-site"] + [
-            d for d in brand if d.get("id") not in ids_now]
-        stats["brand_sales"] = len(brand)
+            d for d in best_brand if d.get("id") not in ids_now]
+        stats["brand_sales_found"] = len(brand)
+        stats["brand_sales_shown"] = len(best_brand)
 
     # 4. seed
     added = 0
@@ -622,7 +672,9 @@ def main() -> int:
         have = {(d.get("sku") or "").upper() for d in deals} | {
             (sku_from_url(d.get("url", "")) or "") for d in deals}
         names = {product_key(d.get("name", "")) for d in deals}
-        counts = Counter(d.get("category") for d in deals if not is_upcoming(d, now))
+        # brand-site deals are extra: they don't count toward a tab's 20
+        counts = Counter(d.get("category") for d in deals
+                         if not is_upcoming(d, now) and d.get("source") != "brand-site")
         ids = {d.get("id") for d in deals}
         for cat, (queries, must, mustnot, floor) in SEEDS.items():
             if throttled():
@@ -670,6 +722,13 @@ def main() -> int:
                         continue
                     if (not_re and not_re.search(title)) or BAD_TITLE.search(title):
                         reject("excluded word", title)
+                        continue
+                    if categorize.product_type(title, "", off["price"]) != cat:
+                        reject("different product type", title)
+                        continue
+                    why = wrong_tab(cat, title, off["price"])
+                    if why:
+                        reject(why, title)
                         continue
                     if off["rating"] is not None and off["rating"] < MIN_RATING:
                         reject("low rating", title)
@@ -731,8 +790,8 @@ def main() -> int:
                         print(f"      {reason}: {t}")
 
     # trim oversized live categories only — upcoming Future deals are kept aside
-    upcoming_deals = [d for d in deals if is_upcoming(d, now)]
-    live_deals = [d for d in deals if not is_upcoming(d, now)]
+    upcoming_deals = [d for d in deals if is_upcoming(d, now) or d.get("source") == "brand-site"]
+    live_deals = [d for d in deals if not is_upcoming(d, now) and d.get("source") != "brand-site"]
     by_cat: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for d in live_deals:
         by_cat[str(d.get("category"))].append(d)
@@ -789,8 +848,10 @@ def main() -> int:
     img = check_images.audit(deals, now)
     img.update(check_images.fill_missing(
         deals, lambda d: None if throttled() else find_photo(api, d), now))
+    import cutouts  # noqa: E402
+    img.update(cutouts.update(deals))
     print(f"Images: {img}")
-    last_refresh.update(img)
+    last_refresh.update({k: v for k, v in img.items() if not isinstance(v, list)})
     data["deals"] = deals
 
     DEALS_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

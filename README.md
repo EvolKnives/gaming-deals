@@ -80,6 +80,24 @@ automated visits, like Costco, are skipped), then a matching Newegg listing.
 A candidate is used only after it is confirmed to load. Deals still without a
 photo show a category icon and are listed in the run log (`photos_missing`).
 
+## Right tab for every product
+
+[`scripts/categorize.py`](scripts/categorize.py) decides what kind of product a
+title describes: complete systems first (a title listing processor, graphics,
+memory and storage is a prebuilt or laptop, never the SSD it mentions),
+compatibility text ignored, then the product word named earliest in the title.
+New deals must classify as the tab they were searched for; every existing deal
+is re-checked each hourly run (misfiled ones move, auto-added ones that fit no
+tab are dropped); build parts and brand-site sales use the same check.
+
+## Cut-out photos
+
+[`scripts/cutouts.py`](scripts/cutouts.py) (hourly, up to 250 new photos per
+run) removes the white backdrop from product photos and saves transparent WebP
+cut-outs in `images/cut/`; cards show them on a themed spotlight background.
+Photos that aren't on plain white are left as they are, and the zoomed view
+still uses the original photo.
+
 ## Price history
 
 [`scripts/price_history.py`](scripts/price_history.py) runs inside every hourly

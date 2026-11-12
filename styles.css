@@ -2505,3 +2505,33 @@ html.ph-open {
     font-size: 19px; /* the chart scales down ~55% on phones */
   }
 }
+
+/* Cut-out product photos (transparent background): the product sits on a soft
+   spotlight in the card's own colours instead of a white tile. */
+.deal-card__figure.deal-card__figure--cut {
+  background: radial-gradient(ellipse at 50% 58%, #ffffff 0%, #eef1f6 55%, #dfe4ec 100%);
+}
+
+.deal-card__figure.deal-card__figure--cut img {
+  mix-blend-mode: normal;
+  padding: 1.1rem;
+  filter: drop-shadow(0 8px 14px rgba(15, 23, 42, 0.22));
+}
+
+@media (prefers-color-scheme: dark) {
+  .deal-card__figure.deal-card__figure--cut {
+    /* lit from the centre so black products stay readable on the dark card */
+    background: radial-gradient(ellipse at 50% 58%, #4a556e 0%, #2a3145 55%, #1a1f2e 100%);
+  }
+
+  .deal-card__figure.deal-card__figure--cut img {
+    filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.5));
+  }
+}
+
+@media (max-width: 599px) {
+  .deal-card__figure.deal-card__figure--cut img {
+    padding: 0.55rem;
+    transform: none;
+  }
+}

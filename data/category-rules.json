@@ -47,7 +47,7 @@
         "portable monitor 15.6"
       ],
       "titleMust": "monitor",
-      "titleMustNot": "\\barm\\b|mount|stand only|cable",
+      "titleMustNot": "\\barm\\b|mount|stand only|cable|\\btv\\b|television|projector|(active|studio|powered|bookshelf|near[- ]field) (monitor )?speakers?|monitor speakers?|studio monitors?|near[- ]field monitors?|monitor (webcam|light|lamp|light bar)",
       "minPrice": 70
     },
     {
@@ -68,7 +68,7 @@
         "32 inch smart tv"
       ],
       "titleMust": "\\btv\\b|television",
-      "titleMustNot": "mount|bracket|antenna|cable|monitor",
+      "titleMustNot": "mount|bracket|antenna|cable|monitor|sound ?bar|tv speaker|remote|stick|streaming|projector|wall plate|box\\b|tuner|cover",
       "minPrice": 100
     },
     {
@@ -94,7 +94,7 @@
         "stereo network receiver"
       ],
       "titleMust": "\\breceiver\\b",
-      "titleMustNot": "bluetooth receiver|usb|adapter|dongle|car |fm |antenna|hdmi (extender|transmitter)|transmitter|wireless audio receiver|gps|keyboard|mouse",
+      "titleMustNot": "bluetooth receiver|usb|adapter|dongle|car |fm |antenna|hdmi (extender|transmitter)|transmitter|wireless audio receiver|gps|keyboard|mouse|\\bmic\\b|microphone",
       "minPrice": 150
     },
     {
@@ -107,7 +107,7 @@
         "polk subwoofer"
       ],
       "titleMust": "subwoofer",
-      "titleMustNot": "sound ?bar|speaker system|2\\.1|car |marine|boat|truck|cable|amplifier only|enclosure only",
+      "titleMustNot": "sound ?bar|speaker system|2\\.1|car |marine|boat|truck|cable|amplifier only|enclosure only|bookshelf|tabletop|monitor speakers?|2\\.0",
       "minPrice": 80
     },
     {
@@ -163,7 +163,7 @@
         "budget mid tower airflow case"
       ],
       "titleMust": "\\b(case|chassis|tower)\\b",
-      "titleMustNot": "fan only|laptop|phone|ssd|enclosure|carrying",
+      "titleMustNot": "fan only|laptop|phone|enclosure|carrying|single-tower|dual-tower",
       "minPrice": 30
     },
     {
@@ -318,7 +318,7 @@
         "smart speaker wifi"
       ],
       "titleMust": "bluetooth speaker|portable speaker|wireless speaker|smart speaker|wi-?fi speaker|party speaker|tabletop speaker|soundlink|outdoor speaker",
-      "titleMustNot": "computer|desktop|\\bpc\\b|sound ?bar|receiver|subwoofer|car |marine|mount|stand|bracket|cable|monitor|\\btv\\b|headset|projector",
+      "titleMustNot": "computer|desktop|\\bpc\\b|sound ?bar|receiver|subwoofer|car |marine|mount|stand|bracket|cable|monitor|\\btv\\b|headset|projector|\\b2\\.[01]\\b|bookshelf|stereo pair",
       "minPrice": 15
     },
     {
@@ -329,7 +329,7 @@
         "desktop speakers usb",
         "2.1 computer speaker system"
       ],
-      "titleMust": "(computer|desktop|\\bpc\\b|multimedia|gaming) speakers?|speaker system|2\\.[01] (stereo |channel )?speaker|studio monitors?",
+      "titleMust": "(computer|desktop|\\bpc\\b|multimedia|gaming) speakers?|speaker system|2\\.[01] (stereo |channel )?speaker|studio monitors?|(active|powered|studio|monitor) speakers?|multi-?media (bookshelf )?(speakers?|system)",
       "titleMustNot": "sound ?bar|receiver|car |marine|mount|stand only|bracket|cable|monitor arm|\\btv\\b|headset|projector|laptop|notebook",
       "minPrice": 15
     },
@@ -363,7 +363,7 @@
         "condenser microphone"
       ],
       "titleMust": "microphones?|\\bmic\\b",
-      "titleMustNot": "\\barm\\b|stand only|pop filter|cable|shock ?mount|windscreen|foam|headset|earbuds|adapter|boom",
+      "titleMustNot": "\\barm\\b|stand only|pop filter|cable|shock ?mount|windscreen|foam|headset|earbuds|adapter|boom|receiver|transmitter",
       "minPrice": 15
     },
     {

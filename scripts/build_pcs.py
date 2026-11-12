@@ -416,6 +416,8 @@ def main() -> int:
         pool = json.loads(POOL_PATH.read_text(encoding="utf-8")).get("parts") or []
     except (OSError, ValueError):
         pool = []
+    import categorize  # parts must really be the kind of part they are filed as
+    pool = [p for p in pool if categorize.product_type(p["name"], "", p["price"]) == p["category"]]
     now = datetime.now(timezone.utc)
     c = candidates(deals, now, pool)
     builds, seen, catalog = [], set(), {}

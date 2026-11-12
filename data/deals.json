@@ -427,7 +427,8 @@
       "low30": 1469.99,
       "high30": 1469.99,
       "typical30": 1469.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/0f95c4440fd545a0.webp"
     },
     {
       "currency": "USD",
@@ -453,7 +454,8 @@
       "low30": 939.99,
       "high30": 939.99,
       "typical30": 939.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/5810ca9214fc6424.webp"
     },
     {
       "currency": "USD",
@@ -479,7 +481,8 @@
       "low30": 949.99,
       "high30": 949.99,
       "typical30": 949.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/5ff3d4914f13119b.webp"
     },
     {
       "currency": "USD",
@@ -505,7 +508,8 @@
       "low30": 1059.99,
       "high30": 1059.99,
       "typical30": 1059.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/1a11ef875dce14c4.webp"
     },
     {
       "currency": "USD",
@@ -531,7 +535,8 @@
       "low30": 1019.99,
       "high30": 1019.99,
       "typical30": 1019.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/111a6fabd570a799.webp"
     },
     {
       "currency": "USD",
@@ -557,7 +562,8 @@
       "low30": 2199.99,
       "high30": 2199.99,
       "typical30": 2199.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/1588510a49c6da5d.webp"
     },
     {
       "id": "asrock-phantom-gaming-27-qhd-2k-1440p-360hz-0-03-946006",
@@ -1194,7 +1200,8 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/6654c10645bf2fbf.webp"
     },
     {
       "id": "asrock-pro-series-pro-850b-850-w-atx-3-1-compati-955025",
@@ -1544,7 +1551,8 @@
       "low30": 169.99,
       "high30": 169.99,
       "typical30": 169.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/f2d55f25401bace5.webp"
     },
     {
       "id": "thermaltake-toughpower-gt-850w-atx-3-1-standard--006w8",
@@ -1597,7 +1605,8 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/4fa2f164818895ed.webp"
     },
     {
       "currency": "USD",
@@ -1623,7 +1632,8 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/a21d1f1cf3e784bc.webp"
     },
     {
       "id": "denon-avr-x3800h",
@@ -1646,7 +1656,8 @@
       "low30": 1399.0,
       "high30": 1399.0,
       "typical30": 1399.0,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/8f4ed936fe4d6331.webp"
     },
     {
       "id": "yamaha-r-n600a-stereo-network-receiver-with-wi-f-971097",
@@ -1696,7 +1707,8 @@
       "low30": 1299.0,
       "high30": 1299.0,
       "typical30": 1299.0,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/f074f093b4491c72.webp"
     },
     {
       "id": "yamaha-rx-v4a-5-2-channel-av-receiver-with-8k-hd-971075",
@@ -1879,30 +1891,6 @@
       "historyDays": 1
     },
     {
-      "id": "panasonic-wx-sr204dn-4-channel-dante-digital-wir--00d13",
-      "name": "Panasonic WX-SR204DN 4-Channel Dante Digital Wireless Mic Receiver - 50 Hz to 15 kHz Frequency Response",
-      "category": "AV Receivers",
-      "price": 2464.99,
-      "previousPrice": null,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "Newegg price $2,464.99. Verified by the daily refresh — confirm the cart total before buying.",
-      "merchant": "Newegg",
-      "url": "https://www.newegg.com/p/0ZK-0002-00D13",
-      "urlKind": "product",
-      "sku": "0ZK-0002-00D13",
-      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V009D2302020GG1O1E1.jpg",
-      "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T07:51:50Z",
-      "updatedAt": "2026-11-12T07:51:50Z",
-      "autoSeeded": true,
-      "low30": 2464.99,
-      "high30": 2464.99,
-      "typical30": 2464.99,
-      "historyDays": 1
-    },
-    {
       "id": "black-box-vx-hdmi-hdip-tx-mediacento-ipx-hd-hdmi--000m6",
       "name": "Black Box VX-HDMI-HDIP-TX Mediacento IPX HD HDMI Over IP Extender Receiver",
       "category": "AV Receivers",
@@ -2019,7 +2007,8 @@
       "low30": 1699.0,
       "high30": 1699.0,
       "typical30": 1699.0,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/f40e606e4e666271.webp"
     },
     {
       "id": "yamaha-audio-sr-b20a-sound-bar-with-built-in-sub-971072",
@@ -3131,7 +3120,8 @@
       "low30": 34.98,
       "high30": 34.98,
       "typical30": 34.98,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/3c2546aa0a19ad29.webp"
     },
     {
       "id": "diypc-idx4-microatx-argb-black-usb3-0-type-c-tem-353288",
@@ -3211,7 +3201,8 @@
       "low30": 59.97,
       "high30": 59.97,
       "typical30": 59.97,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/215d11317dea8772.webp"
     },
     {
       "id": "diypc-diy-v3-atx-black-usb3-0-atx-mid-tower-comp-353299",
@@ -3423,7 +3414,8 @@
       "low30": 209.37,
       "high30": 209.37,
       "typical30": 209.37,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/5eaf26c9914ceb3c.webp"
     },
     {
       "id": "antec-performance-series-p20c-massive-metal-mesh-129290",
@@ -3449,7 +3441,8 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/6853f834cfdad191.webp"
     },
     {
       "id": "montech-xrwood-genuine-black-walnut-front-atx-mi-970017",
@@ -3553,7 +3546,8 @@
       "low30": 119.0,
       "high30": 119.0,
       "typical30": 119.0,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/8b437695558b02f0.webp"
     },
     {
       "id": "corsair-4000x-rs-mid-tower-pc-case-black-illumin-139260",
@@ -3605,7 +3599,8 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/83f7f76ba12d8f32.webp"
     },
     {
       "id": "corsair-vengeance-rgb-pro-32gb-2-x-16gb-288-pin-236570",
@@ -3658,7 +3653,8 @@
       "low30": 509.99,
       "high30": 509.99,
       "typical30": 509.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/539009ffd3bb0a03.webp"
     },
     {
       "id": "v-color-16gb-2-x-8gb-ddr4-3200-pc4-25600-desktop-012107",
@@ -3975,7 +3971,8 @@
       "low30": 599.99,
       "high30": 599.99,
       "typical30": 599.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/bd0329d6bec9166f.webp"
     },
     {
       "id": "klevv-64gb-2-x-32gb-ddr5-6000-pc5-48000-desktop-101105",
@@ -4162,7 +4159,8 @@
       "low30": 389.99,
       "high30": 389.99,
       "typical30": 389.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/c7c3311d0557b561.webp"
     },
     {
       "id": "kingston-nv3-m-2-2280-2tb-pcie-4-0-x4-nvme-inter-242903",
@@ -4215,7 +4213,8 @@
       "low30": 249.99,
       "high30": 249.99,
       "typical30": 249.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/b04fa0e3b908d38c.webp"
     },
     {
       "id": "samsung-990-pro-ssd-1tb-pcie-4-0-m-2-2280-intern-147860",
@@ -4403,7 +4402,7 @@
     {
       "id": "zotac-gaming-mek-ai-enhanced-gaming-pc-desktop-c-218106",
       "name": "Zotac GAMING MEK AI-Enhanced Gaming PC Desktop Computer - NVIDIA GeForce RTX 3050, AMD Ryzen 5 5500 4.2GHz, 16GB RGB DDR4, 500GB NVME M.2 SSD, 650W 80+ GOLD PSU, WiFi 6E, Windows 11 Home",
-      "category": "SSDs",
+      "category": "Prebuilts",
       "price": 799.99,
       "previousPrice": 899.99,
       "lastPrice": null,
@@ -4484,7 +4483,7 @@
     {
       "id": "clx-set-gaming-desktop-intel-core-i5-14400f-2-5g--00323",
       "name": "CLX SET Gaming Desktop - Intel Core i5 14400F 2.5GHz 10-Core Processor, 32GB DDR5 Memory, GeForce RTX 5060 8GB GDDR7 Graphics, 2TB NVMe M.2 SSD, WiFi, Win 11 Home 64-bit",
-      "category": "SSDs",
+      "category": "Prebuilts",
       "price": 2159.99,
       "previousPrice": 2399.99,
       "lastPrice": null,
@@ -4508,7 +4507,7 @@
     {
       "id": "clx-set-gaming-desktop-amd-ryzen-5-8400f-4-2ghz--00320",
       "name": "CLX SET Gaming Desktop - AMD Ryzen 5 8400F 4.2GHz 6-Core Processor, 32GB DDR5 Memory, GeForce RTX 5060 8GB GDDR7 Graphics, 2TB NVMe M.2 SSD, WiFi, Win 11 Home 64-bit",
-      "category": "SSDs",
+      "category": "Prebuilts",
       "price": 2239.99,
       "previousPrice": 2479.99,
       "lastPrice": null,
@@ -4613,7 +4612,7 @@
     {
       "id": "clx-set-gaming-desktop-intel-core-i9-14900kf-3-2--00324",
       "name": "CLX SET Gaming Desktop - Intel Core i9 14900KF 3.2GHz 24-Core Processor, 32GB DDR5 Memory, GeForce RTX 5060 Ti 16GB GDDR7 Graphics, 2TB NVMe M.2 SSD, WiFi, Win 11 Home 64-bit",
-      "category": "SSDs",
+      "category": "Prebuilts",
       "price": 3159.99,
       "previousPrice": 3469.99,
       "lastPrice": null,
@@ -4658,7 +4657,8 @@
       "low30": 136.99,
       "high30": 136.99,
       "typical30": 136.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/7700ca60fe577a9e.webp"
     },
     {
       "id": "asus-tuf-gaming-b850m-e-wifi-amd-b850-matx-mothe-119758",
@@ -4844,7 +4844,8 @@
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/1191b78eccf1f62c.webp"
     },
     {
       "id": "gigabyte-b650m-aorus-elite-ax-ice-am5-lga-1718-a-145511",
@@ -5165,7 +5166,8 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/d791021344e31cd4.webp"
     },
     {
       "id": "gigabyte-b650i-aorus-ultra-am5-amd-b650-mini-itx-145428",
@@ -5485,7 +5487,8 @@
       "low30": 2184.99,
       "high30": 2184.99,
       "typical30": 2184.99,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/356dec51097c3020.webp"
     },
     {
       "id": "acer-nitro-v-16s-ai-16-gaming-laptop-intel-core-360451",
@@ -5534,7 +5537,8 @@
       "low30": 2049.0,
       "high30": 2049.0,
       "typical30": 2049.0,
-      "historyDays": 47
+      "historyDays": 47,
+      "cutout": "images/cut/a9fffc6d9d8175d1.webp"
     },
     {
       "id": "asus-rog-flow-amd-ryzen-ai-max-395-amd-radeon-gr-236625",
@@ -6830,33 +6834,9 @@
       "historyDays": 1
     },
     {
-      "id": "samsung-galaxy-book6-enterprise-edition-14-0-u5--006x1",
-      "name": "SAMSUNG GALAXY BOOK6 ENTERPRISE EDITION 14.0 U5-325 (32GB 512GB) MOCHA GRAY (WIT",
-      "category": "Phones",
-      "price": 1955.99,
-      "previousPrice": null,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "Newegg price $1,955.99. Verified by the daily refresh — confirm the cart total before buying.",
-      "merchant": "Newegg",
-      "url": "https://www.newegg.com/p/1TS-0002-006X1",
-      "urlKind": "product",
-      "sku": "1TS-0002-006X1",
-      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/1TS-0002-006X1-01.png",
-      "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "autoSeeded": true,
-      "low30": 1955.99,
-      "high30": 1955.99,
-      "typical30": 1955.99,
-      "historyDays": 1
-    },
-    {
       "id": "samsung-galaxy-tab-s12-12-512gb-wi-fi-gray-sm-x8--00g58",
       "name": "Samsung Galaxy Tab S12+ 12+512GB (Wi-Fi) - Gray - SM-X840NZAEXAR",
-      "category": "Phones",
+      "category": "Tablets",
       "price": 1399.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -6875,54 +6855,6 @@
       "low30": 1399.99,
       "high30": 1399.99,
       "typical30": 1399.99,
-      "historyDays": 1
-    },
-    {
-      "id": "samsung-galaxy-book6-enterprise-edition-16-0-u5--006w7",
-      "name": "SAMSUNG GALAXY BOOK6 ENTERPRISE EDITION 16.0 U5-325 (32GB 512GB) MOCHA GRAY (WIT",
-      "category": "Phones",
-      "price": 1956.99,
-      "previousPrice": null,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "Newegg price $1,956.99. Verified by the daily refresh — confirm the cart total before buying.",
-      "merchant": "Newegg",
-      "url": "https://www.newegg.com/p/1TS-0002-006W7",
-      "urlKind": "product",
-      "sku": "1TS-0002-006W7",
-      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V1DSD2607280UV7K561.jpg",
-      "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "autoSeeded": true,
-      "low30": 1956.99,
-      "high30": 1956.99,
-      "typical30": 1956.99,
-      "historyDays": 1
-    },
-    {
-      "id": "samsung-galaxy-buds4-pro-sm-r640--00525",
-      "name": "Samsung Galaxy Buds4 Pro SM-R640",
-      "category": "Phones",
-      "price": 249.99,
-      "previousPrice": null,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "Newegg price $249.99. Verified by the daily refresh — confirm the cart total before buying.",
-      "merchant": "Newegg",
-      "url": "https://www.newegg.com/p/0TH-005K-00525",
-      "urlKind": "product",
-      "sku": "0TH-005K-00525",
-      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/0TH-005K-00525-08.jpg",
-      "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "autoSeeded": true,
-      "low30": 249.99,
-      "high30": 249.99,
-      "typical30": 249.99,
       "historyDays": 1
     },
     {
@@ -15324,7 +15256,7 @@
     {
       "id": "edifier-r1280ts-powered-bookshelf-speakers-2-0-s--000y7",
       "name": "Edifier R1280Ts Powered Bookshelf Speakers - 2.0 Stereo Active Near Field Monitors - Studio Monitor Speaker - 42 Watts RMS with Subwoofer Line Out - Wooden",
-      "category": "Subwoofers",
+      "category": "Computer Speakers",
       "price": 169.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15351,7 +15283,7 @@
     {
       "id": "edifier-r1280dbs-active-bluetooth-bookshelf-spea--000y5",
       "name": "Edifier R1280DBs Active Bluetooth Bookshelf Speakers - Optical Input - 2.0 Wireless Studio Monitor Speaker - 42W RMS with Subwoofer Line Out - Wood Grain",
-      "category": "Subwoofers",
+      "category": "Computer Speakers",
       "price": 199.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15429,7 +15361,7 @@
     {
       "id": "edifier-r2000db-powered-bluetooth-bookshelf-spea--00018",
       "name": "Edifier R2000DB Powered Bluetooth Bookshelf Speakers - Near-Field Studio Monitors - Optical Input - 5 inch Subwoofer - 120 Watts RMS - Black",
-      "category": "Subwoofers",
+      "category": "Computer Speakers",
       "price": 399.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15453,7 +15385,7 @@
     {
       "id": "edifier-s351db-bluetooth-multi-media-bookshelf-s--00118",
       "name": "Edifier S351DB Bluetooth Multi-Media Bookshelf System with Subwoofer 150 Watts - Black - 4006807",
-      "category": "Subwoofers",
+      "category": "Computer Speakers",
       "price": 549.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15477,7 +15409,7 @@
     {
       "id": "edifier-d12-tabletop-speaker-integrated-desktop--00197",
       "name": "Edifier D12 Tabletop Speaker - Integrated Desktop Stereo Bluetooth Speaker - Wireless Computer Speaker for Desktop Use- 70 Watts RMS with Subwoofer Line Out - Black",
-      "category": "Subwoofers",
+      "category": "Computer Speakers",
       "price": 179.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15501,7 +15433,7 @@
     {
       "id": "edifier-qr65-active-monitor-speakers-with-65w-ga--001c8",
       "name": "Edifier QR65 Active Monitor Speakers with 65W GaN Fast Charger Function, 70W RMS Bluetooth Computer Speakers with Hi-Res 24bit Wireless Audio, Subwoofer Out and Light Effects (White)",
-      "category": "Subwoofers",
+      "category": "Computer Speakers",
       "price": 499.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15780,7 +15712,7 @@
     {
       "id": "edifier-s3000mkii-active-speakers-powered-wirele--00167",
       "name": "Edifier S3000MKII Active Speakers, Powered Wireless Bookshelf Speakers with Aluminum Diaphragm Mid-Bass Drivers and Planar Magnetic Tweeters, Bluetooth 5.0 and Hi-Res Audio",
-      "category": "Hi-Fi Speakers",
+      "category": "Computer Speakers",
       "price": 999.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15807,7 +15739,7 @@
     {
       "id": "edifier-r990bt-2-0-active-multimedia-speakers-bl--00199",
       "name": "Edifier R990BT 2.0 Active Multimedia Speakers - Bluetooth Bookshelf Speakers - Powered Studio Monitor Speaker - MDF Enclosure - 24W RMS (Pair)",
-      "category": "Hi-Fi Speakers",
+      "category": "Computer Speakers",
       "price": 109.99,
       "previousPrice": null,
       "lastPrice": null,
@@ -15879,7 +15811,7 @@
     {
       "id": "edifier-r2850db-3-way-active-speakers-150w-rms-t--001a0",
       "name": "Edifier R2850DB 3-Way Active Speakers, 150W RMS Tri-Amp Speaker, 3-Way Powered Bookshelf Speaker, 2.0 Active Studio Monitor Speakers, Bluetooth V5.1 Wireless Speaker with Sub-out, Black  Pair",
-      "category": "Hi-Fi Speakers",
+      "category": "Computer Speakers",
       "price": 499.99,
       "previousPrice": null,
       "lastPrice": null,
