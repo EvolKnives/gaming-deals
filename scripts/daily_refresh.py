@@ -335,6 +335,21 @@ def apply_offer(deal: dict[str, Any], prod: dict[str, Any], off: dict[str, Any],
         deal["why"] = why_line(off["price"], off["was"])
 
 
+COLOR_WORDS = re.compile(
+    r"\b(black|white|red|blue|green|pink|purple|orange|yellow|grey|gray|silver|gold|"
+    r"graphite|midnight|starlight|navy|teal|cyan|beige|cream|lilac|lavender|mint|"
+    r"deep|pulse|robot|carbon|velocity|shock|dark|light|matte|bright)\b",
+    re.I,
+)
+
+
+def product_key(title: str) -> str:
+    """Same product in a different colour → same key (dedupes colour variants)."""
+    t = re.sub(r"\([^)]{0,40}\)", " ", str(title).lower())
+    t = COLOR_WORDS.sub(" ", t)
+    return re.sub(r"\W+", "", t)[:50]
+
+
 def fits_category(d: dict[str, Any]) -> bool:
     spec = SEEDS.get(str(d.get("category")))
     if not spec:
@@ -471,12 +486,29 @@ def main() -> int:
         kept.append(d)
     deals = kept
 
+    # colour variants of one auto-seeded product: keep the best saving only
+    best: dict[tuple[str, str], dict[str, Any]] = {}
+    for d in deals:
+        if not d.get("autoSeeded") or is_upcoming(d, now):
+            continue
+        k = (str(d.get("category")), product_key(d.get("name", "")))
+        if k not in best or savings_pct(d) > savings_pct(best[k]):
+            best[k] = d
+    keep_ids = {id(v) for v in best.values()}
+    deduped = []
+    for d in deals:
+        if d.get("autoSeeded") and not is_upcoming(d, now) and id(d) not in keep_ids:
+            removed.append(f"{d.get('id')} (colour variant)")
+            continue
+        deduped.append(d)
+    deals = deduped
+
     # 4. seed
     added = 0
     if not args.no_seed and not throttled():
         have = {(d.get("sku") or "").upper() for d in deals} | {
             (sku_from_url(d.get("url", "")) or "") for d in deals}
-        names = {re.sub(r"\W+", "", d.get("name", "").lower())[:60] for d in deals}
+        names = {product_key(d.get("name", "")) for d in deals}
         counts = Counter(d.get("category") for d in deals if not is_upcoming(d, now))
         ids = {d.get("id") for d in deals}
         for cat, (queries, must, mustnot, floor) in SEEDS.items():
@@ -525,7 +557,7 @@ def main() -> int:
                         reject("low rating", title)
                         continue
                     sku = item_to_sku(p.get("ItemNumber", ""))
-                    key = re.sub(r"\W+", "", title.lower())[:60]
+                    key = product_key(title)
                     if not sku or sku in have or key in names:
                         reject("already listed", title)
                         continue

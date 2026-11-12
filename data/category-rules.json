@@ -232,7 +232,7 @@
         "wireless earbuds"
       ],
       "titleMust": "earbuds?|true wireless|in-ear",
-      "titleMustNot": "case only|tips|replacement|cable|charging case|cover|holder",
+      "titleMustNot": "case only|tips|replacement|cable|charging case|cover|holder|over-ear|on-ear",
       "minPrice": 15
     },
     {
@@ -243,7 +243,7 @@
         "portable speaker waterproof"
       ],
       "titleMust": "speakers?",
-      "titleMustNot": "sound ?bar|receiver|subwoofer|home theater|car |marine|mount|stand|bracket|cable|wire|in-wall|ceiling|grille",
+      "titleMustNot": "sound ?bar|receiver|subwoofer|home theater|car |marine|mount|stand|bracket|cable|wire|in-wall|ceiling|grille|monitor|\\btv\\b|television|laptop|notebook|headset|projector",
       "minPrice": 15
     },
     {
@@ -265,7 +265,7 @@
         "streaming webcam"
       ],
       "titleMust": "webcam|web cam|web camera",
-      "titleMustNot": "cover|mount|tripod|light|privacy",
+      "titleMustNot": "cover|mount|tripod|light|privacy|\\bcore (i[3579]|ultra)\\b|ryzen|\\b\\d+ ?gb (ram|memory|ddr\\d)\\b|\\bssd\\b",
       "minPrice": 15
     },
     {
@@ -289,7 +289,7 @@
         "gigabit network switch"
       ],
       "titleMust": "router|mesh|wi-?fi (6|6e|7)|access point|network switch|ethernet switch|wifi adapter|wireless adapter",
-      "titleMustNot": "\\bbits?\\b|plunge|wood|cable only|antenna only|mount",
+      "titleMustNot": "\\bbits?\\b|plunge|wood|cable only|antenna only|mount|managed|rack ?mount|\\b(16|24|48)-port\\b|poe\\+?",
       "minPrice": 20
     },
     {
@@ -326,7 +326,7 @@
         "amazon fire tablet"
       ],
       "titleMust": "tablet|\\bipad\\b|galaxy tab",
-      "titleMustNot": "drawing|pen display|graphics tablet|pen tablet|case|cover|protector|stylus|keyboard case|stand|holder|mount|charger|cable",
+      "titleMustNot": "drawing|pen display|graphics tablet|pen tablet|case|cover|protector|stylus|keyboard case|stand|holder|mount|charger|cable|cradle|dock|charging|mount",
       "minPrice": 60
     }
   ],
