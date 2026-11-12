@@ -1,6 +1,6 @@
 # What's A Good Deal?
 
-A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, cases, motherboards, RAM, SSDs, phones, laptops, power supplies, mice, keyboards, TVs, and home theater.
+A sparse, Apple-inspired static site that surfaces **current** prices on popular gaming-PC gear — GPUs, CPUs, monitors, cases, motherboards, RAM, SSDs, phones, prebuilt gaming PCs, laptops, power supplies, mice, keyboards, TVs, and home theater — plus upcoming, sourced sale prices on the Future tab.
 
 Live: **https://evolknives.github.io/gaming-deals/**
 
@@ -23,7 +23,7 @@ catalogue-only with a calm status line.
 - Config: `LIVE_SEARCH_URL` near the top of [`app.js`](app.js)
 - Deploy: see [`workers/live-search/README.md`](workers/live-search/README.md) (`npx wrangler login` once, then `npx wrangler deploy`)
 
-Pull-to-refresh still only reloads `data/deals.json` — no hourly client spam.
+Pull-to-refresh reloads `data/deals.json?t=…` with `cache: "no-store"` (the same cache-bust runs on a normal page load). After the tab has been hidden for more than 5 minutes, coming back also refetches quietly. The header shows **Updated X ago** from `deals.json` `updatedAt`.
 
 ## Local preview
 
@@ -37,26 +37,36 @@ Or any static server that serves the repo root.
 
 ## Updating deals
 
-### Automatic daily refresh (GitHub Actions)
+### Automatic hourly refresh (GitHub Actions)
 
-[`.github/workflows/daily-refresh.yml`](automation/daily-refresh.yml) (source kept in `automation/` until it is installed — the box token lacks the `workflow` scope) runs
-[`scripts/daily_refresh.py`](scripts/daily_refresh.py) every day at **14:00 UTC
-(6:00 AM Pacific standard time / 7:00 AM daylight time)** and can be run by hand
-from the Actions tab (*Run workflow*). It needs no secrets. Each run:
+[`.github/workflows/daily-refresh.yml`](.github/workflows/daily-refresh.yml)
+(`Hourly deals refresh`) runs [`scripts/daily_refresh.py`](scripts/daily_refresh.py)
+**every hour at minute 17** (`17 * * * *`, offset from top-of-hour congestion)
+and can be run by hand from the Actions tab (*Run workflow*). It needs no secrets. Each run:
 
-1. Re-verifies every Newegg deal (price, was-price, rating, stock) through Newegg's
+1. Re-verifies every *current* Newegg deal (price, was-price, rating, stock) through Newegg's
    public product-search JSON API — the same API the live Search Worker uses — and
-   Denon deals from the product page's JSON-LD.
-2. Drops anything that can't be verified for 3 days (out of stock, delisted, or a
-   retailer that blocks automated checks) and clears sale end dates that have passed.
-3. Tops each category back up to 10 with fresh, in-stock, best-discount Newegg listings.
-4. Commits `data/deals.json` (+ removed photos) and asks Pages to rebuild.
+   Denon deals from the product page's JSON-LD. Upcoming Future deals (`startsAt` still
+   in the future) are skipped and kept as announced.
+2. Drops anything that can't be verified for **3 calendar days** (not 3 job runs — still
+   three days even though the job is hourly). Sale end dates that have passed are cleared
+   on live, verifiable deals. After a Future deal's start date, it is promoted to the live
+   catalogue if the price can be verified, or kept until `endsAt` and then dropped.
+3. Tops each category back up to 10 with fresh, in-stock, best-discount Newegg listings
+   (Prebuilts require a real was-price / discount).
+4. Writes and commits `data/deals.json` (+ removed photos) **only when deal data
+   meaningfully changed** (prices, membership, sale dates). Timestamp-only
+   `updatedAt` / "checked" bumps are not committed, so the repo is not spammed with
+   24 identical commits a day. A Pages rebuild is requested only when a commit happened.
 
-If the Newegg API is unreachable the script exits without writing, so a bad run
-never wipes the site. Pull-to-refresh on the site picks up the new file.
+If the Newegg API is unreachable, or returns HTTP 403/429, the script exits without
+writing, so a throttled or bad run never wipes the site. Pull-to-refresh on the site
+picks up the new file after a successful commit.
 
-To add a deal from a retailer the job can't verify (Amazon, Best Buy, Crutchfield…),
+To add a current deal from a retailer the job can't verify (Amazon, Best Buy, Crutchfield…),
 add it by hand — it will be pruned after 3 days unless the job can re-verify it.
+Upcoming announced sales should include `startsAt` (and `endsAt` / `sourceUrl` when known)
+so the hourly job keeps them until the sale starts.
 
 
 ### Dynamic catalogue refresh
@@ -146,7 +156,7 @@ Cards show a small green “Dropped” / “↓ $X” pill when the current `pri
 - `dropAmount` — optional dollars fallen since last refresh.
 - **Dropped pill (UI)** — shown when `price < previousPrice` (below list/MSRP) **or** `priceDropped` (down since last check). Meaning: below list/MSRP or down since last check.
 
-Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Cases`, `Motherboards`, `RAM`, `SSDs`, `Mice`, `Keyboards` (plus `All` / `Future` / Search). Map legacy singular labels (GPU→GPUs, Case→Cases, Power Supply→PSUs, Mouse→Mice, etc.) when editing.
+Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Cases`, `Motherboards`, `RAM`, `SSDs`, `Phones`, `Prebuilts`, `Laptops`, `Mice`, `Keyboards` (plus `All` / `Future` / Search). Map legacy singular labels (GPU→GPUs, Case→Cases, Power Supply→PSUs, Mouse→Mice, Prebuilt→Prebuilts, etc.) when editing.
 
 
 ### Inspiration UI (client-side)
@@ -158,7 +168,7 @@ Cards also show:
 - **Budget ladder** — Under $50 / $50–150 / $150–400 / $400+ chips sit under categories and AND with the category filter.
 - **Freshness / ends-at** — “Checked …” from deal `updatedAt` or site `updatedAt`; countdown only when `endsAt` is present (never invent end dates). Soft **Ending soon** badge when `endsAt` is within 48h.
 - **Product rating** — compact `★ 4.3` / `★ 4.3 · 1.2k` on the card when `rating` was scraped from the product page (never invent scores; omit when blocked/missing).
-- **Future tab** — filter chip listing deals with `startsAt` between 1 day and 1 month ahead. Empty copy: “No upcoming deals found yet.” Never invent start dates.
+- **Future tab** — filter chip listing deals whose `startsAt` is still in the future, up to 30 days ahead. Empty copy: “No upcoming deals found yet.” Never invent start dates or prices; announced Future deals should include `sourceUrl` / `sourceName` when the price comes from an ad or announcement.
 
 Optional deal fields for richer UI (all optional; omit when unknown):
 - `priceHistory` — array of numbers or `{ price }` objects

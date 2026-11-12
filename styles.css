@@ -1045,6 +1045,23 @@ a {
   overflow-wrap: anywhere;
 }
 
+.deal-card__source {
+  margin: -0.75rem 0 1.15rem;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+}
+
+.deal-card__source a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.deal-card__source a:hover,
+.deal-card__source a:focus-visible {
+  text-decoration: underline;
+}
+
 .deal-card__actions {
   display: flex;
   flex-wrap: wrap;

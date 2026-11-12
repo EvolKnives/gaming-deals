@@ -1,21 +1,26 @@
 #!/usr/bin/env python3
 """
-Daily automated refresh for What's A Good Deal?  (runs in GitHub Actions)
+Hourly automated refresh for What's A Good Deal?  (runs in GitHub Actions)
 
 What it does, without a human:
-  1. Re-verifies every Newegg deal against Newegg's public product-search
+  1. Re-verifies every current Newegg deal against Newegg's public product-search
      JSON API (the same API the live Search Worker uses). Price, was-price,
      rating and stock come straight from Newegg — never invented.
   2. Re-verifies Denon deals from the product page's schema.org JSON-LD.
-  3. Prunes anything that could not be verified within STALE_DAYS (retailers
-     that block automated checks, discontinued / out-of-stock listings),
-     and clears sale end dates that have already passed.
+  3. Prunes anything that could not be verified within STALE_DAYS calendar
+     days (not job runs — still 3 days even when this job is hourly). Upcoming
+     Future deals (startsAt still in the future) are kept without a Newegg
+     price check. Once the sale starts they are moved to the live catalogue
+     if verifiable, or kept until endsAt and then dropped.
   4. Tops every category back up with fresh, discounted, in-stock Newegg
      listings so the catalogue keeps rotating.
-  5. Stamps updatedAt / weekLabel / lastRefresh and deletes orphaned photos.
+  5. Stamps updatedAt / weekLabel / lastRefresh and deletes orphaned photos
+     only when deal data meaningfully changed (prices, membership, dates) —
+     timestamp-only bumps are not written, so hourly runs do not spam commits.
 
-Safety: if the Newegg API is unreachable (0 verified), it exits non-zero and
-writes nothing, so a bad run can never wipe the site.
+Safety: if the Newegg API is unreachable, or returns 403/429, the script
+exits non-zero and writes nothing, so a bad or throttled run can never wipe
+the site.
 
 Usage:
   python3 scripts/daily_refresh.py
@@ -47,7 +52,7 @@ UA = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 )
-STALE_DAYS = 3          # drop deals not re-verified for this long
+STALE_DAYS = 3          # drop unverifiable deals after this many calendar days (not runs)
 TARGET_PER_CAT = 10     # top categories up to this many deals
 MAX_PER_CAT = 16        # trim weakest (no discount) beyond this
 MIN_RATING = 3.5        # skip poorly rated seeds (unrated allowed)
@@ -91,6 +96,20 @@ SEEDS: dict[str, tuple[list[str], str, str | None, float]] = {
                 r"(laptop|notebook).*(gaming|rtx|rog|legion|omen|predator|alienware|tuf|nitro|katana|cyborg|raider|vector|stealth|strix|zephyrus)"
                 r"|(gaming|rtx|rog|legion|omen|predator|alienware|tuf|nitro|katana|cyborg|raider|vector|stealth|strix|zephyrus).*(laptop|notebook)",
                 r"bag|sleeve|stand|cooling pad|charger|adapter|skin|thinkpad", 400),
+    "Prebuilts": (
+        ["cyberpowerpc gaming desktop", "ibuypower gaming desktop", "skytech gaming desktop",
+         "msi gaming desktop rtx", "asus gaming desktop rtx", "hp omen gaming desktop",
+         "lenovo legion tower", "alienware aurora desktop", "acer nitro gaming desktop",
+         "abs prebuilt gaming pc", "thermaltake gaming desktop", "prebuilt gaming desktop rtx"],
+        r"(?=.*\b(cyberpower(?:pc)?|ibuypower|skytech|\bmsi\b|asus|\brog\b|\bhp\b|omen|lenovo|legion|"
+        r"nzxt|alienware|acer|predator|corsair|thermaltake|\babs\b|zotac|dell|gigabyte|aorus|starforge)\b)"
+        r"(?=.*\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)|gaming\s+desktop|"
+        r"(desktop|tower)\s+(pc|computer)|desktop\s+computer)\b)"
+        r"(?=.*\b(rtx|geforce|radeon|rx\s*\d{3,4})\b)",
+        r"laptop|notebook|chromebook|macbook|bare-?bones?|mini[\s-]?pc|\bnuc\b|office(\s+pc)?|"
+        r"business\s+(desktop|pc)|pc\s*case|computer\s*case|gaming\s*pc\s*case|motherboard|\bchassis\b",
+        600,
+    ),
     "Mice": (["wireless gaming mouse", "gaming mouse"], r"\bmouse\b|\bmice\b", r"pad|mat|bungee|feet|grip tape", 20),
     "Keyboards": (["mechanical gaming keyboard", "wireless mechanical keyboard"],
                   r"keyboard", r"bundle|combo|keycaps? only|wrist rest|switches only|piano|tablet case|mouse", 30),
@@ -114,6 +133,28 @@ def parse_iso(s: Any) -> datetime | None:
         return None
 
 
+def is_upcoming(d: dict[str, Any], now: datetime) -> bool:
+    """True when startsAt is still in the future (Future-tab deals)."""
+    st = parse_iso(d.get("startsAt"))
+    return st is not None and st > now
+
+
+def catalogue_fingerprint(data: dict[str, Any]) -> str:
+    """Stable snapshot of deal contents, ignoring check-time stamps."""
+    rows = []
+    for d in data.get("deals") or []:
+        rows.append({
+            k: d.get(k)
+            for k in (
+                "id", "name", "category", "price", "previousPrice", "lastPrice",
+                "priceDropped", "url", "sku", "merchant", "startsAt", "endsAt",
+                "promoCode", "image", "sourceUrl",
+            )
+        })
+    rows.sort(key=lambda r: str(r.get("id") or ""))
+    return json.dumps(rows, sort_keys=True, default=str)
+
+
 # ---------------------------------------------------------------- Newegg API
 class Newegg:
     def __init__(self) -> None:
@@ -124,6 +165,7 @@ class Newegg:
         })
         self.calls = 0
         self.ok_calls = 0
+        self.rate_limited = None  # HTTP 403/429, if the API asked us to back off
 
     def search(self, query: str, order: int = 8, page: int = 1) -> list[dict[str, Any]]:
         body = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
@@ -133,6 +175,9 @@ class Newegg:
             self.calls += 1
             try:
                 r = self.s.post(MCP_URL, json=body, timeout=30)
+                if r.status_code in (403, 429):
+                    self.rate_limited = r.status_code
+                    return []
                 if r.status_code == 200:
                     rpc = r.json()
                     text = (((rpc.get("result") or {}).get("content") or [{}])[0]).get("text")
@@ -315,17 +360,32 @@ def main() -> int:
     data = json.loads(DEALS_PATH.read_text(encoding="utf-8"))
     deals: list[dict[str, Any]] = list(data.get("deals") or [])
     before = len(deals)
+    before_fp = catalogue_fingerprint(data)
     now = now_utc()
     stamp = iso(now)
     api = Newegg()
     stats: Counter = Counter()
     removed: list[str] = []
 
-    # 1-2. re-verify
+    def abort_if_throttled() -> bool:
+        if not api.rate_limited:
+            return False
+        print(
+            f"Newegg returned HTTP {api.rate_limited} — aborting without writing.",
+            file=sys.stderr,
+        )
+        return True
+
+    # 1-2. re-verify current listings only (upcoming Future deals are not Newegg-checked)
     for d in deals:
+        if is_upcoming(d, now):
+            stats["upcoming_kept"] += 1
+            continue
         merchant = d.get("merchant")
         if merchant == "Newegg":
             res = verify_newegg(api, d)
+            if abort_if_throttled():
+                return 2
             if res is None:
                 stats["newegg_not_found"] += 1
             elif res["offer"] is None:
@@ -344,16 +404,46 @@ def main() -> int:
                 stats["denon_verified"] += 1
         time.sleep(0.2)
 
+    if abort_if_throttled():
+        return 2
     if api.ok_calls == 0:
         print("Newegg API unreachable — aborting without writing.", file=sys.stderr)
         return 2
 
     # 3. prune
+    # STALE_DAYS is calendar days, not hourly runs — a deal must stay unverifiable
+    # for 3 days before it is dropped.
     cutoff = now - timedelta(days=STALE_DAYS)
     kept = []
     for d in deals:
         last = parse_iso(d.get("verifiedAt"))
-        if d.pop("_unavailable", False):
+        starts = parse_iso(d.get("startsAt"))
+        ends = parse_iso(d.get("endsAt"))
+        upcoming = starts is not None and starts > now
+        started = starts is not None and starts <= now
+        unavailable = d.pop("_unavailable", False)
+
+        if upcoming:
+            kept.append(d)
+            continue
+
+        # Sale started but still cannot be verified: keep until endsAt (or
+        # STALE_DAYS after the start if no end date), then drop.
+        unverifiable = unavailable or last is None or last < cutoff
+        if unverifiable and started:
+            if ends and ends > now:
+                kept.append(d)
+                continue
+            if ends and ends <= now:
+                removed.append(f"{d.get('id')} (sale ended, unverifiable)")
+                continue
+            if now < starts + timedelta(days=STALE_DAYS):
+                kept.append(d)
+                continue
+            removed.append(f"{d.get('id')} (unverified after sale start)")
+            continue
+
+        if unavailable:
             removed.append(f"{d.get('id')} (out of stock)")
             continue
         if last is None or last < cutoff:
@@ -362,12 +452,12 @@ def main() -> int:
         if d.get("autoSeeded") and not fits_category(d):
             removed.append(f"{d.get('id')} (no longer matches {d.get('category')} filters)")
             continue
-        ends = parse_iso(d.get("endsAt"))
+        if started:
+            # Now a live, verifiable deal — leave the Future tab.
+            d.pop("startsAt", None)
+            stats["promoted_from_future"] += 1
         if ends and ends < now:
             d.pop("endsAt", None)
-            st = parse_iso(d.get("startsAt"))
-            if st and st < now:
-                d.pop("startsAt", None)
             stats["expired_dates_cleared"] += 1
         kept.append(d)
     deals = kept
@@ -378,7 +468,7 @@ def main() -> int:
         have = {(d.get("sku") or "").upper() for d in deals} | {
             (sku_from_url(d.get("url", "")) or "") for d in deals}
         names = {re.sub(r"\W+", "", d.get("name", "").lower())[:60] for d in deals}
-        counts = Counter(d.get("category") for d in deals)
+        counts = Counter(d.get("category") for d in deals if not is_upcoming(d, now))
         ids = {d.get("id") for d in deals}
         for cat, (queries, must, mustnot, floor) in SEEDS.items():
             need = TARGET_PER_CAT - counts[cat]
@@ -393,6 +483,8 @@ def main() -> int:
                     off = offer(p)
                     if not title or off is None or off["price"] < floor:
                         continue
+                    if cat == "Prebuilts" and not off["was"]:
+                        continue
                     if not must_re.search(title) or (not_re and not_re.search(title)) or BAD_TITLE.search(title):
                         continue
                     if off["rating"] is not None and off["rating"] < MIN_RATING:
@@ -404,6 +496,8 @@ def main() -> int:
                     if not image_url(p):
                         continue
                     cands.append((p, off, sku, title, key))
+                if abort_if_throttled():
+                    return 2
                 time.sleep(0.3)
             # discounted first, then classic Newegg SKUs, then ratings
             cands.sort(key=lambda c: (
@@ -444,9 +538,11 @@ def main() -> int:
                 added += 1
                 print(f"  + [{cat}] ${off['price']:,.2f} {title[:70]}")
 
-    # trim oversized categories: drop weakest (smallest discount) beyond MAX
+    # trim oversized live categories only — upcoming Future deals are kept aside
+    upcoming_deals = [d for d in deals if is_upcoming(d, now)]
+    live_deals = [d for d in deals if not is_upcoming(d, now)]
     by_cat: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    for d in deals:
+    for d in live_deals:
         by_cat[str(d.get("category"))].append(d)
     trimmed = []
     for cat, lst in by_cat.items():
@@ -454,22 +550,32 @@ def main() -> int:
         trimmed.extend(lst[:MAX_PER_CAT])
         for d in lst[MAX_PER_CAT:]:
             removed.append(f"{d.get('id')} (category trim)")
-    deals = trimmed
+    deals = trimmed + upcoming_deals
+
+    last_refresh = {
+        "at": stamp, "source": "hourly_refresh", "before": before, "after": len(deals),
+        "added": added, "removed": len(removed), **dict(stats),
+        "apiCalls": api.calls,
+    }
+    print(json.dumps(last_refresh, indent=2))
+    for r in removed:
+        print("  -", r)
+    print("Per category:", dict(Counter(d["category"] for d in deals)))
+    print("Upcoming/Future:", sum(1 for d in deals if is_upcoming(d, now)))
+
+    proposed = dict(data)
+    proposed["deals"] = deals
+    meaningful = catalogue_fingerprint(proposed) != before_fp
+    if not meaningful:
+        print("No meaningful deal changes — not writing (skips hourly timestamp-only commits).")
+        return 0
 
     data["deals"] = deals
     data["updatedAt"] = stamp
     data["weekLabel"] = week_label_now(now)
     data["catalogueRevision"] = int(data.get("catalogueRevision", 0)) + 1
-    data["lastRefresh"] = {
-        "at": stamp, "source": "daily_refresh", "before": before, "after": len(deals),
-        "added": added, "removed": len(removed), **dict(stats),
-        "apiCalls": api.calls,
-    }
+    data["lastRefresh"] = last_refresh
 
-    print(json.dumps(data["lastRefresh"], indent=2))
-    for r in removed:
-        print("  -", r)
-    print("Per category:", dict(Counter(d["category"] for d in deals)))
     if args.dry_run:
         return 0
 

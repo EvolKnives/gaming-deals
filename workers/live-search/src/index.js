@@ -39,6 +39,7 @@ const CATEGORY_HINTS = [
   { re: /\b(headset|headphones?|earbuds?|earphones?|earpiece|earbuds)\b/i, cat: "Home Theater" },
   { re: /\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|gaming\s*console|game\s*console|wireless\s*controller|game\s*controller|gamepad)\b/i, cat: "Other" },
   { re: /\b(macbook|laptop|notebook|chromebook)\b/i, cat: "Laptops" },
+  { re: /\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)\b|gaming\s+desktop|desktop\s+(pc|computer)\b)(?![\s-]*(case|chassis|motherboard))/i, cat: "Prebuilts" },
   { re: /\b(rtx|gtx|radeon\s*rx|geforce|graphics\s*card|\bgpu\b|intel\s*arc|arc\s*a\d{3})\b/i, cat: "GPUs" },
   { re: /\b(ryzen|core\s*ultra|core\s*i[3579]|\bcpu\b|threadripper)\b/i, cat: "CPUs" },
   { re: /\b(monitor|ultrawide|gaming\s*display)\b/i, cat: "Monitors" },
@@ -636,6 +637,7 @@ function getQueryIntent(query) {
   if (/^(ram|ddr4|ddr5|ddr)$/.test(q) || /^desktop\s+memory$/.test(q)) return "ram";
   if (/^(ssd|ssds|nvme)$/.test(q) || /^solid\s+state/.test(q)) return "ssds";
   if (/^(laptop|laptops|notebook|notebooks|macbook|chromebook)$/.test(q)) return "laptops";
+  if (/^(prebuilt|prebuilts)$/.test(q) || /^pre\s*built/.test(q) || /^(gaming\s+)?desktops?$/.test(q) || /^gaming\s+pcs?$/.test(q)) return "prebuilts";
   if (/^(mouse|mice)$/.test(q)) return "mice";
   if (/^(keyboard|keyboards)$/.test(q)) return "keyboards";
   if (/^(headset|headsets|headphone|headphones)$/.test(q)) return "headset";
@@ -684,6 +686,10 @@ function titleLooksLikeIntent(title, intent) {
   }
   if (intent === "laptops") {
     return /\b(laptop|notebook|macbook|chromebook)\b/i.test(hay);
+  }
+  if (intent === "prebuilts") {
+    if (/\b(laptop|notebook|chromebook|macbook|motherboard|pc\s*case|computer\s*case)\b/i.test(hay)) return false;
+    return /\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)|gaming\s+desktop|desktop\s+(pc|computer)|gaming\s+tower)\b/i.test(hay);
   }
   if (intent === "mice") {
     if (!/\b(mouse|mice)\b/i.test(hay)) return false;
@@ -934,7 +940,7 @@ function amazonDepartment(query) {
     return "electronics";
   }
   if (intent === "console") return "videogames";
-  if (intent === "laptops") return "computers";
+  if (intent === "laptops" || intent === "prebuilts") return "computers";
   return "";
 }
 
@@ -1182,6 +1188,7 @@ function inferCategory(text, query) {
     ram: "RAM",
     ssds: "SSDs",
     laptops: "Laptops",
+    prebuilts: "Prebuilts",
     mice: "Mice",
     keyboards: "Keyboards",
     headset: "Home Theater",

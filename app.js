@@ -31,6 +31,8 @@
   var recentSearches = [];
   var searchDebounceTimer = null;
   var siteUpdatedAt = null;
+  var lastDealsFetchAt = 0;
+  var VISIBILITY_REFRESH_MS = 5 * 60 * 1000;
   var loadingDeals = false;
   var pullStartY = 0;
   var pullStartX = 0;
@@ -70,6 +72,7 @@
     "RAM",
     "SSDs",
     "Phones",
+    "Prebuilts",
     "Laptops",
     "Mice",
     "Keyboards"
@@ -126,6 +129,16 @@
     Notebooks: "Laptops",
     MacBook: "Laptops",
     MacBooks: "Laptops",
+    Prebuilt: "Prebuilts",
+    Prebuilts: "Prebuilts",
+    "Prebuilt PC": "Prebuilts",
+    "Prebuilt PCs": "Prebuilts",
+    "Gaming PC": "Prebuilts",
+    "Gaming PCs": "Prebuilts",
+    "Gaming Desktop": "Prebuilts",
+    "Gaming Desktops": "Prebuilts",
+    Desktop: "Prebuilts",
+    Desktops: "Prebuilts",
     Headset: "Home Theater",
     Headsets: "Home Theater",
     Headphone: "Home Theater",
@@ -325,16 +338,25 @@
   function formatUpdated(iso) {
     var d = new Date(iso);
     if (Number.isNaN(d.getTime())) return "Updated recently";
+    var diffMs = Date.now() - d.getTime();
+    if (diffMs < 0) diffMs = 0;
+    var mins = Math.floor(diffMs / 60000);
+    if (mins < 1) return "Updated just now";
+    if (mins === 1) return "Updated 1 minute ago";
+    if (mins < 60) return "Updated " + mins + " minutes ago";
+    var hours = Math.floor(mins / 60);
+    if (hours === 1) return "Updated 1 hour ago";
+    if (hours < 24) return "Updated " + hours + " hours ago";
+    var days = Math.floor(hours / 24);
+    if (days === 1) return "Updated 1 day ago";
+    if (days < 7) return "Updated " + days + " days ago";
     return (
       "Updated " +
       d.toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
-        hour: "numeric",
-        minute: "2-digit",
         timeZone: "America/Los_Angeles"
-      }) +
-      " PT"
+      })
     );
   }
 
@@ -427,14 +449,14 @@
     );
   }
 
-  /** Upcoming promo: startsAt between +1 day and +30 days from now. */
+  /** Upcoming promo: startsAt is still in the future, up to 30 days ahead. */
   function isFutureDeal(deal) {
     if (!deal || !deal.startsAt) return false;
     var t = new Date(deal.startsAt).getTime();
     if (Number.isNaN(t)) return false;
     var now = Date.now();
     var day = 24 * 60 * 60 * 1000;
-    return t >= now + day && t <= now + 30 * day;
+    return t > now && t <= now + 30 * day;
   }
 
   function endsWithinMs(deal, ms) {
@@ -765,6 +787,8 @@
     keyboards: ["keyboards", "keyboard"],
     laptop: ["laptop", "notebook", "macbook", "chromebook"],
     laptops: ["laptop", "notebook", "macbook", "chromebook"],
+    prebuilt: ["prebuilt", "pre-built", "gaming desktop", "gaming pc", "desktop pc"],
+    prebuilts: ["prebuilt", "pre-built", "gaming desktop", "gaming pc", "desktop pc"],
     xbox: ["xbox"],
     playstation: ["playstation", "ps5", "ps4"],
     console: ["console", "xbox", "playstation", "switch"],
@@ -783,6 +807,8 @@
     if (/^(ram|ddr4|ddr5|ddr)$/.test(q) || /^desktop\s+memory$/.test(q)) return "RAM";
     if (/^(ssd|ssds|nvme)$/.test(q) || /^solid\s+state/.test(q)) return "SSDs";
     if (/^(laptop|laptops|notebook|notebooks|macbook|chromebook)$/.test(q)) return "Laptops";
+    if (/^(prebuilt|prebuilts)$/.test(q) || /^pre\s*built/.test(q) || /^gaming\s+pcs?$/.test(q) || /^(gaming\s+)?desktops?$/.test(q))
+      return "Prebuilts";
     if (/^(mouse|mice)$/.test(q)) return "Mice";
     if (/^(keyboard|keyboards)$/.test(q)) return "Keyboards";
     if (/^(headset|headsets|headphone|headphones)$/.test(q)) return "Home Theater";
@@ -825,6 +851,10 @@
       return true;
     }
     if (intent === "Laptops") return /\b(laptop|notebook|macbook|chromebook)\b/i.test(hay);
+    if (intent === "Prebuilts") {
+      if (/\b(laptop|notebook|chromebook|macbook|motherboard|pc\s*case|computer\s*case)\b/i.test(hay)) return false;
+      return /\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)|gaming\s+desktop|desktop\s+(pc|computer)|gaming\s+tower)\b/i.test(hay);
+    }
     if (intent === "Mice") return /\b(mouse|mice)\b/i.test(hay);
     if (intent === "Keyboards") return /\b(keyboard|keychron)\b/i.test(hay);
     if (intent === "Home Theater") {
@@ -1257,6 +1287,9 @@
              !/\b(headset|headphones?)\b/i.test(name))
       guessed = "Other";
     else if (/\b(macbook|laptop|notebook|chromebook)\b/i.test(name)) guessed = "Laptops";
+    else if (/\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)|gaming\s+desktop|desktop\s+(pc|computer))\b/i.test(name) &&
+             !/\b(pc\s*case|computer\s*case|motherboard)\b/i.test(name))
+      guessed = "Prebuilts";
     else if (/\b(geforce|radeon|rtx\s*\d|gtx\s*\d|graphics\s*card|\bgpu\b)\b/i.test(name) &&
              !/\b(laptop|notebook)\b/i.test(name))
       guessed = "GPUs";
@@ -1808,6 +1841,13 @@
       '<p class="deal-card__why">' +
       escapeHtml(deal.why || "") +
       "</p>" +
+      (deal.sourceUrl
+        ? '<p class="deal-card__source">Source: <a href="' +
+          escapeAttr(deal.sourceUrl) +
+          '" target="_blank" rel="noopener noreferrer">' +
+          escapeHtml(deal.sourceName || "announcement") +
+          "</a></p>"
+        : "") +
       '<div class="deal-card__actions">' +
       '<a class="deal-card__cta" href="' +
       escapeAttr(deal.url) +
@@ -2075,8 +2115,20 @@
     if (shouldRefresh) loadDeals(true);
   }
 
-  function dataUrl(cacheBust) {
-    return cacheBust ? "data/deals.json?refresh=" + Date.now() : "data/deals.json";
+  function dataUrl() {
+    return "data/deals.json?t=" + Date.now();
+  }
+
+  function tabFromUrl() {
+    try {
+      var t = new URLSearchParams(location.search || "").get("tab");
+      if (!t) return "";
+      t = String(t).trim();
+      if (t === "Future" || t === "All" || t === SEARCH_MODE) return t;
+      return normalizeCategory(t) || t;
+    } catch (e) {
+      return "";
+    }
   }
 
   function applyDealsData(data) {
@@ -2087,32 +2139,36 @@
       return copy;
     });
     if (weekLabelEl) {
-      weekLabelEl.textContent =
-        data.weekLabel ||
-        (data.updatedAt ? formatUpdated(data.updatedAt) : "Updated recently");
+      weekLabelEl.textContent = data.updatedAt
+        ? formatUpdated(data.updatedAt)
+        : data.weekLabel || "Updated recently";
     }
     if (data.title) SITE_TITLE = data.title;
+    var urlTab = tabFromUrl();
+    if (urlTab) activeFilter = urlTab;
     renderFilters(allDeals);
     renderDeals(allDeals);
   }
 
-  function loadDeals(isRefresh) {
+  function loadDeals(isRefresh, opts) {
     if (loadingDeals) return Promise.resolve(false);
+    var quiet = !!(opts && opts.quiet);
     loadingDeals = true;
     var previousUpdatedAt = siteUpdatedAt;
-    if (isRefresh) {
+    if (isRefresh && !quiet) {
       setPullIndicator(72, "refreshing");
       dealsEl.setAttribute("aria-busy", "true");
     }
 
-    return fetch(dataUrl(!!isRefresh), { cache: "no-store" })
+    return fetch(dataUrl(), { cache: "no-store" })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
       })
       .then(function (data) {
         applyDealsData(data);
-        if (isRefresh) {
+        lastDealsFetchAt = Date.now();
+        if (isRefresh && !quiet) {
           var changed = previousUpdatedAt !== siteUpdatedAt;
           showToast(changed ? "Updated" : "Already up to date");
         }
@@ -2121,7 +2177,7 @@
       .catch(function () {
         if (isRefresh) {
           dealsEl.setAttribute("aria-busy", "false");
-          showToast("Couldn’t update — showing current deals");
+          if (!quiet) showToast("Couldn’t update — showing current deals");
           return false;
         }
         if (statusEl) {
@@ -2133,9 +2189,15 @@
       })
       .then(function (ok) {
         loadingDeals = false;
-        if (isRefresh) setPullIndicator(0, "idle");
+        if (isRefresh && !quiet) setPullIndicator(0, "idle");
         return ok;
       });
+  }
+
+  function maybeRefreshOnReveal() {
+    if (document.visibilityState && document.visibilityState !== "visible") return;
+    if (!lastDealsFetchAt || Date.now() - lastDealsFetchAt < VISIBILITY_REFRESH_MS) return;
+    loadDeals(true, { quiet: true });
   }
 
   function init() {
@@ -2162,6 +2224,8 @@
     window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
     window.addEventListener("touchcancel", resetPullGesture, { passive: true });
+    document.addEventListener("visibilitychange", maybeRefreshOnReveal);
+    window.addEventListener("focus", maybeRefreshOnReveal);
     loadDeals(false);
   }
 

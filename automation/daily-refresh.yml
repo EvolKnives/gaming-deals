@@ -1,12 +1,14 @@
-name: Daily deals refresh
+name: Hourly deals refresh
 
-# Re-verifies every deal's price against the retailer, prunes dead/unverifiable
-# listings, tops categories back up with fresh Newegg deals, and commits
-# data/deals.json so GitHub Pages redeploys. Once a day — no hourly churn.
+# Re-verifies current prices, prunes dead/unverifiable listings (after 3
+# calendar days, not 3 runs), tops categories back up, keeps upcoming Future
+# deals without a Newegg check, and commits data/deals.json only when deal
+# data meaningfully changed — so hourly runs do not spam timestamp-only
+# commits or GitHub Pages rebuilds.
 on:
   schedule:
-    # 14:00 UTC = 6:00 AM Pacific (standard time) / 7:00 AM during daylight time
-    - cron: "0 14 * * *"
+    # Minute 17 past every hour, to avoid top-of-hour congestion.
+    - cron: "17 * * * *"
   workflow_dispatch: {}
 
 permissions:
@@ -14,7 +16,7 @@ permissions:
   pages: write
 
 concurrency:
-  group: daily-refresh
+  group: hourly-refresh
   cancel-in-progress: false
 
 jobs:
@@ -44,7 +46,8 @@ jobs:
           for x in deals:
               assert x.get("url", "").startswith("http"), x.get("id")
               assert isinstance(x.get("price"), (int, float)) and x["price"] > 0, x.get("id")
-          print(f"OK: {len(deals)} deals, updatedAt {d['updatedAt']}")
+          future = [x for x in deals if x.get("startsAt")]
+          print(f"OK: {len(deals)} deals, {len(future)} with startsAt, updatedAt {d['updatedAt']}")
           PY
 
       - name: Commit and push
@@ -56,7 +59,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
           fi
-          git commit -m "Daily deals refresh $(date -u +%Y-%m-%d)"
+          git commit -m "Hourly deals refresh $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
