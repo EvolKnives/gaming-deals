@@ -1,0 +1,68 @@
+name: Daily deals refresh
+
+# Re-verifies every deal's price against the retailer, prunes dead/unverifiable
+# listings, tops categories back up with fresh Newegg deals, and commits
+# data/deals.json so GitHub Pages redeploys. Once a day — no hourly churn.
+on:
+  schedule:
+    # 14:00 UTC = 6:00 AM Pacific (standard time) / 7:00 AM during daylight time
+    - cron: "0 14 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: daily-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Refresh deals
+        run: python scripts/daily_refresh.py
+
+      - name: Validate deals.json
+        run: |
+          python - <<'PY'
+          import json
+          d = json.load(open("data/deals.json"))
+          deals = d["deals"]
+          assert len(deals) >= 40, f"only {len(deals)} deals — refusing to publish"
+          for x in deals:
+              assert x.get("url", "").startswith("http"), x.get("id")
+              assert isinstance(x.get("price"), (int, float)) and x["price"] > 0, x.get("id")
+          print(f"OK: {len(deals)} deals, updatedAt {d['updatedAt']}")
+          PY
+
+      - name: Commit and push
+        id: commit
+        run: |
+          git config user.name "deals-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data images
+          if git diff --cached --quiet; then
+            echo "No changes"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          git commit -m "Daily deals refresh $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Rebuild GitHub Pages
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request failed (push should still trigger it)"

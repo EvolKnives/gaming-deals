@@ -37,6 +37,28 @@ Or any static server that serves the repo root.
 
 ## Updating deals
 
+### Automatic daily refresh (GitHub Actions)
+
+[`.github/workflows/daily-refresh.yml`](automation/daily-refresh.yml) (source kept in `automation/` until it is installed — the box token lacks the `workflow` scope) runs
+[`scripts/daily_refresh.py`](scripts/daily_refresh.py) every day at **14:00 UTC
+(6:00 AM Pacific standard time / 7:00 AM daylight time)** and can be run by hand
+from the Actions tab (*Run workflow*). It needs no secrets. Each run:
+
+1. Re-verifies every Newegg deal (price, was-price, rating, stock) through Newegg's
+   public product-search JSON API — the same API the live Search Worker uses — and
+   Denon deals from the product page's JSON-LD.
+2. Drops anything that can't be verified for 3 days (out of stock, delisted, or a
+   retailer that blocks automated checks) and clears sale end dates that have passed.
+3. Tops each category back up to 10 with fresh, in-stock, best-discount Newegg listings.
+4. Commits `data/deals.json` (+ removed photos) and asks Pages to rebuild.
+
+If the Newegg API is unreachable the script exits without writing, so a bad run
+never wipes the site. Pull-to-refresh on the site picks up the new file.
+
+To add a deal from a retailer the job can't verify (Amazon, Best Buy, Crutchfield…),
+add it by hand — it will be pruned after 3 days unless the job can re-verify it.
+
+
 ### Dynamic catalogue refresh
 
 The catalogue still lives in static `data/deals.json` on GitHub Pages. **Search** also calls the live Worker when configured (`LIVE_SEARCH_URL`). To make the catalogue change over time (and so queries like “computer cases” return hits), refresh the JSON on a machine that can fetch retailer pages, then push:
@@ -77,9 +99,9 @@ python3 scripts/heal_images.py             # photos only
 
 6. Commit and push to `main`. Pages will pick up `data/deals.json` within a minute or two.
 
-### Hourly deals refresh (intent)
+### Manual re-verification notes
 
-An automated (or agent-driven) hourly refresh should re-verify each deal URL.
+A manual or agent-driven refresh should re-verify each deal URL.
 
 Prefer **product-page URLs** for price checks — search result pages are harder to scrape and more often blocked. Run `scripts/fix_product_links.py` when adding deals so CTAs stay on PDPs.
 
