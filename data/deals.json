@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-11-12T06:48:13Z",
+  "updatedAt": "2026-11-12T07:17:01Z",
   "weekLabel": "Week of Nov 9",
   "title": "What's A Good Deal?",
-  "catalogueRevision": 18,
+  "catalogueRevision": 19,
   "lastRefresh": {
-    "at": "2026-11-12T06:48:13Z",
+    "at": "2026-11-12T07:17:01Z",
     "source": "hourly_refresh",
     "before": 267,
     "after": 267,
     "added": 0,
     "removed": 0,
-    "newegg_verified": 247,
-    "newegg_not_found": 7,
+    "newegg_verified": 252,
+    "newegg_not_found": 2,
     "denon_verified": 3,
     "upcoming_kept": 10,
-    "apiCalls": 284
+    "apiCalls": 272
   },
   "deals": [
     {
@@ -33,12 +33,16 @@
       "sku": "N82E16814932823",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-932-823-18.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.5,
       "ratingSource": "newegg-api",
       "ratingCount": 247,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1034.99,
+      "high30": 1034.99,
+      "typical30": 1034.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-gaming-geforce-rtx-5060-ti-8gb-gddr7-pc-932793",
@@ -56,12 +60,16 @@
       "sku": "N82E16814932793",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-932-793-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 118,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 569.99,
+      "high30": 569.99,
+      "typical30": 569.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-eagle-geforce-rtx-5060-ti-8gb-gddr7-pci-932812",
@@ -79,12 +87,16 @@
       "sku": "N82E16814932812",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-932-812-06.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 118,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 529.99,
+      "high30": 529.99,
+      "typical30": 529.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-windforce-geforce-rtx-5060-ti-8gb-gddr7-932796",
@@ -102,12 +114,16 @@
       "sku": "N82E16814932796",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-932-796-08.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 118,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 529.99,
+      "high30": 529.99,
+      "typical30": 529.99,
+      "historyDays": 1
     },
     {
       "currency": "USD",
@@ -128,8 +144,12 @@
       "rating": 4.8,
       "ratingCount": 262,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1469.99,
+      "high30": 1469.99,
+      "typical30": 1469.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -151,7 +171,11 @@
       "ratingCount": 213,
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T02:32:12Z",
-      "updatedAt": "2026-11-12T02:32:12Z"
+      "updatedAt": "2026-11-12T02:32:12Z",
+      "low30": 939.99,
+      "high30": 939.99,
+      "typical30": 939.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -172,8 +196,12 @@
       "rating": 4.3,
       "ratingCount": 148,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 949.99,
+      "high30": 949.99,
+      "typical30": 949.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -194,8 +222,12 @@
       "rating": 4.5,
       "ratingCount": 6,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1059.99,
+      "high30": 1059.99,
+      "typical30": 1059.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -216,8 +248,12 @@
       "rating": 4.3,
       "ratingCount": 148,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1019.99,
+      "high30": 1019.99,
+      "typical30": 1019.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -238,8 +274,12 @@
       "rating": 5.0,
       "ratingCount": 4,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 2199.99,
+      "high30": 2199.99,
+      "typical30": 2199.99,
+      "historyDays": 47
     },
     {
       "id": "asrock-phantom-gaming-27-qhd-2k-1440p-360hz-0-03-946006",
@@ -257,12 +297,16 @@
       "sku": "N82E16824946006",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-946-006-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 3.7,
       "ratingSource": "newegg-api",
       "ratingCount": 17,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 349.0,
+      "high30": 349.0,
+      "typical30": 349.0,
+      "historyDays": 1
     },
     {
       "id": "acer-nitro-27-inch-wqhd-2k-1440p-170hz-1ms-amd-f-011452",
@@ -280,12 +324,16 @@
       "sku": "N82E16824011452",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-011-452-12.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.0,
       "ratingSource": "newegg-api",
       "ratingCount": 104,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "acer-nitro-27-inch-qhd-2k-1440p-170hz-with-amd-f-011453",
@@ -303,12 +351,16 @@
       "sku": "N82E16824011453",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-011-453-09.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.3,
       "ratingSource": "newegg-api",
       "ratingCount": 161,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "acer-predator-27-inch-qhd-2k-1440p-500hz-with-am-011534",
@@ -326,12 +378,16 @@
       "sku": "N82E16824011534",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-011-534-08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 499.99,
+      "high30": 499.99,
+      "typical30": 499.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-27-inch-qhd-2k-1440p-280hz-amd-freesync-012107",
@@ -349,12 +405,16 @@
       "sku": "N82E16824012107",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-012-107-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 399.99,
+      "high30": 399.99,
+      "typical30": 399.99,
+      "historyDays": 1
     },
     {
       "id": "lg-ultragear-evo-ai-27-inch-dual-mode-5k-165hz-q-026527",
@@ -372,9 +432,13 @@
       "sku": "N82E16824026527",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-026-527-29.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 799.99,
+      "high30": 799.99,
+      "typical30": 799.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-g27q20-27-superspeed-ips-gaming-monitor-012119",
@@ -392,12 +456,16 @@
       "sku": "N82E16824012119",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-012-119-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 14,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "asus-rog-strix-27-inch-qhd-2k-1440p-240hz-amd-fr-281399",
@@ -415,12 +483,16 @@
       "sku": "N82E16824281399",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-281-399-10.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 56,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 399.99,
+      "high30": 399.99,
+      "typical30": 399.99,
+      "historyDays": 1
     },
     {
       "id": "msi-32-inch-31-5-viewable-uhd-4k-165hz-with-amd-475398",
@@ -438,12 +510,16 @@
       "sku": "N82E16824475398",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-475-398-14.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 389,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 671.14,
+      "high30": 671.14,
+      "typical30": 671.14,
+      "historyDays": 1
     },
     {
       "currency": "USD",
@@ -464,8 +540,12 @@
       "rating": 4.8,
       "ratingCount": 167,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 611.99,
+      "high30": 611.99,
+      "typical30": 611.99,
+      "historyDays": 47
     },
     {
       "id": "asrock-pro-series-pro-850g-850-w-atx-3-1-compati-955022",
@@ -483,12 +563,16 @@
       "sku": "N82E16817955022",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-955-022-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 41,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 54.99,
+      "high30": 54.99,
+      "typical30": 54.99,
+      "historyDays": 1
     },
     {
       "id": "be-quiet-power-zone-2-750w-atx12v-3-1-power-supp-222041",
@@ -506,12 +590,16 @@
       "sku": "N82E16817222041",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-222-041-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.5,
       "ratingSource": "newegg-api",
       "ratingCount": 15,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 99.9,
+      "high30": 99.9,
+      "typical30": 99.9,
+      "historyDays": 1
     },
     {
       "currency": "USD",
@@ -532,8 +620,12 @@
       "rating": 4.7,
       "ratingCount": 320,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 99.99,
+      "high30": 99.99,
+      "typical30": 99.99,
+      "historyDays": 47
     },
     {
       "id": "asrock-pro-series-pro-850b-850-w-atx-3-1-compati-955025",
@@ -551,12 +643,16 @@
       "sku": "N82E16817955025",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-955-025-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 12,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 54.99,
+      "high30": 54.99,
+      "typical30": 54.99,
+      "historyDays": 1
     },
     {
       "id": "be-quiet-pure-power-13-m-750w-atx-3-1-power-supp-222044",
@@ -574,12 +670,16 @@
       "sku": "N82E16817222044",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-222-044-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 14,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 89.9,
+      "high30": 89.9,
+      "typical30": 89.9,
+      "historyDays": 1
     },
     {
       "id": "thermaltake-gf1-2024-fully-modular-atx-850w-powe-153460",
@@ -597,12 +697,16 @@
       "sku": "N82E16817153460",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-153-460-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 3.8,
       "ratingSource": "newegg-api",
       "ratingCount": 111,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 76.99,
+      "high30": 76.99,
+      "typical30": 76.99,
+      "historyDays": 1
     },
     {
       "id": "be-quiet-pure-power-13-m-850w-atx-3-1-power-supp-222043",
@@ -620,12 +724,16 @@
       "sku": "N82E16817222043",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-222-043-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 14,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 109.9,
+      "high30": 109.9,
+      "typical30": 109.9,
+      "historyDays": 1
     },
     {
       "currency": "USD",
@@ -646,8 +754,12 @@
       "rating": 4.6,
       "ratingCount": 1070,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 169.99,
+      "high30": 169.99,
+      "typical30": 169.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -668,8 +780,12 @@
       "rating": 4.4,
       "ratingCount": 8,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 47
     },
     {
       "currency": "USD",
@@ -690,8 +806,12 @@
       "rating": 4.2,
       "ratingCount": 441,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 109.99,
+      "high30": 109.99,
+      "typical30": 109.99,
+      "historyDays": 47
     },
     {
       "id": "denon-avr-x3800h",
@@ -709,8 +829,12 @@
       "image": "images/denon-avr-x3800h.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $1,399.00 (MSRP $1,799.00). Official sale on a 9.4-ch 8K Atmos receiver with HEOS streaming.",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1399.0,
+      "high30": 1399.0,
+      "typical30": 1399.0,
+      "historyDays": 47
     },
     {
       "id": "lg-s60t-soundbar-for-tv-with-dolby-audio-3-1-cha-979203",
@@ -728,9 +852,13 @@
       "sku": "N82E16886979203",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/86-979-203-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 249.99,
+      "high30": 249.99,
+      "typical30": 249.99,
+      "historyDays": 1
     },
     {
       "id": "lg-s70ty-3-1-1-channel-dolby-atmos-soundbar-perf--00147",
@@ -748,9 +876,13 @@
       "sku": "2BG-0013-00147",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V17ED2406240V1MP6DF.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 349.99,
+      "high30": 349.99,
+      "typical30": 349.99,
+      "historyDays": 1
     },
     {
       "id": "yamaha-r-n600a-stereo-network-receiver-with-wi-f-971097",
@@ -773,7 +905,11 @@
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 799.95,
+      "high30": 799.95,
+      "typical30": 799.95,
+      "historyDays": 1
     },
     {
       "id": "denon-home-51",
@@ -791,8 +927,12 @@
       "image": "images/denon-home-51.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $1,699.00 (MSRP $1,846.00). Official bundle cut on a wireless Dolby Atmos 5.1 Denon Home system.",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1699.0,
+      "high30": 1699.0,
+      "typical30": 1699.0,
+      "historyDays": 47
     },
     {
       "id": "denon-avr-x2800h",
@@ -810,8 +950,12 @@
       "image": "images/denon-avr-x2800h.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $999.00 (MSRP $1,299.00). Official sale on a 7.2-ch 8K Atmos receiver for medium rooms.",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1299.0,
+      "high30": 1299.0,
+      "typical30": 1299.0,
+      "historyDays": 47
     },
     {
       "id": "logitech-z623-400-watt-home-speaker-system-2-1-s-121048",
@@ -829,12 +973,16 @@
       "sku": "N82E16836121048",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-121-048-07.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.4,
       "ratingSource": "newegg-api",
       "ratingCount": 580,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 184.99,
+      "high30": 184.99,
+      "typical30": 184.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-z533-2-1-multimedia-speaker-system-with-121203",
@@ -852,12 +1000,16 @@
       "sku": "N82E16836121203",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-121-203-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.3,
       "ratingSource": "newegg-api",
       "ratingCount": 42,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 154.99,
+      "high30": 154.99,
+      "typical30": 154.99,
+      "historyDays": 1
     },
     {
       "id": "yamaha-audio-sr-b20a-sound-bar-with-built-in-sub-971072",
@@ -875,12 +1027,16 @@
       "sku": "N82E16886971072",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/86-971-072-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.4,
       "ratingSource": "newegg-api",
       "ratingCount": 23,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 219.95,
+      "high30": 219.95,
+      "typical30": 219.95,
+      "historyDays": 1
     },
     {
       "id": "logitech-g560-pc-gaming-speaker-system-with-7-1-121244",
@@ -898,12 +1054,16 @@
       "sku": "N82E16836121244",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-121-244-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.0,
       "ratingSource": "newegg-api",
       "ratingCount": 23,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 249.99,
+      "high30": 249.99,
+      "typical30": 249.99,
+      "historyDays": 1
     },
     {
       "id": "diypc-diy-s05-bk-black-usb3-0-steel-atx-mid-towe-353265",
@@ -924,8 +1084,12 @@
       "rating": 3.9,
       "ratingCount": 146,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 34.98,
+      "high30": 34.98,
+      "typical30": 34.98,
+      "historyDays": 47
     },
     {
       "id": "diypc-argb-n5-bk-black-usb3-0-type-c-atx-mid-tow-353257",
@@ -946,8 +1110,12 @@
       "rating": 4.5,
       "ratingCount": 414,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 59.97,
+      "high30": 59.97,
+      "typical30": 59.97,
+      "historyDays": 47
     },
     {
       "id": "asus-rog-strix-helios-gx601-white-edition-rgb-mi-173039",
@@ -968,8 +1136,12 @@
       "rating": 4.5,
       "ratingCount": 339,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 209.37,
+      "high30": 209.37,
+      "typical30": 209.37,
+      "historyDays": 47
     },
     {
       "id": "antec-performance-series-p20c-massive-metal-mesh-129290",
@@ -990,8 +1162,12 @@
       "rating": 4.4,
       "ratingCount": 292,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 47
     },
     {
       "id": "montech-xrwood-genuine-black-walnut-front-atx-mi-970017",
@@ -1012,8 +1188,12 @@
       "rating": 4.4,
       "ratingCount": 34,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 64.9,
+      "high30": 64.9,
+      "typical30": 64.9,
+      "historyDays": 47
     },
     {
       "id": "montech-tg3-panoramic-atx-mid-tower-pc-case-pre-970053",
@@ -1034,8 +1214,12 @@
       "rating": 4.6,
       "ratingCount": 9,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 69.9,
+      "high30": 69.9,
+      "typical30": 69.9,
+      "historyDays": 47
     },
     {
       "id": "corsair-air-5400-lx-r-rgb-icue-link-triple-chamb-139253",
@@ -1056,8 +1240,12 @@
       "rating": 4.7,
       "ratingCount": 19,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 309.0,
+      "high30": 309.0,
+      "typical30": 309.0,
+      "historyDays": 47
     },
     {
       "id": "corsair-3500x-rs-r-argb-mid-tower-pc-case-3x-pre-139244",
@@ -1078,8 +1266,12 @@
       "rating": 4.7,
       "ratingCount": 72,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 119.0,
+      "high30": 119.0,
+      "typical30": 119.0,
+      "historyDays": 47
     },
     {
       "id": "corsair-4000x-rs-mid-tower-pc-case-black-illumin-139260",
@@ -1100,8 +1292,12 @@
       "rating": 4.6,
       "ratingCount": 1453,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 137.99,
+      "high30": 137.99,
+      "typical30": 137.99,
+      "historyDays": 47
     },
     {
       "id": "antec-c5-argb-7-x-120mm-argb-pwm-fans-included-u-129309",
@@ -1122,8 +1318,12 @@
       "rating": 4.5,
       "ratingCount": 66,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 99.99,
+      "high30": 99.99,
+      "typical30": 99.99,
+      "historyDays": 47
     },
     {
       "id": "corsair-vengeance-rgb-32gb-2-x-16gb-288-pin-pc-r-982337",
@@ -1144,8 +1344,12 @@
       "rating": 4.4,
       "ratingCount": 491,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 509.99,
+      "high30": 509.99,
+      "typical30": 509.99,
+      "historyDays": 47
     },
     {
       "id": "v-color-manta-xsky-ddr5-32gb-2x16gb-6000mhz-cl26--000u1",
@@ -1163,12 +1367,16 @@
       "sku": "0RN-00MB-000U1",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AMCMS2507240G8VR7D3.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.4,
       "ratingSource": "newegg-api",
       "ratingCount": 99,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 551.99,
+      "high30": 551.99,
+      "typical30": 551.99,
+      "historyDays": 1
     },
     {
       "id": "g-skill-flare-x5-32gb-2-x-16gb-288-pin-pc-ram-dd-374783",
@@ -1186,12 +1394,16 @@
       "sku": "N82E16820374783",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-374-783-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.5,
       "ratingSource": "newegg-api",
       "ratingCount": 330,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 649.99,
+      "high30": 649.99,
+      "typical30": 649.99,
+      "historyDays": 1
     },
     {
       "id": "corsair-vengeance-32gb-2-x-16gb-288-pin-pc-ram-d-982007",
@@ -1212,8 +1424,12 @@
       "rating": 4.5,
       "ratingCount": 701,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 599.99,
+      "high30": 599.99,
+      "typical30": 599.99,
+      "historyDays": 47
     },
     {
       "id": "klevv-64gb-2-x-32gb-ddr5-6000-pc5-48000-desktop-101105",
@@ -1231,12 +1447,16 @@
       "sku": "N82E16820101105",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-101-105-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 6,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1099.99,
+      "high30": 1099.99,
+      "typical30": 1099.99,
+      "historyDays": 1
     },
     {
       "id": "v-color-manta-xsky-ddr5-32gb-2x16gb-6000mhz-cl30--000t5",
@@ -1254,12 +1474,16 @@
       "sku": "0RN-00MB-000T5",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AMCMS2507100GZRSVD3.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.4,
       "ratingSource": "newegg-api",
       "ratingCount": 99,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 479.99,
+      "high30": 479.99,
+      "typical30": 479.99,
+      "historyDays": 1
     },
     {
       "id": "corsair-vengeance-64gb-2-x-32gb-288-pin-pc-ram-d-982304",
@@ -1277,12 +1501,16 @@
       "sku": "N82E16820982304",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-236-879-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 86,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1029.99,
+      "high30": 1029.99,
+      "typical30": 1029.99,
+      "historyDays": 1
     },
     {
       "id": "v-color-manta-xfinity-rgb-ddr5-32gb-16gbx2-6000m--000w3",
@@ -1300,12 +1528,16 @@
       "sku": "0RN-00MB-000W3",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AMCMS2606090N4L3923.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.4,
       "ratingSource": "newegg-api",
       "ratingCount": 99,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 499.99,
+      "high30": 499.99,
+      "typical30": 499.99,
+      "historyDays": 1
     },
     {
       "id": "corsair-vengeance-64gb-2-x-32gb-288-pin-pc-ram-d-982241",
@@ -1323,12 +1555,16 @@
       "sku": "N82E16820982241",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-982-241-06.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.5,
       "ratingSource": "newegg-api",
       "ratingCount": 701,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1274.99,
+      "high30": 1274.99,
+      "typical30": 1274.99,
+      "historyDays": 1
     },
     {
       "id": "corsair-vengeance-rgb-64gb-2-x-32gb-288-pin-pc-r-982338",
@@ -1349,8 +1585,12 @@
       "rating": 4.4,
       "ratingCount": 491,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 1049.99,
+      "high30": 1049.99,
+      "typical30": 1049.99,
+      "historyDays": 47
     },
     {
       "id": "samsung-990-pro-2tb-ssd-pcie-gen4-m-2-2280-seq-r-147861",
@@ -1371,8 +1611,12 @@
       "rating": 4.8,
       "ratingCount": 862,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 389.99,
+      "high30": 389.99,
+      "typical30": 389.99,
+      "historyDays": 47
     },
     {
       "id": "kingston-nv3-m-2-2280-2tb-pcie-4-0-x4-nvme-inter-242903",
@@ -1390,12 +1634,16 @@
       "sku": "N82E16820242903",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-242-903-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 110,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 294.99,
+      "high30": 294.99,
+      "typical30": 294.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-ssd-9100-pro-1tb-pcie-5-0x4-m-2-2280-seq-147902",
@@ -1416,8 +1664,12 @@
       "rating": 4.9,
       "ratingCount": 1290,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 249.99,
+      "high30": 249.99,
+      "typical30": 249.99,
+      "historyDays": 47
     },
     {
       "id": "kingston-nv3-m-2-2280-1tb-pcie-4-0-x4-nvme-inter-242902",
@@ -1435,12 +1687,16 @@
       "sku": "N82E16820242902",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-242-902-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 110,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 179.84,
+      "high30": 179.84,
+      "typical30": 179.84,
+      "historyDays": 1
     },
     {
       "id": "corsair-mp700-pro-2tb-pcie-gen5-x4-nvme-2-0-m-2-982118",
@@ -1458,12 +1714,16 @@
       "sku": "N82E16820982118",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-982-117-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 25,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 399.99,
+      "high30": 399.99,
+      "typical30": 399.99,
+      "historyDays": 1
     },
     {
       "id": "western-digital-wd-blue-sn5100-4tb-nvme-internal-173693",
@@ -1481,9 +1741,13 @@
       "sku": "N82E16820173693",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-173-693-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 519.99,
+      "high30": 519.99,
+      "typical30": 519.99,
+      "historyDays": 1
     },
     {
       "id": "western-digital-wd-green-sn350-1tb-internal-ssd--01px0",
@@ -1501,9 +1765,13 @@
       "sku": "1Z4-0002-01PX0",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/1Z4-0002-01PX0-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "crucial-e100-2tb-m-2-2280-nvme-pci-express-4-0-x--00346",
@@ -1521,12 +1789,16 @@
       "sku": "0D9-000E-00346",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A12KS2507161CEUFT46.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 5,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 249.99,
+      "high30": 249.99,
+      "typical30": 249.99,
+      "historyDays": 1
     },
     {
       "id": "team-group-nv5000-m-2-2280-1tb-pcie-4-0-x4-with-985343",
@@ -1544,12 +1816,16 @@
       "sku": "N82E16820985343",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-985-343-02.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.9,
       "ratingSource": "newegg-api",
       "ratingCount": 14,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 161.99,
+      "high30": 161.99,
+      "typical30": 161.99,
+      "historyDays": 1
     },
     {
       "id": "wd-blue-sn5100-500gb-nvme-ssd-pcie-gen-4-0-up-to-173683",
@@ -1570,8 +1846,12 @@
       "rating": 4.5,
       "ratingCount": 19,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 136.99,
+      "high30": 136.99,
+      "typical30": 136.99,
+      "historyDays": 47
     },
     {
       "id": "gigabyte-b650-aorus-elite-ax-am5-lga-1718-amd-b6-145412",
@@ -1592,8 +1872,12 @@
       "rating": 3.7,
       "ratingCount": 952,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 47
     },
     {
       "id": "asus-tuf-gaming-b650e-e-wifi-amd-am5-b650-atx-mo-119741",
@@ -1614,8 +1898,12 @@
       "rating": 5.0,
       "ratingCount": 4,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 139.99,
+      "high30": 139.99,
+      "typical30": 139.99,
+      "historyDays": 47
     },
     {
       "id": "asrock-x870-pro-rs-am5-amd-x870-atx-motherboard-162166",
@@ -1633,12 +1921,16 @@
       "sku": "N82E16813162166",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/13-162-166-03.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.2,
       "ratingSource": "newegg-api",
       "ratingCount": 59,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-b650m-aorus-elite-ax-am5-lga-1718-amd-b-145413",
@@ -1659,8 +1951,12 @@
       "rating": 3.7,
       "ratingCount": 952,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 159.99,
+      "high30": 159.99,
+      "typical30": 159.99,
+      "historyDays": 47
     },
     {
       "id": "gigabyte-b650m-aorus-elite-ax-ice-am5-lga-1718-a-145511",
@@ -1681,8 +1977,12 @@
       "rating": 4.0,
       "ratingCount": 4,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 159.99,
+      "high30": 159.99,
+      "typical30": 159.99,
+      "historyDays": 47
     },
     {
       "id": "asrock-b650m-pro-rs-wifi-am5-amd-b650-micro-atx-162131",
@@ -1703,8 +2003,12 @@
       "rating": 4.3,
       "ratingCount": 308,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 109.99,
+      "high30": 109.99,
+      "typical30": 109.99,
+      "historyDays": 47
     },
     {
       "id": "gigabyte-z890-aorus-master-ai-top-intel-core-ult-145542",
@@ -1722,12 +2026,16 @@
       "sku": "N82E16813145542",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/13-145-542-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.0,
       "ratingSource": "newegg-api",
       "ratingCount": 3,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 549.99,
+      "high30": 549.99,
+      "typical30": 549.99,
+      "historyDays": 1
     },
     {
       "id": "asrock-x870-livemixer-wifi-am5-amd-x870-atx-moth-162233",
@@ -1745,12 +2053,16 @@
       "sku": "N82E16813162233",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/13-162-233-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.4,
       "ratingSource": "newegg-api",
       "ratingCount": 5,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 179.99,
+      "high30": 179.99,
+      "typical30": 179.99,
+      "historyDays": 1
     },
     {
       "id": "gigabyte-b650-aero-g-am5-lga-1718-amd-b650-atx-m-145410",
@@ -1771,8 +2083,12 @@
       "rating": 3.7,
       "ratingCount": 952,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 199.99,
+      "high30": 199.99,
+      "typical30": 199.99,
+      "historyDays": 47
     },
     {
       "id": "gigabyte-b650i-aorus-ultra-am5-amd-b650-mini-itx-145428",
@@ -1793,8 +2109,12 @@
       "rating": 3.7,
       "ratingCount": 952,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z"
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "low30": 229.99,
+      "high30": 229.99,
+      "typical30": 229.99,
+      "historyDays": 47
     },
     {
       "id": "asus-tuf-gaming-18-gaming-laptop-amd-ryzen-9-894-236759",
@@ -1812,9 +2132,13 @@
       "sku": "N82E16834236759",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-236-759-19.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1899.99,
+      "high30": 1899.99,
+      "typical30": 1899.99,
+      "historyDays": 1
     },
     {
       "id": "hp-omen-max-16-ah0010ca-16-fhd-ips-intel-core-ul--05z58",
@@ -1822,7 +2146,7 @@
       "category": "Laptops",
       "price": 1599.99,
       "previousPrice": 2099.99,
-      "lastPrice": 1749.99,
+      "lastPrice": 1599.99,
       "priceDropped": true,
       "currency": "USD",
       "why": "Newegg price $1,599.99, down from $2,099.99 (save $500.00). Verified by the daily refresh — confirm the cart total before buying.",
@@ -1832,11 +2156,15 @@
       "sku": "2WC-0001-05Z58",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AKVUD26091001NKKJ4E.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "dropAmount": 150.0,
-      "droppedAt": "2026-11-12T06:48:13Z"
+      "droppedAt": "2026-11-12T06:48:13Z",
+      "low30": 1599.99,
+      "high30": 1749.99,
+      "typical30": 1749.99,
+      "historyDays": 1
     },
     {
       "id": "asus-tuf-gaming-a16-16-gaming-laptop-amd-ryzen-7-236758",
@@ -1854,9 +2182,13 @@
       "sku": "N82E16834236758",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-236-758-12.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1399.99,
+      "high30": 1399.99,
+      "typical30": 1399.99,
+      "historyDays": 1
     },
     {
       "id": "msi-vector-16-hx-ai-16-gaming-laptop-intel-core--0jj10",
@@ -1874,12 +2206,16 @@
       "sku": "2WC-000C-0JJ10",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/2WC-000C-0JJ10-23.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.1,
       "ratingSource": "newegg-api",
       "ratingCount": 111,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1599.0,
+      "high30": 1599.0,
+      "typical30": 1599.0,
+      "historyDays": 1
     },
     {
       "id": "msi-cyborg-15-max-15-6-gaming-laptop-intel-core-156987",
@@ -1897,9 +2233,13 @@
       "sku": "N82E16834156987",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-156-987-21.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1249.0,
+      "high30": 1249.0,
+      "typical30": 1249.0,
+      "historyDays": 1
     },
     {
       "id": "msi-cyborg-15-max-15-6-gaming-laptop-intel-core-156986",
@@ -1917,9 +2257,13 @@
       "sku": "N82E16834156986",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-156-986-19.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1349.0,
+      "high30": 1349.0,
+      "typical30": 1349.0,
+      "historyDays": 1
     },
     {
       "id": "aorus-master-16-16-gaming-laptop-amd-ryzen-9-995-725246",
@@ -1937,9 +2281,13 @@
       "sku": "N82E16834725246",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-725-246-15.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 4499.99,
+      "high30": 4599.99,
+      "typical30": 4599.99,
+      "historyDays": 1
     },
     {
       "id": "acer-predator-helios-neo-18-ai-18-0-intel-core-u-360388",
@@ -1956,11 +2304,15 @@
       "urlKind": "product",
       "sku": "N82E16834360388",
       "image": "images/acer-predator-helios-neo-18-ai-18-0-intel-core-u-360388.jpg",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 12
+      "ratingCount": 12,
+      "low30": 2184.99,
+      "high30": 2184.99,
+      "typical30": 2184.99,
+      "historyDays": 47
     },
     {
       "id": "acer-nitro-v-16s-ai-16-gaming-laptop-intel-core-360451",
@@ -1978,9 +2330,13 @@
       "sku": "N82E16834360451",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-360-451-11.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 2199.99,
+      "high30": 2629.99,
+      "typical30": 2629.99,
+      "historyDays": 1
     },
     {
       "id": "msi-vector-16-hx-ai-a2xwhg-275us-16-gaming-noteb-156941",
@@ -1997,11 +2353,15 @@
       "urlKind": "product",
       "sku": "N82E16834156941",
       "image": "images/msi-vector-16-hx-ai-a2xwhg-275us-16-gaming-noteb-156941.jpg",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 2049.0,
+      "high30": 2049.0,
+      "typical30": 2049.0,
+      "historyDays": 47
     },
     {
       "id": "amd-ryzen-9-7900x-zen-4-12-core-4-7-ghz-socket-a-113769",
@@ -2019,12 +2379,16 @@
       "sku": "N82E16819113769",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-769-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 223,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 315.0,
+      "high30": 315.0,
+      "typical30": 315.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-5500-ryzen-5-5000-series-cezanne-zen-113737",
@@ -2042,12 +2406,16 @@
       "sku": "N82E16819113737",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-737-V03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 401,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 99.0,
+      "high30": 99.0,
+      "typical30": 99.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-7-5700x-ryzen-7-5000-series-8-core-3-4-113735",
@@ -2065,12 +2433,16 @@
       "sku": "N82E16819113735",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-735-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 434,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 189.0,
+      "high30": 189.0,
+      "typical30": 189.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-7600x-zen-4-6-core-4-7-ghz-socket-am-113770",
@@ -2088,12 +2460,16 @@
       "sku": "N82E16819113770",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-770-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 391,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 199.0,
+      "high30": 199.0,
+      "typical30": 199.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-9-9900x-ryzen-9-9000-series-granite-ri-113842",
@@ -2111,12 +2487,16 @@
       "sku": "N82E16819113842",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-842-02.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 545,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 379.0,
+      "high30": 379.0,
+      "typical30": 379.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-9600x-ryzen-5-9000-series-granite-ri-113844",
@@ -2134,12 +2514,16 @@
       "sku": "N82E16819113844",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-844-05.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 545,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 219.0,
+      "high30": 219.0,
+      "typical30": 219.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-5600x-ryzen-5-5000-series-6-core-3-7-113666",
@@ -2157,12 +2541,16 @@
       "sku": "N82E16819113666",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-666-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 1689,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 159.0,
+      "high30": 159.0,
+      "typical30": 159.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-7-7800x3d-ryzen-7-7000-series-zen-4-8-113793",
@@ -2180,12 +2568,16 @@
       "sku": "N82E16819113793",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-793-03.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.9,
       "ratingSource": "newegg-api",
       "ratingCount": 711,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 389.0,
+      "high30": 389.0,
+      "typical30": 389.0,
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-7-9800x3d-ryzen-7-9000-series-zen-5-8-113877",
@@ -2203,12 +2595,16 @@
       "sku": "N82E16819113877",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-877-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
-      "ratingCount": 744
+      "ratingCount": 744,
+      "low30": 469.99,
+      "high30": 469.99,
+      "typical30": 469.99,
+      "historyDays": 1
     },
     {
       "id": "intel-core-ultra-7-270k-plus-processor-24-cores-118628",
@@ -2226,12 +2622,16 @@
       "sku": "N82E16819118628",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-118-628-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
-      "ratingCount": 54
+      "ratingCount": 54,
+      "low30": 330.0,
+      "high30": 330.0,
+      "typical30": 330.0,
+      "historyDays": 1
     },
     {
       "id": "lg-55-inch-class-oled-evo-ai-4k-c5-series-smart-482047",
@@ -2249,9 +2649,13 @@
       "sku": "N82E16889482047",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/89-482-047-20.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1099.99,
+      "high30": 1099.99,
+      "typical30": 1099.99,
+      "historyDays": 1
     },
     {
       "id": "lg-48-inch-class-oled-evo-ai-4k-c6-series-smart--007p8",
@@ -2269,9 +2673,13 @@
       "sku": "16C-000P-007P8",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AE2JS2605010THH0390.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 999.99,
+      "high30": 999.99,
+      "typical30": 999.99,
+      "historyDays": 1
     },
     {
       "id": "lg-42-inch-class-oled-evo-ai-4k-c6-series-smart--007t4",
@@ -2289,9 +2697,13 @@
       "sku": "16C-000P-007T4",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/16C-000P-007T4-04.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 899.99,
+      "high30": 899.99,
+      "typical30": 899.99,
+      "historyDays": 1
     },
     {
       "id": "lg-stanbyme-2-tv-27-inch-4k-smart-touch-screen-w--007j9",
@@ -2309,9 +2721,13 @@
       "sku": "16C-000P-007J9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/16C-000P-007J9-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 899.99,
+      "high30": 899.99,
+      "typical30": 899.99,
+      "historyDays": 1
     },
     {
       "id": "wacom-intuos-wireless-graphics-drawing-tablet-wi-100233",
@@ -2329,12 +2745,16 @@
       "sku": "N82E16823100233",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-100-233-S02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:36:03Z",
-      "updatedAt": "2026-11-12T06:36:03Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 37,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 79.15,
+      "high30": 79.15,
+      "typical30": 79.15,
+      "historyDays": 1
     },
     {
       "id": "adesso-12-x-7-graphic-tablet-graphics-tablet-12--00018",
@@ -2352,9 +2772,13 @@
       "sku": "172-001X-00018",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V1DSD22102007A6TNB4.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 107.99,
+      "high30": 107.99,
+      "typical30": 107.99,
+      "historyDays": 1
     },
     {
       "id": "adesso-8-x-5-graphic-tablet-graphics-tablet-8-x--00020",
@@ -2372,9 +2796,13 @@
       "sku": "172-001X-00020",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V009D2205040F5M4DCF.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 71.99,
+      "high30": 71.99,
+      "typical30": 71.99,
+      "historyDays": 1
     },
     {
       "id": "blu-g65l-g1130ww-128gb-gsm-unlocked-android-smar-565062",
@@ -2392,9 +2820,13 @@
       "sku": "N82E16875565062",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-565-062-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 154.99,
+      "high30": 154.99,
+      "typical30": 154.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-z-fold8-ultra-sm-f976u-256-gb-sma--01w95",
@@ -2412,12 +2844,16 @@
       "sku": "0V4-000B-01W95",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2608050CIR5Z16.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:36:03Z",
-      "updatedAt": "2026-11-12T06:36:03Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.9,
       "ratingSource": "newegg-api",
       "ratingCount": 521,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 2099.99,
+      "high30": 2099.99,
+      "typical30": 2099.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-z-flip8-sm-f776u-256-gb-smartphon--01w94",
@@ -2435,12 +2871,16 @@
       "sku": "0V4-000B-01W94",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2608050CIQNT4C.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:36:03Z",
-      "updatedAt": "2026-11-12T06:36:03Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 168,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1305.99,
+      "high30": 1305.99,
+      "typical30": 1305.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-a57-5g-256gb-awesome-gray-unlocke--020m5",
@@ -2458,12 +2898,16 @@
       "sku": "23B-0002-020M5",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V1DSD2606031APT7N0A.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 656.99,
+      "high30": 656.99,
+      "typical30": 656.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-z-fold8-ultra-sm-f976u-512-gb-sma--01wb0",
@@ -2481,12 +2925,16 @@
       "sku": "0V4-000B-01WB0",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2609130CD8XW47.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:36:03Z",
-      "updatedAt": "2026-11-12T06:36:03Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 2299.99,
+      "high30": 2299.99,
+      "typical30": 2299.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-s26-sm-s942u-256-gb-smartphone-6--01vu6",
@@ -2504,12 +2952,16 @@
       "sku": "0V4-000B-01VU6",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2603100CDJWO90.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 1090.99,
+      "high30": 1090.99,
+      "typical30": 1090.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-z-fold8-ultra-12-256gb-unlocked-g--020v9",
@@ -2527,9 +2979,13 @@
       "sku": "23B-0002-020V9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A6ZPD26083115KHPUF6.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 2278.99,
+      "high30": 2278.99,
+      "typical30": 2278.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-s26-sm-s942u-128-gb-smartphone-6--020m7",
@@ -2547,9 +3003,13 @@
       "sku": "23B-0002-020M7",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V1DSD2608110Y0OYB19.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 899.99,
+      "high30": 899.99,
+      "typical30": 899.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-a57-5g-8-128gb-unlocked-gray-sm-a--020p2",
@@ -2567,9 +3027,13 @@
       "sku": "23B-0002-020P2",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23B-0002-020P2-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 592.99,
+      "high30": 592.99,
+      "typical30": 592.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-z-fold8-ultra-sm-f976u-1-tb-smart--020w9",
@@ -2587,9 +3051,13 @@
       "sku": "23B-0002-020W9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A6ZPD26092213YJUZ08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 2932.99,
+      "high30": 2932.99,
+      "typical30": 2932.99,
+      "historyDays": 1
     },
     {
       "id": "razer-deathadder-v3-pro-wireless-gaming-mouse-63-153334",
@@ -2607,12 +3075,16 @@
       "sku": "N82E16826153334",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-153-334-07.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.0,
       "ratingSource": "newegg-api",
       "ratingCount": 8,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "razer-basilisk-v3-pro-wireless-gaming-mouse-cust-153335",
@@ -2630,12 +3102,16 @@
       "sku": "N82E16826153335",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-153-335-06.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 10,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 99.0,
+      "high30": 99.0,
+      "typical30": 99.0,
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-hero-high-performance-wired-gaming--00002",
@@ -2653,12 +3129,16 @@
       "sku": "3C6-0064-00002",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/3C6-0064-00002-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.3,
       "ratingSource": "newegg-api",
       "ratingCount": 530,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 44.99,
+      "high30": 44.99,
+      "typical30": 44.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g309-lightspeed-wireless-gaming-mouse-l-197648",
@@ -2676,12 +3156,16 @@
       "sku": "N82E16826197648",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-648-15.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.8,
       "ratingSource": "newegg-api",
       "ratingCount": 4,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 59.99,
+      "high30": 59.99,
+      "typical30": 59.99,
+      "historyDays": 1
     },
     {
       "id": "razer-basilisk-v3-pro-customizable-wireless-gami--00011",
@@ -2699,9 +3183,13 @@
       "sku": "3D5-004E-00011",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/BDUCD23011112JIXPED.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 109.0,
+      "high30": 109.0,
+      "typical30": 109.0,
+      "historyDays": 1
     },
     {
       "id": "razer-basilisk-x-hyperspeed-wireless-optical-gam--000f6",
@@ -2719,12 +3207,16 @@
       "sku": "32K-0070-000F6",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A1CZS2305050Z6ZX0CB.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 49.98,
+      "high30": 49.98,
+      "typical30": 49.98,
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-x-wired-gaming-mouse-lightforce-hy-197555",
@@ -2742,12 +3234,16 @@
       "sku": "N82E16826197555",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-555-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.3,
       "ratingSource": "newegg-api",
       "ratingCount": 530,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "razer-viper-v3-pro-ultra-lightweight-wireless-sy--00003",
@@ -2765,12 +3261,16 @@
       "sku": "26J-05FW-00003",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26J-05FW-00003-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.5,
       "ratingSource": "newegg-api",
       "ratingCount": 2,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-x-plus-lightspeed-wireless-rgb-gam-197559",
@@ -2788,12 +3288,16 @@
       "sku": "N82E16826197559",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-559-09.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.3,
       "ratingSource": "newegg-api",
       "ratingCount": 530,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 159.99,
+      "high30": 159.99,
+      "typical30": 159.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-x-lightspeed-wireless-gaming-mouse-197557",
@@ -2811,12 +3315,16 @@
       "sku": "N82E16826197557",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-557-12.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.3,
       "ratingSource": "newegg-api",
       "ratingCount": 530,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 159.99,
+      "high30": 159.99,
+      "typical30": 159.99,
+      "historyDays": 1
     },
     {
       "id": "msi-forge-gk600-tkl-wireless-violet-gaming-keybo-167067",
@@ -2834,9 +3342,13 @@
       "sku": "N82E16823167067",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-167-067-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 50.99,
+      "high30": 50.99,
+      "typical30": 50.99,
+      "historyDays": 1
     },
     {
       "id": "msi-forge-gk600-tkl-wireless-gaming-keyboard-mar-167074",
@@ -2854,12 +3366,16 @@
       "sku": "N82E16823167074",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-167-074-08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 6,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 74.99,
+      "high30": 74.99,
+      "typical30": 74.99,
+      "historyDays": 1
     },
     {
       "id": "abs-the-hunger-games-sunrise-on-the-reaping-edit-224008",
@@ -2877,9 +3393,13 @@
       "sku": "N82E16823224008",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-224-008-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "corsair-k65-plus-wireless-75-rgb-hot-swappable-m-816188",
@@ -2897,9 +3417,13 @@
       "sku": "N82E16823816188",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-816-188-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g515-rapid-tkl-wired-gaming-keyboard-lo--012c1",
@@ -2917,9 +3441,13 @@
       "sku": "0GA-0001-012C1",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2601250EBD4I23.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "msi-forge-gk600-tkl-wireless-gaming-keyboard-mec-167065",
@@ -2937,12 +3465,16 @@
       "sku": "N82E16823167065",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-167-065-10.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 12,
-      "autoSeeded": true
+      "autoSeeded": true,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "corsair-vanguard-96-wireless-mechanical-gaming-k-816184",
@@ -2960,9 +3492,13 @@
       "sku": "N82E16823816184",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-816-184-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 179.99,
+      "high30": 179.99,
+      "typical30": 179.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g915-x-lightspeed-tkl-wireless-mechanic-126755",
@@ -2980,12 +3516,16 @@
       "sku": "N82E16823126755",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-126-755-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 37
+      "ratingCount": 37,
+      "low30": 209.99,
+      "high30": 209.99,
+      "typical30": 209.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g915-x-lightspeed-low-profile-wireless-126751",
@@ -3003,12 +3543,16 @@
       "sku": "N82E16823126751",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/23-126-751-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 37
+      "ratingCount": 37,
+      "low30": 259.99,
+      "high30": 259.99,
+      "typical30": 259.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g413-tkl-se-mechanical-gaming-keyboard-126669",
@@ -3026,12 +3570,16 @@
       "sku": "N82E16823126669",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V009D2202200GNTO52E.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
-      "ratingCount": 13
+      "ratingCount": 13,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "alienware-aurora-gaming-desktop-act1250-intel-co--01m97",
@@ -3049,12 +3597,16 @@
       "sku": "3D5-0002-01M97",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/3D5-0002-01M97-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 2
+      "ratingCount": 2,
+      "low30": 1699.99,
+      "high30": 1699.99,
+      "typical30": 1699.99,
+      "historyDays": 1
     },
     {
       "id": "abs-flavonius-aqua-prebuilt-gaming-pc-windows-11-362123",
@@ -3072,12 +3624,16 @@
       "sku": "N82E16883362123",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-362-123-10.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 177
+      "ratingCount": 177,
+      "low30": 1399.99,
+      "high30": 1399.99,
+      "typical30": 1399.99,
+      "historyDays": 1
     },
     {
       "id": "skytech-gaming-shadow-gaming-pc-amd-ryzen-7-5700--003n9",
@@ -3095,12 +3651,16 @@
       "sku": "3D5-000Z-003N9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A1HJS2512240I164Z7D.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.7,
       "ratingSource": "newegg-api",
-      "ratingCount": 6
+      "ratingCount": 6,
+      "low30": 1199.99,
+      "high30": 1199.99,
+      "typical30": 1199.99,
+      "historyDays": 1
     },
     {
       "id": "thermaltake-lcgs-quartz-i1460-gaming-desktop-int-100092",
@@ -3118,12 +3678,16 @@
       "sku": "N82E16883100092",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-100-092-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 18
+      "ratingCount": 18,
+      "low30": 1129.99,
+      "high30": 1129.99,
+      "typical30": 1129.99,
+      "historyDays": 1
     },
     {
       "id": "abs-flux-ii-aqua-prebuilt-gaming-pc-windows-11-i-362058",
@@ -3141,12 +3705,16 @@
       "sku": "N82E16883362058",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-362-058-07.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 139
+      "ratingCount": 139,
+      "low30": 1799.99,
+      "high30": 1799.99,
+      "typical30": 1799.99,
+      "historyDays": 1
     },
     {
       "id": "dell-alienware-aurora-gaming-desktop-intel-core--01ms9",
@@ -3164,12 +3732,16 @@
       "sku": "3D5-0002-01MS9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/3D5-0002-01MS9-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 2
+      "ratingCount": 2,
+      "low30": 1899.99,
+      "high30": 1899.99,
+      "typical30": 1899.99,
+      "historyDays": 1
     },
     {
       "id": "ibuypower-element-gaming-pc-desktop-computer-amd--00k26",
@@ -3187,12 +3759,16 @@
       "sku": "3D5-0007-00K26",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AKCGS2607280HG2QFEC.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.1,
       "ratingSource": "newegg-api",
-      "ratingCount": 59
+      "ratingCount": 59,
+      "low30": 1499.99,
+      "high30": 1499.99,
+      "typical30": 1499.99,
+      "historyDays": 1
     },
     {
       "id": "thermaltake-lcgs-ne-5760s-v170s-gaming-desktop-a-100177",
@@ -3210,12 +3786,16 @@
       "sku": "N82E16883100177",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-100-177-05.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 18
+      "ratingCount": 18,
+      "low30": 1269.99,
+      "high30": 1269.99,
+      "typical30": 1269.99,
+      "historyDays": 1
     },
     {
       "id": "msi-gaming-desktop-pc-codex-z2-a8nvl-484us-amd-r-151716",
@@ -3233,12 +3813,16 @@
       "sku": "N82E16883151716",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-151-716-06.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.6,
       "ratingSource": "newegg-api",
-      "ratingCount": 47
+      "ratingCount": 47,
+      "low30": 1439.0,
+      "high30": 1439.0,
+      "typical30": 1439.0,
+      "historyDays": 1
     },
     {
       "id": "abs-kaze-ii-aqua-prebuilt-gaming-pc-windows-11-i-362061",
@@ -3256,12 +3840,16 @@
       "sku": "N82E16883362061",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-362-061-10.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 22
+      "ratingCount": 22,
+      "low30": 1699.99,
+      "high30": 1699.99,
+      "typical30": 1699.99,
+      "historyDays": 1
     },
     {
       "id": "razer-kraken-v3-x-gaming-headset-7-1-surround-so-153341",
@@ -3279,12 +3867,16 @@
       "sku": "N82E16826153341",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-153-341-08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 3.7,
       "ratingSource": "newegg-api",
-      "ratingCount": 3
+      "ratingCount": 3,
+      "low30": 39.98,
+      "high30": 39.98,
+      "typical30": 39.98,
+      "historyDays": 1
     },
     {
       "id": "beyerdynamic-aventho-300-wireless-bluetooth-head-380072",
@@ -3302,9 +3894,13 @@
       "sku": "N82E16826380072",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-380-072-08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 299.99,
+      "high30": 299.99,
+      "typical30": 299.99,
+      "historyDays": 1
     },
     {
       "id": "razer-barracuda-x-2022-edition-barracuda-x-2022-153347",
@@ -3322,12 +3918,16 @@
       "sku": "N82E16826153347",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-153-347-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 69.0,
+      "high30": 69.0,
+      "typical30": 69.0,
+      "historyDays": 1
     },
     {
       "id": "logitech-g735-wireless-gaming-headset-customizab-197592",
@@ -3345,12 +3945,16 @@
       "sku": "N82E16826197592",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-592-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 4
+      "ratingCount": 4,
+      "low30": 179.99,
+      "high30": 179.99,
+      "typical30": 179.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x-gaming-headset-with-blue-voice-197345",
@@ -3368,12 +3972,16 @@
       "sku": "N82E16826197345",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-345-V09.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.1,
       "ratingSource": "newegg-api",
-      "ratingCount": 107
+      "ratingCount": 107,
+      "low30": 99.99,
+      "high30": 99.99,
+      "typical30": 99.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x-wireless-lightspeed-gaming-head--004r6",
@@ -3391,12 +3999,16 @@
       "sku": "1VH-000J-004R6",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/ANZYS200820hWMKR.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.1,
       "ratingSource": "newegg-api",
-      "ratingCount": 107
+      "ratingCount": 107,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x-2-lightspeed-wireless-gaming-he-197623",
@@ -3414,12 +4026,16 @@
       "sku": "N82E16826197623",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-623-19.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.1,
       "ratingSource": "newegg-api",
-      "ratingCount": 107
+      "ratingCount": 107,
+      "low30": 234.99,
+      "high30": 234.99,
+      "typical30": 234.99,
+      "historyDays": 1
     },
     {
       "id": "msi-maestro-500-wireless-gaming-headset-40mm-dri-554092",
@@ -3437,12 +4053,16 @@
       "sku": "N82E16826554092",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-554-092-13.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 5
+      "ratingCount": 5,
+      "low30": 59.99,
+      "high30": 59.99,
+      "typical30": 59.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x2-lightspeed-wireless-gaming-hea-197624",
@@ -3460,12 +4080,16 @@
       "sku": "N82E16826197624",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-624-37.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.1,
       "ratingSource": "newegg-api",
-      "ratingCount": 107
+      "ratingCount": 107,
+      "low30": 239.99,
+      "high30": 239.99,
+      "typical30": 239.99,
+      "historyDays": 1
     },
     {
       "id": "bose-quietcomfort-ultra-2nd-gen-noise-cancelling-627203",
@@ -3483,12 +4107,16 @@
       "sku": "N82E16826627203",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-627-203-03.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 3
+      "ratingCount": 3,
+      "low30": 449.0,
+      "high30": 449.0,
+      "typical30": 449.0,
+      "historyDays": 1
     },
     {
       "id": "beyerdynamic-amiron-200-true-wireless-bluetooth-380088",
@@ -3506,9 +4134,13 @@
       "sku": "N82E16826380088",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-380-088-15.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 139.99,
+      "high30": 139.99,
+      "typical30": 139.99,
+      "historyDays": 1
     },
     {
       "id": "dell-pro-plus-eb525-microsoft-teams-certificatio-675057",
@@ -3526,9 +4158,13 @@
       "sku": "N82E16826675057",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-675-057-07.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 160.49,
+      "high30": 160.49,
+      "typical30": 160.49,
+      "historyDays": 1
     },
     {
       "id": "nank-clip-pro-clip-on-wireless-bluetooth-earbuds-677004",
@@ -3546,9 +4182,13 @@
       "sku": "N82E16826677004",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-677-004-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 39.99,
+      "high30": 39.99,
+      "typical30": 39.99,
+      "historyDays": 1
     },
     {
       "id": "nank-ultra-clip-on-earbuds-wireless-bluetooth-5--02ds5",
@@ -3566,9 +4206,13 @@
       "sku": "3C6-0688-02DS5",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/C65GD26040816DA9F0D.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "epos-adapt-e1-true-wireless-bluetooth-earbuds-he--000d6",
@@ -3586,9 +4230,13 @@
       "sku": "0TH-05XM-000D6",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2504140C58IF19.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 145.99,
+      "high30": 145.99,
+      "typical30": 145.99,
+      "historyDays": 1
     },
     {
       "id": "epos-adapt-e1-true-wireless-bluetooth-earbuds-he--000d5",
@@ -3606,9 +4254,13 @@
       "sku": "0TH-05XM-000D5",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2504140C58434C.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 152.99,
+      "high30": 152.99,
+      "typical30": 152.99,
+      "historyDays": 1
     },
     {
       "id": "google-pixel-pro-2-wireless-earbuds-with-active--00085",
@@ -3626,9 +4278,13 @@
       "sku": "0TH-033V-00085",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/0TH-033V-00085-13.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 209.99,
+      "high30": 209.99,
+      "typical30": 209.99,
+      "historyDays": 1
     },
     {
       "id": "google-pixel-buds-pro-2-wireless-earbuds-with-ac--00083",
@@ -3646,9 +4302,13 @@
       "sku": "0TH-033V-00083",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/0TH-033V-00083-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 210.99,
+      "high30": 210.99,
+      "typical30": 210.99,
+      "historyDays": 1
     },
     {
       "id": "morpheus-360-nemesis-anc-wireless-noise-cancelli--00028",
@@ -3666,9 +4326,13 @@
       "sku": "0TH-04Y0-00028",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2312060F4BH8FC.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 37.99,
+      "high30": 37.99,
+      "typical30": 37.99,
+      "historyDays": 1
     },
     {
       "id": "beyerdynamic-amiron-300-true-wireless-noise-canc-380073",
@@ -3686,9 +4350,13 @@
       "sku": "N82E16826380073",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-380-073-19.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 279.99,
+      "high30": 279.99,
+      "typical30": 279.99,
+      "historyDays": 1
     },
     {
       "id": "ultimate-ears-miniroll-ultra-portable-waterproof-247046",
@@ -3706,9 +4374,13 @@
       "sku": "N82E16855247046",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2410060CDGZPAE.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 49.99,
+      "high30": 49.99,
+      "typical30": 49.99,
+      "historyDays": 1
     },
     {
       "id": "jlab-jbuds-party-portable-bluetooth-speaker-syst--00007",
@@ -3726,9 +4398,13 @@
       "sku": "0S6-016V-00007",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A0ZXD2508290L292X73.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 69.99,
+      "high30": 69.99,
+      "typical30": 69.99,
+      "historyDays": 1
     },
     {
       "id": "creative-pebble-v2-usb-c-desktop-speakers-enhanc-116214",
@@ -3746,12 +4422,16 @@
       "sku": "N82E16836116214",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-116-214-V13.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 72
+      "ratingCount": 72,
+      "low30": 40.99,
+      "high30": 40.99,
+      "typical30": 40.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-z207-2-0-stereo-computer-speakers-with-121235",
@@ -3769,12 +4449,16 @@
       "sku": "N82E16836121235",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-121-235-Z01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 16
+      "ratingCount": 16,
+      "low30": 69.99,
+      "high30": 69.99,
+      "typical30": 69.99,
+      "historyDays": 1
     },
     {
       "id": "bose-soundlink-flex-bluetooth-speaker-2nd-gen-po-772093",
@@ -3792,12 +4476,16 @@
       "sku": "N82E16855772093",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/55-772-093-10.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 159.0,
+      "high30": 159.0,
+      "typical30": 159.0,
+      "historyDays": 1
     },
     {
       "id": "bose-soundlink-flex-2nd-gen-portable-bluetooth-s-772072",
@@ -3815,12 +4503,16 @@
       "sku": "N82E16855772072",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/55-772-072-08.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 159.0,
+      "high30": 159.0,
+      "typical30": 159.0,
+      "historyDays": 1
     },
     {
       "id": "bose-soundlink-micro-portable-speaker-2nd-gen-de-772095",
@@ -3838,9 +4530,13 @@
       "sku": "N82E16855772095",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/55-772-095-04.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 129.0,
+      "high30": 129.0,
+      "typical30": 129.0,
+      "historyDays": 1
     },
     {
       "id": "edifier-s1000mkii-audiophile-active-bookshelf-2--001f3",
@@ -3858,12 +4554,16 @@
       "sku": "0TH-00B2-001F3",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AEX3D2007299BL9X.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 2
+      "ratingCount": 2,
+      "low30": 499.99,
+      "high30": 499.99,
+      "typical30": 499.99,
+      "historyDays": 1
     },
     {
       "id": "edifier-qs20-bluetooth-portable-speaker-ip67-wat--00007",
@@ -3881,9 +4581,13 @@
       "sku": "0D8-008Z-00007",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/0D8-008Z-00007-09.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 99.99,
+      "high30": 99.99,
+      "typical30": 99.99,
+      "historyDays": 1
     },
     {
       "id": "edifier-qd35-tabletop-bluetooth-speaker-white--00120",
@@ -3901,9 +4605,13 @@
       "sku": "0S6-0051-00120",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AEX3S23032914SOYZF5.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 229.99,
+      "high30": 229.99,
+      "typical30": 229.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-accessory-wired-controller-surge-microwatt--00001",
@@ -3921,9 +4629,13 @@
       "sku": "232-01AG-00001",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2605060C8MSBDC.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 37.99,
+      "high30": 37.99,
+      "typical30": 37.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-wireless-controller-deep-pink-for-xbox-seri-103760",
@@ -3941,12 +4653,16 @@
       "sku": "N82E16874103760",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/74-103-760-14.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 179
+      "ratingCount": 179,
+      "low30": 62.99,
+      "high30": 62.99,
+      "typical30": 62.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-accessory-hyperkin-duchess-wired-controller--00026",
@@ -3964,9 +4680,13 @@
       "sku": "232-00AT-00026",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2605060C8MBV52.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:36:03Z",
-      "updatedAt": "2026-11-12T06:36:03Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 50.99,
+      "high30": 50.99,
+      "typical30": 50.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-accessory-hyperkin-the-competitor-wired-con--00027",
@@ -3984,9 +4704,13 @@
       "sku": "232-00AT-00027",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2605060C8MHSE8.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 57.99,
+      "high30": 57.99,
+      "typical30": 57.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-wireless-controller-forza-horizon-6-limited-103774",
@@ -4004,12 +4728,16 @@
       "sku": "N82E16874103774",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/74-103-774-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 179
+      "ratingCount": 179,
+      "low30": 82.99,
+      "high30": 82.99,
+      "typical30": 82.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-f310-wired-gamepad-controller-console-l-104402",
@@ -4027,12 +4755,16 @@
       "sku": "N82E16826104402",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-104-402-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 202
+      "ratingCount": 202,
+      "low30": 29.99,
+      "high30": 29.99,
+      "typical30": 29.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-elite-series-2-wireless-controller-core-whi-103724",
@@ -4050,12 +4782,16 @@
       "sku": "N82E16874103724",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/74-103-724-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 179
+      "ratingCount": 179,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-wireless-controller-ice-breaker-special-edi-103769",
@@ -4073,12 +4809,16 @@
       "sku": "N82E16874103769",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/74-103-769-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 179
+      "ratingCount": 179,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-wireless-controller-heart-breaker-special-e-103767",
@@ -4096,12 +4836,16 @@
       "sku": "N82E16874103767",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/74-103-767-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 179
+      "ratingCount": 179,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "xbox-wireless-controller-storm-breaker-special-e-103768",
@@ -4119,12 +4863,16 @@
       "sku": "N82E16874103768",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/74-103-768-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 179
+      "ratingCount": 179,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "lenovo-fhd-webcam--001g3",
@@ -4142,9 +4890,13 @@
       "sku": "1EF-0057-001G3",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2510180CM6N1C8.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 52.99,
+      "high30": 52.99,
+      "typical30": 52.99,
+      "historyDays": 1
     },
     {
       "id": "avermedia-pw313-live-streamer-cam-313-2-0-m-effe-461001",
@@ -4162,12 +4914,16 @@
       "sku": "N82E16826461001",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-461-001-V09.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 7
+      "ratingCount": 7,
+      "low30": 80.99,
+      "high30": 80.99,
+      "typical30": 80.99,
+      "historyDays": 1
     },
     {
       "id": "emeet-smartcam-c980-pro-all-in-one-1080p-webcam-742007",
@@ -4185,9 +4941,13 @@
       "sku": "N82E16826742007",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-742-007-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 84.99,
+      "high30": 84.99,
+      "typical30": 84.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-c930e-1080p-hd-video-webcam-90-degree-e-104845",
@@ -4205,12 +4965,16 @@
       "sku": "N82E16826104845",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-104-845-12.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 305
+      "ratingCount": 305,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-4k-pro-webcam-with-hdr-and-noise-cancel--007a9",
@@ -4228,12 +4992,16 @@
       "sku": "1EF-000C-007A9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/1EF-000C-007A9-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 305
+      "ratingCount": 305,
+      "low30": 199.99,
+      "high30": 199.99,
+      "typical30": 199.99,
+      "historyDays": 1
     },
     {
       "id": "creative-labs-live-cam-sync-1080p-v2-webcam--00032",
@@ -4251,12 +5019,16 @@
       "sku": "1EF-001N-00032",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A6ZPD210814IAJXE.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 6
+      "ratingCount": 6,
+      "low30": 39.99,
+      "high30": 39.99,
+      "typical30": 39.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-brio-500-hd-1080p-webcam-4-megapixels-g--00d11",
@@ -4274,12 +5046,16 @@
       "sku": "1EF-000C-00D11",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/1EF-000C-00D11-14.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 4
+      "ratingCount": 4,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-brio-505-webcam-4-megapixel-60-fps-grap--00de6",
@@ -4297,12 +5073,16 @@
       "sku": "1EF-000C-00DE6",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/V009D2303120FWJIY08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-brio-705-webcam-8-5-megapixel-usb-type--00dw2",
@@ -4320,9 +5100,13 @@
       "sku": "1EF-000C-00DW2",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2403190CAP5WA1.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 199.99,
+      "high30": 199.99,
+      "typical30": 199.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-c920-webcam-30-fps-usb-2-0-15-megapixel--00157",
@@ -4340,9 +5124,13 @@
       "sku": "1EF-000C-00157",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A98Y_1_201604211585004314.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 273.68,
+      "high30": 273.68,
+      "typical30": 273.68,
+      "historyDays": 1
     },
     {
       "id": "panasonic-lavalier-wx-sm410-rugged-wired-electre--00038",
@@ -4360,9 +5148,13 @@
       "sku": "0UK-003S-00038",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A6ZPD25060613WKF103.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 92.99,
+      "high30": 92.99,
+      "typical30": 92.99,
+      "historyDays": 1
     },
     {
       "id": "razer-seiren-v3-chroma-rgb-usb-microphone-with-t--00009",
@@ -4380,12 +5172,16 @@
       "sku": "1V9-00KH-00009",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/1V9-00KH-00009-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 99.99,
+      "high30": 99.99,
+      "typical30": 99.99,
+      "historyDays": 1
     },
     {
       "id": "razer-seiren-v3-mini-wired-ultra-compact-condens--00010",
@@ -4403,12 +5199,16 @@
       "sku": "0UK-00D7-00010",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2405150C0T5EC9.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 4
+      "ratingCount": 4,
+      "low30": 49.0,
+      "high30": 49.0,
+      "typical30": 49.0,
+      "historyDays": 1
     },
     {
       "id": "blue-yeti-nano-premium-usb-microphone-for-pc-mac-408009",
@@ -4426,12 +5226,16 @@
       "sku": "N82E16886408009",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/86-408-009-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 173
+      "ratingCount": 173,
+      "low30": 99.99,
+      "high30": 99.99,
+      "typical30": 99.99,
+      "historyDays": 1
     },
     {
       "id": "jlab-jbuds-talk-wired-condenser-dynamic-micropho-984001",
@@ -4449,9 +5253,13 @@
       "sku": "N82E16836984001",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-984-001-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 89.99,
+      "high30": 89.99,
+      "typical30": 89.99,
+      "historyDays": 1
     },
     {
       "id": "blue-yeti-usb-microphone-for-pc-mac-gaming-recor-431024",
@@ -4469,12 +5277,16 @@
       "sku": "N82E16836431024",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-431-024-05.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 173
+      "ratingCount": 173,
+      "low30": 109.99,
+      "high30": 109.99,
+      "typical30": 109.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-blue-yeti-usb-microphone-multi-pattern-847001",
@@ -4492,12 +5304,16 @@
       "sku": "N82E16886847001",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/86-847-001-13.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 173
+      "ratingCount": 173,
+      "low30": 109.99,
+      "high30": 109.99,
+      "typical30": 109.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g-yeti-gx-dynamic-rgb-gaming-microphone-121270",
@@ -4515,12 +5331,16 @@
       "sku": "N82E16836121270",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/36-121-270-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 173
+      "ratingCount": 173,
+      "low30": 169.99,
+      "high30": 169.99,
+      "typical30": 169.99,
+      "historyDays": 1
     },
     {
       "id": "logitech-g-yeti-orb-condenser-rgb-gaming-microph-121273",
@@ -4538,12 +5358,16 @@
       "sku": "N82E16836121273",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2405030CAONIDD.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 173
+      "ratingCount": 173,
+      "low30": 69.99,
+      "high30": 69.99,
+      "typical30": 69.99,
+      "historyDays": 1
     },
     {
       "id": "blue-yeti-condenser-microphone-for-gaming-live-s-121269",
@@ -4561,12 +5385,16 @@
       "sku": "N82E16836121269",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A29PD23101212DCET5A.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 173
+      "ratingCount": 173,
+      "low30": 69.99,
+      "high30": 69.99,
+      "typical30": 69.99,
+      "historyDays": 1
     },
     {
       "id": "tp-link-wifi-6-ax3000-pcie-wifi-card-archer-tx30-704507",
@@ -4584,12 +5412,16 @@
       "sku": "N82E16833704507",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-507-S04.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 321
+      "ratingCount": 321,
+      "low30": 26.99,
+      "high30": 26.99,
+      "typical30": 26.99,
+      "historyDays": 1
     },
     {
       "id": "tp-link-wifi-6-pcie-wifi-card-for-desktop-pc-ax3-704656",
@@ -4607,12 +5439,16 @@
       "sku": "N82E16833704656",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-656-S01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 321
+      "ratingCount": 321,
+      "low30": 22.43,
+      "high30": 22.43,
+      "typical30": 22.43,
+      "historyDays": 1
     },
     {
       "id": "tp-link-axe5400-tri-band-wifi-6e-router-archer-a-704658",
@@ -4630,12 +5466,16 @@
       "sku": "N82E16833704658",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-658-S01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.3,
       "ratingSource": "newegg-api",
-      "ratingCount": 30
+      "ratingCount": 30,
+      "low30": 98.99,
+      "high30": 98.99,
+      "typical30": 98.99,
+      "historyDays": 1
     },
     {
       "id": "asus-zenwifi-bq16-pro-quad-band-wifi-7-mesh-rout-320597",
@@ -4653,12 +5493,16 @@
       "sku": "N82E16833320597",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-320-597-20.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 5
+      "ratingCount": 5,
+      "low30": 999.99,
+      "high30": 999.99,
+      "typical30": 999.99,
+      "historyDays": 1
     },
     {
       "id": "msi-ax1800-wifi-6-dual-band-usb-adapter-wlan-up-158035",
@@ -4676,12 +5520,16 @@
       "sku": "N82E16833158035",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-158-035-02.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 11
+      "ratingCount": 11,
+      "low30": 24.99,
+      "high30": 24.99,
+      "typical30": 24.99,
+      "historyDays": 1
     },
     {
       "id": "tp-link-wifi-6e-ax5400-pcie-wifi-card-archer-txe-704643",
@@ -4699,12 +5547,16 @@
       "sku": "N82E16833704643",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-643-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 321
+      "ratingCount": 321,
+      "low30": 44.93,
+      "high30": 44.93,
+      "typical30": 44.93,
+      "historyDays": 1
     },
     {
       "id": "tp-link-wifi-7-be9300-pcie-wifi-card-for-desktop-704745",
@@ -4722,12 +5574,16 @@
       "sku": "N82E16833704745",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-745-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 64.97,
+      "high30": 64.97,
+      "typical30": 64.97,
+      "historyDays": 1
     },
     {
       "id": "tp-link-ax3000-whole-home-mesh-wifi-6-system-dua-704626",
@@ -4745,12 +5601,16 @@
       "sku": "N82E16833704626",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-626-S01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 14
+      "ratingCount": 14,
+      "low30": 149.96,
+      "high30": 149.96,
+      "typical30": 149.96,
+      "historyDays": 1
     },
     {
       "id": "eero-6-ax3000-dual-band-mesh-wi-fi-6-system-2-pa-565030",
@@ -4768,9 +5628,13 @@
       "sku": "N82E16833565030",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-565-030-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 159.99,
+      "high30": 159.99,
+      "typical30": 159.99,
+      "historyDays": 1
     },
     {
       "id": "tp-link-dual-band-deco-be25-2-pack-be5000-wi-fi-704772",
@@ -4788,9 +5652,13 @@
       "sku": "N82E16833704772",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/33-704-772-V08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 159.98,
+      "high30": 159.98,
+      "typical30": 159.98,
+      "historyDays": 1
     },
     {
       "id": "sandisk-cruzer-glide-64-gb-usb-2-0-flash-drive-b-171764",
@@ -4808,12 +5676,16 @@
       "sku": "N82E16820171764",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-171-764-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 12
+      "ratingCount": 12,
+      "low30": 27.01,
+      "high30": 27.01,
+      "typical30": 27.01,
+      "historyDays": 1
     },
     {
       "id": "gigastone-256gb-microsd-express-card-works-with--001g1",
@@ -4831,9 +5703,13 @@
       "sku": "0DF-009F-001G1",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AGDFS2607310J949NB0.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 54.99,
+      "high30": 54.99,
+      "typical30": 54.99,
+      "historyDays": 1
     },
     {
       "id": "nusyn-1tb-nsp30-portable-ssd-high-speed-up-to-10-524009",
@@ -4851,12 +5727,16 @@
       "sku": "N82E16820524009",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-524-009-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 2
+      "ratingCount": 2,
+      "low30": 89.99,
+      "high30": 89.99,
+      "typical30": 89.99,
+      "historyDays": 1
     },
     {
       "id": "kingspec-memostone-1tb-portable-ssd-usb-3-2-gen-971005",
@@ -4874,9 +5754,13 @@
       "sku": "N82E16820971005",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-971-005-07.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 109.99,
+      "high30": 109.99,
+      "typical30": 109.99,
+      "historyDays": 1
     },
     {
       "id": "wd-5tb-my-passport-portable-storage-external-har-234398",
@@ -4894,35 +5778,16 @@
       "sku": "N82E16822234398",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/22-234-398-V05.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 264
-    },
-    {
-      "id": "wd-black-5tb-p10-game-drive-portable-external-ha-234385",
-      "name": "WD Black 5TB P10 Game Drive Portable External Hard Drive for PS5/PS4/Xbox One/PC/Mac USB 3.2 (WDBA3A0050BBK-WESN)",
-      "category": "Storage",
-      "price": 214.99,
-      "previousPrice": 289.99,
-      "lastPrice": 214.99,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "Newegg price $214.99, down from $289.99 (save $75.00). Verified by the daily refresh — confirm the cart total before buying.",
-      "merchant": "Newegg",
-      "url": "https://www.newegg.com/p/N82E16822234385",
-      "urlKind": "product",
-      "sku": "N82E16822234385",
-      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/22-234-385-S04.jpg",
-      "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true,
-      "rating": 4.6,
-      "ratingSource": "newegg-api",
-      "ratingCount": 277
+      "ratingCount": 264,
+      "low30": 209.99,
+      "high30": 209.99,
+      "typical30": 209.99,
+      "historyDays": 1
     },
     {
       "id": "teamgroup-c175-128gb-usb-3-2-gen-1-flash-drive-r-331073",
@@ -4940,12 +5805,16 @@
       "sku": "N82E16820331073",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-331-073-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 614
+      "ratingCount": 614,
+      "low30": 14.99,
+      "high30": 14.99,
+      "typical30": 14.99,
+      "historyDays": 1
     },
     {
       "id": "teamgroup-c175-32gb-usb-3-2-gen-1-flash-drive-ro-331071",
@@ -4963,12 +5832,16 @@
       "sku": "N82E16820331071",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-331-071-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.2,
       "ratingSource": "newegg-api",
-      "ratingCount": 614
+      "ratingCount": 614,
+      "low30": 9.99,
+      "high30": 9.99,
+      "typical30": 9.99,
+      "historyDays": 1
     },
     {
       "id": "team-group-256gb-elite-microsdxc-uhs-i-u3-v30-a1-331312",
@@ -4986,12 +5859,16 @@
       "sku": "N82E16820331312",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-331-312-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 182
+      "ratingCount": 182,
+      "low30": 29.99,
+      "high30": 29.99,
+      "typical30": 29.99,
+      "historyDays": 1
     },
     {
       "id": "team-group-64gb-elite-microsdxc-uhs-i-u3-v30-a1-331310",
@@ -5009,12 +5886,43 @@
       "sku": "N82E16820331310",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-331-310-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.4,
       "ratingSource": "newegg-api",
-      "ratingCount": 81
+      "ratingCount": 81,
+      "low30": 12.99,
+      "high30": 12.99,
+      "typical30": 12.99,
+      "historyDays": 1
+    },
+    {
+      "id": "wd-black-5tb-p10-game-drive-portable-external-ha-234385",
+      "name": "WD Black 5TB P10 Game Drive Portable External Hard Drive for PS5/PS4/Xbox One/PC/Mac USB 3.2 (WDBA3A0050BBK-WESN)",
+      "category": "Storage",
+      "price": 214.99,
+      "previousPrice": 227.99,
+      "lastPrice": 214.99,
+      "priceDropped": false,
+      "currency": "USD",
+      "why": "Newegg price $214.99, down from $227.99 (save $13.00). Verified by the daily refresh — confirm the cart total before buying.",
+      "merchant": "Newegg",
+      "url": "https://www.newegg.com/p/N82E16822234385",
+      "urlKind": "product",
+      "sku": "N82E16822234385",
+      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/22-234-385-S04.jpg",
+      "imageSource": "newegg-api",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "rating": 4.6,
+      "ratingSource": "newegg-api",
+      "ratingCount": 277,
+      "low30": 214.99,
+      "high30": 214.99,
+      "typical30": 214.99,
+      "historyDays": 1
     },
     {
       "id": "compact-usb-c-wall-charger-18w-pd-charging-gan-t-886022",
@@ -5032,9 +5940,13 @@
       "sku": "N82E16875886022",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-886-022-S01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 47.99,
+      "high30": 47.99,
+      "typical30": 47.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-65w-usb-c-fast-charger-4ft-usb-c-cable-4-p-814016",
@@ -5052,9 +5964,13 @@
       "sku": "N82E16875814016",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-814-016-07.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 34.99,
+      "high30": 34.99,
+      "typical30": 34.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-8-in-1-mag-safe-charger-stand-140w-chargin-811019",
@@ -5072,9 +5988,13 @@
       "sku": "N82E16875811019",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-811-019-14.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 139.99,
+      "high30": 139.99,
+      "typical30": 139.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-4-in-1-mag-safe-wireless-charger-45w-gan-c-811006",
@@ -5092,9 +6012,13 @@
       "sku": "N82E16875811006",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-811-006-10.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 48.99,
+      "high30": 48.99,
+      "typical30": 48.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-3c-certified-power-bank-10000mah-20w-fast-817004",
@@ -5112,9 +6036,13 @@
       "sku": "N82E16875817004",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-817-004-11.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 24.99,
+      "high30": 24.99,
+      "typical30": 24.99,
+      "historyDays": 1
     },
     {
       "id": "tripp-lite-u280-q01fl-bk-black-wireless-phone-ch-886008",
@@ -5132,9 +6060,13 @@
       "sku": "N82E16875886008",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-886-008-S01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 39.99,
+      "high30": 39.99,
+      "typical30": 39.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-3c-certified-power-bank-20000mah-67w-ccc-p-817007",
@@ -5152,9 +6084,13 @@
       "sku": "N82E16875817007",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-817-007-08.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 49.99,
+      "high30": 49.99,
+      "typical30": 49.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-powerlink-x2-2-in-1-fast-charging-10000mah-817014",
@@ -5172,9 +6108,13 @@
       "sku": "N82E16875817014",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-817-014-02.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 59.99,
+      "high30": 59.99,
+      "typical30": 59.99,
+      "historyDays": 1
     },
     {
       "id": "pisen-colorful-power-bank-with-integrated-cables-817012",
@@ -5192,29 +6132,37 @@
       "sku": "N82E16875817012",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-817-012-11.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 59.99,
+      "high30": 59.99,
+      "typical30": 59.99,
+      "historyDays": 1
     },
     {
       "id": "belkin-dual-usb-c-gan-wall-charger-with-pps-65w-871181",
       "name": "Belkin Dual USB-C GaN Wall Charger with PPS 65W + USB-C to USB-C Cable, White",
       "category": "Charging",
       "price": 56.99,
-      "previousPrice": 64.99,
+      "previousPrice": null,
       "lastPrice": 56.99,
       "priceDropped": false,
       "currency": "USD",
-      "why": "Newegg price $56.99, down from $64.99 (save $8.00). Verified by the daily refresh — confirm the cart total before buying.",
+      "why": "Newegg price $56.99. Verified by the daily refresh — confirm the cart total before buying.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/p/N82E16875871181",
       "urlKind": "product",
       "sku": "N82E16875871181",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/75-871-181-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 56.99,
+      "high30": 56.99,
+      "typical30": 56.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-tab-active5-8-tablet-unlocked-5g--00bm4",
@@ -5232,9 +6180,13 @@
       "sku": "0EJ-000P-00BM4",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A24GD2406170C2HY699.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 619.99,
+      "high30": 619.99,
+      "typical30": 619.99,
+      "historyDays": 1
     },
     {
       "id": "lenovo-tab-one-tablet-8-7-hd-mediatek-helio-g85--00685",
@@ -5252,9 +6204,13 @@
       "sku": "0EJ-001J-00685",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/0EJ-001J-00685-08.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 129.99,
+      "high30": 129.99,
+      "typical30": 129.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-8-galaxy-tab-active5-rugged-tablet-samsu--00bt1",
@@ -5272,9 +6228,13 @@
       "sku": "0EJ-000P-00BT1",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A1K6S2409031D6YA535.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 529.99,
+      "high30": 529.99,
+      "typical30": 529.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-tab-s10-fe-10-9-256gb-wi-fi-with-132558",
@@ -5292,12 +6252,16 @@
       "sku": "N82E16834132558",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-132-558-06.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
-      "ratingCount": 34
+      "ratingCount": 34,
+      "low30": 724.99,
+      "high30": 724.99,
+      "typical30": 724.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-tab-s10-fe-13-1-128gb-wi-fi-with-132567",
@@ -5315,12 +6279,16 @@
       "sku": "N82E16834132567",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-132-560-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.9,
       "ratingSource": "newegg-api",
-      "ratingCount": 16
+      "ratingCount": 16,
+      "low30": 749.99,
+      "high30": 749.99,
+      "typical30": 749.99,
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-tab-s10-fe-13-1-256gb-wi-fi-with-132568",
@@ -5338,35 +6306,45 @@
       "sku": "N82E16834132568",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-132-562-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.9,
       "ratingSource": "newegg-api",
-      "ratingCount": 16
+      "ratingCount": 16,
+      "low30": 799.99,
+      "high30": 799.99,
+      "typical30": 799.99,
+      "historyDays": 1
     },
     {
       "id": "microsoft-surface-pro-12th-edition-tablet-13-pix-820176",
       "name": "Microsoft Surface Pro 12th Edition Tablet -  13\" PixelSense Display - Intel Core Ultra 5 335 - 32GB - 256GB SSD - Intel Graphics - Windows 11 Pro - Webcam - Wi-Fi 7 - BT 5.4 - 5G Cellular - EP2-54491",
       "category": "Tablets",
-      "price": 3299.99,
+      "price": 3139.99,
       "previousPrice": null,
       "lastPrice": 3299.99,
-      "priceDropped": false,
+      "priceDropped": true,
       "currency": "USD",
-      "why": "Newegg price $3,299.99. Verified by the daily refresh — confirm the cart total before buying.",
+      "why": "Newegg price $3,139.99. Verified by the daily refresh — confirm the cart total before buying.",
       "merchant": "Newegg",
       "url": "https://www.newegg.com/p/N82E16834820176",
       "urlKind": "product",
       "sku": "N82E16834820176",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-820-176-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "dropAmount": 160.0,
+      "droppedAt": "2026-11-12T07:17:01Z",
+      "low30": 3139.99,
+      "high30": 3299.99,
+      "typical30": 3299.99,
+      "historyDays": 1
     },
     {
       "id": "acer-iconia-tab-a10-a10-31p-a7wb-tablet-10-1-hd-360448",
@@ -5384,9 +6362,13 @@
       "sku": "N82E16834360448",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-360-448-16.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 149.99,
+      "high30": 149.99,
+      "typical30": 149.99,
+      "historyDays": 1
     },
     {
       "id": "microsoft-surface-pro-12-tablet-12-pixelsense-di-820366",
@@ -5404,9 +6386,13 @@
       "sku": "N82E16834820366",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-820-366-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1849.99,
+      "high30": 1849.99,
+      "typical30": 1849.99,
+      "historyDays": 1
     },
     {
       "id": "microsoft-surface-pro-11-tablet-13-qualcomm-snap-820058",
@@ -5424,9 +6410,13 @@
       "sku": "N82E16834820058",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-820-058-03.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 1449.99,
+      "high30": 1449.99,
+      "typical30": 1449.99,
+      "historyDays": 1
     },
     {
       "id": "msi-mag-coreliquid-a13-240-black-aio-argb-liquid-846067",
@@ -5444,12 +6434,16 @@
       "sku": "N82E16835846067",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-846-067-03.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 349
+      "ratingCount": 349,
+      "low30": 49.99,
+      "high30": 49.99,
+      "typical30": 49.99,
+      "historyDays": 1
     },
     {
       "id": "sudokoo-sk620-white-am5-air-cooler-6-heatpipes-d--00006",
@@ -5467,12 +6461,16 @@
       "sku": "13C-012U-00006",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/BZH7S2604090G49R027.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 56.49,
+      "high30": 56.49,
+      "typical30": 56.49,
+      "historyDays": 1
     },
     {
       "id": "cooler-master-atmos-stealth-aio-cpu-liquid-coole-103376",
@@ -5490,12 +6488,16 @@
       "sku": "N82E16835103376",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-103-376-12.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.7,
       "ratingSource": "newegg-api",
-      "ratingCount": 16
+      "ratingCount": 16,
+      "low30": 79.99,
+      "high30": 79.99,
+      "typical30": 79.99,
+      "historyDays": 1
     },
     {
       "id": "msi-mag-coreliquid-e360-white-aio-argb-cpu-liqui-846051",
@@ -5513,12 +6515,16 @@
       "sku": "N82E16835846051",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-846-051-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
-      "ratingCount": 156
+      "ratingCount": 156,
+      "low30": 69.99,
+      "high30": 69.99,
+      "typical30": 69.99,
+      "historyDays": 1
     },
     {
       "id": "gamdias-aura-glv2-360mm-aio-liquid-cpu-cooler-ro-099039",
@@ -5536,12 +6542,16 @@
       "sku": "N82E16835099039",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-039-04.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
-      "ratingCount": 5
+      "ratingCount": 5,
+      "low30": 49.99,
+      "high30": 49.99,
+      "typical30": 49.99,
+      "historyDays": 1
     },
     {
       "id": "gamdias-chione-p5-240-liquid-cpu-cooler-240mm-ai-099037",
@@ -5559,12 +6569,16 @@
       "sku": "N82E16835099037",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-037-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 4.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 64.99,
+      "high30": 64.99,
+      "typical30": 64.99,
+      "historyDays": 1
     },
     {
       "id": "gamdias-aura-gl240-v2-white-240mm-aio-liquid-cpu-099042",
@@ -5582,9 +6596,13 @@
       "sku": "N82E16835099042",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-042-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 44.99,
+      "high30": 44.99,
+      "typical30": 44.99,
+      "historyDays": 1
     },
     {
       "id": "gamdias-chione-e4-360mm-v2-aio-cpu-cooler-argb-l-099045",
@@ -5602,9 +6620,13 @@
       "sku": "N82E16835099045",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-045-07.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
-      "autoSeeded": true
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
+      "autoSeeded": true,
+      "low30": 59.99,
+      "high30": 59.99,
+      "typical30": 59.99,
+      "historyDays": 1
     },
     {
       "id": "gamdias-boreas-m2-51d-white-argb-cpu-air-cooler-099046",
@@ -5622,12 +6644,16 @@
       "sku": "N82E16835099046",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-046-19.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 2
+      "ratingCount": 2,
+      "low30": 39.99,
+      "high30": 39.99,
+      "typical30": 39.99,
+      "historyDays": 1
     },
     {
       "id": "sudokoo-sk620v-cpu-air-cooler-6-heatpipes-dual-t--00007",
@@ -5645,12 +6671,16 @@
       "sku": "13C-012U-00007",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/BZH7S2604090J9S68D6.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-12T06:48:13Z",
-      "updatedAt": "2026-11-12T06:48:13Z",
+      "verifiedAt": "2026-11-12T07:17:01Z",
+      "updatedAt": "2026-11-12T07:17:01Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
-      "ratingCount": 1
+      "ratingCount": 1,
+      "low30": 94.99,
+      "high30": 94.99,
+      "typical30": 94.99,
+      "historyDays": 1
     },
     {
       "id": "costco-2051275-acer-nitro-31-5-180hz-wqhd-curved-gaming",
