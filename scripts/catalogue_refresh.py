@@ -43,6 +43,7 @@ from urllib.parse import urlparse, urlunparse
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
+from refresh import apply_verified_price  # noqa: E402
 from newegg_util import (  # noqa: E402
     NEWEGG_ITEM_RE,
     classify_listing,
@@ -241,21 +242,10 @@ def prune_deals(
         if html and "newegg.com" in host:
             info = parse_newegg_listing_price(html)
             if info.get("ok") and info.get("price") is not None:
-                old = d.get("price")
-                new = info["price"]
-                try:
-                    old_f = float(old) if old is not None else None
-                except (TypeError, ValueError):
-                    old_f = None
-                if old_f is not None:
-                    d["lastPrice"] = round(old_f, 2)
-                    if new < old_f:
-                        d["priceDropped"] = True
-                        d["dropAmount"] = round(old_f - new, 2)
-                    else:
-                        d["priceDropped"] = False
-                        d.pop("dropAmount", None)
-                d["price"] = new
+                # same price-drop rules as the hourly job (24h drop badge)
+                apply_verified_price(d, info["price"])
+                d["verifiedAt"] = d["updatedAt"] = datetime.now(timezone.utc).strftime(
+                    "%Y-%m-%dT%H:%M:%SZ")
                 if info.get("previousPrice"):
                     d["previousPrice"] = info["previousPrice"]
         kept.append(d)
@@ -295,7 +285,11 @@ def build_deal(cat: str, item: dict[str, Any], verified: dict[str, Any]) -> dict
         "url": item["url"],
         "urlKind": "product",
         "sku": item["sku"],
+        # The hourly job (daily_refresh.py) deletes deals with no verifiedAt,
+        # so stamp the price check that just happened here.
+        "verifiedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     }
+    deal["updatedAt"] = deal["verifiedAt"]
     # Attach local image if already healed/downloaded under images/<id>.jpg
     img = IMAGES_DIR / f"{deal_id}.jpg"
     if img.is_file() and img.stat().st_size >= 4000:

@@ -362,7 +362,7 @@ def savings_pct(d: dict[str, Any]) -> float:
 
 
 def apply_offer(deal: dict[str, Any], prod: dict[str, Any], off: dict[str, Any], stamp: str) -> None:
-    apply_verified_price(deal, off["price"])
+    apply_verified_price(deal, off["price"], parse_iso(stamp))
     deal["previousPrice"] = off["was"]
     deal["verifiedAt"] = stamp
     deal["updatedAt"] = stamp
@@ -412,23 +412,24 @@ def main() -> int:
     stats: Counter = Counter()
     removed: list[str] = []
 
-    def abort_if_throttled() -> bool:
-        if not api.rate_limited:
-            return False
-        print(
-            f"Newegg returned HTTP {api.rate_limited} — aborting without writing.",
-            file=sys.stderr,
-        )
-        return True
+    def throttled() -> bool:
+        """True once Newegg asks us to back off. The run then stops making
+        requests but still saves what it already verified this hour."""
+        if api.rate_limited and not stats["throttled"]:
+            stats["throttled"] = 1
+            print(
+                f"Newegg returned HTTP {api.rate_limited} — stopping checks; "
+                "saving what was verified so far.",
+                file=sys.stderr,
+            )
+        return bool(api.rate_limited)
 
     # 1-2. re-verify current listings only (upcoming Future deals are not Newegg-checked)
     for d in deals:
         if is_upcoming(d, now):
             stats["upcoming_kept"] += 1
             if not d.get("image"):
-                img = find_photo(api, d)
-                if abort_if_throttled():
-                    return 2
+                img = None if throttled() else find_photo(api, d)
                 if img:
                     d["image"] = img
                     d["imageSource"] = "newegg-api-match"
@@ -436,9 +437,11 @@ def main() -> int:
             continue
         merchant = d.get("merchant")
         if merchant == "Newegg":
+            if throttled():
+                continue  # keeps its last verifiedAt; pruned only after STALE_DAYS
             res = verify_newegg(api, d)
-            if abort_if_throttled():
-                return 2
+            if throttled():
+                continue
             if res is None:
                 stats["newegg_not_found"] += 1
             elif res["offer"] is None:
@@ -450,15 +453,13 @@ def main() -> int:
         elif merchant == "Denon":
             price = verify_jsonld_price(d.get("url", ""))
             if price:
-                apply_verified_price(d, price)
+                apply_verified_price(d, price, now)
                 if d.get("previousPrice") and float(d["previousPrice"]) <= price:
                     d["previousPrice"] = None
                 d["verifiedAt"] = d["updatedAt"] = stamp
                 stats["denon_verified"] += 1
         time.sleep(0.2)
 
-    if abort_if_throttled():
-        return 2
     if api.ok_calls == 0:
         print("Newegg API unreachable — aborting without writing.", file=sys.stderr)
         return 2
@@ -517,40 +518,68 @@ def main() -> int:
 
     # 4. seed
     added = 0
-    if not args.no_seed:
+    if not args.no_seed and not throttled():
         have = {(d.get("sku") or "").upper() for d in deals} | {
             (sku_from_url(d.get("url", "")) or "") for d in deals}
         names = {re.sub(r"\W+", "", d.get("name", "").lower())[:60] for d in deals}
         counts = Counter(d.get("category") for d in deals if not is_upcoming(d, now))
         ids = {d.get("id") for d in deals}
         for cat, (queries, must, mustnot, floor) in SEEDS.items():
+            if throttled():
+                break
             need = TARGET_PER_CAT - counts[cat]
             if need <= 0:
                 continue
             must_re = re.compile(must, re.I)
             not_re = re.compile(mustnot, re.I) if mustnot else None
             cands = []
+            why_not: Counter = Counter()
+            samples: dict[str, list[str]] = defaultdict(list)
+
+            def reject(reason: str, title: str) -> None:
+                why_not[reason] += 1
+                if len(samples[reason]) < 3:
+                    samples[reason].append(title[:90])
+
             for q in queries:
-                for p in api.search(q):
+                results = api.search(q)
+                if not results:
+                    why_not["no search results"] += 1
+                for p in results:
                     title = str(p.get("WebDescription") or "").strip()
                     off = offer(p)
-                    if not title or off is None or off["price"] < floor:
+                    if not title:
+                        reject("no title", title)
+                        continue
+                    if off is None:
+                        reject("not purchasable", title)
+                        continue
+                    if off["price"] < floor:
+                        reject(f"under ${floor:.0f}", title)
                         continue
                     if cat == "Prebuilts" and not off["was"]:
+                        reject("no discount", title)
                         continue
-                    if not must_re.search(title) or (not_re and not_re.search(title)) or BAD_TITLE.search(title):
+                    if not must_re.search(title):
+                        reject("missing category keyword", title)
+                        continue
+                    if (not_re and not_re.search(title)) or BAD_TITLE.search(title):
+                        reject("excluded word", title)
                         continue
                     if off["rating"] is not None and off["rating"] < MIN_RATING:
+                        reject("low rating", title)
                         continue
                     sku = item_to_sku(p.get("ItemNumber", ""))
                     key = re.sub(r"\W+", "", title.lower())[:60]
                     if not sku or sku in have or key in names:
+                        reject("already listed", title)
                         continue
                     if not image_url(p):
+                        reject("no photo", title)
                         continue
                     cands.append((p, off, sku, title, key))
-                if abort_if_throttled():
-                    return 2
+                if throttled():
+                    break
                 time.sleep(0.3)
             # discounted first, then classic Newegg SKUs, then ratings
             cands.sort(key=lambda c: (
@@ -590,6 +619,11 @@ def main() -> int:
                 need -= 1
                 added += 1
                 print(f"  + [{cat}] ${off['price']:,.2f} {title[:70]}")
+            if need > 0:
+                print(f"  ! [{cat}] still {need} short of {TARGET_PER_CAT}; rejected: {dict(why_not)}")
+                for reason, titles in samples.items():
+                    for t in titles:
+                        print(f"      {reason}: {t}")
 
     # trim oversized live categories only — upcoming Future deals are kept aside
     upcoming_deals = [d for d in deals if is_upcoming(d, now)]

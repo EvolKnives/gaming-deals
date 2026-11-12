@@ -52,7 +52,7 @@ import argparse
 import subprocess
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -81,41 +81,60 @@ def _as_price(value: Any) -> float | None:
     return n
 
 
-def apply_verified_price(deal: dict, new_price: Any) -> dict:
+DROP_FLAG_HOURS = 24  # keep "price dropped" showing this long after a drop
+
+
+def apply_verified_price(deal: dict, new_price: Any, now: datetime | None = None) -> dict:
     """Apply a verified live price to a deal dict (mutates and returns it).
 
-    Sets lastPrice from the prior deal["price"], then updates priceDropped
-    / dropAmount when the new verified price is lower. Never invents
-    prices — pass only numbers checked on a retailer page or trusted feed.
-    If new_price cannot be parsed, the deal is left unchanged.
+    Sets lastPrice from the prior deal["price"]. When the new price is lower,
+    marks priceDropped with dropAmount and droppedAt. The flag then stays on
+    for DROP_FLAG_HOURS while the price holds (hourly checks would otherwise
+    clear it an hour later), and clears early if the price goes back up.
+    Never invents prices; an unparseable new_price leaves the deal unchanged.
     """
     new = _as_price(new_price)
     if new is None:
         return deal
+    now = now or datetime.now(timezone.utc)
 
     old = _as_price(deal.get("price"))
     if old is not None:
         deal["lastPrice"] = round(old, 2)
-        if new < old:
-            deal["priceDropped"] = True
-            deal["dropAmount"] = round(old - new, 2)
-        else:
-            deal["priceDropped"] = False
-            deal.pop("dropAmount", None)
     else:
-        # First time we have a price for this deal.
         deal["lastPrice"] = None
-        deal["priceDropped"] = False
-        deal.pop("dropAmount", None)
+
+    if old is not None and new < old:
+        prior = _as_price(deal.get("dropAmount")) if deal.get("priceDropped") else None
+        deal["priceDropped"] = True
+        # a further drop inside the window adds to the amount already shown
+        deal["dropAmount"] = round((prior or 0) + (old - new), 2)
+        deal["droppedAt"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
+    elif old is not None and new == old and deal.get("priceDropped"):
+        since = _parse_time(deal.get("droppedAt"))
+        if since is None or now - since > timedelta(hours=DROP_FLAG_HOURS):
+            clear_price_drop(deal)
+    else:
+        clear_price_drop(deal)
 
     deal["price"] = round(new, 2)
     return deal
+
+
+def _parse_time(s: Any) -> datetime | None:
+    if not s:
+        return None
+    try:
+        return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+    except ValueError:
+        return None
 
 
 def clear_price_drop(deal: dict) -> dict:
     """Mark a deal as not dropped (e.g. after first sighting or a rise)."""
     deal["priceDropped"] = False
     deal.pop("dropAmount", None)
+    deal.pop("droppedAt", None)
     return deal
 
 

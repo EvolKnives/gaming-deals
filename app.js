@@ -1682,35 +1682,33 @@
     var nearLow = isNearLow(deal);
     var heat = dealHeat(deal);
     var promo = dealPromoCode(deal);
+    // Deals taken from a store's sale ad (e.g. Costco) are never price-checked
+    // by the hourly job, so say where the price comes from instead of
+    // showing an ever-growing "Checked X days ago".
+    var fromAd = !deal.verifiedAt && !!deal.startsAt;
+    var startsMs = fromAd ? new Date(deal.startsAt).getTime() : NaN;
     var checkedIso = deal.updatedAt || siteUpdatedAt;
-    var checkedLabel = checkedIso ? formatChecked(checkedIso) : "";
+    var checkedLabel = fromAd
+      ? startsMs > Date.now()
+        ? "Announced price"
+        : "Advertised sale price"
+      : checkedIso
+        ? formatChecked(checkedIso)
+        : "";
     var endsLabel = deal.endsAt ? formatEndsIn(deal.endsAt) : "";
     var startsLabel = deal.startsAt ? formatStartsIn(deal.startsAt) : "";
     var endingSoon = endsWithinMs(deal, 48 * 60 * 60 * 1000);
 
     var dropBadge = "";
-    var priceNum = Number(deal.price);
-    var prevNum = Number(deal.previousPrice);
-    var belowList =
-      Number.isFinite(priceNum) && Number.isFinite(prevNum) && priceNum < prevNum;
-    var fromCheck = !!deal.priceDropped;
-    if (belowList || fromCheck) {
+    // The badge marks a real recent price drop found by the hourly check
+    // (kept ~24h). Savings vs. the list price already show in the savings pill.
+    if (deal.priceDropped) {
       var dropAmt = Number(deal.dropAmount);
-      var hasCheckAmt = fromCheck && Number.isFinite(dropAmt) && dropAmt > 0;
-      var listSave = belowList ? prevNum - priceNum : null;
-      var showAmt = hasCheckAmt ? dropAmt : listSave;
-      var hasShowAmt = Number.isFinite(showAmt) && showAmt > 0;
-      var dropLabel = hasShowAmt ? "↓ " + formatMoney(showAmt) : "Dropped";
-      var ariaDrop;
-      if (hasCheckAmt) {
-        ariaDrop = "Price dropped " + formatMoney(dropAmt) + " since last refresh";
-      } else if (belowList && hasShowAmt) {
-        ariaDrop = "Price " + formatMoney(showAmt) + " below list/MSRP";
-      } else if (fromCheck) {
-        ariaDrop = "Price dropped since last refresh";
-      } else {
-        ariaDrop = "Price below list/MSRP";
-      }
+      var hasDropAmt = Number.isFinite(dropAmt) && dropAmt > 0;
+      var dropLabel = hasDropAmt ? "↓ " + formatMoney(dropAmt) : "Dropped";
+      var ariaDrop = hasDropAmt
+        ? "Price just dropped " + formatMoney(dropAmt)
+        : "Price just dropped";
       dropBadge =
         '<span class="deal-card__drop" role="status" aria-label="' +
         escapeAttr(ariaDrop) +
@@ -1731,6 +1729,8 @@
         escapeAttr(deal.name) +
         '">' +
         '<img src="' +
+        escapeAttr(cardImageSrc(deal.image)) +
+        '" data-full="' +
         escapeAttr(deal.image) +
         '" alt="' +
         escapeAttr(deal.name) +
@@ -1857,6 +1857,8 @@
       "</div></div>";
 
     if (deal.image) {
+      var cardImg = article.querySelector(".deal-card__figure img");
+      if (cardImg) wireImageFallback(cardImg, deal);
       var fig = article.querySelector(".deal-card__figure--zoom");
       function zoom() {
         openLightbox(deal.image, deal.name);
@@ -1907,6 +1909,47 @@
     }
 
     return article;
+  }
+
+  // Newegg serves each product photo in several sizes. Cards are at most a few
+  // hundred pixels wide, so load the 640px version instead of 1280px; the zoomed
+  // photo (lightbox) still uses the full-size image.
+  var NEWEGG_FULL = "/ProductImageCompressAll1280/";
+  var NEWEGG_CARD = "/ProductImageCompressAll640/";
+
+  function cardImageSrc(src) {
+    src = String(src || "");
+    if (src.indexOf("neweggimages.com") !== -1 && src.indexOf(NEWEGG_FULL) !== -1) {
+      return src.replace(NEWEGG_FULL, NEWEGG_CARD);
+    }
+    return src;
+  }
+
+  // If the smaller photo is missing, try the full-size one; if that fails too,
+  // swap the broken image for the category placeholder tile.
+  function wireImageFallback(img, deal) {
+    img.addEventListener("error", function onErr() {
+      var full = img.getAttribute("data-full");
+      if (full && img.getAttribute("src") !== full) {
+        img.setAttribute("src", full);
+        return;
+      }
+      img.removeEventListener("error", onErr);
+      var fig = img.closest(".deal-card__figure");
+      if (!fig) return;
+      var badge = fig.querySelector(".deal-card__drop");
+      fig.className = "deal-card__figure deal-card__figure--placeholder";
+      fig.removeAttribute("tabindex");
+      fig.removeAttribute("role");
+      fig.setAttribute("aria-hidden", "true");
+      fig.innerHTML =
+        '<span class="deal-card__cat-mark">' +
+        escapeHtml(normalizeCategory(deal.category) || deal.category || "Deal") +
+        "</span>";
+      if (badge) fig.appendChild(badge);
+      var clone = fig.cloneNode(true); // drop the zoom click handlers
+      fig.parentNode.replaceChild(clone, fig);
+    });
   }
 
   function escapeHtml(str) {
