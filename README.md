@@ -28,12 +28,21 @@ Pull-to-refresh reloads `data/deals.json?t=…` with `cache: "no-store"` (the sa
 ## Builds tab
 
 [`scripts/build_pcs.py`](scripts/build_pcs.py) runs at the end of every hourly
-refresh and writes [`data/builds.json`](data/builds.json): the strongest
-gaming PC today's deals can make under $1,000, $1,500, $2,000 and $3,000
-(budgets no build can meet are skipped). It matches CPU and motherboard
-sockets, memory type, motherboard size to case, and power supply wattage to
-the graphics card, all read from product titles; parts whose titles don't say
-enough are left out. The graphics card is weighted 3x the processor.
+refresh and writes [`data/builds.json`](data/builds.json): for each budget
+($1,200, $1,500, $2,000, $3,000) the strongest AMD build and the strongest
+Intel build that today's prices allow. Parts come from the deals plus
+regular-price Newegg parts that the refresh looks up every 6 hours
+([`data/build-parts.json`](data/build-parts.json), queries in `POOL_QUERIES`
+in `daily_refresh.py`); each part is marked on sale or regular price.
+
+Compatibility is read from product titles: CPU and motherboard sockets,
+memory type, motherboard size vs case, and power supply wattage vs graphics
+card. The graphics card is weighted 3x the processor, and builds from $2,000
+up use at least 32GB of memory. Budgets no build can meet are skipped.
+
+On the site, each part has a menu of other compatible options with prices.
+Picking a graphics card that needs more power, or a motherboard the case
+can't hold, also switches in the cheapest power supply or case that fits.
 
 ## Shared category rules
 

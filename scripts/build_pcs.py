@@ -2,7 +2,8 @@
 """
 Auto PC builds for What's A Good Deal?
 
-Reads data/deals.json and, for each budget in BUDGETS, picks the strongest
+Reads data/deals.json (plus regular-price parts in data/build-parts.json) and,
+for each budget in BUDGETS and each platform (AMD, Intel), picks the strongest
 gaming PC that today's deals can make: CPU, motherboard, memory, graphics
 card, SSD, power supply, case and (when the CPU has none in the box) a CPU
 cooler. Writes data/builds.json, which the site's Builds tab shows.
@@ -29,9 +30,13 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEALS_PATH = ROOT / "data" / "deals.json"
 BUILDS_PATH = ROOT / "data" / "builds.json"
+POOL_PATH = ROOT / "data" / "build-parts.json"  # regular-price parts (daily_refresh.py)
 
-BUDGETS = [1000, 1500, 2000, 3000]
+BUDGETS = [1200, 1500, 2000, 3000]
+PLATFORMS = {"AMD": {"AM4", "AM5"}, "Intel": {"LGA1700", "LGA1851"}}
 COOLER_ESTIMATE = 35.0  # used only when no cooler deal exists today
+MIN_RAM_GB_FROM = {2000: 32}  # budgets at or above these need at least this much memory
+MAX_OPTIONS = 12  # swap choices offered per part
 
 # ---------------------------------------------------------------- parsing
 CPU_SCORES = [  # relative gaming performance; first match wins
@@ -43,7 +48,8 @@ CPU_SCORES = [  # relative gaming performance; first match wins
     (r"7600x", 72), (r"\b245k\b", 70), (r"13600k", 70), (r"7600\b", 70),
     (r"5700x3d", 68), (r"8700g", 62), (r"12600k", 60), (r"14400", 58),
     (r"5800x\b", 58), (r"5700x\b", 55), (r"5600x\b", 52), (r"12400", 50),
-    (r"5600\b", 50), (r"5500\b", 42),
+    (r"5600\b", 50), (r"5500\b", 42), (r"\b235\b", 66), (r"\b225f?\b", 62),
+    (r"\b7700\b", 74), (r"9600\b", 74), (r"13400", 52), (r"14100", 40),
     (r"ryzen 9", 80), (r"ryzen 7", 72), (r"ryzen 5", 60), (r"core ultra 9", 85),
     (r"core ultra 7", 78), (r"core ultra 5", 68), (r"\bi9\b", 78), (r"\bi7\b", 70),
     (r"\bi5\b", 58), (r"\bi3\b", 40),
@@ -178,10 +184,23 @@ def gpu_psu_need(t: str) -> int:
 # ---------------------------------------------------------------- building
 def part(d: dict[str, Any], role: str) -> dict[str, Any]:
     keep = ("id", "name", "price", "previousPrice", "url", "merchant", "image")
-    return {"role": role, **{k: d.get(k) for k in keep}}
+    was, price = d.get("previousPrice"), d.get("price")
+    on_sale = isinstance(was, (int, float)) and isinstance(price, (int, float)) and was > price
+    return {"role": role, **{k: d.get(k) for k in keep}, "deal": bool(on_sale)}
 
 
-def candidates(deals: list[dict[str, Any]], now: datetime) -> dict[str, list[dict[str, Any]]]:
+def cheapest_per(items: list[dict[str, Any]], key) -> list[dict[str, Any]]:
+    """Keep only the cheapest item for each key — a pricier twin never wins."""
+    best: dict[Any, dict[str, Any]] = {}
+    for it in items:
+        k = key(it)
+        if k not in best or it["price"] < best[k]["price"]:
+            best[k] = it
+    return list(best.values())
+
+
+def candidates(deals: list[dict[str, Any]], now: datetime,
+               pool: list[dict[str, Any]] | None = None) -> dict[str, list[dict[str, Any]]]:
     def live(d: dict[str, Any]) -> bool:
         st = d.get("startsAt")
         if st:
@@ -193,8 +212,11 @@ def candidates(deals: list[dict[str, Any]], now: datetime) -> dict[str, list[dic
         return isinstance(d.get("price"), (int, float)) and d["price"] > 0 and bool(d.get("url"))
 
     by: dict[str, list[dict[str, Any]]] = {}
-    for d in deals:
-        if live(d):
+    seen_skus: set[str] = set()
+    for d in list(deals) + list(pool or []):  # deals first: they win a SKU tie
+        sku = str(d.get("sku") or d.get("id"))
+        if live(d) and sku not in seen_skus:
+            seen_skus.add(sku)
             by.setdefault(str(d.get("category")), []).append(d)
     out: dict[str, list[dict[str, Any]]] = {k: [] for k in
                                             ("cpu", "board", "ram", "gpu", "ssd", "psu", "case", "cooler")}
@@ -229,13 +251,23 @@ def candidates(deals: list[dict[str, Any]], now: datetime) -> dict[str, list[dic
         if fits:
             out["case"].append({**d, "_fits": fits})
     out["cooler"] = list(by.get("Coolers", []))
+    # every compatible part stays available as a swap option on the site
+    out["_all"] = {k: list(v) for k, v in out.items()}
+    # only the cheapest of each interchangeable kind can be in a best build
+    out["cpu"] = cheapest_per(out["cpu"], lambda d: (d["_sock"], d["_score"], d["_boxed"]))
+    out["board"] = cheapest_per(out["board"], lambda d: (d["_sock"], d["_mem"], d["_size"]))
+    out["ram"] = cheapest_per(out["ram"], lambda d: (d["_mem"], min(d["_gb"], 64) // 16))
+    out["gpu"] = cheapest_per(out["gpu"], lambda d: (d["_score"], d["_need"]))
+    out["ssd"] = cheapest_per(out["ssd"], lambda d: min(d["_gb"], 2000) // 1000)
     return out
 
 
-def best_build(c: dict[str, list[dict[str, Any]]], budget: float) -> dict[str, Any] | None:
+def best_build(c: dict[str, list[dict[str, Any]]], budget: float,
+               sockets: set[str]) -> dict[str, Any] | None:
     cooler = min(c["cooler"], key=lambda d: d["price"]) if c["cooler"] else None
+    min_gb = max([gb for b, gb in MIN_RAM_GB_FROM.items() if budget >= b], default=16)
     best, best_key = None, None
-    for gpu, cpu in product(c["gpu"], c["cpu"]):
+    for gpu, cpu in product(c["gpu"], (x for x in c["cpu"] if x["_sock"] in sockets)):
         base = gpu["price"] + cpu["price"]
         if base > budget:
             continue
@@ -249,7 +281,8 @@ def best_build(c: dict[str, list[dict[str, Any]]], budget: float) -> dict[str, A
                        key=lambda d: d["price"], default=None)
             if not case:
                 continue
-            for ram, ssd in product((r for r in c["ram"] if r["_mem"] == board["_mem"]), c["ssd"]):
+            rams = (r for r in c["ram"] if r["_mem"] == board["_mem"] and r["_gb"] >= min_gb)
+            for ram, ssd in product(rams, c["ssd"]):
                 total = fixed + board["price"] + case["price"] + ram["price"] + ssd["price"]
                 if total > budget:
                     continue
@@ -266,7 +299,47 @@ def best_build(c: dict[str, list[dict[str, Any]]], budget: float) -> dict[str, A
     return best
 
 
-def render(b: dict[str, Any], budget: int) -> dict[str, Any]:
+def meta(role: str, d: dict[str, Any]) -> dict[str, Any]:
+    """Compatibility facts the site uses to keep swaps compatible."""
+    if role == "cpu":
+        return {"sock": d["_sock"]}
+    if role == "board":
+        return {"sock": d["_sock"], "mem": d["_mem"], "size": d["_size"]}
+    if role == "ram":
+        return {"mem": d["_mem"]}
+    if role == "gpu":
+        return {"need": d["_need"]}
+    if role == "psu":
+        return {"w": d["_w"]}
+    if role == "case":
+        return {"fits": sorted(d["_fits"])}
+    return {}
+
+
+def swap_options(role: str, b: dict[str, Any], full: dict[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    """Other parts that could take this slot. Fixed rules (same socket, same
+    memory type) are applied here; ones that depend on the user's other swaps
+    (PSU vs graphics card, case vs board size) are applied on the site."""
+    cur = b[role]
+    pool = full.get(role, [])
+    if role == "cpu":
+        pool = [x for x in pool if x["_sock"] == cur["_sock"] and (x["_boxed"] or not cur["_boxed"])]
+    elif role == "board":
+        pool = [x for x in pool if x["_sock"] == cur["_sock"] and x["_mem"] == cur["_mem"]]
+    elif role == "ram":
+        pool = [x for x in pool if x["_mem"] == cur["_mem"]]
+    pool = sorted(pool, key=lambda d: d["price"])
+    picked = [x for x in pool if x["id"] != cur["id"]][: MAX_OPTIONS - 1] + [cur]
+    picked.sort(key=lambda d: d["price"])
+    return [{**part(x, ""), **meta(role, x)} for x in picked]
+
+
+def catalog_entry(p: dict[str, Any]) -> dict[str, Any]:
+    return {k: v for k, v in p.items() if k not in ("role", "slot", "options")}
+
+
+def render(b: dict[str, Any], budget: int, platform: str,
+           full: dict[str, list[dict[str, Any]]] | None = None) -> dict[str, Any]:
     roles = [("cpu", "Processor"), ("cooler", "CPU cooler"), ("board", "Motherboard"),
              ("ram", "Memory"), ("gpu", "Graphics card"), ("ssd", "Storage"),
              ("psu", "Power supply"), ("case", "Case")]
@@ -280,7 +353,10 @@ def render(b: dict[str, Any], budget: int) -> dict[str, Any]:
                 parts.append({"role": label, "name": "Any CPU cooler (not in today's deals)",
                               "price": COOLER_ESTIMATE, "estimate": True})
                 continue
-        parts.append(part(b[key], label))
+        entry = {**part(b[key], label), **meta(key, b[key]), "slot": key}
+        if full:
+            entry["options"] = swap_options(key, b, full)
+        parts.append(entry)
         if key == "cooler":
             notes.append(f"Make sure the cooler lists {b['cpu']['_sock']} support (most current coolers do).")
     total = round(sum(p["price"] for p in parts), 2)
@@ -288,7 +364,9 @@ def render(b: dict[str, Any], budget: int) -> dict[str, Any]:
     notes.append("Check that the graphics card fits the case before buying.")
     return {
         "budget": budget,
-        "title": f"${budget:,} gaming PC",
+        "platform": platform,
+        "title": f"${budget:,} {platform} gaming PC",
+        "dealCount": sum(1 for p in parts if p.get("deal")),
         "total": total,
         "savings": round(max(0.0, was - total), 2),
         "summary": f"{short(b['cpu']['name'])} + {short(b['gpu']['name'])}",
@@ -310,20 +388,36 @@ def short(name: str) -> str:
 
 def main() -> int:
     deals = json.loads(DEALS_PATH.read_text(encoding="utf-8")).get("deals") or []
+    try:
+        pool = json.loads(POOL_PATH.read_text(encoding="utf-8")).get("parts") or []
+    except (OSError, ValueError):
+        pool = []
     now = datetime.now(timezone.utc)
-    c = candidates(deals, now)
-    builds, seen = [], set()
+    c = candidates(deals, now, pool)
+    builds, seen, catalog = [], set(), {}
     for budget in BUDGETS:
-        b = best_build(c, budget)
-        if not b:
-            continue
-        sig = tuple(b[k]["id"] for k in ("cpu", "board", "ram", "gpu", "ssd", "psu", "case"))
-        if sig in seen:
-            continue
-        seen.add(sig)
-        builds.append(render(b, budget))
-    out = {"updatedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "budgets": BUDGETS, "builds": builds}
-    BUILDS_PATH.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        for platform, sockets in PLATFORMS.items():
+            b = best_build(c, budget, sockets)
+            if not b:
+                continue
+            sig = tuple(b[k]["id"] for k in ("cpu", "board", "ram", "gpu", "ssd", "psu", "case"))
+            if sig in seen:
+                continue  # a cheaper budget already shows this exact PC
+            seen.add(sig)
+            built = render(b, budget, platform, c["_all"])
+            # store each part once in "parts"; builds refer to parts by id
+            for p in built["parts"]:
+                for o in p.get("options", []):
+                    catalog[o["id"]] = catalog_entry(o)
+                if p.get("id"):
+                    catalog[p["id"]] = catalog_entry(p)
+                if "options" in p:
+                    p["options"] = [o["id"] for o in p["options"]]
+            builds.append(built)
+    out = {"updatedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "budgets": BUDGETS,
+           "platforms": list(PLATFORMS), "parts": catalog, "builds": builds}
+    BUILDS_PATH.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n",
+                           encoding="utf-8")
     print(f"Builds: {len(builds)} ({', '.join(b['title'] + ' $' + format(b['total'], ',.2f') for b in builds) or 'none'})")
     return 0
 

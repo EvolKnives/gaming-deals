@@ -2165,32 +2165,217 @@
       });
   }
 
-  function buildPartHtml(p) {
+  function shortPartName(name) {
+    var pats = [
+      /(RTX|RX|Arc) ?[A-Z]?\d{3,4}(?: ?(?:Ti|XTX|XT|GRE))?/i,
+      /Ryzen [3579] \d{4}[A-Z0-9]*/i,
+      /Core Ultra [3579] \d{3}[A-Z]*/i,
+      /Core i[3579]-\d{4,5}[A-Z]*/i
+    ];
+    for (var i = 0; i < pats.length; i++) {
+      var m = String(name || "").match(pats[i]);
+      if (m) return m[0];
+    }
+    return String(name || "").split(" - ")[0].slice(0, 40);
+  }
+
+  function partOnSale(p) {
+    var was = Number(p && p.previousPrice);
+    var price = Number(p && p.price);
+    return Number.isFinite(was) && Number.isFinite(price) && was > price;
+  }
+
+  // Which swap options still fit with the rest of the current build.
+  // Power supplies too weak for the chosen graphics card, and cases too small
+  // for the chosen motherboard, are not offered. Graphics cards and boards are
+  // all offered: picking one that needs more swaps in the cheapest PSU or case
+  // that fits (see fixDependents).
+  function optionFits(slot, opt, cur) {
+    if (slot === "psu" && cur.gpu) return !(cur.gpu.need > opt.w);
+    if (slot === "case" && cur.board) return (opt.fits || []).indexOf(cur.board.size) !== -1;
+    return true;
+  }
+
+  function cheapestOption(part, catalog, ok) {
+    var best = null;
+    (part.options || []).forEach(function (id) {
+      var o = catalog[id];
+      if (o && ok(o) && (!best || Number(o.price) < Number(best.price))) best = o;
+    });
+    return best;
+  }
+
+  function fixDependents(slot, cur, catalog) {
+    var swapped = [];
+    if (slot === "gpu" && cur.psu && cur.gpu.need > cur.psu.w) {
+      var psu = cheapestOption(cur.psu, catalog, function (o) { return o.w >= cur.gpu.need; });
+      if (psu) {
+        cur.psu = Object.assign({}, cur.psu, psu, { role: cur.psu.role, slot: "psu" });
+        swapped.push("power supply");
+      }
+    }
+    if (slot === "board" && cur["case"] && (cur["case"].fits || []).indexOf(cur.board.size) === -1) {
+      var cs = cheapestOption(cur["case"], catalog, function (o) {
+        return (o.fits || []).indexOf(cur.board.size) !== -1;
+      });
+      if (cs) {
+        cur["case"] = Object.assign({}, cur["case"], cs, { role: cur["case"].role, slot: "case" });
+        swapped.push("case");
+      }
+    }
+    return swapped;
+  }
+
+  function buildState(b) {
+    var cur = {};
+    (b.parts || []).forEach(function (p) {
+      if (p.slot) cur[p.slot] = p;
+    });
+    return cur;
+  }
+
+  function buildPartHtml(p, cur, catalog) {
     var cat = BUILD_ROLE_CATEGORY[p.role] || "";
-    var thumb = p.image
-      ? '<img src="' + escapeAttr(cardImageSrc(p.image)) + '" data-full="' + escapeAttr(p.image) +
+    var shown = (p.slot && cur[p.slot]) || p;
+    var thumb = shown.image
+      ? '<img src="' + escapeAttr(cardImageSrc(shown.image)) + '" data-full="' + escapeAttr(shown.image) +
         '" data-cat="' + escapeAttr(cat) + '" alt="" loading="lazy" decoding="async">'
       : categoryIconSvg(cat, "build-part__icon");
-    var name = p.url
-      ? '<a class="build-part__name" href="' + escapeAttr(p.url) +
-        '" target="_blank" rel="noopener noreferrer">' + escapeHtml(p.name) + "</a>"
-      : '<span class="build-part__name">' + escapeHtml(p.name) + "</span>";
-    var was = Number(p.previousPrice);
-    var priceNum = Number(p.price);
-    var wasHtml =
-      Number.isFinite(was) && was > priceNum
-        ? '<span class="build-part__was">' + escapeHtml(formatMoney(was)) + "</span>"
-        : "";
+    var name = shown.url
+      ? '<a class="build-part__name" href="' + escapeAttr(shown.url) +
+        '" target="_blank" rel="noopener noreferrer">' + escapeHtml(shown.name) + "</a>"
+      : '<span class="build-part__name">' + escapeHtml(shown.name) + "</span>";
+    var priceNum = Number(shown.price);
+    var sale = partOnSale(shown);
+    var wasHtml = sale
+      ? '<span class="build-part__was">' + escapeHtml(formatMoney(Number(shown.previousPrice))) + "</span>"
+      : "";
+    var tag = p.estimate
+      ? "estimate"
+      : sale
+        ? '<span class="build-part__sale">on sale</span>'
+        : "regular price";
+    var swap = "";
+    var opts = (p.options || [])
+      .map(function (id) { return catalog[id]; })
+      .filter(function (o) { return o && optionFits(p.slot, o, cur); });
+    if (opts.length > 1) {
+      swap =
+        '<label class="build-part__swap"><span class="visually-hidden">Swap ' + escapeHtml(p.role) +
+        "</span>" +
+        '<select data-slot="' + escapeAttr(p.slot) + '">' +
+        opts
+          .map(function (o) {
+            var diff = Math.round((Number(o.price) - priceNum) * 100) / 100;
+            var diffTxt =
+              o.id === shown.id
+                ? "current"
+                : (diff >= 0 ? "+" : "−") + formatMoney(Math.abs(diff));
+            return (
+              '<option value="' + escapeAttr(o.id) + '"' + (o.id === shown.id ? " selected" : "") + ">" +
+              escapeHtml(formatMoney(Number(o.price)) + " (" + diffTxt + ") · " + shortOption(o.name) +
+                (partOnSale(o) ? " · sale" : "")) +
+              "</option>"
+            );
+          })
+          .join("") +
+        "</select></label>";
+    }
     return (
       '<li class="build-part">' +
       '<span class="build-part__thumb">' + thumb + "</span>" +
       '<span class="build-part__info">' +
       '<span class="build-part__role">' + escapeHtml(p.role) +
-      (p.estimate ? " · estimate" : p.merchant ? " · " + escapeHtml(p.merchant) : "") +
-      "</span>" + name + "</span>" +
+      (shown.merchant ? " · " + escapeHtml(shown.merchant) : "") + " · " + tag +
+      "</span>" + name + swap + "</span>" +
       '<span class="build-part__price">' + escapeHtml(formatMoney(priceNum)) + wasHtml + "</span>" +
       "</li>"
     );
+  }
+
+  function shortOption(name) {
+    var n = String(name || "").replace(/\s+-\s+.*$/, "");
+    return n.length > 60 ? n.slice(0, 58) + "…" : n;
+  }
+
+  function buildCardHtml(b, cur, catalog, changed, notice) {
+    var parts = (b.parts || []).map(function (p) { return (p.slot && cur[p.slot]) || p; });
+    var total = parts.reduce(function (sum, p) { return sum + Number(p.price || 0); }, 0);
+    var was = parts.reduce(function (sum, p) {
+      return sum + (partOnSale(p) ? Number(p.previousPrice) : Number(p.price || 0));
+    }, 0);
+    var save = Math.max(0, was - total);
+    var onSale = parts.filter(partOnSale).length;
+    var summary = cur.cpu && cur.gpu
+      ? shortPartName(cur.cpu.name) + " + " + shortPartName(cur.gpu.name)
+      : b.summary || b.title;
+    var over = total > Number(b.budget) + 0.005;
+    return (
+      '<header class="build-card__head">' +
+      "<div>" +
+      '<p class="build-card__eyebrow">' + escapeHtml(b.platform || "") + "</p>" +
+      '<h3 class="build-card__title">' + escapeHtml(summary) + "</h3>" +
+      '<p class="build-card__meta">' + onSale + " of " + parts.length + " parts on sale" +
+      (changed ? ' · <button type="button" class="build-card__reset">Reset</button>' : "") +
+      "</p>" +
+      (notice ? '<p class="build-card__notice" role="status">' + escapeHtml(notice) + "</p>" : "") +
+      "</div>" +
+      '<div class="build-card__total">' +
+      '<span class="build-card__price">' + escapeHtml(formatMoney(Math.round(total * 100) / 100)) + "</span>" +
+      (save > 0.5 ? '<span class="deal-card__badge">save ' + escapeHtml(formatMoney(Math.round(save))) + "</span>" : "") +
+      (over ? '<span class="build-card__over">Over $' + Number(b.budget).toLocaleString("en-US") + "</span>" : "") +
+      "</div>" +
+      "</header>" +
+      '<ol class="build-card__parts">' +
+      (b.parts || []).map(function (p) { return buildPartHtml(p, cur, catalog); }).join("") +
+      "</ol>" +
+      ((b.notes || []).length
+        ? '<ul class="build-card__notes">' +
+          b.notes.map(function (n) { return "<li>" + escapeHtml(n) + "</li>"; }).join("") +
+          "</ul>"
+        : "")
+    );
+  }
+
+  function wireBuildCard(card, b, catalog) {
+    var cur = card._cur;
+    card.innerHTML = buildCardHtml(b, cur, catalog, card._changed, card._notice);
+    card.querySelectorAll(".build-part__thumb img").forEach(function (img) {
+      img.addEventListener("error", function onErr() {
+        var full = img.getAttribute("data-full");
+        if (full && img.getAttribute("src") !== full) {
+          img.setAttribute("src", full);
+          return;
+        }
+        img.removeEventListener("error", onErr);
+        img.outerHTML = categoryIconSvg(img.getAttribute("data-cat") || "", "build-part__icon");
+      });
+    });
+    card.querySelectorAll(".build-part__swap select").forEach(function (sel) {
+      sel.addEventListener("change", function () {
+        var slot = sel.getAttribute("data-slot");
+        var pick = catalog[sel.value];
+        if (!pick) return;
+        cur[slot] = Object.assign({}, cur[slot], pick, { role: cur[slot].role, slot: slot });
+        card._changed = true;
+        var also = fixDependents(slot, cur, catalog);
+        card._notice = also.length ? "Also switched the " + also.join(" and ") + " so everything fits." : "";
+        wireBuildCard(card, b, catalog);
+        var again = card.querySelector('select[data-slot="' + slot + '"]');
+        if (again) {
+          try { again.focus(); } catch (e) {}
+        }
+      });
+    });
+    var reset = card.querySelector(".build-card__reset");
+    if (reset) {
+      reset.addEventListener("click", function () {
+        card._cur = buildState(b);
+        card._changed = false;
+        card._notice = "";
+        wireBuildCard(card, b, catalog);
+      });
+    }
   }
 
   function renderBuilds() {
@@ -2204,13 +2389,15 @@
       return;
     }
     var builds = allBuilds.builds || [];
+    var catalog = allBuilds.parts || {};
     var intro = document.createElement("p");
     intro.className = "builds-intro";
     var have = builds.map(function (b) { return b.budget; });
     var missing = (allBuilds.budgets || []).filter(function (b) { return have.indexOf(b) === -1; });
     intro.textContent =
-      "Complete gaming PCs picked from today’s deals and rebuilt every hour. Processor and " +
-      "motherboard sockets, memory type, case size and power supply are matched for you." +
+      "Complete AMD and Intel gaming PCs built from today’s prices and rebuilt every hour, mixing " +
+      "sale and regular-price parts. Sockets, memory type, case size and power are matched for you. " +
+      "Use the menus under each part to swap in another compatible option." +
       (missing.length && builds.length
         ? " No build fits " + missing.map(function (b) { return "$" + b.toLocaleString("en-US"); }).join(" or ") +
           " at today’s prices."
@@ -2219,47 +2406,37 @@
     if (!builds.length) {
       var none = document.createElement("p");
       none.className = "status";
-      none.textContent = "No complete build fits today’s deals yet. Check back after the next hourly price check.";
+      none.textContent = "No complete build fits today’s prices yet. Check back after the next hourly price check.";
       dealsEl.appendChild(none);
       return;
     }
-    var cards = builds.map(function (b) {
-      var card = document.createElement("article");
-      card.className = "build-card";
-      card.id = "build-" + b.budget;
-      var save = Number(b.savings);
-      card.innerHTML =
-        '<header class="build-card__head">' +
-        "<div>" +
-        '<p class="build-card__eyebrow">Under $' + escapeHtml(Number(b.budget).toLocaleString("en-US")) + "</p>" +
-        '<h2 class="build-card__title">' + escapeHtml(b.summary || b.title) + "</h2>" +
-        "</div>" +
-        '<div class="build-card__total">' +
-        '<span class="build-card__price">' + escapeHtml(formatMoney(Number(b.total))) + "</span>" +
-        (save > 0 ? '<span class="deal-card__badge">save ' + escapeHtml(formatMoney(save)) + "</span>" : "") +
-        "</div>" +
-        "</header>" +
-        '<ol class="build-card__parts">' + (b.parts || []).map(buildPartHtml).join("") + "</ol>" +
-        ((b.notes || []).length
-          ? '<ul class="build-card__notes">' +
-            b.notes.map(function (n) { return "<li>" + escapeHtml(n) + "</li>"; }).join("") +
-            "</ul>"
-          : "");
-      card.querySelectorAll(".build-part__thumb img").forEach(function (img) {
-        img.addEventListener("error", function onErr() {
-          var full = img.getAttribute("data-full");
-          if (full && img.getAttribute("src") !== full) {
-            img.setAttribute("src", full);
-            return;
-          }
-          img.removeEventListener("error", onErr);
-          img.outerHTML = categoryIconSvg(img.getAttribute("data-cat") || "", "build-part__icon");
-        });
-      });
-      return card;
+    var budgets = [];
+    builds.forEach(function (b) {
+      if (budgets.indexOf(b.budget) === -1) budgets.push(b.budget);
     });
-    cards.forEach(function (c) {
-      dealsEl.appendChild(c);
+    budgets.forEach(function (budget) {
+      var group = document.createElement("section");
+      group.className = "build-group";
+      group.id = "builds-" + budget;
+      var h = document.createElement("h2");
+      h.className = "build-group__title";
+      h.textContent = "Under $" + Number(budget).toLocaleString("en-US");
+      group.appendChild(h);
+      var row = document.createElement("div");
+      row.className = "build-group__row";
+      builds
+        .filter(function (b) { return b.budget === budget; })
+        .forEach(function (b) {
+          var card = document.createElement("article");
+          card.className = "build-card";
+          card.id = "build-" + budget + "-" + String(b.platform || "").toLowerCase();
+          card._cur = buildState(b);
+          card._changed = false;
+          wireBuildCard(card, b, catalog);
+          row.appendChild(card);
+        });
+      group.appendChild(row);
+      dealsEl.appendChild(group);
     });
   }
 

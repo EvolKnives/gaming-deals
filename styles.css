@@ -2084,3 +2084,82 @@ a.build-part__name:focus-visible {
     height: 42px;
   }
 }
+
+/* Builds tab: budget groups, AMD / Intel side by side, part swap menus */
+.build-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.build-group__title {
+  margin: 0.6rem 0 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.build-group__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+  gap: var(--grid-gap, 1rem);
+  align-items: start;
+}
+
+.build-group__row .build-card__parts {
+  grid-template-columns: 1fr;
+}
+
+.build-card__meta {
+  margin: 0.3rem 0 0;
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+}
+
+.build-card__reset {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.build-card__over {
+  font-size: 0.72rem;
+  font-weight: 650;
+  color: #ff6b5f;
+}
+
+.build-part__sale {
+  color: var(--deal);
+}
+
+.build-part__swap select {
+  margin-top: 0.35rem;
+  width: 100%;
+  max-width: 100%;
+  font: inherit;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.3rem 0.45rem;
+  cursor: pointer;
+}
+
+.build-part__swap select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.build-part__swap option {
+  color: #111;
+}
+
+.build-card__notice {
+  margin: 0.3rem 0 0;
+  font-size: 0.76rem;
+  color: var(--accent);
+}

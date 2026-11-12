@@ -335,6 +335,83 @@ def apply_offer(deal: dict[str, Any], prod: dict[str, Any], off: dict[str, Any],
         deal["why"] = why_line(off["price"], off["was"])
 
 
+# ---------------------------------------------------------------- build parts
+# Regular-price parts for the Builds tab (data/build-parts.json), so builds can
+# reach lower budgets and both AMD and Intel even when few parts are on sale.
+# Looked up every POOL_MAX_AGE_HOURS, not every hour, to save API calls.
+POOL_PATH = ROOT / "data" / "build-parts.json"
+POOL_MAX_AGE_HOURS = 6
+POOL_QUERIES: dict[str, list[str]] = {
+    "CPUs": ["amd ryzen 5 5600 processor", "amd ryzen 7 5700x3d processor",
+             "amd ryzen 5 7600 processor", "amd ryzen 7 7700 processor",
+             "amd ryzen 7 9700x processor", "intel core i5-12400f processor",
+             "intel core i5-14400f processor", "intel core i5-14600kf processor",
+             "intel core ultra 5 225 processor", "intel core ultra 5 245k processor",
+             "intel core ultra 7 265k processor"],
+    "Motherboards": ["B550 motherboard", "B650 motherboard", "A620 motherboard",
+                     "B760M DDR4 motherboard", "B760 DDR5 motherboard", "B860 motherboard",
+                     "Z790 DDR5 motherboard"],
+    "RAM": ["DDR4 16GB 3200 desktop memory kit", "DDR4 32GB 3200 desktop memory kit",
+            "DDR5 16GB 6000 desktop memory kit", "DDR5 32GB 6000 desktop memory kit"],
+    "GPUs": ["geforce rtx 5060 graphics card", "geforce rtx 5060 ti 16gb graphics card",
+             "radeon rx 9060 xt graphics card", "intel arc b580 graphics card",
+             "geforce rtx 5070 graphics card", "radeon rx 9070 graphics card"],
+    "SSDs": ["1TB NVMe M.2 SSD", "2TB NVMe M.2 SSD"],
+    "PSUs": ["650w power supply", "750w 80 plus gold power supply", "850w modular power supply"],
+    "Cases": ["micro atx case", "atx mid tower case airflow"],
+    "Coolers": ["cpu air cooler"],
+}
+
+
+def refresh_build_parts(api: Newegg, now: datetime, stamp: str) -> None:
+    try:
+        old = json.loads(POOL_PATH.read_text(encoding="utf-8"))
+        fetched = parse_iso(old.get("fetchedAt"))
+        if fetched and now - fetched < timedelta(hours=POOL_MAX_AGE_HOURS) and old.get("parts"):
+            print(f"Build parts: {len(old['parts'])} cached from {old['fetchedAt']}")
+            return
+    except (OSError, ValueError):
+        pass
+    parts: dict[str, dict[str, Any]] = {}
+    for cat, queries in POOL_QUERIES.items():
+        _, must, mustnot, _floor = SEEDS[cat]
+        must_re = re.compile(must, re.I)
+        not_re = re.compile(mustnot, re.I) if mustnot else None
+        for q in queries:
+            if throttled_flag(api):
+                print("Build parts: Newegg throttled — keeping the previous list")
+                return
+            for p in api.search(q):
+                title = str(p.get("WebDescription") or "").strip()
+                off = offer(p)
+                if not title or off is None or off["price"] < 15 or not image_url(p):
+                    continue
+                if not must_re.search(title) or (not_re and not_re.search(title)) or BAD_TITLE.search(title):
+                    continue
+                if off["rating"] is not None and off["rating"] < MIN_RATING:
+                    continue
+                sku = item_to_sku(p.get("ItemNumber", ""))
+                if not sku or sku in parts:
+                    continue
+                parts[sku] = {
+                    "id": "part-" + slugify(title, sku), "name": title, "category": cat,
+                    "price": off["price"], "previousPrice": off["was"], "currency": "USD",
+                    "merchant": "Newegg", "url": product_url(p["ItemNumber"]), "sku": sku,
+                    "image": image_url(p), "verifiedAt": stamp,
+                }
+            time.sleep(0.3)
+    if not parts:
+        print("Build parts: nothing found — keeping the previous list")
+        return
+    POOL_PATH.write_text(json.dumps({"fetchedAt": stamp, "parts": list(parts.values())},
+                                    indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Build parts: {len(parts)} regular-price parts saved")
+
+
+def throttled_flag(api: Newegg) -> bool:
+    return bool(api.rate_limited)
+
+
 COLOR_WORDS = re.compile(
     r"\b(black|white|red|blue|green|pink|purple|orange|yellow|grey|gray|silver|gold|"
     r"graphite|midnight|starlight|navy|teal|cyan|beige|cream|lilac|lavender|mint|"
@@ -665,6 +742,8 @@ def main() -> int:
             gone += 1
     print(f"Wrote {DEALS_PATH} ({len(deals)} deals); removed {gone} orphaned photos")
     # rebuild the Builds tab's PCs from the fresh prices
+    if not args.dry_run and not throttled():
+        refresh_build_parts(api, now, stamp)
     import build_pcs  # noqa: E402  (scripts/ is on sys.path)
     build_pcs.main()
     return 0
