@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T06:35:25Z",
+  "updatedAt": "2026-11-12T06:40:57Z",
   "budgets": [
     1000,
     1500,
@@ -10,8 +10,8 @@
     {
       "budget": 2000,
       "title": "$2,000 gaming PC",
-      "total": 1990.93,
-      "savings": 229.01,
+      "total": 1995.92,
+      "savings": 239.01,
       "summary": "Ryzen 5 7600X + RTX 5070",
       "parts": [
         {
@@ -26,9 +26,13 @@
         },
         {
           "role": "CPU cooler",
-          "name": "Any CPU cooler (not in today's deals)",
-          "price": 35.0,
-          "estimate": true
+          "id": "gamdias-boreas-m2-51d-white-argb-cpu-air-cooler-099046",
+          "name": "Gamdias Boreas M2-51D White ARGB CPU Air Cooler with Digital Display, 5 Copper Heat Pipes, 120mm Hydraulic Bearing PWM ARGB Fan, Support LGA 1700/1151/1150/1155/1156/1200/2011/2066/AM5/AM4",
+          "price": 39.99,
+          "previousPrice": 49.99,
+          "url": "https://www.newegg.com/p/N82E16835099046",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-046-19.jpg"
         },
         {
           "role": "Motherboard",
@@ -92,14 +96,15 @@
         }
       ],
       "notes": [
+        "Make sure the cooler lists AM5 support (most current coolers do).",
         "Check that the graphics card fits the case before buying."
       ]
     },
     {
       "budget": 3000,
       "title": "$3,000 gaming PC",
-      "total": 2904.92,
-      "savings": 196.01,
+      "total": 2909.91,
+      "savings": 206.01,
       "summary": "Ryzen 7 9800X3D + RTX 5070 Ti",
       "parts": [
         {
@@ -114,9 +119,13 @@
         },
         {
           "role": "CPU cooler",
-          "name": "Any CPU cooler (not in today's deals)",
-          "price": 35.0,
-          "estimate": true
+          "id": "gamdias-boreas-m2-51d-white-argb-cpu-air-cooler-099046",
+          "name": "Gamdias Boreas M2-51D White ARGB CPU Air Cooler with Digital Display, 5 Copper Heat Pipes, 120mm Hydraulic Bearing PWM ARGB Fan, Support LGA 1700/1151/1150/1155/1156/1200/2011/2066/AM5/AM4",
+          "price": 39.99,
+          "previousPrice": 49.99,
+          "url": "https://www.newegg.com/p/N82E16835099046",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/35-099-046-19.jpg"
         },
         {
           "role": "Motherboard",
@@ -180,6 +189,7 @@
         }
       ],
       "notes": [
+        "Make sure the cooler lists AM5 support (most current coolers do).",
         "Check that the graphics card fits the case before buying."
       ]
     }
