@@ -771,16 +771,17 @@ a {
   gap: 0.28rem;
   padding: 0.32rem 0.65rem 0.32rem 0.5rem;
   border-radius: 980px;
-  background: var(--drop-bg);
-  color: var(--deal);
-  border: 1px solid var(--drop-border);
+  /* Sits on the white product photo in both themes: solid green + white text for contrast */
+  background: #15803d;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   font-size: 0.6875rem;
   font-weight: 650;
   letter-spacing: -0.012em;
   line-height: 1;
   backdrop-filter: blur(12px) saturate(150%);
   -webkit-backdrop-filter: blur(12px) saturate(150%);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  box-shadow: 0 2px 6px rgba(21, 128, 61, 0.35);
   pointer-events: none;
   user-select: none;
 }
