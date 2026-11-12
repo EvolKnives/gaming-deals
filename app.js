@@ -77,7 +77,17 @@
     "Prebuilts",
     "Laptops",
     "Mice",
-    "Keyboards"
+    "Keyboards",
+    "Headsets",
+    "Earbuds",
+    "Speakers",
+    "Controllers",
+    "Webcams",
+    "Microphones",
+    "Networking",
+    "Storage",
+    "Charging",
+    "Tablets"
   ];
   var CATEGORY_ALIASES = {
     GPU: "GPUs",
@@ -1927,6 +1937,16 @@
     "Laptops": "<rect x=\"10\" y=\"10\" width=\"28\" height=\"20\" rx=\"2\"/><path d=\"M5 34h38l-3 4H8z\"/>",
     "Mice": "<rect x=\"15\" y=\"7\" width=\"18\" height=\"34\" rx=\"9\"/><path d=\"M24 7v11M15 18h18\"/>",
     "Keyboards": "<rect x=\"3\" y=\"15\" width=\"42\" height=\"18\" rx=\"2\"/><path d=\"M8 20h2M14 20h2M20 20h2M26 20h2M32 20h2M38 20h2M8 25h2M14 25h2M20 25h2M26 25h2M32 25h2M38 25h2M15 29h18\"/>",
+    "Headsets": "<path d=\"M8 30v-6a16 16 0 0 1 32 0v6\"/><rect x=\"6\" y=\"28\" width=\"8\" height=\"12\" rx=\"3\"/><rect x=\"34\" y=\"28\" width=\"8\" height=\"12\" rx=\"3\"/>",
+    "Earbuds": "<circle cx=\"15\" cy=\"17\" r=\"7\"/><path d=\"M19 23l3 16a2 2 0 0 1-4 0l-2-15\"/><circle cx=\"33\" cy=\"17\" r=\"7\"/><path d=\"M29 23l-3 16a2 2 0 0 0 4 0l2-15\"/>",
+    "Speakers": "<rect x=\"8\" y=\"14\" width=\"32\" height=\"22\" rx=\"11\"/><circle cx=\"18\" cy=\"25\" r=\"4\"/><circle cx=\"30\" cy=\"25\" r=\"4\"/>",
+    "Controllers": "<path d=\"M14 15h20a9 9 0 0 1 8.7 11.3l-2 7.5a4 4 0 0 1-7 1.4L30 31H18l-3.7 4.2a4 4 0 0 1-7-1.4l-2-7.5A9 9 0 0 1 14 15z\"/><path d=\"M15 20v6M12 23h6\"/><circle cx=\"31\" cy=\"21\" r=\"1.4\"/><circle cx=\"34\" cy=\"25\" r=\"1.4\"/>",
+    "Webcams": "<circle cx=\"24\" cy=\"19\" r=\"11\"/><circle cx=\"24\" cy=\"19\" r=\"4\"/><path d=\"M18 30l-4 8h20l-4-8\"/>",
+    "Microphones": "<rect x=\"18\" y=\"5\" width=\"12\" height=\"22\" rx=\"6\"/><path d=\"M12 22a12 12 0 0 0 24 0M24 34v8M17 42h14\"/>",
+    "Networking": "<rect x=\"6\" y=\"28\" width=\"36\" height=\"10\" rx=\"2\"/><path d=\"M14 28l-3-14M34 28l3-14\"/><circle cx=\"14\" cy=\"33\" r=\"1.4\"/><circle cx=\"20\" cy=\"33\" r=\"1.4\"/>",
+    "Storage": "<path d=\"M12 6h16l8 8v28H12z\"/><path d=\"M17 10v6M21 10v6M25 10v6\"/>",
+    "Charging": "<rect x=\"12\" y=\"7\" width=\"24\" height=\"36\" rx=\"4\"/><path d=\"M26 15l-6 10h8l-6 10\"/>",
+    "Tablets": "<rect x=\"9\" y=\"5\" width=\"30\" height=\"38\" rx=\"3\"/><path d=\"M22 38h4\"/>",
     "_default": "<rect x=\"5\" y=\"15\" width=\"38\" height=\"20\" rx=\"10\"/><path d=\"M15 21v8M11 25h8\"/><circle cx=\"31\" cy=\"23\" r=\"1.6\"/><circle cx=\"36\" cy=\"27\" r=\"1.6\"/>"
   };
 

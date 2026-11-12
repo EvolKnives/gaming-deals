@@ -7,33 +7,41 @@
         "geforce rtx 5070 graphics card",
         "radeon rx 9070 graphics card",
         "geforce rtx 5060 ti graphics card",
-        "geforce rtx 5080 graphics card"
+        "geforce rtx 5080 graphics card",
+        "geforce rtx 5060 graphics card",
+        "radeon rx 9060 xt graphics card",
+        "intel arc b580 graphics card"
       ],
       "titleMust": "graphics card|video card",
       "titleMustNot": "desktop|laptop|gaming pc|bracket|riser|cable",
-      "minPrice": 200
+      "minPrice": 150
     },
     {
       "category": "CPUs",
       "queries": [
         "amd ryzen 7 desktop processor",
         "amd ryzen 9 desktop processor",
-        "intel core ultra desktop processor"
+        "intel core ultra desktop processor",
+        "amd ryzen 5 desktop processor",
+        "intel core i5 desktop processor"
       ],
       "titleMust": "processor|\\bcpu\\b",
       "titleMustNot": "gaming desktop|desktop (pc|computer)|gaming pc|laptop|cooler|bundle|combo|motherboard|\\b\\d+ ?GB\\b|alienware",
-      "minPrice": 90
+      "minPrice": 60
     },
     {
       "category": "Monitors",
       "queries": [
         "27 inch gaming monitor",
         "oled gaming monitor",
-        "1440p 165hz monitor"
+        "1440p 165hz monitor",
+        "24 inch 1080p 144hz gaming monitor",
+        "27 inch 1440p ips monitor",
+        "portable monitor 15.6"
       ],
       "titleMust": "monitor",
       "titleMustNot": "\\barm\\b|mount|stand only|cable",
-      "minPrice": 120
+      "minPrice": 70
     },
     {
       "category": "TVs",
@@ -78,53 +86,63 @@
       "queries": [
         "850w atx power supply",
         "1000w atx 3.1 power supply",
-        "750w modular power supply"
+        "750w modular power supply",
+        "650w atx power supply",
+        "750w 80 plus gold power supply"
       ],
       "titleMust": "power supply|\\bpsu\\b",
       "titleMustNot": "ups|battery|cable|extension",
-      "minPrice": 50
+      "minPrice": 35
     },
     {
       "category": "Cases",
       "queries": [
         "mid tower computer case",
-        "atx pc case tempered glass"
+        "atx pc case tempered glass",
+        "micro atx case",
+        "budget mid tower airflow case"
       ],
       "titleMust": "\\b(case|chassis|tower)\\b",
       "titleMustNot": "fan only|laptop|phone|ssd|enclosure|carrying",
-      "minPrice": 35
+      "minPrice": 30
     },
     {
       "category": "Motherboards",
       "queries": [
         "AM5 B650 motherboard",
         "AM5 X870 motherboard",
-        "intel Z890 motherboard"
+        "intel Z890 motherboard",
+        "B650M micro atx motherboard",
+        "B760 motherboard"
       ],
       "titleMust": "motherboard",
       "titleMustNot": "bundle|combo|cpu",
-      "minPrice": 70
+      "minPrice": 60
     },
     {
       "category": "RAM",
       "queries": [
         "DDR5 32GB desktop memory kit",
-        "DDR5 64GB desktop memory"
+        "DDR5 64GB desktop memory",
+        "DDR4 16GB 3200 desktop memory kit",
+        "DDR5 16GB desktop memory kit"
       ],
       "titleMust": "\\bDDR[45]\\b",
       "titleMustNot": "so-?dimm|laptop|server|ecc",
-      "minPrice": 45
+      "minPrice": 20
     },
     {
       "category": "SSDs",
       "queries": [
         "NVMe M.2 SSD 2TB",
         "NVMe M.2 SSD 1TB",
-        "NVMe M.2 SSD 4TB"
+        "NVMe M.2 SSD 4TB",
+        "NVMe M.2 SSD 500GB",
+        "SATA SSD 1TB 2.5 inch"
       ],
       "titleMust": "\\b(SSD|solid state)\\b",
       "titleMustNot": "enclosure|adapter|external|portable|heatsink only",
-      "minPrice": 35
+      "minPrice": 20
     },
     {
       "category": "Phones",
@@ -174,21 +192,142 @@
       "category": "Mice",
       "queries": [
         "wireless gaming mouse",
-        "gaming mouse"
+        "gaming mouse",
+        "wired gaming mouse lightweight",
+        "logitech wireless mouse"
       ],
       "titleMust": "\\bmouse\\b|\\bmice\\b",
       "titleMustNot": "pad|mat|bungee|feet|grip tape",
-      "minPrice": 20
+      "minPrice": 10
     },
     {
       "category": "Keyboards",
       "queries": [
         "mechanical gaming keyboard",
-        "wireless mechanical keyboard"
+        "wireless mechanical keyboard",
+        "tkl mechanical keyboard",
+        "65% mechanical keyboard",
+        "wireless keyboard"
       ],
       "titleMust": "keyboard",
       "titleMustNot": "bundle|combo|keycaps? only|wrist rest|switches only|piano|tablet case|mouse",
-      "minPrice": 30
+      "minPrice": 15
+    },
+    {
+      "category": "Headsets",
+      "queries": [
+        "gaming headset",
+        "wireless gaming headset",
+        "over-ear headphones noise cancelling"
+      ],
+      "titleMust": "headset|headphones?",
+      "titleMustNot": "earbuds?|true wireless|in-ear|stand|hanger|holder|cable|adapter|ear ?pads|replacement|case|cushion",
+      "minPrice": 15
+    },
+    {
+      "category": "Earbuds",
+      "queries": [
+        "true wireless earbuds",
+        "noise cancelling earbuds",
+        "wireless earbuds"
+      ],
+      "titleMust": "earbuds?|true wireless|in-ear",
+      "titleMustNot": "case only|tips|replacement|cable|charging case|cover|holder",
+      "minPrice": 15
+    },
+    {
+      "category": "Speakers",
+      "queries": [
+        "bluetooth speaker",
+        "computer speakers",
+        "portable speaker waterproof"
+      ],
+      "titleMust": "speakers?",
+      "titleMustNot": "sound ?bar|receiver|subwoofer|home theater|car |marine|mount|stand|bracket|cable|wire|in-wall|ceiling|grille",
+      "minPrice": 15
+    },
+    {
+      "category": "Controllers",
+      "queries": [
+        "wireless game controller",
+        "xbox wireless controller",
+        "pc controller wired"
+      ],
+      "titleMust": "controller|gamepad",
+      "titleMustNot": "charging (station|dock|stand)|skin|grip|thumb|cable|battery pack|case|mount|vr|raid|fan|rgb controller|midi",
+      "minPrice": 15
+    },
+    {
+      "category": "Webcams",
+      "queries": [
+        "1080p webcam",
+        "4k webcam",
+        "streaming webcam"
+      ],
+      "titleMust": "webcam|web cam|web camera",
+      "titleMustNot": "cover|mount|tripod|light|privacy",
+      "minPrice": 15
+    },
+    {
+      "category": "Microphones",
+      "queries": [
+        "usb microphone",
+        "streaming microphone",
+        "condenser microphone"
+      ],
+      "titleMust": "microphones?|\\bmic\\b",
+      "titleMustNot": "\\barm\\b|stand only|pop filter|cable|shock ?mount|windscreen|foam|headset|earbuds|adapter|boom",
+      "minPrice": 15
+    },
+    {
+      "category": "Networking",
+      "queries": [
+        "wifi 7 router",
+        "wifi 6 router",
+        "mesh wifi system",
+        "wifi 6 usb adapter",
+        "gigabit network switch"
+      ],
+      "titleMust": "router|mesh|wi-?fi (6|6e|7)|access point|network switch|ethernet switch|wifi adapter|wireless adapter",
+      "titleMustNot": "\\bbits?\\b|plunge|wood|cable only|antenna only|mount",
+      "minPrice": 20
+    },
+    {
+      "category": "Storage",
+      "queries": [
+        "microsd card 256gb",
+        "usb flash drive 128gb",
+        "portable ssd 1tb",
+        "external hard drive 4tb"
+      ],
+      "titleMust": "micro ?sd|sd card|flash drive|usb drive|thumb drive|portable ssd|external (ssd|hard drive|hdd)|external drive",
+      "titleMustNot": "reader only|enclosure|case|adapter only|duplicator",
+      "minPrice": 8
+    },
+    {
+      "category": "Charging",
+      "queries": [
+        "power bank 20000mah",
+        "usb c charger 65w",
+        "wireless charger",
+        "usb c charging station"
+      ],
+      "titleMust": "power bank|portable charger|charger|charging station|charging pad",
+      "titleMustNot": "replacement battery|laptop battery|controller|watch band|car mount|cable only|ev charger|battery charger for",
+      "minPrice": 10
+    },
+    {
+      "category": "Tablets",
+      "queries": [
+        "android tablet",
+        "samsung galaxy tab",
+        "ipad",
+        "lenovo tab",
+        "amazon fire tablet"
+      ],
+      "titleMust": "tablet|\\bipad\\b|galaxy tab",
+      "titleMustNot": "drawing|pen display|graphics tablet|pen tablet|case|cover|protector|stylus|keyboard case|stand|holder|mount|charger|cable",
+      "minPrice": 60
     }
   ],
   "liveSearchHints": [
