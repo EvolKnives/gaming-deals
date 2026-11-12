@@ -25,6 +25,16 @@ catalogue-only with a calm status line.
 
 Pull-to-refresh reloads `data/deals.json?t=…` with `cache: "no-store"` (the same cache-bust runs on a normal page load). After the tab has been hidden for more than 5 minutes, coming back also refetches quietly. The header shows **Updated X ago** from `deals.json` `updatedAt`.
 
+## Builds tab
+
+[`scripts/build_pcs.py`](scripts/build_pcs.py) runs at the end of every hourly
+refresh and writes [`data/builds.json`](data/builds.json): the strongest
+gaming PC today's deals can make under $1,000, $1,500, $2,000 and $3,000
+(budgets no build can meet are skipped). It matches CPU and motherboard
+sockets, memory type, motherboard size to case, and power supply wattage to
+the graphics card, all read from product titles; parts whose titles don't say
+enough are left out. The graphics card is weighted 3x the processor.
+
 ## Shared category rules
 
 [`data/category-rules.json`](data/category-rules.json) holds the category rules

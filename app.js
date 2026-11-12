@@ -21,6 +21,8 @@
   var toastTimer = null;
   var lightboxOpen = false;
   var allDeals = [];
+  var BUILDS_MODE = "Builds"; // tab of complete PCs from data/builds.json
+  var allBuilds = null;
   var activeFilter = "All";
   var activeBudget = "All";
   var activeSort = "savings";
@@ -87,7 +89,8 @@
     "Networking",
     "Storage",
     "Charging",
-    "Tablets"
+    "Tablets",
+    "Coolers"
   ];
   var CATEGORY_ALIASES = {
     GPU: "GPUs",
@@ -1570,7 +1573,7 @@
       var c = normalizeCategory(d.category);
       if (c) present[c] = true;
     });
-    var cats = [SEARCH_MODE, "All", "Future"];
+    var cats = [SEARCH_MODE, "All", BUILDS_MODE, "Future"];
     CATEGORY_ORDER.forEach(function (cat) {
       if (cat !== "All" && cat !== "Future" && present[cat]) cats.push(cat);
     });
@@ -1947,17 +1950,24 @@
     "Storage": "<path d=\"M12 6h16l8 8v28H12z\"/><path d=\"M17 10v6M21 10v6M25 10v6\"/>",
     "Charging": "<rect x=\"12\" y=\"7\" width=\"24\" height=\"36\" rx=\"4\"/><path d=\"M26 15l-6 10h8l-6 10\"/>",
     "Tablets": "<rect x=\"9\" y=\"5\" width=\"30\" height=\"38\" rx=\"3\"/><path d=\"M22 38h4\"/>",
+    "Coolers": "<circle cx=\"24\" cy=\"24\" r=\"16\"/><circle cx=\"24\" cy=\"24\" r=\"3\"/><path d=\"M24 21c0-6 3-9 7-9M27 24c6 0 9 3 9 7M24 27c0 6-3 9-7 9M21 24c-6 0-9-3-9-7\"/>",
     "_default": "<rect x=\"5\" y=\"15\" width=\"38\" height=\"20\" rx=\"10\"/><path d=\"M15 21v8M11 25h8\"/><circle cx=\"31\" cy=\"23\" r=\"1.6\"/><circle cx=\"36\" cy=\"27\" r=\"1.6\"/>"
   };
 
-  function categoryTileHtml(deal) {
-    var cat = normalizeCategory(deal.category) || deal.category || "Deal";
+  function categoryIconSvg(cat, cls) {
     var shapes = CATEGORY_ICONS[cat] || CATEGORY_ICONS._default;
     return (
-      '<svg class="deal-card__cat-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false" ' +
+      '<svg class="' + cls + '" viewBox="0 0 48 48" aria-hidden="true" focusable="false" ' +
       'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
       shapes +
-      "</svg>" +
+      "</svg>"
+    );
+  }
+
+  function categoryTileHtml(deal) {
+    var cat = normalizeCategory(deal.category) || deal.category || "Deal";
+    return (
+      categoryIconSvg(cat, "deal-card__cat-icon") +
       '<span class="deal-card__cat-mark">' +
       escapeHtml(cat) +
       "</span>"
@@ -2015,6 +2025,10 @@
   }
 
   function renderDeals(deals) {
+    if (activeFilter === BUILDS_MODE) {
+      renderBuilds();
+      return;
+    }
     var trimmedQuery = String(searchQuery || "").trim();
 
     if (activeFilter === SEARCH_MODE && !trimmedQuery) {
@@ -2120,6 +2134,135 @@
     observeReveal(cards);
   }
 
+  // ---------------------------------------------------------------- Builds tab
+  // Complete gaming PCs assembled hourly from today's deals by
+  // scripts/build_pcs.py (data/builds.json).
+  var BUILD_ROLE_CATEGORY = {
+    Processor: "CPUs",
+    "CPU cooler": "Coolers",
+    Motherboard: "Motherboards",
+    Memory: "RAM",
+    "Graphics card": "GPUs",
+    Storage: "SSDs",
+    "Power supply": "PSUs",
+    Case: "Cases"
+  };
+
+  function loadBuilds() {
+    return fetch("data/builds.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        allBuilds = data && Array.isArray(data.builds) ? data : { builds: [], budgets: [] };
+      })
+      .catch(function () {
+        allBuilds = allBuilds || { builds: [], budgets: [] };
+      })
+      .then(function () {
+        if (activeFilter === BUILDS_MODE) renderBuilds();
+      });
+  }
+
+  function buildPartHtml(p) {
+    var cat = BUILD_ROLE_CATEGORY[p.role] || "";
+    var thumb = p.image
+      ? '<img src="' + escapeAttr(cardImageSrc(p.image)) + '" data-full="' + escapeAttr(p.image) +
+        '" data-cat="' + escapeAttr(cat) + '" alt="" loading="lazy" decoding="async">'
+      : categoryIconSvg(cat, "build-part__icon");
+    var name = p.url
+      ? '<a class="build-part__name" href="' + escapeAttr(p.url) +
+        '" target="_blank" rel="noopener noreferrer">' + escapeHtml(p.name) + "</a>"
+      : '<span class="build-part__name">' + escapeHtml(p.name) + "</span>";
+    var was = Number(p.previousPrice);
+    var priceNum = Number(p.price);
+    var wasHtml =
+      Number.isFinite(was) && was > priceNum
+        ? '<span class="build-part__was">' + escapeHtml(formatMoney(was)) + "</span>"
+        : "";
+    return (
+      '<li class="build-part">' +
+      '<span class="build-part__thumb">' + thumb + "</span>" +
+      '<span class="build-part__info">' +
+      '<span class="build-part__role">' + escapeHtml(p.role) +
+      (p.estimate ? " · estimate" : p.merchant ? " · " + escapeHtml(p.merchant) : "") +
+      "</span>" + name + "</span>" +
+      '<span class="build-part__price">' + escapeHtml(formatMoney(priceNum)) + wasHtml + "</span>" +
+      "</li>"
+    );
+  }
+
+  function renderBuilds() {
+    dealsEl.innerHTML = "";
+    dealsEl.setAttribute("aria-busy", allBuilds ? "false" : "true");
+    if (!allBuilds) {
+      var wait = document.createElement("p");
+      wait.className = "status";
+      wait.textContent = "Loading builds…";
+      dealsEl.appendChild(wait);
+      return;
+    }
+    var builds = allBuilds.builds || [];
+    var intro = document.createElement("p");
+    intro.className = "builds-intro";
+    var have = builds.map(function (b) { return b.budget; });
+    var missing = (allBuilds.budgets || []).filter(function (b) { return have.indexOf(b) === -1; });
+    intro.textContent =
+      "Complete gaming PCs picked from today’s deals and rebuilt every hour. Processor and " +
+      "motherboard sockets, memory type, case size and power supply are matched for you." +
+      (missing.length && builds.length
+        ? " No build fits " + missing.map(function (b) { return "$" + b.toLocaleString("en-US"); }).join(" or ") +
+          " at today’s prices."
+        : "");
+    dealsEl.appendChild(intro);
+    if (!builds.length) {
+      var none = document.createElement("p");
+      none.className = "status";
+      none.textContent = "No complete build fits today’s deals yet. Check back after the next hourly price check.";
+      dealsEl.appendChild(none);
+      return;
+    }
+    var cards = builds.map(function (b) {
+      var card = document.createElement("article");
+      card.className = "build-card";
+      card.id = "build-" + b.budget;
+      var save = Number(b.savings);
+      card.innerHTML =
+        '<header class="build-card__head">' +
+        "<div>" +
+        '<p class="build-card__eyebrow">Under $' + escapeHtml(Number(b.budget).toLocaleString("en-US")) + "</p>" +
+        '<h2 class="build-card__title">' + escapeHtml(b.summary || b.title) + "</h2>" +
+        "</div>" +
+        '<div class="build-card__total">' +
+        '<span class="build-card__price">' + escapeHtml(formatMoney(Number(b.total))) + "</span>" +
+        (save > 0 ? '<span class="deal-card__badge">save ' + escapeHtml(formatMoney(save)) + "</span>" : "") +
+        "</div>" +
+        "</header>" +
+        '<ol class="build-card__parts">' + (b.parts || []).map(buildPartHtml).join("") + "</ol>" +
+        ((b.notes || []).length
+          ? '<ul class="build-card__notes">' +
+            b.notes.map(function (n) { return "<li>" + escapeHtml(n) + "</li>"; }).join("") +
+            "</ul>"
+          : "");
+      card.querySelectorAll(".build-part__thumb img").forEach(function (img) {
+        img.addEventListener("error", function onErr() {
+          var full = img.getAttribute("data-full");
+          if (full && img.getAttribute("src") !== full) {
+            img.setAttribute("src", full);
+            return;
+          }
+          img.removeEventListener("error", onErr);
+          img.outerHTML = categoryIconSvg(img.getAttribute("data-cat") || "", "build-part__icon");
+        });
+      });
+      return card;
+    });
+    cards.forEach(function (c) {
+      dealsEl.appendChild(c);
+    });
+  }
+
   function scrollTop() {
     return Math.max(
       0,
@@ -2217,7 +2360,7 @@
       var t = new URLSearchParams(location.search || "").get("tab");
       if (!t) return "";
       t = String(t).trim();
-      if (t === "Future" || t === "All" || t === SEARCH_MODE) return t;
+      if (t === "Future" || t === "All" || t === SEARCH_MODE || t === BUILDS_MODE) return t;
       return normalizeCategory(t) || t;
     } catch (e) {
       return "";
@@ -2260,6 +2403,7 @@
       })
       .then(function (data) {
         applyDealsData(data);
+        loadBuilds();
         lastDealsFetchAt = Date.now();
         if (isRefresh && !quiet) {
           var changed = previousUpdatedAt !== siteUpdatedAt;

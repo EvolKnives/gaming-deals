@@ -328,6 +328,18 @@
       "titleMust": "tablet|\\bipad\\b|galaxy tab",
       "titleMustNot": "drawing|pen display|graphics tablet|pen tablet|case|cover|protector|stylus|keyboard case|stand|holder|mount|charger|cable|cradle|dock|charging|mount",
       "minPrice": 60
+    },
+    {
+      "category": "Coolers",
+      "queries": [
+        "cpu air cooler",
+        "240mm aio liquid cpu cooler",
+        "360mm aio liquid cpu cooler",
+        "dual tower cpu cooler"
+      ],
+      "titleMust": "cpu cooler|air cooler|liquid cooler|liquid cpu cooler|\\baio\\b|tower cooler|cpu air cooler",
+      "titleMustNot": "laptop|notebook|thermal paste|thermal pad|bracket|mounting kit|fan hub|replacement fan|\\bgpu\\b|graphics card|cooling pad|phone|ssd heatsink|fan controller",
+      "minPrice": 15
     }
   ],
   "liveSearchHints": [

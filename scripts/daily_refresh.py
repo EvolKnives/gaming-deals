@@ -664,6 +664,9 @@ def main() -> int:
             f.unlink()
             gone += 1
     print(f"Wrote {DEALS_PATH} ({len(deals)} deals); removed {gone} orphaned photos")
+    # rebuild the Builds tab's PCs from the fresh prices
+    import build_pcs  # noqa: E402  (scripts/ is on sys.path)
+    build_pcs.main()
     return 0
 
 

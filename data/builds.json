@@ -1,0 +1,187 @@
+{
+  "updatedAt": "2026-11-12T06:35:25Z",
+  "budgets": [
+    1000,
+    1500,
+    2000,
+    3000
+  ],
+  "builds": [
+    {
+      "budget": 2000,
+      "title": "$2,000 gaming PC",
+      "total": 1990.93,
+      "savings": 229.01,
+      "summary": "Ryzen 5 7600X + RTX 5070",
+      "parts": [
+        {
+          "role": "Processor",
+          "id": "amd-ryzen-5-7600x-zen-4-6-core-4-7-ghz-socket-am-113770",
+          "name": "AMD Ryzen 5 7600X - Zen 4 6-Core 4.7 GHz - Socket AM5 - 105W Desktop Processor (100-100000593WOF)",
+          "price": 199.0,
+          "previousPrice": 299.0,
+          "url": "https://www.newegg.com/p/N82E16819113770",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-770-02.jpg"
+        },
+        {
+          "role": "CPU cooler",
+          "name": "Any CPU cooler (not in today's deals)",
+          "price": 35.0,
+          "estimate": true
+        },
+        {
+          "role": "Motherboard",
+          "id": "asrock-b650m-pro-rs-wifi-am5-amd-b650-micro-atx-162131",
+          "name": "ASRock B650M Pro RS WiFi AM5 AMD B650 Micro ATX Motherboard",
+          "price": 109.99,
+          "previousPrice": 149.99,
+          "url": "https://www.newegg.com/asrock-b650m-pro-rs-wifi-micro-atx-motherboard-amd-b650-am5/p/N82E16813162131",
+          "merchant": "Newegg",
+          "image": "images/asrock-b650m-pro-rs-wifi-am5-amd-b650-micro-atx-162131.jpg"
+        },
+        {
+          "role": "Memory",
+          "id": "v-color-manta-xsky-ddr5-32gb-2x16gb-6000mhz-cl30--000t5",
+          "name": "V-COLOR Manta XSky DDR5 32GB (2x16GB) 6000MHz CL30 SK Hynix IC RGB Gaming Desktop Memory Module Black, for AMD EXPO TMXSAL1660830KWK",
+          "price": 479.99,
+          "previousPrice": 508.99,
+          "url": "https://www.newegg.com/p/0RN-00MB-000T5",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AMCMS2507100GZRSVD3.jpg"
+        },
+        {
+          "role": "Graphics card",
+          "id": "msi-gaming-trio-rtx-5070",
+          "name": "MSI Gaming Trio OC GeForce RTX 5070 12GB",
+          "price": 939.99,
+          "previousPrice": null,
+          "url": "https://www.newegg.com/msi-rtx-5070-12g-gaming-trio-oc-geforce-rtx-5070-12gb-graphics-card-triple-fans/p/N82E16814137938",
+          "merchant": "Newegg",
+          "image": "images/msi-gaming-trio-rtx-5070.jpg"
+        },
+        {
+          "role": "Storage",
+          "id": "wd-blue-sn5100-500gb-nvme-ssd-pcie-gen-4-0-up-to-173683",
+          "name": "WD Blue SN5100 500GB NVMe SSD, PCIe Gen 4.0, up to 6,600 MB/s read speeds",
+          "price": 136.99,
+          "previousPrice": null,
+          "url": "https://www.newegg.com/sandisk-500gb-wd-blue-nvme/p/N82E16820173683",
+          "merchant": "Newegg",
+          "image": "images/wd-blue-sn5100-500gb-nvme-ssd-pcie-gen-4-0-up-to-173683.jpg"
+        },
+        {
+          "role": "Power supply",
+          "id": "asrock-pro-series-pro-850g-850-w-atx-3-1-compati-955022",
+          "name": "ASRock PRO Series PRO-850G 850 W ATX 3.1 Compatible 80 PLUS GOLD Certified Power Supply",
+          "price": 54.99,
+          "previousPrice": 89.99,
+          "url": "https://www.newegg.com/p/N82E16817955022",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-955-022-01.png"
+        },
+        {
+          "role": "Case",
+          "id": "diypc-diy-s05-bk-black-usb3-0-steel-atx-mid-towe-353265",
+          "name": "DIYPC  DIY-S05-BK Black USB3.0 Steel  ATX Mid Tower Computer Case, 3 x120mm Black Fan (2 x front, 1x Rear Pre-Installed)",
+          "price": 34.98,
+          "previousPrice": 59.99,
+          "url": "https://www.newegg.com/diypc-atx-mid-tower-steel-cases-black-diy-s05-bk/p/N82E16811353265",
+          "merchant": "Newegg",
+          "image": "images/diypc-diy-s05-bk-black-usb3-0-steel-atx-mid-towe-353265.jpg"
+        }
+      ],
+      "notes": [
+        "Check that the graphics card fits the case before buying."
+      ]
+    },
+    {
+      "budget": 3000,
+      "title": "$3,000 gaming PC",
+      "total": 2904.92,
+      "savings": 196.01,
+      "summary": "Ryzen 7 9800X3D + RTX 5070 Ti",
+      "parts": [
+        {
+          "role": "Processor",
+          "id": "amd-ryzen-7-9800x3d-ryzen-7-9000-series-zen-5-8-113877",
+          "name": "AMD Ryzen 7 9800X3D - Ryzen 7 9000 Series Zen 5 8-Core 5.2 GHz - Socket AM5 120W - AMD Radeon Graphics Desktop Processor - 100-100001084WOF",
+          "price": 469.99,
+          "previousPrice": 506.99,
+          "url": "https://www.newegg.com/p/N82E16819113877",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-877-01.png"
+        },
+        {
+          "role": "CPU cooler",
+          "name": "Any CPU cooler (not in today's deals)",
+          "price": 35.0,
+          "estimate": true
+        },
+        {
+          "role": "Motherboard",
+          "id": "asrock-b650m-pro-rs-wifi-am5-amd-b650-micro-atx-162131",
+          "name": "ASRock B650M Pro RS WiFi AM5 AMD B650 Micro ATX Motherboard",
+          "price": 109.99,
+          "previousPrice": 149.99,
+          "url": "https://www.newegg.com/asrock-b650m-pro-rs-wifi-micro-atx-motherboard-amd-b650-am5/p/N82E16813162131",
+          "merchant": "Newegg",
+          "image": "images/asrock-b650m-pro-rs-wifi-am5-amd-b650-micro-atx-162131.jpg"
+        },
+        {
+          "role": "Memory",
+          "id": "v-color-manta-xsky-ddr5-32gb-2x16gb-6000mhz-cl30--000t5",
+          "name": "V-COLOR Manta XSky DDR5 32GB (2x16GB) 6000MHz CL30 SK Hynix IC RGB Gaming Desktop Memory Module Black, for AMD EXPO TMXSAL1660830KWK",
+          "price": 479.99,
+          "previousPrice": 508.99,
+          "url": "https://www.newegg.com/p/0RN-00MB-000T5",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AMCMS2507100GZRSVD3.jpg"
+        },
+        {
+          "role": "Graphics card",
+          "id": "gigabyte-eagle-rtx-5070-ti",
+          "name": "GIGABYTE Eagle GeForce RTX 5070 Ti 16GB OC",
+          "price": 1469.99,
+          "previousPrice": null,
+          "url": "https://www.newegg.com/gigabyte-gv-n507teagle-oc-16gd-geforce-rtx-5070-ti-16gb-graphics-card-triple-fans/p/N82E16814932770",
+          "merchant": "Newegg",
+          "image": "images/gigabyte-eagle-rtx-5070-ti.jpg"
+        },
+        {
+          "role": "Storage",
+          "id": "crucial-e100-2tb-m-2-2280-nvme-pci-express-4-0-x--00346",
+          "name": "Crucial E100 2TB M.2 2280 NVMe PCI-Express 4.0 x4 PCIe Gen4 Internal SSD - Up to 5,000MB/s - CT2000E100SSD8",
+          "price": 249.99,
+          "previousPrice": 279.99,
+          "url": "https://www.newegg.com/p/0D9-000E-00346",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A12KS2507161CEUFT46.jpg"
+        },
+        {
+          "role": "Power supply",
+          "id": "asrock-pro-series-pro-850g-850-w-atx-3-1-compati-955022",
+          "name": "ASRock PRO Series PRO-850G 850 W ATX 3.1 Compatible 80 PLUS GOLD Certified Power Supply",
+          "price": 54.99,
+          "previousPrice": 89.99,
+          "url": "https://www.newegg.com/p/N82E16817955022",
+          "merchant": "Newegg",
+          "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/17-955-022-01.png"
+        },
+        {
+          "role": "Case",
+          "id": "diypc-diy-s05-bk-black-usb3-0-steel-atx-mid-towe-353265",
+          "name": "DIYPC  DIY-S05-BK Black USB3.0 Steel  ATX Mid Tower Computer Case, 3 x120mm Black Fan (2 x front, 1x Rear Pre-Installed)",
+          "price": 34.98,
+          "previousPrice": 59.99,
+          "url": "https://www.newegg.com/diypc-atx-mid-tower-steel-cases-black-diy-s05-bk/p/N82E16811353265",
+          "merchant": "Newegg",
+          "image": "images/diypc-diy-s05-bk-black-usb3-0-steel-atx-mid-towe-353265.jpg"
+        }
+      ],
+      "notes": [
+        "Check that the graphics card fits the case before buying."
+      ]
+    }
+  ]
+}
