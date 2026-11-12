@@ -3416,7 +3416,9 @@
       "sourceUrl": "https://frugalissimo.com/costco/black-friday/2026/",
       "sourceName": "Costco Holiday Savings book",
       "updatedAt": "2026-11-12T02:27:27Z",
-      "upcoming": true
+      "upcoming": true,
+      "image": "https://media.sonos.com/images/znqtjj88/production/c6e84e0ad4ee82bcada3148dee547f972f2e2d7f-2880x2880.png?w=800&fm=webp",
+      "imageSource": "manufacturer"
     },
     {
       "id": "costco-1731876-sonos-era-100-wireless-smart-speaker-2-p",
@@ -3437,7 +3439,9 @@
       "sourceUrl": "https://frugalissimo.com/costco/black-friday/2026/",
       "sourceName": "Costco Holiday Savings book",
       "updatedAt": "2026-11-12T02:27:27Z",
-      "upcoming": true
+      "upcoming": true,
+      "image": "https://media.sonos.com/images/znqtjj88/production/c730c924a2d9fe4d3a3b9b9cb7432b7afd0ab392-2000x2000.png?w=800&fm=webp",
+      "imageSource": "manufacturer"
     },
     {
       "id": "costco-1749471-nex-playground-12-month-play-pass-bundle",
@@ -3458,7 +3462,9 @@
       "sourceUrl": "https://frugalissimo.com/costco/black-friday/2026/",
       "sourceName": "Costco Holiday Savings book",
       "updatedAt": "2026-11-12T02:27:27Z",
-      "upcoming": true
+      "upcoming": true,
+      "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4ebfa225-7078-4a79-8a65-62536368025d.jpg;maxHeight=800;maxWidth=800?format=webp",
+      "imageSource": "retailer"
     },
     {
       "id": "costco-2084956-cyberpowerpc-gamer-xtreme-gaming-desktop",

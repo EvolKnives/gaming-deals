@@ -756,8 +756,18 @@ a {
 .deal-card__figure--placeholder {
   background: var(--figure-placeholder);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+}
+
+.deal-card__cat-icon {
+  width: 34%;
+  max-width: 96px;
+  height: auto;
+  color: var(--accent);
+  opacity: 0.85;
 }
 
 .deal-card__cat-mark {
@@ -1870,5 +1880,22 @@ a {
   .deal-card__figure {
     /* dimmed cool grey: blends with the dark card instead of glaring white */
     background: radial-gradient(ellipse at 50% 45%, #c6cdd9 0%, #a9b2c1 92%);
+  }
+}
+
+/* Phones: photo-less tiles keep the placeholder colour (not the light photo
+   tile) so the category icon stays visible, and the icon fills more space. */
+@media (max-width: 599px) {
+  .deal-card__figure.deal-card__figure--placeholder {
+    background: var(--figure-placeholder);
+    gap: 0.35rem;
+  }
+
+  .deal-card__cat-icon {
+    width: 50%;
+  }
+
+  .deal-card__cat-mark {
+    font-size: 0.6rem;
   }
 }

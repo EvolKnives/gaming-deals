@@ -1742,9 +1742,7 @@
     } else {
       mediaHtml =
         '<figure class="deal-card__figure deal-card__figure--placeholder" aria-hidden="true">' +
-        '<span class="deal-card__cat-mark">' +
-        escapeHtml(normalizeCategory(deal.category) || deal.category || "Deal") +
-        "</span>" +
+        categoryTileHtml(deal) +
         dropBadge +
         "</figure>";
     }
@@ -1910,6 +1908,42 @@
     return article;
   }
 
+  // Line-drawn category icons for cards without a product photo, so every
+  // card shows a picture instead of bare text. Unknown categories get a gamepad.
+  var CATEGORY_ICONS = {
+    "GPUs": "<rect x=\"5\" y=\"14\" width=\"38\" height=\"18\" rx=\"2\"/><circle cx=\"17\" cy=\"23\" r=\"5\"/><circle cx=\"31\" cy=\"23\" r=\"5\"/><path d=\"M9 32v5M5 14V10\"/>",
+    "CPUs": "<rect x=\"14\" y=\"14\" width=\"20\" height=\"20\" rx=\"2\"/><rect x=\"19\" y=\"19\" width=\"10\" height=\"10\" rx=\"1\"/><path d=\"M19 10v4M24 10v4M29 10v4M19 34v4M24 34v4M29 34v4M10 19h4M10 24h4M10 29h4M34 19h4M34 24h4M34 29h4\"/>",
+    "Monitors": "<rect x=\"5\" y=\"8\" width=\"38\" height=\"25\" rx=\"2\"/><path d=\"M24 33v6M16 39h16\"/>",
+    "TVs": "<rect x=\"3\" y=\"9\" width=\"42\" height=\"26\" rx=\"2\"/><path d=\"M12 35l-2 4M36 35l2 4\"/>",
+    "Home Theater": "<rect x=\"14\" y=\"5\" width=\"20\" height=\"38\" rx=\"3\"/><circle cx=\"24\" cy=\"30\" r=\"6\"/><circle cx=\"24\" cy=\"14\" r=\"3\"/>",
+    "Art Tablets": "<rect x=\"6\" y=\"9\" width=\"28\" height=\"30\" rx=\"3\"/><path d=\"M30 37l12-14 3 3-12 14-4 1z\"/>",
+    "PSUs": "<rect x=\"6\" y=\"11\" width=\"36\" height=\"26\" rx=\"2\"/><circle cx=\"20\" cy=\"24\" r=\"7\"/><path d=\"M20 17v14M13 24h14M33 18h5M33 23h5M33 28h5\"/>",
+    "Cases": "<rect x=\"13\" y=\"5\" width=\"22\" height=\"38\" rx=\"2\"/><circle cx=\"24\" cy=\"14\" r=\"3\"/><path d=\"M18 34h12M18 38h12\"/>",
+    "Motherboards": "<rect x=\"7\" y=\"7\" width=\"34\" height=\"34\" rx=\"2\"/><rect x=\"13\" y=\"13\" width=\"11\" height=\"11\" rx=\"1\"/><path d=\"M29 13h7M29 18h7M29 23h7M13 31h23M13 35h23\"/>",
+    "RAM": "<path d=\"M5 16h38v13H5z\"/><rect x=\"9\" y=\"19\" width=\"6\" height=\"6\"/><rect x=\"21\" y=\"19\" width=\"6\" height=\"6\"/><rect x=\"33\" y=\"19\" width=\"6\" height=\"6\"/><path d=\"M8 29v4M13 29v4M18 29v4M30 29v4M35 29v4M40 29v4\"/>",
+    "SSDs": "<rect x=\"5\" y=\"17\" width=\"38\" height=\"14\" rx=\"2\"/><rect x=\"10\" y=\"20\" width=\"12\" height=\"8\" rx=\"1\"/><path d=\"M27 21h6M27 27h6\"/><circle cx=\"39\" cy=\"24\" r=\"1.5\"/>",
+    "Phones": "<rect x=\"15\" y=\"5\" width=\"18\" height=\"38\" rx=\"3\"/><path d=\"M21 38h6\"/>",
+    "Prebuilts": "<rect x=\"16\" y=\"5\" width=\"22\" height=\"38\" rx=\"2\"/><circle cx=\"27\" cy=\"17\" r=\"5\"/><circle cx=\"27\" cy=\"31\" r=\"5\"/><path d=\"M6 43h36\"/>",
+    "Laptops": "<rect x=\"10\" y=\"10\" width=\"28\" height=\"20\" rx=\"2\"/><path d=\"M5 34h38l-3 4H8z\"/>",
+    "Mice": "<rect x=\"15\" y=\"7\" width=\"18\" height=\"34\" rx=\"9\"/><path d=\"M24 7v11M15 18h18\"/>",
+    "Keyboards": "<rect x=\"3\" y=\"15\" width=\"42\" height=\"18\" rx=\"2\"/><path d=\"M8 20h2M14 20h2M20 20h2M26 20h2M32 20h2M38 20h2M8 25h2M14 25h2M20 25h2M26 25h2M32 25h2M38 25h2M15 29h18\"/>",
+    "_default": "<rect x=\"5\" y=\"15\" width=\"38\" height=\"20\" rx=\"10\"/><path d=\"M15 21v8M11 25h8\"/><circle cx=\"31\" cy=\"23\" r=\"1.6\"/><circle cx=\"36\" cy=\"27\" r=\"1.6\"/>"
+  };
+
+  function categoryTileHtml(deal) {
+    var cat = normalizeCategory(deal.category) || deal.category || "Deal";
+    var shapes = CATEGORY_ICONS[cat] || CATEGORY_ICONS._default;
+    return (
+      '<svg class="deal-card__cat-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false" ' +
+      'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      shapes +
+      "</svg>" +
+      '<span class="deal-card__cat-mark">' +
+      escapeHtml(cat) +
+      "</span>"
+    );
+  }
+
   // Newegg serves each product photo in several sizes. Cards are at most a few
   // hundred pixels wide, so load the 640px version instead of 1280px; the zoomed
   // photo (lightbox) still uses the full-size image.
@@ -1941,10 +1975,7 @@
       fig.removeAttribute("tabindex");
       fig.removeAttribute("role");
       fig.setAttribute("aria-hidden", "true");
-      fig.innerHTML =
-        '<span class="deal-card__cat-mark">' +
-        escapeHtml(normalizeCategory(deal.category) || deal.category || "Deal") +
-        "</span>";
+      fig.innerHTML = categoryTileHtml(deal);
       if (badge) fig.appendChild(badge);
       var clone = fig.cloneNode(true); // drop the zoom click handlers
       fig.parentNode.replaceChild(clone, fig);
