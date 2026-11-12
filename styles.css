@@ -1888,3 +1888,42 @@ a {
     font-size: 0.84rem;
   }
 }
+
+/* Phones: photo sits on a soft, rounded tile inside the card instead of a
+   hard white block. Product shots are white-background JPGs; multiply blend
+   lets the tile colour replace their white. */
+@media (max-width: 599px) {
+  .deal-card {
+    grid-template-columns: 136px 1fr;
+  }
+
+  .deal-card__figure {
+    margin: 0.5rem 0 0.5rem 0.5rem;
+    height: auto;
+    min-height: 120px;
+    border-radius: 14px;
+    background: radial-gradient(ellipse at 50% 45%, #f4f6fa 0%, #e3e7ee 85%);
+  }
+
+  .deal-card__figure img {
+    padding: 0.3rem;
+    /* product shots carry wide white margins; zoom in so the item fills the tile */
+    transform: scale(1.14);
+  }
+
+  .deal-card__figure--zoom:active img {
+    transform: scale(1.1);
+  }
+
+  .deal-card__drop {
+    top: 0.3rem;
+    left: 0.3rem;
+  }
+}
+
+@media (max-width: 599px) and (prefers-color-scheme: dark) {
+  .deal-card__figure {
+    /* dimmed cool grey: blends with the dark card instead of glaring white */
+    background: radial-gradient(ellipse at 50% 45%, #c6cdd9 0%, #a9b2c1 92%);
+  }
+}
