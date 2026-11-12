@@ -14,7 +14,7 @@ Live: **https://evolknives.github.io/gaming-deals/**
 ## Live Search
 
 The Search chip filters the local catalogue instantly, then (after ~300ms debounce,
-query length ≥ 2) calls a Cloudflare Worker for live Newegg results. Live hits
+query length ≥ 2) calls a Cloudflare Worker for live results (Best Buy's official API, then Newegg). Live hits
 render in the **same deal cards**; catalogue matches for the query are merged in
 and deduped by SKU/URL. If the Worker is unreachable, Search falls back to
 catalogue-only with a calm status line.

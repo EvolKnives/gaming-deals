@@ -3,9 +3,23 @@
 Cloudflare Worker that powers the Search tab on
 [What's A Good Deal?](https://evolknives.github.io/gaming-deals/).
 
-Fetches **real** Newegg prices via Newegg's public MCP product-search JSON API
-(HTML scrape is a fallback for local `wrangler dev`; Newegg often returns 403
-to Cloudflare egress IPs). Never invents prices, ratings, or dates.
+Fetches **real** prices from Best Buy's official
+[Products API](https://bestbuyapis.github.io/api-documentation/) first, then
+Newegg's product-search JSON API and search page. (Newegg usually returns 403
+to Cloudflare's servers, so Best Buy supplies most live results.) Never
+invents prices, ratings, or dates. Only discounted items that match every word
+of the query are returned.
+
+### Best Buy API key (one-time)
+
+1. Sign up at <https://developer.bestbuy.com> and activate the key from the
+   email Best Buy sends.
+2. Store it in the Worker, either with
+   `npx wrangler secret put BESTBUY_API_KEY` in this folder, or in the
+   Cloudflare dashboard: Workers & Pages → gaming-deals-search → Settings →
+   Variables and Secrets → Add (Key `BESTBUY_API_KEY`, Secret checked).
+
+Without the key, Search tries Newegg only.
 
 ## Endpoint
 

@@ -41,7 +41,7 @@
   var pullReady = false;
   var SITE_TITLE = "What's A Good Deal?";
 
-  // Deployed Cloudflare Worker for live Newegg search (Search tab).
+  // Deployed Cloudflare Worker for live search (Best Buy API, then Newegg).
   // Set after `npx wrangler deploy` in workers/live-search/.
   var LIVE_SEARCH_URL = "https://gaming-deals-search.evolknives.workers.dev";
   var LIVE_SEARCH_MIN_CHARS = 2;

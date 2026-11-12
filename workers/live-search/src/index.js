@@ -106,7 +106,7 @@ export default {
     }
 
     const cacheKey = new Request(
-      `https://gaming-deals-search.cache/v10/search?q=${encodeURIComponent(q.toLowerCase())}`,
+      `https://gaming-deals-search.cache/v11/search?q=${encodeURIComponent(q.toLowerCase())}`,
       { method: "GET" }
     );
     const cache = caches.default;
@@ -119,7 +119,7 @@ export default {
     }
 
     try {
-      const { deals, via, note } = await searchNewegg(q);
+      const { deals, via, note } = await searchLive(q, env);
       const topMerchant =
         deals[0] && deals[0].merchant ? deals[0].merchant : "live";
       const payload = {
@@ -255,10 +255,24 @@ function allowRate(ip) {
   return bucket.count <= RATE_MAX_PER_IP;
 }
 
-async function searchNewegg(query) {
+async function searchLive(query, env) {
   const errors = [];
-  // Newegg's JSON API first, then its search page. (An Amazon-page fallback
-  // was removed: scraping Amazon breaks their terms and their page layout.)
+  // Best Buy's official Products API first (needs the BESTBUY_API_KEY secret).
+  // Newegg's JSON API and search page follow, though Newegg usually blocks
+  // Cloudflare's servers. (An Amazon-page fallback was removed: scraping
+  // Amazon breaks their terms and their page layout.)
+  if (env && env.BESTBUY_API_KEY) {
+    try {
+      const deals = await searchViaBestBuy(query, env.BESTBUY_API_KEY);
+      if (deals.length) return { deals, via: "bestbuy-api" };
+      errors.push("bestbuy:empty");
+    } catch (err) {
+      errors.push("bestbuy:" + String(err && err.message ? err.message : err));
+    }
+  } else {
+    errors.push("bestbuy:no-key");
+  }
+
   // Prefer HTTP 200 + empty deals over 502 when upstreams are empty/blocked —
   // the frontend then shows filtered catalogue or a clean "no deals" instead of
   // dumping unrelated Cases/PSUs for category queries like "GPU".
@@ -281,6 +295,71 @@ async function searchNewegg(query) {
   return { deals: [], via: "empty", note: errors.join(" | ") || "no results" };
 }
 
+// ---------------------------------------------------------------- Best Buy
+// https://bestbuyapis.github.io/api-documentation/ — official Products API.
+const BESTBUY_API = "https://api.bestbuy.com/v1/products";
+const BESTBUY_FIELDS = [
+  "sku", "name", "salePrice", "regularPrice", "onSale", "image", "largeImage",
+  "url", "customerReviewAverage", "customerReviewCount", "onlineAvailability",
+].join(",");
+
+async function searchViaBestBuy(query, apiKey) {
+  // Every word must match (Best Buy keyword search, AND-ed); online-buyable only.
+  const words = String(query)
+    .toLowerCase()
+    .split(/[^a-z0-9.+-]+/)
+    .filter((w) => w.length > 0)
+    .slice(0, 8);
+  if (!words.length) return [];
+  const filter = words.map((w) => "search=" + encodeURIComponent(w)).join("&") + "&onlineAvailability=true";
+  const url =
+    `${BESTBUY_API}(${filter})?format=json&pageSize=40` +
+    `&show=${BESTBUY_FIELDS}&apiKey=${encodeURIComponent(apiKey)}`;
+  const res = await fetch(url, { headers: { Accept: "application/json" } });
+  if (!res.ok) throw new Error(`Best Buy HTTP ${res.status}`);
+  const page = await res.json();
+  return mapBestBuyProducts(Array.isArray(page.products) ? page.products : [], query);
+}
+
+function mapBestBuyProducts(products, query) {
+  const out = [];
+  for (const p of products) {
+    if (!p || typeof p !== "object") continue;
+    const title = decodeHtml(String(p.name || "")).trim();
+    const price = Number(p.salePrice);
+    const regular = Number(p.regularPrice);
+    if (!title || !Number.isFinite(price) || !p.url || !p.sku) continue;
+    const previousPrice = Number.isFinite(regular) && regular > price ? round2(regular) : null;
+    const sku = "BBY-" + String(p.sku);
+    const deal = {
+      id: "live-" + slugify(title, sku),
+      name: title,
+      price: round2(price),
+      previousPrice,
+      url: String(p.url),
+      urlKind: "product",
+      merchant: "Best Buy",
+      image: p.largeImage || p.image || null,
+      category: inferCategory(title, query) || "Other",
+      currency: "USD",
+      sku,
+      source: "live",
+      why: whyLine(price, previousPrice, "Best Buy"),
+    };
+    const rating = Number(p.customerReviewAverage);
+    if (Number.isFinite(rating) && rating > 0) {
+      deal.rating = round2(rating);
+      deal.ratingSource = "bestbuy-api";
+      const reviews = Number(p.customerReviewCount);
+      if (Number.isFinite(reviews) && reviews > 0) deal.ratingCount = reviews;
+    }
+    out.push(deal);
+  }
+  // same relevance / real-discount filtering and ranking as Newegg results
+  return finalizeDealList(out, query);
+}
+
+// ---------------------------------------------------------------- Newegg
 async function searchViaMcpApi(query) {
   const body = {
     jsonrpc: "2.0",
