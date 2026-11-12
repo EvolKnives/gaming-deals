@@ -291,6 +291,10 @@ def find_photo(api: Newegg, deal: dict[str, Any]) -> str | None:
             if not img or brand not in title:
                 continue
             words = set(_name_tokens(title)) | {brand} if brand in title else set()
+            # the product line name (e.g. "UltraFine" vs "UltraGear") must match,
+            # not just brand + size numbers
+            if not any(t in words for t in toks[1:] if t.isalpha()):
+                continue
             score = sum(1 for t in toks if t in words) / len(toks)
             if score > best_score:
                 best, best_score = img, score
