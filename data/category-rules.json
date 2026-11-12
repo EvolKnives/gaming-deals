@@ -44,7 +44,15 @@
         "samsung 4k tv",
         "sony bravia tv",
         "tcl qled tv",
-        "hisense 4k tv"
+        "hisense 4k tv",
+        "samsung qled 65 inch tv",
+        "lg oled evo tv",
+        "lg 4k uhd smart tv",
+        "hisense uled mini-led tv",
+        "tcl mini-led qd tv",
+        "sony bravia 75 inch",
+        "vizio 4k smart tv",
+        "samsung crystal uhd tv"
       ],
       "titleMust": "\\btv\\b|television",
       "titleMustNot": "mount|bracket|antenna|cable|monitor",
@@ -67,7 +75,15 @@
         "pen display drawing tablet",
         "xp-pen drawing tablet",
         "wacom tablet",
-        "huion drawing tablet"
+        "huion drawing tablet",
+        "wacom cintiq pen display",
+        "wacom one pen display",
+        "wacom intuos pro",
+        "huion kamvas pen display",
+        "huion inspiroy pen tablet",
+        "xp-pen artist pen display",
+        "xp-pen deco pen tablet",
+        "gaomon pen display"
       ],
       "titleMust": "drawing|graphics? tablet|pen display|pen tablet|creative tablet",
       "titleMustNot": "ipad|android|surface|windows|snapdragon|\\bssd\\b|case|cover|glove|film|protector|stand",
