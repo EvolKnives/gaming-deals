@@ -41,9 +41,11 @@
   var pullReady = false;
   var SITE_TITLE = "What's A Good Deal?";
 
-  // Deployed Cloudflare Worker for live search (Best Buy API, then Newegg).
-  // Set after `npx wrangler deploy` in workers/live-search/.
-  var LIVE_SEARCH_URL = "https://gaming-deals-search.evolknives.workers.dev";
+  // Live search is off: Newegg blocks the Worker and Best Buy's API needs a
+  // business email. Search filters the site's own deals instead. To turn it
+  // back on, set this to "https://gaming-deals-search.evolknives.workers.dev"
+  // (the Worker still uses Best Buy if a BESTBUY_API_KEY secret is added).
+  var LIVE_SEARCH_URL = "";
   var LIVE_SEARCH_MIN_CHARS = 2;
   var LIVE_SEARCH_DEBOUNCE_MS = 300;
   var liveSearchDeals = [];
