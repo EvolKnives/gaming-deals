@@ -78,7 +78,9 @@ BOXED_COOLER = re.compile(
 
 
 def first_score(table: list[tuple[str, int]], title: str) -> int | None:
-    t = title.lower()
+    # "F" models are the same chip without integrated graphics: 5500F → 5500,
+    # 14400F → 14400, 14600KF → 14600K, 250KF → 250K
+    t = re.sub(r"(\d)f\b", r"\1", title.lower())
     for pat, score in table:
         if re.search(pat, t):
             return score
@@ -313,7 +315,7 @@ def meta(role: str, d: dict[str, Any]) -> dict[str, Any]:
     if role == "ram":
         return {"mem": d["_mem"], "gb": d["_gb"]}
     if role == "gpu":
-        return {"need": d["_need"]}
+        return {"need": d["_need"], "score": d["_score"]}
     if role == "psu":
         return {"w": d["_w"]}
     if role == "case":
@@ -334,7 +336,17 @@ def swap_options(role: str, b: dict[str, Any], full: dict[str, list[dict[str, An
     elif role == "ram":
         pool = [x for x in pool if x["_mem"] == cur["_mem"]]
     pool = sorted(pool, key=lambda d: d["price"])
-    picked = [x for x in pool if x["id"] != cur["id"]][: MAX_OPTIONS - 1] + [cur]
+    others = [x for x in pool if x["id"] != cur["id"]]
+    if role in ("gpu", "cpu"):
+        # one option per performance tier first (cheapest of each), so a build
+        # can be swapped up or down a tier, then the cheapest of the rest
+        tiers: dict[int, dict[str, Any]] = {}
+        for x in others:
+            tiers.setdefault(x["_score"], x)
+        firsts = list(tiers.values())
+        rest = [x for x in others if x not in firsts]
+        others = firsts + rest
+    picked = others[: MAX_OPTIONS + 4 if role in ("gpu", "cpu") else MAX_OPTIONS - 1] + [cur]
     picked.sort(key=lambda d: d["price"])
     return [{**part(x, ""), **meta(role, x)} for x in picked]
 

@@ -1,0 +1,6 @@
+# Only read by search engines when the site is at the root of its own domain
+# (for example after moving to a custom domain).
+User-agent: *
+Allow: /
+Disallow: /share.html
+Sitemap: https://evolknives.github.io/gaming-deals/sitemap.xml

@@ -22,6 +22,14 @@
   var lightboxOpen = false;
   var allDeals = [];
   var BUILDS_MODE = "Builds"; // tab of complete PCs from data/builds.json
+  var VALUE_MODE = "Best Value"; // performance-per-dollar rankings, data/value.json
+  var valueData = null;
+  var valueKind = "gpu";
+  var valueRankById = {}; // deal id → rank in the Best Value top 10 (badge on cards)
+  var SAVED_MODE = "Saved"; // deals the visitor saved on this device (localStorage)
+  var CARDS_PER_PAGE = 36;
+  var dealsRenderSeq = 0;
+  var dealsPager = null;
   var allBuilds = null;
   var partsCatalog = null; // data/parts-catalog.json, loaded when "Build your own" opens
   var buildsView = storeGet("buildsView") === "custom" ? "custom" : "recommended";
@@ -1588,7 +1596,8 @@
       var c = normalizeCategory(d.category);
       if (c) present[c] = true;
     });
-    var cats = [SEARCH_MODE, "All", BUILDS_MODE, "Future"];
+    var cats = [SEARCH_MODE, "All", VALUE_MODE, BUILDS_MODE, "Future"];
+    if (savedCount() > 0 || activeFilter === SAVED_MODE) cats.push(SAVED_MODE);
     CATEGORY_ORDER.forEach(function (cat) {
       if (cat !== "All" && cat !== "Future" && present[cat]) cats.push(cat);
     });
@@ -1605,6 +1614,7 @@
       var btn = document.createElement("button");
       btn.type = "button";
       btn.className = "filter-btn" + (cat === activeFilter ? " is-on" : "");
+      btn.dataset.filter = cat; // the tab's name (a chip's text can include a count)
       btn.setAttribute("aria-pressed", cat === activeFilter ? "true" : "false");
       if (cat === SEARCH_MODE) {
         btn.className += " filter-btn--search";
@@ -1617,6 +1627,12 @@
           "</svg>";
       } else {
         btn.textContent = cat;
+        if (cat === SAVED_MODE) {
+          var cnt = document.createElement("span");
+          cnt.className = "filter-btn__count";
+          cnt.textContent = String(savedCount());
+          btn.appendChild(cnt);
+        }
       }
       btn.addEventListener("click", function () {
         if (cat === activeFilter) {
@@ -1629,6 +1645,7 @@
           return;
         }
         activeFilter = cat;
+        syncTabUrl();
         if (cat !== SEARCH_MODE) clearLiveSearch();
         Array.prototype.forEach.call(filterButtonsEl.children, function (b) {
           var label = b.dataset.filter || b.textContent;
@@ -1781,6 +1798,31 @@
       : nearLow
         ? '<span class="deal-card__near-low" role="status">Near low</span>'
         : "";
+    // Honest savings: below the price it usually sold for (tracked hourly), shown
+    // once a week of prices is on record
+    var usual = Number(deal.typical30);
+    var belowUsual = Number(deal.trackedDays30) >= 7 && usual > 0 ? usual - Number(deal.price) : 0;
+    if (belowUsual >= Math.max(5, usual * 0.03)) {
+      nearLowHtml +=
+        '<span class="deal-card__usual" role="note" title="It usually sold for ' + escapeAttr(formatMoney(usual)) +
+        ' over the last 30 days.">' + escapeHtml(formatMoney(Math.round(belowUsual))) + " below usual</span>";
+    }
+    var savedAt = savedDeals()[deal.id];
+    if (savedAt && Number.isFinite(Number(savedAt.price))) {
+      var moved = Math.round((Number(deal.price) - Number(savedAt.price)) * 100) / 100;
+      if (Math.abs(moved) >= 1) {
+        nearLowHtml +=
+          '<span class="deal-card__since deal-card__since--' + (moved < 0 ? "down" : "up") + '" title="You saved it at ' +
+          escapeAttr(formatMoney(Number(savedAt.price))) + '">' + (moved < 0 ? "↓ " : "↑ ") +
+          escapeHtml(formatMoney(Math.abs(moved))) + " since you saved</span>";
+      }
+    }
+    var vRank = valueRankById[deal.id];
+    if (vRank) {
+      nearLowHtml +=
+        '<a class="deal-card__value" href="?tab=' + encodeURIComponent(VALUE_MODE) + '" data-value-link>Best value #' +
+        vRank + "</a>";
+    }
     if (deal.wasUnseen) {
       nearLowHtml +=
         '<span class="deal-card__unseen" role="note" title="The store lists ' +
@@ -1877,12 +1919,19 @@
       "</div>" +
       promoHtml +
       freshnessHtml +
+      '<div class="deal-card__tools">' +
       (deal.sku && !isFutureDeal(deal)
         ? '<button type="button" class="deal-card__history" data-history>' +
           '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">' +
           '<path d="M1.5 12.5l4-4 3 2.5 6-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
           "Price history</button>"
         : "") +
+      (deal.id
+        ? '<button type="button" class="deal-card__save' + (savedDeals()[deal.id] ? " is-saved" : "") +
+          '" data-save aria-pressed="' + (savedDeals()[deal.id] ? "true" : "false") + '">' +
+          (savedDeals()[deal.id] ? "★ Saved" : "☆ Save") + "</button>"
+        : "") +
+      "</div>" +
       (deal.sourceUrl
         ? '<p class="deal-card__source">Source: <a href="' +
           escapeAttr(deal.sourceUrl) +
@@ -1914,6 +1963,33 @@
           }
         });
       }
+    }
+
+    var saveBtn = article.querySelector("[data-save]");
+    if (saveBtn) {
+      saveBtn.addEventListener("click", function () {
+        var on = toggleSaved(deal);
+        saveBtn.classList.toggle("is-saved", on);
+        saveBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        saveBtn.textContent = on ? "★ Saved" : "☆ Save";
+        showToast(on ? "Saved. Its price change shows here and in the Saved tab." : "Removed from Saved");
+        renderFilters(allDeals);
+        if (activeFilter === SAVED_MODE && !on) renderDeals(allDeals);
+      });
+    }
+
+    var valueLink = article.querySelector("[data-value-link]");
+    if (valueLink) {
+      valueLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        var chip = document.querySelector('.filter-btn[data-filter="' + VALUE_MODE + '"]') ||
+          Array.prototype.find.call(document.querySelectorAll(".filter-btn"), function (b) {
+            return b.textContent === VALUE_MODE;
+          });
+        valueKind = normalizeCategory(deal.category) === "CPUs" ? "cpu" : "gpu";
+        if (chip) chip.click();
+        try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch (err) { window.scrollTo(0, 0); }
+      });
     }
 
     var historyBtn = article.querySelector("[data-history]");
@@ -2073,8 +2149,16 @@
   }
 
   function renderDeals(deals) {
+    // price filter / sort don't apply to Builds and Best Value: hide them there
+    if (filtersEl) {
+      filtersEl.classList.toggle("filters--no-tools", activeFilter === BUILDS_MODE || activeFilter === VALUE_MODE);
+    }
     if (activeFilter === BUILDS_MODE) {
       renderBuilds();
+      return;
+    }
+    if (activeFilter === VALUE_MODE) {
+      renderValue();
       return;
     }
     var trimmedQuery = String(searchQuery || "").trim();
@@ -2096,6 +2180,8 @@
         if (!matchesSearchQuery(d, searchQuery)) return false;
       } else if (activeFilter === "Future") {
         if (!isFutureDeal(d)) return false;
+      } else if (activeFilter === SAVED_MODE) {
+        if (!savedDeals()[d.id]) return false;
       } else if (activeFilter !== "All" && normalizeCategory(d.category) !== activeFilter) {
         return false;
       }
@@ -2123,6 +2209,11 @@
         else catN += 1;
       }
       lastSearchShown = { total: list.length, live: liveN, catalogue: catN };
+    } else if (activeFilter === SAVED_MODE && activeSort === "savings") {
+      var saved = savedDeals();
+      list = list.slice().sort(function (a, b) {
+        return String((saved[b.id] || {}).at || "").localeCompare(String((saved[a.id] || {}).at || ""));
+      });
     } else if (activeFilter === "All" && activeSort === "savings") {
       list = interleaveByCategory(list);
     } else if (activeFilter === "Future" && activeSort === "savings") {
@@ -2163,6 +2254,10 @@
           activeBudget !== "All"
             ? "No upcoming deals in this budget yet."
             : "No upcoming deals found yet.";
+      } else if (activeFilter === SAVED_MODE) {
+        empty.textContent = savedCount()
+          ? "Your saved deals aren’t listed right now (sold out or the sale ended)."
+          : "Tap Save on any deal to keep an eye on its price here.";
       } else {
         empty.textContent =
           activeBudget !== "All"
@@ -2173,13 +2268,47 @@
       return;
     }
 
-    var cards = list.map(function (d, i) {
-      return buildCard(d, i);
-    });
-    cards.forEach(function (c) {
-      dealsEl.appendChild(c);
-    });
-    observeReveal(cards);
+    // Cards are added in pages as the visitor scrolls: building all of them at
+    // once (650+) took ~3 s on a mid-range phone.
+    var seq = ++dealsRenderSeq;
+    if (dealsPager) dealsPager.disconnect();
+    dealsPager = null;
+    var shown = 0;
+    var more = document.createElement("div");
+    more.className = "load-more";
+    var moreBtn = document.createElement("button");
+    moreBtn.type = "button";
+    moreBtn.className = "load-more__btn";
+    more.appendChild(moreBtn);
+    function addPage() {
+      if (seq !== dealsRenderSeq) return;
+      var page = list.slice(shown, shown + CARDS_PER_PAGE).map(function (d, i) {
+        return buildCard(d, shown + i);
+      });
+      page.forEach(function (c) {
+        dealsEl.insertBefore(c, more);
+      });
+      observeReveal(page);
+      shown += page.length;
+      var left = list.length - shown;
+      if (left <= 0) {
+        if (dealsPager) dealsPager.disconnect();
+        more.remove();
+      } else {
+        moreBtn.textContent = "Show more (" + left + " left)";
+      }
+    }
+    var strip = activeFilter === "All" && activeBudget === "All" ? justDroppedStrip(deals) : null;
+    if (strip) dealsEl.appendChild(strip);
+    dealsEl.appendChild(more);
+    moreBtn.addEventListener("click", addPage);
+    addPage();
+    if (more.isConnected && "IntersectionObserver" in window) {
+      dealsPager = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) addPage();
+      }, { rootMargin: "1200px 0px" });
+      dealsPager.observe(more);
+    }
   }
 
   // ---------------------------------------------------------------- Builds tab
@@ -2363,6 +2492,9 @@
       "<div>" +
       '<p class="build-card__eyebrow">' + escapeHtml(b.platform || "") + "</p>" +
       '<h3 class="build-card__title">' + escapeHtml(summary) + "</h3>" +
+      (cur.gpu && gpuGuide(cur.gpu.score)
+        ? '<p class="build-card__guide">Good for ' + escapeHtml(gpuGuide(cur.gpu.score)) + " <span>(rough guide)</span></p>"
+        : "") +
       '<p class="build-card__meta">' + onSale + " of " + parts.length + " parts on sale" +
       (changed ? ' · <button type="button" class="build-card__reset">Reset</button>' : "") +
       "</p>" +
@@ -2427,6 +2559,8 @@
   }
 
   function renderBuilds() {
+    dealsRenderSeq++;
+    if (dealsPager) { dealsPager.disconnect(); dealsPager = null; }
     dealsEl.innerHTML = "";
     dealsEl.setAttribute("aria-busy", allBuilds ? "false" : "true");
     if (!allBuilds) {
@@ -2982,7 +3116,25 @@
       }
     };
     var onKey = function (e) {
-      if (e.key === "Escape") close();
+      if (e.key === "Escape") {
+        close();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      // keep keyboard focus inside the window while it's open
+      var focusables = Array.prototype.filter.call(
+        modal.querySelectorAll("button, a[href], [tabindex]:not([tabindex='-1'])"),
+        function (el) { return !el.disabled && el.offsetParent !== null; }
+      );
+      if (!focusables.length) return;
+      var first = focusables[0], last = focusables[focusables.length - 1];
+      if (e.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     modal.addEventListener("click", function (e) {
@@ -2998,7 +3150,9 @@
       var points = ((data.items || {})[key] || []).map(function (p) { return [p[0] / 24, p[1]]; });
       var endDay = ((data.seen || {})[key] || 0) / 24 + 1 / 24;
       if (data.failed || !points.length) {
-        body.innerHTML = '<p class="status">' +
+        var adv0 = buyAdvice(deal);
+        body.innerHTML = (adv0 ? '<p class="ph-advice ph-advice--' + adv0.tone + '">' + escapeHtml(adv0.text) + "</p>" : "") +
+          '<p class="status">' +
           (data.failed ? "Couldn’t load price history. Try again in a moment." :
             "No price history yet. We check this price every hour, so the chart starts filling in from today.") +
           "</p>";
@@ -3024,7 +3178,9 @@
           " is higher than anything we saw it charge in the last 30 days, so the discount may be overstated.";
         else if (Number(deal.price) > low) verdict = "It has been cheaper recently: " + formatMoney(low) +
           (lowAt != null ? " on " + dayLabel(Math.max(lowAt, today - range)) : "") + ".";
+        var advice = buyAdvice(deal);
         body.innerHTML =
+          (advice ? '<p class="ph-advice ph-advice--' + advice.tone + '">' + escapeHtml(advice.text) + "</p>" : "") +
           '<div class="ph-range" role="group" aria-label="Time range">' +
           [30, 90].map(function (r) {
             return '<button type="button" data-range="' + r + '" class="' + (r === range ? "is-on" : "") +
@@ -3080,6 +3236,361 @@
       };
       draw();
     });
+  }
+
+  // The address and page title follow the open tab, so a tab can be shared or
+  // bookmarked and search engines see a distinct page per category.
+  var TAB_TITLES = {
+    Builds: "Gaming PC builds from today’s prices",
+    "Best Value": "Best value graphics cards & processors",
+    Future: "Upcoming tech sales",
+    Saved: "Saved deals",
+    Search: "Search deals"
+  };
+
+  function syncTabTitle() {
+    var base = "What's A Good Deal?";
+    var f = activeFilter;
+    // "GPUs" → "GPU deals"; "Headphones" → "Deals on Headphones"
+    var label = TAB_TITLES[f] || (/^[A-Z]{2,4}s$/.test(f) ? f.slice(0, -1) + " deals" : "Deals on " + f);
+    var t = f && f !== "All" ? label + " · " + base : base;
+    if (document.title !== t) document.title = t;
+  }
+
+  function syncTabUrl() {
+    syncTabTitle();
+    try {
+      var params = new URLSearchParams(location.search || "");
+      if (!activeFilter || activeFilter === "All" || activeFilter === SEARCH_MODE) params.delete("tab");
+      else params.set("tab", activeFilter);
+      if (activeFilter !== BUILDS_MODE) params.delete("build");
+      var q = params.toString();
+      history.replaceState(null, "", location.pathname + (q ? "?" + q : "") + location.hash);
+    } catch (e) {}
+  }
+
+  // ---------------------------------------------------------------- Saved deals
+  // Kept on this device only: { dealId: { price, at, name } }
+  var savedCache = null;
+
+  function savedDeals() {
+    if (savedCache) return savedCache;
+    try {
+      savedCache = JSON.parse(storeGet("saved") || "{}") || {};
+    } catch (e) {
+      savedCache = {};
+    }
+    return savedCache;
+  }
+
+  function savedCount() {
+    return Object.keys(savedDeals()).length;
+  }
+
+  function toggleSaved(deal) {
+    var saved = savedDeals();
+    var on;
+    if (saved[deal.id]) {
+      delete saved[deal.id];
+      on = false;
+    } else {
+      saved[deal.id] = { price: Number(deal.price), at: new Date().toISOString(), name: deal.name };
+      on = true;
+    }
+    storeSet("saved", JSON.stringify(saved));
+    return on;
+  }
+
+  // ---------------------------------------------------------------- Black Friday
+  // Black Friday = the day after US Thanksgiving (4th Thursday of November);
+  // the sale season runs through Cyber Monday.
+  function blackFriday(year) {
+    var d = new Date(Date.UTC(year, 10, 1));
+    var firstThu = 1 + ((4 - d.getUTCDay() + 7) % 7);
+    return new Date(year, 10, firstThu + 21 + 1); // local midnight, Friday
+  }
+
+  function saleSeason(now) {
+    now = now || new Date();
+    var bf = blackFriday(now.getFullYear());
+    var cyberEnd = new Date(bf.getFullYear(), bf.getMonth(), bf.getDate() + 4); // after Cyber Monday
+    if (now >= cyberEnd) bf = blackFriday(now.getFullYear() + 1);
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.round((bf - today) / 86400000);
+    return {
+      date: bf,
+      days: days,
+      live: now >= bf && now < cyberEnd,
+      soon: days > 0 && days <= 21,
+      label: bf.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+    };
+  }
+
+  function renderSaleBanner() {
+    var el = document.getElementById("sale-banner");
+    if (!el) return;
+    var season = saleSeason();
+    var key = "saleBannerHidden:" + season.date.getFullYear();
+    if ((!season.soon && !season.live) || storeGet(key)) {
+      el.hidden = true;
+      return;
+    }
+    el.innerHTML =
+      '<span class="sale-banner__text">' +
+      (season.live
+        ? "<strong>Black Friday sales are on now</strong> through Cyber Monday."
+        : "<strong>Black Friday is in " + season.days + " day" + (season.days === 1 ? "" : "s") + "</strong> (" +
+          escapeHtml(season.label) + "). Tech prices often drop then.") +
+      "</span>" +
+      '<button type="button" class="sale-banner__link" data-go-future>' +
+      (season.live ? "See sales" : "See announced sales") + "</button>" +
+      '<button type="button" class="sale-banner__close" aria-label="Hide this message">×</button>';
+    el.hidden = false;
+    el.querySelector(".sale-banner__close").addEventListener("click", function () {
+      storeSet(key, "1");
+      el.hidden = true;
+    });
+    el.querySelector("[data-go-future]").addEventListener("click", function () {
+      var chip = Array.prototype.find.call(document.querySelectorAll(".filter-btn"), function (b) {
+        return b.textContent === "Future";
+      });
+      if (chip) {
+        chip.click();
+        try { (document.getElementById("filters") || chip).scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) {}
+      }
+    });
+  }
+
+  // Buy now or wait? From the product's price history and the sale calendar.
+  function buyAdvice(deal) {
+    var season = saleSeason();
+    var usual = Number(deal.typical30);
+    var belowUsual = Number(deal.trackedDays30) >= 7 && usual > 0 && usual - Number(deal.price) >= Math.max(5, usual * 0.03);
+    if (deal.lowest30) return { tone: "good", text: "Good time to buy: this is its lowest price in 30 days." };
+    if (season.live) return { tone: "good", text: "Black Friday sales are on now. Check it against its price history below." };
+    if (deal.wasUnseen) return { tone: "warn", text: "Careful: the store’s “was” price is higher than anything we saw it charge in 30 days, so the discount may be overstated." };
+    if (belowUsual) return { tone: "good", text: "Below its usual price of " + formatMoney(usual) + "." };
+    if (season.soon) {
+      return {
+        tone: "wait",
+        text: "Black Friday is " + season.days + " day" + (season.days === 1 ? "" : "s") + " away (" + season.label +
+          "). Tech prices often drop then, so if this can wait, it may be worth checking back."
+      };
+    }
+    return null;
+  }
+
+  // Rough "what can it play" guide from a graphics card's relative score
+  // (scripts/build_pcs.py GPU_SCORES; fastest current card = 100).
+  function gpuGuide(score) {
+    score = Number(score);
+    if (!Number.isFinite(score) || score <= 0) return "";
+    if (score >= 90) return "4K at ultra settings";
+    if (score >= 70) return "4K at high settings";
+    if (score >= 58) return "1440p ultra, 4K at medium";
+    if (score >= 45) return "1440p at high settings";
+    if (score >= 36) return "1080p ultra, 1440p at medium";
+    if (score >= 26) return "1080p at high settings";
+    return "1080p at medium settings";
+  }
+
+  // "Just dropped": real price drops found by the hourly checks (kept 24 h),
+  // shown on the All tab once there are at least three.
+  function justDroppedStrip(deals) {
+    var drops = deals.filter(function (d) {
+      return d.priceDropped && Number(d.dropAmount) >= 5 && !d.startsAt && d.url;
+    }).sort(function (a, b) {
+      return Number(b.dropAmount) / Number(b.price) - Number(a.dropAmount) / Number(a.price);
+    }).slice(0, 10);
+    if (drops.length < 3) return null;
+    var wrap = document.createElement("section");
+    wrap.className = "drops";
+    wrap.setAttribute("aria-label", "Just dropped");
+    wrap.innerHTML =
+      '<h2 class="drops__title">Just dropped <span>price cuts found in the last 24 hours</span></h2>' +
+      '<div class="drops__row">' +
+      drops.map(function (d) {
+        var cat = normalizeCategory(d.category) || d.category || "";
+        return (
+          '<a class="drop-chip" href="' + escapeAttr(d.url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="build-part__thumb">' +
+          (d.image
+            ? '<img src="' + escapeAttr(cardImageSrc(d.image)) + '" alt="" loading="lazy" decoding="async" ' +
+              'onerror="this.style.visibility=\'hidden\'">'
+            : categoryIconSvg(cat, "build-part__icon")) +
+          "</span>" +
+          '<span class="drop-chip__info"><span class="drop-chip__name">' + escapeHtml(shortOption(d.name)) + "</span>" +
+          '<span class="drop-chip__price">' + escapeHtml(formatMoney(Number(d.price))) +
+          ' <b>↓ ' + escapeHtml(formatMoney(Number(d.dropAmount))) + "</b></span></span></a>"
+        );
+      }).join("") +
+      "</div>";
+    return wrap;
+  }
+
+  // ---------------------------------------------------------------- Best Value tab
+  // Graphics cards and processors ranked by gaming performance per dollar at
+  // today's lowest price (scripts/value.py, rebuilt hourly).
+  function loadValue() {
+    return fetch("data/value.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        valueData = data && data.gpu ? data : { failed: true };
+        valueRankById = {};
+        ["gpu", "cpu"].forEach(function (k) {
+          ((valueData[k] || {}).rows || []).slice(0, 10).forEach(function (r, i) {
+            if (r.id) valueRankById[r.id] = i + 1;
+          });
+        });
+      })
+      .catch(function () {
+        valueData = { failed: true };
+      })
+      .then(function () {
+        if (activeFilter === VALUE_MODE) renderValue();
+        else if (activeFilter !== BUILDS_MODE && activeFilter !== SEARCH_MODE && Object.keys(valueRankById).length &&
+                 document.querySelector(".deal-card")) {
+          renderDeals(allDeals); // add the Best value badges to the cards on screen
+        }
+      });
+  }
+
+  function valueSwitch() {
+    var wrap = document.createElement("div");
+    wrap.className = "builds-switch";
+    wrap.setAttribute("role", "tablist");
+    [["gpu", "Graphics cards"], ["cpu", "Processors"]].forEach(function (v) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "builds-switch__btn" + (valueKind === v[0] ? " is-on" : "");
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", valueKind === v[0] ? "true" : "false");
+      b.textContent = v[1];
+      b.addEventListener("click", function () {
+        if (valueKind === v[0]) return;
+        valueKind = v[0];
+        renderValue();
+      });
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+
+  function renderValue() {
+    dealsRenderSeq++;
+    if (dealsPager) { dealsPager.disconnect(); dealsPager = null; }
+    dealsEl.innerHTML = "";
+    if (!valueData) {
+      dealsEl.setAttribute("aria-busy", "true");
+      var wait = document.createElement("p");
+      wait.className = "status";
+      wait.textContent = "Loading rankings…";
+      dealsEl.appendChild(wait);
+      loadValue();
+      return;
+    }
+    dealsEl.setAttribute("aria-busy", "false");
+    if (valueData.failed) {
+      var err = document.createElement("p");
+      err.className = "status status--error";
+      err.textContent = "Couldn’t load the rankings. Try again in a moment.";
+      dealsEl.appendChild(err);
+      return;
+    }
+    var set = valueData[valueKind] || { rows: [], picks: [] };
+    var rows = set.rows || [];
+    var noun = valueKind === "gpu" ? "graphics card" : "processor";
+    dealsEl.appendChild(valueSwitch());
+    var intro = document.createElement("p");
+    intro.className = "builds-intro";
+    intro.textContent =
+      "Which " + noun + " gives you the most gaming performance for your money right now? " +
+      "Each model at its lowest price today, ranked by performance per dollar. Rebuilt every hour.";
+    dealsEl.appendChild(intro);
+    if (!rows.length) {
+      var none = document.createElement("p");
+      none.className = "status";
+      none.textContent = "Not enough prices to rank yet. Check back after the next hourly price check.";
+      dealsEl.appendChild(none);
+      return;
+    }
+    var byModel = {};
+    rows.forEach(function (r) { byModel[r.model] = r; });
+    if ((set.picks || []).length) {
+      var picks = document.createElement("div");
+      picks.className = "value-picks";
+      set.picks.forEach(function (pk) {
+        var r = byModel[pk.model];
+        var a = document.createElement(r ? "a" : "div");
+        a.className = "value-pick";
+        if (r) {
+          a.href = r.url;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+        }
+        a.innerHTML =
+          '<span class="value-pick__label">Fastest under $' + escapeHtml(Number(pk.limit).toLocaleString("en-US")) + "</span>" +
+          '<span class="value-pick__model">' + escapeHtml(pk.model) + "</span>" +
+          (r ? '<span class="value-pick__price">' + escapeHtml(formatMoney(r.price)) + "</span>" : "");
+        picks.appendChild(a);
+      });
+      dealsEl.appendChild(picks);
+    }
+    var top = rows[0].value;
+    var card = document.createElement("article");
+    card.className = "build-card value-card";
+    card.innerHTML =
+      '<ol class="value-list">' +
+      rows.map(function (r, i) {
+        var pct = Math.max(4, Math.round((r.value / top) * 100));
+        var sale = r.previousPrice && r.previousPrice > r.price;
+        var cat = valueKind === "gpu" ? "GPUs" : "CPUs";
+        var thumb = r.image
+          ? '<img src="' + escapeAttr(cardImageSrc(r.image)) + '" data-full="' + escapeAttr(r.image) +
+            '" data-cat="' + cat + '" alt="" loading="lazy" decoding="async">'
+          : categoryIconSvg(cat, "build-part__icon");
+        return (
+          '<li class="value-row">' +
+          '<span class="value-row__rank">' + (i + 1) + "</span>" +
+          '<span class="build-part__thumb">' + thumb + "</span>" +
+          '<span class="value-row__info">' +
+          '<a class="value-row__model" href="' + escapeAttr(r.url) + '" target="_blank" rel="noopener noreferrer">' +
+          escapeHtml(r.model) + "</a>" +
+          '<span class="value-row__bar" role="img" aria-label="Value ' + pct + '% of the best">' +
+          '<span style="width:' + pct + '%"></span></span>' +
+          '<span class="value-row__meta">' +
+          escapeHtml(Math.round(r.score) + "/100 performance · " + r.value.toFixed(1) + " pts per $100 · " + r.merchant) +
+          (valueKind === "gpu" && gpuGuide(r.score)
+            ? '<span class="value-row__guide"> · Good for ' + escapeHtml(gpuGuide(r.score)) + "</span>"
+            : "") +
+          (sale ? ' · <span class="build-part__sale">on sale</span>' : "") +
+          "</span>" +
+          "</span>" +
+          '<span class="build-part__price">' + escapeHtml(formatMoney(r.price)) +
+          (sale ? '<span class="build-part__was">' + escapeHtml(formatMoney(r.previousPrice)) + "</span>" : "") +
+          "</span>" +
+          "</li>"
+        );
+      }).join("") +
+      "</ol>" +
+      '<p class="value-note">Performance is our approximate relative gaming score (fastest current ' + noun +
+      " = 100), not a benchmark of your games. Prices are the lowest we found for each model today; " +
+      "the link opens that listing.</p>";
+    card.querySelectorAll(".build-part__thumb img").forEach(function (img) {
+      img.addEventListener("error", function onErr() {
+        var full = img.getAttribute("data-full");
+        if (full && img.getAttribute("src") !== full) {
+          img.setAttribute("src", full);
+          return;
+        }
+        img.removeEventListener("error", onErr);
+        img.outerHTML = categoryIconSvg(img.getAttribute("data-cat") || "", "build-part__icon");
+      });
+    });
+    dealsEl.appendChild(card);
   }
 
   function scrollTop() {
@@ -3179,7 +3690,8 @@
       var t = new URLSearchParams(location.search || "").get("tab");
       if (!t) return "";
       t = String(t).trim();
-      if (t === "Future" || t === "All" || t === SEARCH_MODE || t === BUILDS_MODE) return t;
+      if (t === "Future" || t === "All" || t === SEARCH_MODE || t === BUILDS_MODE || t === VALUE_MODE ||
+          t === SAVED_MODE) return t;
       return normalizeCategory(t) || t;
     } catch (e) {
       return "";
@@ -3201,6 +3713,7 @@
     if (data.title) SITE_TITLE = data.title;
     var urlTab = tabFromUrl();
     if (urlTab) activeFilter = urlTab;
+    syncTabTitle();
     renderFilters(allDeals);
     renderDeals(allDeals);
   }
@@ -3223,6 +3736,7 @@
       .then(function (data) {
         applyDealsData(data);
         loadBuilds();
+        loadValue();
         lastDealsFetchAt = Date.now();
         if (isRefresh && !quiet) {
           var changed = previousUpdatedAt !== siteUpdatedAt;
@@ -3258,6 +3772,7 @@
 
   function init() {
     initSearchUi();
+    try { renderSaleBanner(); } catch (e) {}
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 

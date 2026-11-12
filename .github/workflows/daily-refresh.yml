@@ -33,11 +33,18 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
+      # Runs the whole job on a copy with simulated stores first; if the code is
+      # broken, the run stops here and the live site keeps its last good data.
+      - name: Smoke test (simulated stores)
+        run: python scripts/smoke_test.py
+
       - name: Refresh deals
         run: python scripts/daily_refresh.py
 
-      - name: Version app.js / styles.css in index.html
-        run: python scripts/stamp_asset_versions.py
+      - name: Version app.js / styles.css in the pages; refresh the sitemap
+        run: |
+          python scripts/stamp_asset_versions.py
+          python scripts/sitemap.py
 
       - name: Validate deals.json
         run: |
@@ -58,7 +65,7 @@ jobs:
         run: |
           git config user.name "deals-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data images index.html
+          git add -A data images index.html about.html privacy.html sitemap.xml
           if git diff --cached --quiet; then
             echo "No changes"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
           fi

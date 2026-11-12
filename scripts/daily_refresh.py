@@ -864,6 +864,8 @@ def main() -> int:
     # rebuild the Builds tab's PCs from the fresh prices
     import build_pcs  # noqa: E402  (scripts/ is on sys.path)
     build_pcs.main()
+    import value  # noqa: E402  Best Value tab rankings
+    value.main()
     return 0
 
 

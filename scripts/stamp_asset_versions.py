@@ -15,24 +15,28 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "index.html"
+PAGES = [ROOT / "index.html", ROOT / "about.html", ROOT / "privacy.html"]
 ASSETS = ("app.js", "styles.css")
 
 
 def main() -> int:
-    html = INDEX.read_text(encoding="utf-8")
-    new = html
-    for name in ASSETS:
-        digest = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:10]
-        new = re.sub(
-            rf'({re.escape(name)})(\?v=[^"\']*)?(["\'])',
-            rf"\g<1>?v={digest}\g<3>",
-            new,
-        )
-    if new != html:
-        INDEX.write_text(new, encoding="utf-8")
-        print("index.html asset versions updated")
-    else:
-        print("index.html asset versions already current")
+    changed = []
+    for page in PAGES:
+        if not page.is_file():
+            continue
+        html = page.read_text(encoding="utf-8")
+        new = html
+        for name in ASSETS:
+            digest = hashlib.sha256((ROOT / name).read_bytes()).hexdigest()[:10]
+            new = re.sub(
+                rf'({re.escape(name)})(\?v=[^"\']*)?(["\'])',
+                rf"\g<1>?v={digest}\g<3>",
+                new,
+            )
+        if new != html:
+            page.write_text(new, encoding="utf-8")
+            changed.append(page.name)
+    print(("asset versions updated: " + ", ".join(changed)) if changed else "asset versions already current")
     return 0
 
 

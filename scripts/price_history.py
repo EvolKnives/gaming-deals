@@ -145,12 +145,13 @@ def window_stats(series: list[list[float]], seen: int, now_hour: int) -> dict[st
 def annotate(deal: dict[str, Any], series: list[list[float]] | None, seen: int | None,
              now_hour: int) -> None:
     """Add 30-day stats and honest-discount flags to a deal (in place)."""
-    for k in ("low30", "high30", "typical30", "historyDays", "lowest30", "wasUnseen"):
+    for k in ("low30", "high30", "typical30", "historyDays", "trackedDays30", "lowest30", "wasUnseen"):
         deal.pop(k, None)
     if not series or seen is None:
         return
     s = window_stats(series, seen, now_hour)
     deal.update({k: v for k, v in s.items() if not k.startswith("_")})
+    deal["trackedDays30"] = round(s.get("_trackedDays30", 0), 1)  # observed days in the window
     if s.get("_trackedDays30", 0) < MIN_DAYS_FOR_FLAGS or now_hour - seen > STALE_HOURS:
         return  # too little recent history to judge fairly
     price = float(deal.get("price") or 0)

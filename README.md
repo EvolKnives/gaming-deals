@@ -105,6 +105,49 @@ two honest-discount flags, set only after 14 days of observed prices in the
 Amazon-style step chart (30 / 90 days). `--backfill` rebuilds the file from the
 git history of `data/deals.json`.
 
+## Best Value tab
+
+[`scripts/value.py`](scripts/value.py) runs after the builds each hour and
+writes [`data/value.json`](data/value.json): graphics cards and processors
+ranked by approximate gaming performance (the builder's score tables) per
+dollar, each model once at its lowest price across deals and regular-price
+parts, plus the fastest model under a few price limits. The listing behind a
+top-10 entry gets a "Best value #N" badge on its deal card. ("F" models such
+as the 5500F score the same as the matching non-F chip.)
+
+## Honest savings, saved deals, Black Friday
+
+- **Below usual:** once a product has 7+ observed days in its 30-day price
+  history, its card shows how far today's price is below the price it sat at
+  longest (`typical30`), instead of trusting the store's "was" price.
+- **Saved:** visitors can save deals; a Saved tab lists them with the price
+  change since saving. Stored in the visitor's browser only.
+- **Black Friday:** a dismissible countdown banner for the three weeks before
+  Black Friday (4th Thursday of November + 1) through Cyber Monday, and a
+  buy-now-or-wait note in each product's price history window.
+
+## Smoke test
+
+[`scripts/smoke_test.py`](scripts/smoke_test.py) runs the whole hourly job on a
+throwaway copy with every store simulated, then checks the output (valid files,
+enough deals, nothing in the wrong tab, builds within budget, Best Value and
+price history produced, no syntax errors in `app.js`). The workflow runs it
+first, so a broken change stops the run instead of publishing a broken site.
+Run it locally before pushing: `python3 scripts/smoke_test.py`.
+
+## Other pages and files
+
+- `about.html` / `privacy.html`: how deals are picked; no tracking. Update
+  both before adding affiliate links.
+- `share.html` (not linked): this week's top 10 laid out as a 1080×1350
+  social post; screenshot it to post.
+- `assets/`: link-preview image, icons (kept out of `images/`, which the hourly
+  job cleans). `sitemap.xml` (refreshed hourly by `scripts/sitemap.py`) and
+  `robots.txt`; update the URLs in them and in `index.html`'s preview tags if
+  the site moves to its own domain.
+- Cards are rendered 36 at a time as the visitor scrolls (650+ at once took
+  ~3 s on a mid-range phone).
+
 ## Shared category rules
 
 [`data/category-rules.json`](data/category-rules.json) holds the category rules

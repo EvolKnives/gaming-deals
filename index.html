@@ -8,7 +8,19 @@
   <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>What's A Good Deal?</title>
-  <link rel="stylesheet" href="styles.css?v=b1ead11165">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <!-- Link previews (Discord, iMessage, Reddit, X…). Update the URLs if the site moves to its own domain. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="What's A Good Deal?">
+  <meta property="og:title" content="What's A Good Deal? — real tech deals, checked hourly">
+  <meta property="og:description" content="Real discounts on PC parts, gaming gear and tech, with price history, best-value rankings and ready-made AMD and Intel builds.">
+  <meta property="og:url" content="https://evolknives.github.io/gaming-deals/">
+  <meta property="og:image" content="https://evolknives.github.io/gaming-deals/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="stylesheet" href="styles.css?v=1b1ad20a5c">
 </head>
 <body>
   <header class="site-header" id="site-header">
@@ -28,6 +40,7 @@
         <p class="hero__eyebrow"><span class="hero__pulse" aria-hidden="true"></span>Verified retailer prices</p>
         <h1 id="hero-title">What's A <span class="hero__accent">Good Deal?</span></h1>
         <p class="hero__lede">The best current and upcoming deals on the tech you love.</p>
+        <div class="sale-banner" id="sale-banner" hidden></div>
       </div>
     </section>
 
@@ -77,6 +90,7 @@
 
   <footer class="site-footer">
     <p>Prices checked from retailer listings. Always confirm the live cart total before buying.</p>
+    <p class="site-footer__links"><a href="about.html">About &amp; how we pick deals</a> · <a href="privacy.html">Privacy</a></p>
   </footer>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
@@ -90,6 +104,6 @@
     </figure>
   </div>
 
-  <script src="app.js?v=f3e90593f6" defer></script>
+  <script src="app.js?v=901f7e07da" defer></script>
 </body>
 </html>
