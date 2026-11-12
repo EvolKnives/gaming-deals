@@ -259,6 +259,47 @@ def verify_newegg(api: Newegg, deal: dict[str, Any]) -> dict[str, Any] | None:
     return None
 
 
+# Words that describe a category rather than a specific product; ignored when
+# matching an upcoming deal's name to a Newegg listing for its photo.
+GENERIC_WORDS = {
+    "gaming", "monitor", "class", "with", "and", "the", "for", "inch", "smart",
+    "wireless", "speaker", "bundle", "desktop", "curved", "ultrawide", "ultra",
+    "channel", "soundbar", "pack", "month", "pass", "plus", "intel", "core",
+    "amd", "ryzen", "geforce", "rtx", "black", "white", "uhd", "ips", "fhd",
+}
+
+
+def _name_tokens(name: str) -> list[str]:
+    name = re.split(r"\s[\u2014\u2013-]\s", name)[0]  # drop " — spec tail"
+    toks = re.sub(r"[^\w. ]", " ", name.lower()).split()
+    return [t.strip(".") for t in toks if len(t.strip(".")) > 1 and t.strip(".") not in GENERIC_WORDS]
+
+
+def find_photo(api: Newegg, deal: dict[str, Any]) -> str | None:
+    """Photo for an upcoming (Future-tab) deal from a Newegg listing of the
+    same product. Image only — the Future price still comes from the source.
+    Needs the brand plus most of the name's distinctive words in the title."""
+    toks = _name_tokens(deal.get("name", ""))
+    if len(toks) < 2:
+        return None
+    brand = toks[0]
+    for q in (short_query(deal.get("name", ""), 6), short_query(deal.get("name", ""), 4)):
+        best, best_score = None, 0.0
+        for p in api.search(q):
+            img = image_url(p)
+            title = str(p.get("WebDescription") or "").lower()
+            if not img or brand not in title:
+                continue
+            words = set(_name_tokens(title)) | {brand} if brand in title else set()
+            score = sum(1 for t in toks if t in words) / len(toks)
+            if score > best_score:
+                best, best_score = img, score
+        if best and best_score >= 0.6:
+            return best
+        time.sleep(0.3)
+    return None
+
+
 # ---------------------------------------------------------------- Denon
 def verify_jsonld_price(url: str) -> float | None:
     try:
@@ -380,6 +421,14 @@ def main() -> int:
     for d in deals:
         if is_upcoming(d, now):
             stats["upcoming_kept"] += 1
+            if not d.get("image"):
+                img = find_photo(api, d)
+                if abort_if_throttled():
+                    return 2
+                if img:
+                    d["image"] = img
+                    d["imageSource"] = "newegg-api-match"
+                    stats["upcoming_photo_added"] += 1
             continue
         merchant = d.get("merchant")
         if merchant == "Newegg":
