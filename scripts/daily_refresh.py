@@ -62,57 +62,12 @@ BAD_TITLE = re.compile(
     re.I,
 )
 
-# category -> (queries, title must match, title must NOT match, price floor)
+# category -> (queries, title must match, title must NOT match, price floor).
+# Rules live in data/category-rules.json, shared with the Search Worker.
+RULES_PATH = ROOT / "data" / "category-rules.json"
 SEEDS: dict[str, tuple[list[str], str, str | None, float]] = {
-    "GPUs": (["geforce rtx 5070 graphics card", "radeon rx 9070 graphics card",
-              "geforce rtx 5060 ti graphics card", "geforce rtx 5080 graphics card"],
-             r"graphics card|video card", r"desktop|laptop|gaming pc|bracket|riser|cable", 200),
-    "CPUs": (["amd ryzen 7 desktop processor", "amd ryzen 9 desktop processor",
-              "intel core ultra desktop processor"],
-             r"processor|\bcpu\b",
-             r"gaming desktop|desktop (pc|computer)|gaming pc|laptop|cooler|bundle|combo|motherboard|\b\d+ ?GB\b|alienware", 90),
-    "Monitors": (["27 inch gaming monitor", "oled gaming monitor", "1440p 165hz monitor"],
-                 r"monitor", r"\barm\b|mount|stand only|cable", 120),
-    "TVs": (["4k smart tv", "oled tv", "qled tv", "samsung 4k tv", "sony bravia tv", "tcl qled tv", "hisense 4k tv"],
-            r"\btv\b|television", r"mount|bracket|antenna|cable|monitor", 250),
-    "Home Theater": (["soundbar", "av receiver", "home theater speaker system"],
-                     r"sound ?bar|receiver|speaker|subwoofer|home theater", r"mount|cable|bracket|car ", 80),
-    "Art Tablets": (["pen display drawing tablet", "xp-pen drawing tablet", "wacom tablet", "huion drawing tablet"],
-                    r"drawing|graphics? tablet|pen display|pen tablet|creative tablet",
-                    r"ipad|android|surface|windows|snapdragon|\bssd\b|case|cover|glove|film|protector|stand", 40),
-    "PSUs": (["850w atx power supply", "1000w atx 3.1 power supply", "750w modular power supply"],
-             r"power supply|\bpsu\b", r"ups|battery|cable|extension", 50),
-    "Cases": (["mid tower computer case", "atx pc case tempered glass"],
-              r"\b(case|chassis|tower)\b", r"fan only|laptop|phone|ssd|enclosure|carrying", 35),
-    "Motherboards": (["AM5 B650 motherboard", "AM5 X870 motherboard", "intel Z890 motherboard"],
-                     r"motherboard", r"bundle|combo|cpu", 70),
-    "RAM": (["DDR5 32GB desktop memory kit", "DDR5 64GB desktop memory"],
-            r"\bDDR[45]\b", r"so-?dimm|laptop|server|ecc", 45),
-    "SSDs": (["NVMe M.2 SSD 2TB", "NVMe M.2 SSD 1TB", "NVMe M.2 SSD 4TB"],
-             r"\b(SSD|solid state)\b", r"enclosure|adapter|external|portable|heatsink only", 35),
-    "Phones": (["unlocked smartphone", "samsung galaxy unlocked", "google pixel unlocked", "iphone unlocked"],
-               r"phone|galaxy|pixel|iphone", r"case|protector|charger|cable|mount|holder|tablet|watch|earbuds", 150),
-    "Laptops": (["gaming laptop rtx", "msi gaming laptop", "asus rog laptop", "lenovo legion laptop"],
-                r"(laptop|notebook).*(gaming|rtx|rog|legion|omen|predator|alienware|tuf|nitro|katana|cyborg|raider|vector|stealth|strix|zephyrus)"
-                r"|(gaming|rtx|rog|legion|omen|predator|alienware|tuf|nitro|katana|cyborg|raider|vector|stealth|strix|zephyrus).*(laptop|notebook)",
-                r"bag|sleeve|stand|cooling pad|charger|adapter|skin|thinkpad", 400),
-    "Prebuilts": (
-        ["cyberpowerpc gaming desktop", "ibuypower gaming desktop", "skytech gaming desktop",
-         "msi gaming desktop rtx", "asus gaming desktop rtx", "hp omen gaming desktop",
-         "lenovo legion tower", "alienware aurora desktop", "acer nitro gaming desktop",
-         "abs prebuilt gaming pc", "thermaltake gaming desktop", "prebuilt gaming desktop rtx"],
-        r"(?=.*\b(cyberpower(?:pc)?|ibuypower|skytech|\bmsi\b|asus|\brog\b|\bhp\b|omen|lenovo|legion|"
-        r"nzxt|alienware|acer|predator|corsair|thermaltake|\babs\b|zotac|dell|gigabyte|aorus|starforge)\b)"
-        r"(?=.*\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)|gaming\s+desktop|"
-        r"(desktop|tower)\s+(pc|computer)|desktop\s+computer)\b)"
-        r"(?=.*\b(rtx|geforce|radeon|rx\s*\d{3,4})\b)",
-        r"laptop|notebook|chromebook|macbook|bare-?bones?|mini[\s-]?pc|\bnuc\b|office(\s+pc)?|"
-        r"business\s+(desktop|pc)|pc\s*case|computer\s*case|gaming\s*pc\s*case|motherboard|\bchassis\b",
-        600,
-    ),
-    "Mice": (["wireless gaming mouse", "gaming mouse"], r"\bmouse\b|\bmice\b", r"pad|mat|bungee|feet|grip tape", 20),
-    "Keyboards": (["mechanical gaming keyboard", "wireless mechanical keyboard"],
-                  r"keyboard", r"bundle|combo|keycaps? only|wrist rest|switches only|piano|tablet case|mouse", 30),
+    r["category"]: (r["queries"], r["titleMust"], r.get("titleMustNot"), float(r["minPrice"]))
+    for r in json.loads(RULES_PATH.read_text(encoding="utf-8"))["seeds"]
 }
 
 

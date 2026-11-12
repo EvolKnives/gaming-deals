@@ -44,7 +44,6 @@
   --header-base-alpha: 0.72;
   --header-progress: 0;
   --header-blur: 22px;
-  --figure-bg: #ececf0;
   --figure-placeholder: linear-gradient(145deg, #ececf0, #d8d8dd);
   --chip-track: rgba(0, 0, 0, 0.045);
   --chip-bg: transparent;
@@ -100,7 +99,6 @@
       );
     --header-bg-rgb: 28, 28, 30;
     --header-base-alpha: 0.78;
-    --figure-bg: #3a3a3c;
     --figure-placeholder: linear-gradient(145deg, #3a3a3c, #48484a);
     --chip-track: rgba(255, 255, 255, 0.06);
     --chip-bg: transparent;
@@ -710,15 +708,23 @@ a {
   transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
 }
 
+/* Product shots are white-background JPGs: they sit on a soft light tile, and
+   multiply blending lets the tile colour show through their white. */
 .deal-card__figure {
   position: relative;
   margin: 0;
-  background: var(--figure-bg);
-  aspect-ratio: 16 / 10;
+  background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #f1f3f7 75%);
+  aspect-ratio: 4 / 3;
   width: 100%;
   overflow: hidden;
   contain: layout paint;
   border-radius: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .deal-card__figure {
+    background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #e7ebf2 80%);
+  }
 }
 
 .deal-card__figure img {
@@ -726,8 +732,9 @@ a {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  padding: 1rem 1.15rem;
-  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  border-radius: 0;
+  mix-blend-mode: multiply;
   transition: transform 0.45s var(--ease-out);
 }
 
@@ -1375,7 +1382,6 @@ a {
     --card: #141821;
     --card-border: rgba(148, 197, 255, 0.09);
     --card-hover-border: rgba(100, 210, 255, 0.55);
-    --figure-bg: #1b2030;
     --figure-placeholder: linear-gradient(145deg, #1b2030, #232a3d);
     --hero-band: #0b0d12;
     --hero-glow: radial-gradient(ellipse 70% 90% at 50% -30%, rgba(100, 210, 255, 0.2), transparent 70%),
@@ -1686,24 +1692,6 @@ a {
   }
 }
 
-.deal-card__figure {
-  aspect-ratio: 4 / 3;
-  background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #f1f3f7 75%);
-}
-
-@media (prefers-color-scheme: dark) {
-  .deal-card__figure {
-    /* product shots are on white — frame them in a soft light tile */
-    background: radial-gradient(ellipse at 50% 40%, #ffffff 0%, #e7ebf2 80%);
-  }
-}
-
-.deal-card__figure img {
-  padding: 0.9rem;
-  border-radius: 0;
-  mix-blend-mode: multiply;
-}
-
 .deal-card__body {
   display: flex;
   flex-direction: column;
@@ -1826,26 +1814,36 @@ a {
 
   .deal-card {
     display: grid;
-    grid-template-columns: 112px 1fr;
+    grid-template-columns: 136px 1fr;
     align-items: stretch;
   }
 
+  /* photo on a rounded tile inset in the card, not an edge-to-edge block */
   .deal-card__figure {
     aspect-ratio: auto;
-    height: 100%;
-    min-height: 132px;
+    height: auto;
+    min-height: 120px;
+    margin: 0.5rem 0 0.5rem 0.5rem;
+    border-radius: 14px;
+    background: radial-gradient(ellipse at 50% 45%, #f4f6fa 0%, #e3e7ee 85%);
   }
 
   .deal-card__figure img {
     position: absolute;
     inset: 0;
-    padding: 0.55rem;
+    padding: 0.3rem;
+    /* product shots carry wide white margins; zoom in so the item fills the tile */
+    transform: scale(1.14);
+  }
+
+  .deal-card__figure--zoom:active img {
+    transform: scale(1.1);
   }
 
   .deal-card__drop {
-    top: 0.4rem;
+    top: 0.3rem;
     right: auto;
-    left: 0.4rem;
+    left: 0.3rem;
     padding: 0.22rem 0.45rem 0.22rem 0.35rem;
     font-size: 0.62rem;
   }
@@ -1886,38 +1884,6 @@ a {
   .deal-card__cta {
     min-height: 38px;
     font-size: 0.84rem;
-  }
-}
-
-/* Phones: photo sits on a soft, rounded tile inside the card instead of a
-   hard white block. Product shots are white-background JPGs; multiply blend
-   lets the tile colour replace their white. */
-@media (max-width: 599px) {
-  .deal-card {
-    grid-template-columns: 136px 1fr;
-  }
-
-  .deal-card__figure {
-    margin: 0.5rem 0 0.5rem 0.5rem;
-    height: auto;
-    min-height: 120px;
-    border-radius: 14px;
-    background: radial-gradient(ellipse at 50% 45%, #f4f6fa 0%, #e3e7ee 85%);
-  }
-
-  .deal-card__figure img {
-    padding: 0.3rem;
-    /* product shots carry wide white margins; zoom in so the item fills the tile */
-    transform: scale(1.14);
-  }
-
-  .deal-card__figure--zoom:active img {
-    transform: scale(1.1);
-  }
-
-  .deal-card__drop {
-    top: 0.3rem;
-    left: 0.3rem;
   }
 }
 

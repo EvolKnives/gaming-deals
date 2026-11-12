@@ -2,9 +2,10 @@ name: Hourly deals refresh
 
 # Re-verifies current prices, prunes dead/unverifiable listings (after 3
 # calendar days, not 3 runs), tops categories back up, keeps upcoming Future
-# deals without a Newegg check, and commits data/deals.json only when deal
-# data meaningfully changed — so hourly runs do not spam timestamp-only
-# commits or GitHub Pages rebuilds.
+# deals without a Newegg check, and commits data/deals.json every run so the
+# site's "Updated X ago" stays current. GitHub's cron can run late or skip;
+# the live-search Worker's hourly cron dispatches this as a backup
+# (workers/live-search/README.md).
 on:
   schedule:
     # Minute 17 past every hour, to avoid top-of-hour congestion.
@@ -13,7 +14,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
 
 concurrency:
   group: hourly-refresh
@@ -36,6 +36,9 @@ jobs:
       - name: Refresh deals
         run: python scripts/daily_refresh.py
 
+      - name: Version app.js / styles.css in index.html
+        run: python scripts/stamp_asset_versions.py
+
       - name: Validate deals.json
         run: |
           python - <<'PY'
@@ -55,7 +58,7 @@ jobs:
         run: |
           git config user.name "deals-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A data images
+          git add -A data images index.html
           if git diff --cached --quiet; then
             echo "No changes"; echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0
           fi
@@ -63,9 +66,4 @@ jobs:
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
-
-      - name: Rebuild GitHub Pages
-        if: steps.commit.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api -X POST "repos/${{ github.repository }}/pages/builds" || echo "Pages build request failed (push should still trigger it)"
+          # The push itself triggers the GitHub Pages rebuild.

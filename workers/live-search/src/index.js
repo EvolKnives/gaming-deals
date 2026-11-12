@@ -2,9 +2,10 @@
  * Live Search Worker — Newegg search → deal-shaped JSON.
  * Never invents prices/ratings/dates. Only values from Newegg responses.
  *
- * Primary: Newegg MCP / HTML (often blocked from Workers — Newegg rejects IPv6).
- * Fallback: Amazon search HTML (reachable from Cloudflare egress; real prices only).
+ * Primary: Newegg's product-search JSON API; fallback: Newegg search HTML.
  */
+
+import categoryRules from "../../../data/category-rules.json";
 
 const ALLOWED_ORIGINS = new Set([
   "https://evolknives.github.io",
@@ -34,28 +35,12 @@ const RATE_MAX_PER_IP = 30;
 
 const rateBuckets = new Map();
 
-const CATEGORY_HINTS = [
-  // Specific accessories / form-factors first (avoid "memory foam" → RAM, laptop SSD → SSDs).
-  { re: /\b(headset|headphones?|earbuds?|earphones?|earpiece|earbuds)\b/i, cat: "Home Theater" },
-  { re: /\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|gaming\s*console|game\s*console|wireless\s*controller|game\s*controller|gamepad)\b/i, cat: "Other" },
-  { re: /\b(macbook|laptop|notebook|chromebook)\b/i, cat: "Laptops" },
-  { re: /\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)\b|gaming\s+desktop|desktop\s+(pc|computer)\b)(?![\s-]*(case|chassis|motherboard))/i, cat: "Prebuilts" },
-  { re: /\b(rtx|gtx|radeon\s*rx|geforce|graphics\s*card|\bgpu\b|intel\s*arc|arc\s*a\d{3})\b/i, cat: "GPUs" },
-  { re: /\b(ryzen|core\s*ultra|core\s*i[3579]|\bcpu\b|threadripper)\b/i, cat: "CPUs" },
-  { re: /\b(monitor|ultrawide|gaming\s*display)\b/i, cat: "Monitors" },
-  { re: /\b(\d{2,3}["']?\s*(inch\s*)?tv|oled\s*tv|qled|television)\b/i, cat: "TVs" },
-  { re: /\b(soundbar|av\s*receiver|bookshelf\s*speaker|floor[\s-]?standing\s*speaker|subwoofer|home\s*theat(?:er|re)|klipsch|surround\s*speaker)\b/i, cat: "Home Theater" },
-  { re: /\b(wacom|drawing\s*tablet|pen\s*display|art\s*tablet)\b/i, cat: "Art Tablets" },
-  { re: /\b(psu|power\s*supply|modular\s*psu)\b/i, cat: "PSUs" },
-  { re: /\b((mid|full|mini)[\s-]?tower|pc\s*case|computer\s*case|atx\s*case|gaming\s*case|\bchassis\b)\b/i, cat: "Cases" },
-  { re: /\b(motherboard|\bmobo\b|b650|x670|b850|z790|b760|x870)\b/i, cat: "Motherboards" },
-  // Avoid bare "memory" (headsets say "memory foam") and bare "ram" in laptop titles.
-  { re: /\b(ddr[45]\b|sodimm|udimm|\bdimm\b|desktop\s*memory|pc\s*ram|system\s*memory|288-?pin)\b/i, cat: "RAM" },
-  { re: /\b(nvme|m\.2\s*(2280|2230|ssd)|solid\s*state\s*drive|\bssd\b|portable\s*ssd)\b/i, cat: "SSDs" },
-  { re: /\b(iphone|google\s*pixel|galaxy\s*s\d+|smartphone)\b|\bphone\b/i, cat: "Phones" },
-  { re: /\b(mouse|\bmice\b|g502|deathadder|viper\s*v\d|g\s*pro\s*x\s*superlight)\b/i, cat: "Mice" },
-  { re: /\b(keyboard|keychron|mechanical\s*key|keycaps)\b/i, cat: "Keyboards" },
-];
+// Category rules shared with the hourly refresh script (data/category-rules.json).
+// Order matters: the first matching pattern wins.
+const CATEGORY_HINTS = categoryRules.liveSearchHints.map((h) => ({
+  re: new RegExp(h.pattern, "i"),
+  cat: h.category,
+}));
 
 export default {
   async fetch(request, env, ctx) {
@@ -167,7 +152,55 @@ export default {
       );
     }
   },
+
+  // Hourly backup for the GitHub Actions deals refresh. GitHub's own cron is
+  // known to start late or skip runs, so this asks GitHub to run the workflow
+  // at minute 20 — unless a run already started in the last 40 minutes.
+  // Needs the GITHUB_DISPATCH_TOKEN secret (see README); without it, no-op.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(triggerDealsRefresh(env));
+  },
 };
+
+const REFRESH_REPO = "EvolKnives/gaming-deals";
+const REFRESH_WORKFLOW = "daily-refresh.yml";
+const REFRESH_SKIP_IF_RECENT_MS = 40 * 60 * 1000;
+
+async function triggerDealsRefresh(env) {
+  const token = env.GITHUB_DISPATCH_TOKEN;
+  if (!token) {
+    console.log("refresh trigger: GITHUB_DISPATCH_TOKEN not set — skipping");
+    return;
+  }
+  const api = `https://api.github.com/repos/${REFRESH_REPO}/actions/workflows/${REFRESH_WORKFLOW}`;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": "gaming-deals-refresh-trigger",
+  };
+
+  try {
+    const r = await fetch(`${api}/runs?per_page=1`, { headers });
+    if (r.ok) {
+      const latest = ((await r.json()).workflow_runs || [])[0];
+      const age = latest ? Date.now() - Date.parse(latest.created_at) : Infinity;
+      if (age < REFRESH_SKIP_IF_RECENT_MS) {
+        console.log(`refresh trigger: run ${latest.id} started ${Math.round(age / 60000)}m ago — skipping`);
+        return;
+      }
+    }
+  } catch (err) {
+    console.log("refresh trigger: could not list runs, dispatching anyway:", String(err));
+  }
+
+  const d = await fetch(`${api}/dispatches`, {
+    method: "POST",
+    headers: { ...headers, "Content-Type": "application/json" },
+    body: JSON.stringify({ ref: "main" }),
+  });
+  console.log(`refresh trigger: dispatch → HTTP ${d.status}`);
+}
 
 function corsHeaders(origin) {
   let allow = "https://evolknives.github.io";
@@ -224,8 +257,8 @@ function allowRate(ip) {
 
 async function searchNewegg(query) {
   const errors = [];
-  // Newegg first (best fit for this site). From Workers, Newegg often returns
-  // "Please use IPv4…" over IPv6 — then we fall through to Amazon.
+  // Newegg's JSON API first, then its search page. (An Amazon-page fallback
+  // was removed: scraping Amazon breaks their terms and their page layout.)
   // Prefer HTTP 200 + empty deals over 502 when upstreams are empty/blocked —
   // the frontend then shows filtered catalogue or a clean "no deals" instead of
   // dumping unrelated Cases/PSUs for category queries like "GPU".
@@ -243,14 +276,6 @@ async function searchNewegg(query) {
     errors.push("html:empty");
   } catch (err) {
     errors.push("html:" + String(err && err.message ? err.message : err));
-  }
-
-  try {
-    const deals = await searchViaAmazon(query);
-    if (deals.length) return { deals, via: "amazon-html" };
-    errors.push("amazon:empty");
-  } catch (err) {
-    errors.push("amazon:" + String(err && err.message ? err.message : err));
   }
 
   return { deals: [], via: "empty", note: errors.join(" | ") || "no results" };
@@ -872,305 +897,6 @@ function finalizeDealList(deals, query) {
     return b.save - a.save;
   });
   return scored.slice(0, RESULT_LIMIT).map((x) => x.deal);
-}
-
-
-function amazonSearchTerms(query) {
-  const q = String(query || "").trim();
-  const lower = q.toLowerCase().replace(/\s+/g, " ");
-  const intent = getQueryIntent(q);
-  const terms = [];
-
-  // Category shorthand → Amazon title language that actually returns products.
-  if (intent === "gpus") {
-    terms.push("graphics card", "GeForce RTX graphics card", "Radeon RX graphics card");
-  } else if (intent === "ram") {
-    terms.push("DDR5 desktop memory", "DDR4 desktop RAM");
-  } else if (intent === "ssds") {
-    terms.push("NVMe SSD", "internal SSD");
-  } else if (intent === "headset") {
-    terms.push("gaming headset", "wireless headset");
-  } else if (intent === "console") {
-    terms.push(q, q + " controller");
-  } else if (intent === "cpus") {
-    terms.push(q, "desktop processor");
-  } else {
-    terms.push(q);
-  }
-
-  // Model shorthand → fuller Amazon title language
-  if (/\b(rtx|gtx)\s*\d{3,4}\b/i.test(q) && !/geforce|radeon/i.test(q)) {
-    terms.push("GeForce " + q);
-  }
-  if (/\b(rx)\s*\d{3,4}\b/i.test(q) && !/radeon/i.test(q)) {
-    terms.push("Radeon " + q);
-  }
-  // Prefer a deals-flavored query as a second pass (skip for already-expanded intents)
-  if (!intent && !/\bdeal(s)?\b/i.test(lower)) {
-    terms.push(q + " deal");
-  } else if (intent === "gpus" && !/\bdeal(s)?\b/i.test(lower)) {
-    terms.push("graphics card deal");
-  }
-  // Dedupe
-  const seen = new Set();
-  const out = [];
-  for (const term of terms) {
-    const key = term.toLowerCase();
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(term);
-  }
-  return out.slice(0, 3);
-}
-
-function amazonDepartment(query) {
-  const intent = getQueryIntent(query);
-  if (
-    intent === "gpus" ||
-    intent === "cpus" ||
-    intent === "ram" ||
-    intent === "ssds" ||
-    intent === "psus" ||
-    intent === "cases" ||
-    intent === "motherboards"
-  ) {
-    return "computers";
-  }
-  if (intent === "mice" || intent === "keyboards" || intent === "headset" || intent === "monitors") {
-    return "electronics";
-  }
-  if (intent === "console") return "videogames";
-  if (intent === "laptops" || intent === "prebuilts") return "computers";
-  return "";
-}
-
-async function searchViaAmazon(query) {
-  const headers = {
-    "User-Agent": UA,
-    Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Cache-Control": "no-cache",
-    "Upgrade-Insecure-Requests": "1",
-    Referer: "https://www.amazon.com/",
-  };
-  const terms = amazonSearchTerms(query).slice(0, 3);
-  const dept = amazonDepartment(query);
-  const urls = terms.map((term) => {
-    let u = "https://www.amazon.com/s?k=" + encodeURIComponent(term);
-    if (dept) u += "&i=" + encodeURIComponent(dept);
-    return u;
-  });
-
-  const merged = [];
-  const seen = new Set();
-  let sawHtml = false;
-  for (const searchUrl of urls) {
-    // Stop early once we have a solid set of real deals — fewer Amazon hits = less throttling
-    if (finalizeDealList(merged, query).length >= 8) break;
-    try {
-      const res = await fetch(searchUrl, { headers, redirect: "follow" });
-      if (!res.ok) continue;
-      const html = await res.text();
-      if (!html || html.length < 5000) continue;
-      sawHtml = true;
-      const batch = parseAmazonHtml(html, query);
-      for (const d of batch) {
-        const key = String(d.sku || d.url).toLowerCase();
-        if (seen.has(key)) continue;
-        seen.add(key);
-        merged.push(d);
-      }
-    } catch (_) {
-      /* try next term */
-    }
-  }
-  const final = finalizeDealList(merged, query);
-  if (final.length) return final;
-  // Soft-empty: blocked HTML or products without was-price cuts. Caller maps to empty list.
-  if (!sawHtml && !merged.length) return [];
-  return [];
-}
-
-function parseAmazonHtml(html, query) {
-  const blocks = [];
-  // Split on search-result cards; asin usually sits on the same opening tag.
-  const parts = html.split(/data-component-type="s-search-result"/i);
-  for (let i = 1; i < parts.length; i++) {
-    const chunk = parts[i];
-    const asinM = chunk.match(/data-asin="([A-Z0-9]{10})"/i);
-    if (!asinM) continue;
-    const asin = asinM[1];
-    // Take a bounded slice of the card body for parsing.
-    const cell = chunk.slice(0, 20000);
-    if (cell.length < 200) continue;
-    blocks.push({ asin, cell });
-    if (blocks.length > 40) break;
-  }
-
-  const seen = new Set();
-  const out = [];
-
-  for (const { asin, cell } of blocks) {
-    if (!asin || seen.has(asin)) continue;
-
-    const title = extractAmazonTitle(cell);
-    if (!title || title.length < 8) continue;
-    if (/^(results? for|check each product|show\/hide|amazon renewed)$/i.test(title)) continue;
-
-    const price = extractAmazonPrice(cell);
-    if (price == null || price < MIN_PRICE) continue;
-
-    const previousPrice = extractAmazonWasPrice(cell, price);
-    if (!isRealDeal(price, previousPrice)) continue;
-    if (!titleMatchesQuery(title, query)) continue;
-
-    const image = extractAmazonImage(cell);
-    const rating = extractAmazonRating(cell);
-    const url = "https://www.amazon.com/dp/" + asin;
-    const category = inferCategory(title, query) || "Other";
-    const id = slugify(title, asin);
-
-    const deal = {
-      id: "live-" + id,
-      name: title,
-      price,
-      previousPrice,
-      url,
-      urlKind: "product",
-      merchant: "Amazon",
-      image: image || null,
-      category,
-      currency: "USD",
-      sku: asin,
-      source: "live",
-      why: whyLine(price, previousPrice, "Amazon"),
-    };
-    if (rating && Number.isFinite(rating.value) && rating.value > 0) {
-      deal.rating = rating.value;
-      if (rating.count != null) deal.ratingCount = rating.count;
-      deal.ratingSource = "amazon-search-card";
-    }
-
-    seen.add(asin);
-    out.push(deal);
-    if (out.length >= 40) break;
-  }
-  return out;
-}
-
-function extractAmazonTitle(cell) {
-  const junk =
-    /^(results? for|check each product|show\/hide|amazon renewed|sponsored|best seller|overall pick|climate pledge|limited time deal|today'?s deal|only \d+ left|in stock|free shipping)$/i;
-  const candidates = [];
-  const push = (raw) => {
-    if (!raw) return;
-    const title = decodeHtml(raw).replace(/\s+/g, " ").trim();
-    if (title.length < 8 || title.length > 220) return;
-    if (junk.test(title)) return;
-    if (/^\$?[0-9,.]+$/.test(title)) return;
-    candidates.push(title);
-  };
-
-  // Prefer explicit product title classes first.
-  let re = /a-size-(?:base-plus|medium|mini|base)\s+a-color-base\s+a-text-normal[^>]*>\s*([^<]{8,220})/gi;
-  let m;
-  while ((m = re.exec(cell)) !== null) push(m[1]);
-
-  // h2 / aria-label on product links
-  re = /<h2[^>]*>[\s\S]*?<span[^>]*>([^<]{8,220})<\/span>/gi;
-  while ((m = re.exec(cell)) !== null) push(m[1]);
-  re = /aria-label="([^"]{12,220})"/gi;
-  while ((m = re.exec(cell)) !== null) {
-    const label = m[1];
-    if (/rated|stars|out of|currency|dollars|add to/i.test(label)) continue;
-    push(label);
-  }
-  re = /alt="([^"]{12,220})"/gi;
-  while ((m = re.exec(cell)) !== null) push(m[1]);
-
-  if (!candidates.length) return null;
-  // Prefer the longest specific title (product names beat short badges).
-  candidates.sort((a, b) => b.length - a.length);
-  return candidates[0];
-}
-
-function extractAmazonPrice(cell) {
-  let m = cell.match(/a-price[^>]*>[\s\S]*?a-offscreen">\s*\$([0-9,]+\.[0-9]{2})/i);
-  if (m) {
-    const n = parseFloat(m[1].replace(/,/g, ""));
-    return Number.isFinite(n) ? round2(n) : null;
-  }
-  m = cell.match(
-    /a-price-whole[^>]*>\s*([0-9,]+)\s*<\/span>\s*<span[^>]*a-price-fraction[^>]*>\s*([0-9]{2})/i
-  );
-  if (m) {
-    const n = parseFloat(m[1].replace(/,/g, "") + "." + m[2]);
-    return Number.isFinite(n) ? round2(n) : null;
-  }
-  return null;
-}
-
-function extractAmazonWasPrice(cell, current) {
-  const patterns = [
-    /a-price\s+a-text-price[\s\S]{0,280}?a-offscreen">\s*\$([0-9,]+\.[0-9]{2})/gi,
-    /data-a-strike="true"[\s\S]{0,220}?a-offscreen">\s*\$([0-9,]+\.[0-9]{2})/gi,
-    /aria-label="[^"]*(?:List Price|Was|Typical price)[^"]*\$([0-9,]+\.[0-9]{2})/gi,
-    /(?:List Price|Was|Typical price|MRP):?\s*\$([0-9,]+\.[0-9]{2})/gi,
-    /You save:?\s*\$([0-9,]+\.[0-9]{2})/gi,
-    /Save\s*\$?([0-9,]+\.[0-9]{2})/gi,
-  ];
-  let best = null;
-  for (let i = 0; i < patterns.length; i++) {
-    const re = patterns[i];
-    re.lastIndex = 0;
-    let m;
-    while ((m = re.exec(cell)) !== null) {
-      let was = parseFloat(m[1].replace(/,/g, ""));
-      // Save / You save → previous = current + save
-      if (i >= 4 && Number.isFinite(was)) {
-        was = round2(current + was);
-      }
-      if (!Number.isFinite(was) || was <= current) continue;
-      // Ignore absurd "was" (often wrong parse)
-      if (was > current * 4 && was - current > 2000) continue;
-      if (best == null || was > best) best = round2(was);
-    }
-  }
-  // Badge like "23% off"
-  if (best == null) {
-    const pctM = cell.match(/(\d{1,2})%\s*off/i);
-    if (pctM) {
-      const pct = parseInt(pctM[1], 10);
-      if (pct >= MIN_DEAL_PCT && pct < 90) {
-        best = round2(current / (1 - pct / 100));
-      }
-    }
-  }
-  return best;
-}
-
-function extractAmazonImage(cell) {
-  const m = cell.match(
-    /<img[^>]+src="(https:\/\/[^"]*(?:media-amazon|ssl-images-amazon|images-amazon)[^"]+)"/i
-  );
-  if (m) return m[1].replace(/&amp;/g, "&");
-  const m2 = cell.match(/<img[^>]+src="(https:\/\/m\.media-amazon\.com\/[^"]+)"/i);
-  if (m2) return m2[1].replace(/&amp;/g, "&");
-  return null;
-}
-
-function extractAmazonRating(cell) {
-  let m = cell.match(/([0-9.]+)\s+out of 5 stars/i);
-  if (!m) return null;
-  const value = parseFloat(m[1]);
-  if (!Number.isFinite(value) || value <= 0) return null;
-  let count = null;
-  m = cell.match(/([\d,]+)\s+ratings?/i);
-  if (m) {
-    const c = parseInt(m[1].replace(/,/g, ""), 10);
-    if (Number.isFinite(c)) count = c;
-  }
-  return { value: round2(value), count };
 }
 
 

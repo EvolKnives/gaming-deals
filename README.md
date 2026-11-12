@@ -25,6 +25,20 @@ catalogue-only with a calm status line.
 
 Pull-to-refresh reloads `data/deals.json?t=…` with `cache: "no-store"` (the same cache-bust runs on a normal page load). After the tab has been hidden for more than 5 minutes, coming back also refetches quietly. The header shows **Updated X ago** from `deals.json` `updatedAt`.
 
+## Shared category rules
+
+[`data/category-rules.json`](data/category-rules.json) holds the category rules
+used by both the hourly refresh (search queries, title must / must-not
+patterns, price floor) and the Search Worker (title → category hints). Edit
+categories there, then redeploy the Worker for Search to pick up changes.
+
+## Asset versions
+
+`index.html` loads `app.js?v=…` and `styles.css?v=…`. The hourly job runs
+[`scripts/stamp_asset_versions.py`](scripts/stamp_asset_versions.py), which
+sets each tag to a hash of the file, so phones fetch the new file whenever it
+changes. Run it by hand before pushing if you want the change live right away.
+
 ## Local preview
 
 ```bash
@@ -42,7 +56,12 @@ Or any static server that serves the repo root.
 [`.github/workflows/daily-refresh.yml`](.github/workflows/daily-refresh.yml)
 (`Hourly deals refresh`) runs [`scripts/daily_refresh.py`](scripts/daily_refresh.py)
 **every hour at minute 17** (`17 * * * *`, offset from top-of-hour congestion)
-and can be run by hand from the Actions tab (*Run workflow*). It needs no secrets. Each run:
+and can be run by hand from the Actions tab (*Run workflow*). It needs no secrets.
+GitHub's scheduler often starts runs late or skips them, so the Search Worker
+also starts this workflow at minute 20 of every hour unless a run began in the
+last 40 minutes (one-time setup: [`workers/live-search/README.md`](workers/live-search/README.md#hourly-refresh-backup-cron-trigger)).
+If Newegg throttles a run partway through, it stops checking and saves what it
+already verified. Each run:
 
 1. Re-verifies every *current* Newegg deal (price, was-price, rating, stock) through Newegg's
    public product-search JSON API — the same API the live Search Worker uses — and
@@ -96,7 +115,7 @@ Client pull-to-refresh still reloads `deals.json` with cache-bust — do **not**
 
 1. Re-check each product on the retailer page (Best Buy, Amazon, Newegg, Micro Center, manufacturer store).
 2. Edit `data/deals.json` — set `price`, `previousPrice` (list/MSRP, or `null` if unknown), `why`, `merchant`, and `url`.
-3. When the verified price is lower than the prior check, set `lastPrice` to the old `price`, `priceDropped: true`, and optional `dropAmount`. If the price rose, stayed flat, or the deal is first seen, set `priceDropped: false` and clear `dropAmount`.
+3. When the verified price is lower than the prior check, set `lastPrice` to the old `price`, `priceDropped: true`, `dropAmount` and `droppedAt`. The flag stays on for 24 hours while the price holds, and clears if the price rises (`apply_verified_price` in `scripts/refresh.py`).
 4. **Never invent prices.** If you cannot verify a listing, remove that deal.
 5. Stamp the file (and heal photos if any are missing/broken):
 
@@ -118,12 +137,12 @@ Prefer **product-page URLs** for price checks — search result pages are harder
 Then:
 
 1. Compare the new verified price to the old `deal.price` (that value becomes `lastPrice`).
-2. If new < old → `priceDropped: true`, `dropAmount = old - new`.
-3. If new ≥ old or the deal is first seen → `priceDropped: false`, clear `dropAmount`.
+2. If new < old → `priceDropped: true`, `dropAmount = old - new`, `droppedAt = now`.
+3. If new = old → keep the drop flag until 24 hours after `droppedAt`; if new > old or first seen → `priceDropped: false`.
 4. Keep `previousPrice` as list/MSRP for the “% off” badge — it is not the last-check price.
 5. Never invent prices. Prefer `scripts/refresh.apply_verified_price(deal, new_price)` so the fields stay consistent even while scraping remains manual.
 
-Cards show a small green “Dropped” / “↓ $X” pill when the current `price` is below list/MSRP (`previousPrice`) **or** when `priceDropped` is true from the last hourly check. The UI computes this client-side from existing fields so refresh flags and % off stay honest to the numbers on the card — never invent prices. Prefer the hourly `dropAmount` when present; otherwise show dollars below list/MSRP.
+Cards show a small green “↓ $X” badge only for a real recent drop: `priceDropped` from the hourly check, kept for 24 hours. Savings against list/MSRP (`previousPrice`) already appear in the “% off · save $X” pill, so the badge does not repeat them.
 
 ### Deal object shape
 
@@ -152,9 +171,9 @@ Cards show a small green “Dropped” / “↓ $X” pill when the current `pri
 
 - `previousPrice` — list / MSRP for the “% off · save $X” badge (or `null`).
 - `lastPrice` — price at the previous successful refresh (`null` if never checked before).
-- `priceDropped` — `true` when current `price` < `lastPrice` from the prior refresh (hourly signal only).
+- `priceDropped` — `true` for 24 hours after an hourly check finds a lower price (`droppedAt` records when).
 - `dropAmount` — optional dollars fallen since last refresh.
-- **Dropped pill (UI)** — shown when `price < previousPrice` (below list/MSRP) **or** `priceDropped` (down since last check). Meaning: below list/MSRP or down since last check.
+- **Drop badge (UI)** — shown only when `priceDropped` is true (a real drop in the last 24 hours).
 
 Categories used in the UI (always plural, never apostrophe plurals — except `Home Theater`): `GPUs`, `CPUs`, `Monitors`, `TVs`, `Home Theater`, `Art Tablets`, `PSUs`, `Cases`, `Motherboards`, `RAM`, `SSDs`, `Phones`, `Prebuilts`, `Laptops`, `Mice`, `Keyboards` (plus `All` / `Future` / Search). Map legacy singular labels (GPU→GPUs, Case→Cases, Power Supply→PSUs, Mouse→Mice, Prebuilt→Prebuilts, etc.) when editing.
 

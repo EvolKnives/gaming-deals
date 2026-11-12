@@ -18,7 +18,7 @@ to Cloudflare egress IPs). Never invents prices, ratings, or dates.
 Also accepts `POST /search` with `{ "q": "…" }`.
 
 CORS allows `https://evolknives.github.io` and localhost origins.
-Responses are cached ~90s per query; empty/short queries (`< 2` chars) are rejected;
+Responses are cached ~3 min per query; empty/short queries (`< 2` chars) are rejected;
 in-isolate rate limit ~30 req/min/IP.
 
 ## Current temporary deploy
@@ -47,3 +47,29 @@ so GitHub Pages picks it up.
 npx wrangler dev
 curl 'http://127.0.0.1:8787/search?q=laptop'
 ```
+
+## Hourly refresh backup (cron trigger)
+
+GitHub's scheduled workflows often start late or get skipped. The Worker also
+runs on a timer (`[triggers] crons` in `wrangler.toml`, minute 20 of every hour)
+and asks GitHub to run **Hourly deals refresh** — unless a run already started
+in the last 40 minutes, so it never doubles up with GitHub's own schedule.
+
+One-time setup:
+
+1. Create a GitHub **fine-grained personal access token** at
+   <https://github.com/settings/personal-access-tokens/new>:
+   - Repository access: *Only select repositories* → `EvolKnives/gaming-deals`
+   - Permissions → Repository → **Actions: Read and write** (nothing else)
+   - Expiration: up to 1 year (set a reminder to renew it)
+2. Store it in the Worker and deploy:
+
+   ```bash
+   cd workers/live-search
+   npx wrangler login                       # if not already signed in
+   npx wrangler secret put GITHUB_DISPATCH_TOKEN   # paste the token
+   npx wrangler deploy
+   ```
+
+Without the secret the timer does nothing. Check it with `npx wrangler tail`
+around minute 20 — it logs `refresh trigger: …` each hour.

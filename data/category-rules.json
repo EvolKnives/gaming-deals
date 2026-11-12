@@ -1,0 +1,268 @@
+{
+  "_about": "Category rules shared by scripts/daily_refresh.py (hourly catalogue refill) and workers/live-search (Search tab). Patterns are case-insensitive regular expressions valid in both Python and JavaScript.",
+  "seeds": [
+    {
+      "category": "GPUs",
+      "queries": [
+        "geforce rtx 5070 graphics card",
+        "radeon rx 9070 graphics card",
+        "geforce rtx 5060 ti graphics card",
+        "geforce rtx 5080 graphics card"
+      ],
+      "titleMust": "graphics card|video card",
+      "titleMustNot": "desktop|laptop|gaming pc|bracket|riser|cable",
+      "minPrice": 200
+    },
+    {
+      "category": "CPUs",
+      "queries": [
+        "amd ryzen 7 desktop processor",
+        "amd ryzen 9 desktop processor",
+        "intel core ultra desktop processor"
+      ],
+      "titleMust": "processor|\\bcpu\\b",
+      "titleMustNot": "gaming desktop|desktop (pc|computer)|gaming pc|laptop|cooler|bundle|combo|motherboard|\\b\\d+ ?GB\\b|alienware",
+      "minPrice": 90
+    },
+    {
+      "category": "Monitors",
+      "queries": [
+        "27 inch gaming monitor",
+        "oled gaming monitor",
+        "1440p 165hz monitor"
+      ],
+      "titleMust": "monitor",
+      "titleMustNot": "\\barm\\b|mount|stand only|cable",
+      "minPrice": 120
+    },
+    {
+      "category": "TVs",
+      "queries": [
+        "4k smart tv",
+        "oled tv",
+        "qled tv",
+        "samsung 4k tv",
+        "sony bravia tv",
+        "tcl qled tv",
+        "hisense 4k tv"
+      ],
+      "titleMust": "\\btv\\b|television",
+      "titleMustNot": "mount|bracket|antenna|cable|monitor",
+      "minPrice": 250
+    },
+    {
+      "category": "Home Theater",
+      "queries": [
+        "soundbar",
+        "av receiver",
+        "home theater speaker system"
+      ],
+      "titleMust": "sound ?bar|receiver|speaker|subwoofer|home theater",
+      "titleMustNot": "mount|cable|bracket|car ",
+      "minPrice": 80
+    },
+    {
+      "category": "Art Tablets",
+      "queries": [
+        "pen display drawing tablet",
+        "xp-pen drawing tablet",
+        "wacom tablet",
+        "huion drawing tablet"
+      ],
+      "titleMust": "drawing|graphics? tablet|pen display|pen tablet|creative tablet",
+      "titleMustNot": "ipad|android|surface|windows|snapdragon|\\bssd\\b|case|cover|glove|film|protector|stand",
+      "minPrice": 40
+    },
+    {
+      "category": "PSUs",
+      "queries": [
+        "850w atx power supply",
+        "1000w atx 3.1 power supply",
+        "750w modular power supply"
+      ],
+      "titleMust": "power supply|\\bpsu\\b",
+      "titleMustNot": "ups|battery|cable|extension",
+      "minPrice": 50
+    },
+    {
+      "category": "Cases",
+      "queries": [
+        "mid tower computer case",
+        "atx pc case tempered glass"
+      ],
+      "titleMust": "\\b(case|chassis|tower)\\b",
+      "titleMustNot": "fan only|laptop|phone|ssd|enclosure|carrying",
+      "minPrice": 35
+    },
+    {
+      "category": "Motherboards",
+      "queries": [
+        "AM5 B650 motherboard",
+        "AM5 X870 motherboard",
+        "intel Z890 motherboard"
+      ],
+      "titleMust": "motherboard",
+      "titleMustNot": "bundle|combo|cpu",
+      "minPrice": 70
+    },
+    {
+      "category": "RAM",
+      "queries": [
+        "DDR5 32GB desktop memory kit",
+        "DDR5 64GB desktop memory"
+      ],
+      "titleMust": "\\bDDR[45]\\b",
+      "titleMustNot": "so-?dimm|laptop|server|ecc",
+      "minPrice": 45
+    },
+    {
+      "category": "SSDs",
+      "queries": [
+        "NVMe M.2 SSD 2TB",
+        "NVMe M.2 SSD 1TB",
+        "NVMe M.2 SSD 4TB"
+      ],
+      "titleMust": "\\b(SSD|solid state)\\b",
+      "titleMustNot": "enclosure|adapter|external|portable|heatsink only",
+      "minPrice": 35
+    },
+    {
+      "category": "Phones",
+      "queries": [
+        "unlocked smartphone",
+        "samsung galaxy unlocked",
+        "google pixel unlocked",
+        "iphone unlocked"
+      ],
+      "titleMust": "phone|galaxy|pixel|iphone",
+      "titleMustNot": "case|protector|charger|cable|mount|holder|tablet|watch|earbuds",
+      "minPrice": 150
+    },
+    {
+      "category": "Laptops",
+      "queries": [
+        "gaming laptop rtx",
+        "msi gaming laptop",
+        "asus rog laptop",
+        "lenovo legion laptop"
+      ],
+      "titleMust": "(laptop|notebook).*(gaming|rtx|rog|legion|omen|predator|alienware|tuf|nitro|katana|cyborg|raider|vector|stealth|strix|zephyrus)|(gaming|rtx|rog|legion|omen|predator|alienware|tuf|nitro|katana|cyborg|raider|vector|stealth|strix|zephyrus).*(laptop|notebook)",
+      "titleMustNot": "bag|sleeve|stand|cooling pad|charger|adapter|skin|thinkpad",
+      "minPrice": 400
+    },
+    {
+      "category": "Prebuilts",
+      "queries": [
+        "cyberpowerpc gaming desktop",
+        "ibuypower gaming desktop",
+        "skytech gaming desktop",
+        "msi gaming desktop rtx",
+        "asus gaming desktop rtx",
+        "hp omen gaming desktop",
+        "lenovo legion tower",
+        "alienware aurora desktop",
+        "acer nitro gaming desktop",
+        "abs prebuilt gaming pc",
+        "thermaltake gaming desktop",
+        "prebuilt gaming desktop rtx"
+      ],
+      "titleMust": "(?=.*\\b(cyberpower(?:pc)?|ibuypower|skytech|\\bmsi\\b|asus|\\brog\\b|\\bhp\\b|omen|lenovo|legion|nzxt|alienware|acer|predator|corsair|thermaltake|\\babs\\b|zotac|dell|gigabyte|aorus|starforge)\\b)(?=.*\\b(pre-?built|(gaming|gamer)\\s+(desktop|pc|computer)|gaming\\s+desktop|(desktop|tower)\\s+(pc|computer)|desktop\\s+computer)\\b)(?=.*\\b(rtx|geforce|radeon|rx\\s*\\d{3,4})\\b)",
+      "titleMustNot": "laptop|notebook|chromebook|macbook|bare-?bones?|mini[\\s-]?pc|\\bnuc\\b|office(\\s+pc)?|business\\s+(desktop|pc)|pc\\s*case|computer\\s*case|gaming\\s*pc\\s*case|motherboard|\\bchassis\\b",
+      "minPrice": 600
+    },
+    {
+      "category": "Mice",
+      "queries": [
+        "wireless gaming mouse",
+        "gaming mouse"
+      ],
+      "titleMust": "\\bmouse\\b|\\bmice\\b",
+      "titleMustNot": "pad|mat|bungee|feet|grip tape",
+      "minPrice": 20
+    },
+    {
+      "category": "Keyboards",
+      "queries": [
+        "mechanical gaming keyboard",
+        "wireless mechanical keyboard"
+      ],
+      "titleMust": "keyboard",
+      "titleMustNot": "bundle|combo|keycaps? only|wrist rest|switches only|piano|tablet case|mouse",
+      "minPrice": 30
+    }
+  ],
+  "liveSearchHints": [
+    {
+      "pattern": "\\b(headset|headphones?|earbuds?|earphones?|earpiece|earbuds)\\b",
+      "category": "Home Theater"
+    },
+    {
+      "pattern": "\\b(xbox|playstation|\\bps[45]\\b|nintendo\\s*switch|gaming\\s*console|game\\s*console|wireless\\s*controller|game\\s*controller|gamepad)\\b",
+      "category": "Other"
+    },
+    {
+      "pattern": "\\b(macbook|laptop|notebook|chromebook)\\b",
+      "category": "Laptops"
+    },
+    {
+      "pattern": "\\b(pre-?built|(gaming|gamer)\\s+(desktop|pc|computer)\\b|gaming\\s+desktop|desktop\\s+(pc|computer)\\b)(?![\\s-]*(case|chassis|motherboard))",
+      "category": "Prebuilts"
+    },
+    {
+      "pattern": "\\b(rtx|gtx|radeon\\s*rx|geforce|graphics\\s*card|\\bgpu\\b|intel\\s*arc|arc\\s*a\\d{3})\\b",
+      "category": "GPUs"
+    },
+    {
+      "pattern": "\\b(ryzen|core\\s*ultra|core\\s*i[3579]|\\bcpu\\b|threadripper)\\b",
+      "category": "CPUs"
+    },
+    {
+      "pattern": "\\b(monitor|ultrawide|gaming\\s*display)\\b",
+      "category": "Monitors"
+    },
+    {
+      "pattern": "\\b(\\d{2,3}[\"']?\\s*(inch\\s*)?tv|oled\\s*tv|qled|television)\\b",
+      "category": "TVs"
+    },
+    {
+      "pattern": "\\b(soundbar|av\\s*receiver|bookshelf\\s*speaker|floor[\\s-]?standing\\s*speaker|subwoofer|home\\s*theat(?:er|re)|klipsch|surround\\s*speaker)\\b",
+      "category": "Home Theater"
+    },
+    {
+      "pattern": "\\b(wacom|drawing\\s*tablet|pen\\s*display|art\\s*tablet)\\b",
+      "category": "Art Tablets"
+    },
+    {
+      "pattern": "\\b(psu|power\\s*supply|modular\\s*psu)\\b",
+      "category": "PSUs"
+    },
+    {
+      "pattern": "\\b((mid|full|mini)[\\s-]?tower|pc\\s*case|computer\\s*case|atx\\s*case|gaming\\s*case|\\bchassis\\b)\\b",
+      "category": "Cases"
+    },
+    {
+      "pattern": "\\b(motherboard|\\bmobo\\b|b650|x670|b850|z790|b760|x870)\\b",
+      "category": "Motherboards"
+    },
+    {
+      "pattern": "\\b(ddr[45]\\b|sodimm|udimm|\\bdimm\\b|desktop\\s*memory|pc\\s*ram|system\\s*memory|288-?pin)\\b",
+      "category": "RAM"
+    },
+    {
+      "pattern": "\\b(nvme|m\\.2\\s*(2280|2230|ssd)|solid\\s*state\\s*drive|\\bssd\\b|portable\\s*ssd)\\b",
+      "category": "SSDs"
+    },
+    {
+      "pattern": "\\b(iphone|google\\s*pixel|galaxy\\s*s\\d+|smartphone)\\b|\\bphone\\b",
+      "category": "Phones"
+    },
+    {
+      "pattern": "\\b(mouse|\\bmice\\b|g502|deathadder|viper\\s*v\\d|g\\s*pro\\s*x\\s*superlight)\\b",
+      "category": "Mice"
+    },
+    {
+      "pattern": "\\b(keyboard|keychron|mechanical\\s*key|keycaps)\\b",
+      "category": "Keyboards"
+    }
+  ]
+}
