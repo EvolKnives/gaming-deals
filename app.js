@@ -64,36 +64,43 @@
   var searchLiveStatusEl = null;
 
   // Canonical plural filter labels (never apostrophe plurals).
+  // Fixed tabs first (Search, All, Builds, Future), then product types A–Z.
   var CATEGORY_ORDER = [
     "All",
     "Future",
-    "GPUs",
-    "CPUs",
-    "Monitors",
-    "TVs",
-    "Home Theater",
     "Art Tablets",
-    "PSUs",
+    "AV Receivers",
+    "Cables",
     "Cases",
-    "Motherboards",
-    "RAM",
-    "SSDs",
-    "Phones",
-    "Prebuilts",
+    "Charging",
+    "Computer Speakers",
+    "Controllers",
+    "Coolers",
+    "CPUs",
+    "Earbuds",
+    "Gaming Headsets",
+    "GPUs",
+    "Headphones",
+    "Hi-Fi Speakers",
+    "Keyboards",
     "Laptops",
     "Mice",
-    "Keyboards",
-    "Headsets",
-    "Earbuds",
-    "Speakers",
-    "Controllers",
-    "Webcams",
     "Microphones",
+    "Monitors",
+    "Motherboards",
     "Networking",
+    "Phones",
+    "Prebuilts",
+    "PSUs",
+    "RAM",
+    "Soundbars",
+    "SSDs",
     "Storage",
-    "Charging",
+    "Subwoofers",
     "Tablets",
-    "Coolers"
+    "TVs",
+    "Webcams",
+    "Wireless Speakers"
   ];
   var CATEGORY_ALIASES = {
     GPU: "GPUs",
@@ -111,10 +118,14 @@
     Mice: "Mice",
     Keyboard: "Keyboards",
     Keyboards: "Keyboards",
-    "Home Theater": "Home Theater",
-    "Home theatre": "Home Theater",
-    "Home theatre equipment": "Home Theater",
-    HT: "Home Theater",
+    "Home Theater": "Soundbars",
+    "Home theatre": "Soundbars",
+    "Home theatre equipment": "Soundbars",
+    HT: "Soundbars",
+    Speakers: "Wireless Speakers",
+    "Home Speakers": "Hi-Fi Speakers",
+    Receivers: "AV Receivers",
+    Cable: "Cables",
     "Art Tablets": "Art Tablets",
     "Art Tablet": "Art Tablets",
     "Drawing Tablets": "Art Tablets",
@@ -157,18 +168,18 @@
     "Gaming Desktops": "Prebuilts",
     Desktop: "Prebuilts",
     Desktops: "Prebuilts",
-    Headset: "Home Theater",
-    Headsets: "Home Theater",
-    Headphone: "Home Theater",
-    Headphones: "Home Theater",
-    Earbuds: "Home Theater",
-    Earphones: "Home Theater",
+    Headset: "Gaming Headsets",
+    Headsets: "Gaming Headsets",
+    Headphone: "Headphones",
+    Headphones: "Headphones",
+    Earbuds: "Earbuds",
+    Earphones: "Earbuds",
     Xbox: "Other",
     PlayStation: "Other",
     Console: "Other",
-    Controller: "Other",
-    Controllers: "Other",
-    Gamepad: "Other"
+    Controller: "Controllers",
+    Controllers: "Controllers",
+    Gamepad: "Controllers"
   };
 
   var BUDGET_OPTIONS = [
@@ -829,7 +840,8 @@
       return "Prebuilts";
     if (/^(mouse|mice)$/.test(q)) return "Mice";
     if (/^(keyboard|keyboards)$/.test(q)) return "Keyboards";
-    if (/^(headset|headsets|headphone|headphones)$/.test(q)) return "Home Theater";
+    if (/^(headset|headsets)$/.test(q)) return "Gaming Headsets";
+    if (/^(headphone|headphones)$/.test(q)) return "Headphones";
     if (/^(psu|psus)$/.test(q) || /^power\s+supply/.test(q)) return "PSUs";
     if (/^(case|cases|chassis)$/.test(q) || /^pc\s+case/.test(q)) return "Cases";
     if (/^(monitor|monitors|ultrawide)$/.test(q)) return "Monitors";
@@ -875,9 +887,8 @@
     }
     if (intent === "Mice") return /\b(mouse|mice)\b/i.test(hay);
     if (intent === "Keyboards") return /\b(keyboard|keychron)\b/i.test(hay);
-    if (intent === "Home Theater") {
-      return /\b(headset|headphones?|earbuds?|earphones?|soundbar|subwoofer|speaker|receiver|home\s*theat)/i.test(hay);
-    }
+    if (intent === "Gaming Headsets") return /\b(headset|gaming headphones?)\b/i.test(hay);
+    if (intent === "Headphones") return /\b(headphones?|headset)\b/i.test(hay);
     if (intent === "PSUs") return /\b(psu|power\s*supply)\b/i.test(hay);
     if (intent === "Cases")
       return /\b((mid|full|mini)[\s-]?tower|pc\s*case|computer\s*case|atx\s*case|gaming\s*case|chassis)\b/i.test(hay);
@@ -913,7 +924,7 @@
         // Title only — blob often says "PC/console living rooms" on TVs etc.
         return titleLooksLikeSearchIntent(name, intent);
       }
-      if (intent === "Home Theater" && /^(headset|headsets|headphone|headphones)$/i.test(String(query || "").trim())) {
+      if ((intent === "Gaming Headsets" || intent === "Headphones") && /^(headset|headsets|headphone|headphones)$/i.test(String(query || "").trim())) {
         return /\b(headset|headphones?|earbuds?|earphones?)\b/i.test(name + " " + blob);
       }
       if (cat === intent) {
@@ -1300,10 +1311,11 @@
     var cat = normalizeCategory(deal.category) || deal.category || "";
     // Prefer title-derived category when Worker sent Other / empty / clearly wrong.
     var guessed = null;
-    if (/\b(headset|headphones?|earbuds?|earphones?)\b/i.test(name)) guessed = "Home Theater";
-    else if (/\b(xbox|playstation|\bps[45]\b|nintendo\s*switch|wireless\s*controller|gamepad)\b/i.test(name) &&
-             !/\b(headset|headphones?)\b/i.test(name))
-      guessed = "Other";
+    if (/\b(earbuds?|earphones?|true wireless)\b/i.test(name)) guessed = "Earbuds";
+    else if (/\b(headset)\b/i.test(name)) guessed = "Gaming Headsets";
+    else if (/\b(headphones?)\b/i.test(name)) guessed = "Headphones";
+    else if (/\b(wireless\s*controller|gamepad|game\s*controller)\b/i.test(name)) guessed = "Controllers";
+    else if (/\b(xbox|playstation|\bps[45]\b|nintendo\s*switch)\b/i.test(name)) guessed = "Other";
     else if (/\b(macbook|laptop|notebook|chromebook)\b/i.test(name)) guessed = "Laptops";
     else if (/\b(pre-?built|(gaming|gamer)\s+(desktop|pc|computer)|gaming\s+desktop|desktop\s+(pc|computer))\b/i.test(name) &&
              !/\b(pc\s*case|computer\s*case|motherboard)\b/i.test(name))
@@ -1978,6 +1990,15 @@
     "Charging": "<rect x=\"12\" y=\"7\" width=\"24\" height=\"36\" rx=\"4\"/><path d=\"M26 15l-6 10h8l-6 10\"/>",
     "Tablets": "<rect x=\"9\" y=\"5\" width=\"30\" height=\"38\" rx=\"3\"/><path d=\"M22 38h4\"/>",
     "Coolers": "<circle cx=\"24\" cy=\"24\" r=\"16\"/><circle cx=\"24\" cy=\"24\" r=\"3\"/><path d=\"M24 21c0-6 3-9 7-9M27 24c6 0 9 3 9 7M24 27c0 6-3 9-7 9M21 24c-6 0-9-3-9-7\"/>",
+    "Soundbars": "<rect x=\"4\" y=\"19\" width=\"40\" height=\"10\" rx=\"5\"/><circle cx=\"12\" cy=\"24\" r=\"1.6\"/><circle cx=\"18\" cy=\"24\" r=\"1.6\"/><circle cx=\"30\" cy=\"24\" r=\"1.6\"/><circle cx=\"36\" cy=\"24\" r=\"1.6\"/>",
+    "AV Receivers": "<rect x=\"4\" y=\"14\" width=\"40\" height=\"20\" rx=\"2\"/><circle cx=\"34\" cy=\"24\" r=\"5\"/><path d=\"M10 21h12M10 27h8\"/><path d=\"M8 34v3M40 34v3\"/>",
+    "Subwoofers": "<rect x=\"9\" y=\"8\" width=\"30\" height=\"32\" rx=\"3\"/><circle cx=\"24\" cy=\"25\" r=\"10\"/><circle cx=\"24\" cy=\"25\" r=\"3.5\"/>",
+    "Hi-Fi Speakers": "<rect x=\"8\" y=\"5\" width=\"14\" height=\"38\" rx=\"2\"/><circle cx=\"15\" cy=\"31\" r=\"4.5\"/><circle cx=\"15\" cy=\"15\" r=\"2.5\"/><rect x=\"26\" y=\"5\" width=\"14\" height=\"38\" rx=\"2\"/><circle cx=\"33\" cy=\"31\" r=\"4.5\"/><circle cx=\"33\" cy=\"15\" r=\"2.5\"/>",
+    "Headphones": "<path d=\"M8 30v-6a16 16 0 0 1 32 0v6\"/><rect x=\"6\" y=\"28\" width=\"8\" height=\"12\" rx=\"3\"/><rect x=\"34\" y=\"28\" width=\"8\" height=\"12\" rx=\"3\"/>",
+    "Gaming Headsets": "<path d=\"M8 28v-4a16 16 0 0 1 32 0v4\"/><rect x=\"5\" y=\"26\" width=\"8\" height=\"12\" rx=\"3\"/><rect x=\"35\" y=\"26\" width=\"8\" height=\"12\" rx=\"3\"/><path d=\"M9 38c0 4 5 6 11 6\"/><circle cx=\"22\" cy=\"44\" r=\"1.6\"/>",
+    "Wireless Speakers": "<rect x=\"8\" y=\"14\" width=\"32\" height=\"22\" rx=\"11\"/><circle cx=\"18\" cy=\"25\" r=\"4\"/><circle cx=\"30\" cy=\"25\" r=\"4\"/>",
+    "Computer Speakers": "<rect x=\"5\" y=\"9\" width=\"12\" height=\"30\" rx=\"2\"/><circle cx=\"11\" cy=\"28\" r=\"3.5\"/><circle cx=\"11\" cy=\"16\" r=\"1.8\"/><rect x=\"31\" y=\"9\" width=\"12\" height=\"30\" rx=\"2\"/><circle cx=\"37\" cy=\"28\" r=\"3.5\"/><circle cx=\"37\" cy=\"16\" r=\"1.8\"/><path d=\"M20 33h8\"/>",
+    "Cables": "<path d=\"M8 40c0-10 6-14 16-14s16-4 16-14\"/><rect x=\"4\" y=\"38\" width=\"8\" height=\"7\" rx=\"1.5\"/><rect x=\"36\" y=\"3\" width=\"8\" height=\"7\" rx=\"1.5\"/>",
     "_default": "<rect x=\"5\" y=\"15\" width=\"38\" height=\"20\" rx=\"10\"/><path d=\"M15 21v8M11 25h8\"/><circle cx=\"31\" cy=\"23\" r=\"1.6\"/><circle cx=\"36\" cy=\"27\" r=\"1.6\"/>"
   };
 

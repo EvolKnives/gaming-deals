@@ -53,8 +53,9 @@ UA = (
     "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 )
 STALE_DAYS = 3          # drop unverifiable deals after this many calendar days (not runs)
-TARGET_PER_CAT = 10     # top categories up to this many deals
-MAX_PER_CAT = 16        # trim weakest (no discount) beyond this
+TARGET_PER_CAT = 20     # top categories up to this many deals (per-category "target" overrides)
+MAX_PER_CAT = 24        # trim weakest (no discount) beyond this
+VERIFY_EVERY_HOURS = 3  # each deal is re-checked on a rotation, about a third per hourly run
 MIN_RATING = 3.5        # skip poorly rated seeds (unrated allowed)
 
 BAD_TITLE = re.compile(
@@ -65,10 +66,12 @@ BAD_TITLE = re.compile(
 # category -> (queries, title must match, title must NOT match, price floor).
 # Rules live in data/category-rules.json, shared with the Search Worker.
 RULES_PATH = ROOT / "data" / "category-rules.json"
+_RULES = json.loads(RULES_PATH.read_text(encoding="utf-8"))["seeds"]
 SEEDS: dict[str, tuple[list[str], str, str | None, float]] = {
     r["category"]: (r["queries"], r["titleMust"], r.get("titleMustNot"), float(r["minPrice"]))
-    for r in json.loads(RULES_PATH.read_text(encoding="utf-8"))["seeds"]
+    for r in _RULES
 }
+TARGETS: dict[str, int] = {r["category"]: int(r.get("target", TARGET_PER_CAT)) for r in _RULES}
 
 
 def now_utc() -> datetime:
@@ -486,6 +489,10 @@ def main() -> int:
         if merchant == "Newegg":
             if throttled():
                 continue  # keeps its last verifiedAt; pruned only after STALE_DAYS
+            last = parse_iso(d.get("verifiedAt"))
+            if last and now - last < timedelta(hours=VERIFY_EVERY_HOURS - 0.5):
+                stats["newegg_checked_recently"] += 1
+                continue  # rotation: checked within the last few hours
             res = verify_newegg(api, d)
             if throttled():
                 continue
@@ -591,7 +598,8 @@ def main() -> int:
         for cat, (queries, must, mustnot, floor) in SEEDS.items():
             if throttled():
                 break
-            need = TARGET_PER_CAT - counts[cat]
+            target = TARGETS.get(cat, TARGET_PER_CAT)
+            need = target - counts[cat]
             if need <= 0:
                 continue
             must_re = re.compile(must, re.I)
@@ -605,8 +613,12 @@ def main() -> int:
                 if len(samples[reason]) < 3:
                     samples[reason].append(title[:90])
 
-            for q in queries:
-                results = api.search(q)
+            # first page of every search; a second page only if still short
+            pages = [(q, 1) for q in queries] + [(q, 2) for q in queries]
+            for q, page in pages:
+                if page == 2 and len(cands) >= need * 2:
+                    break
+                results = api.search(q, page=page)
                 if not results:
                     why_not["no search results"] += 1
                 for p in results:
@@ -684,7 +696,7 @@ def main() -> int:
                 added += 1
                 print(f"  + [{cat}] ${off['price']:,.2f} {title[:70]}")
             if need > 0:
-                print(f"  ! [{cat}] still {need} short of {TARGET_PER_CAT}; rejected: {dict(why_not)}")
+                print(f"  ! [{cat}] still {need} short of {target}; rejected: {dict(why_not)}")
                 for reason, titles in samples.items():
                     for t in titles:
                         print(f"      {reason}: {t}")
@@ -698,8 +710,9 @@ def main() -> int:
     trimmed = []
     for cat, lst in by_cat.items():
         lst.sort(key=savings_pct, reverse=True)
-        trimmed.extend(lst[:MAX_PER_CAT])
-        for d in lst[MAX_PER_CAT:]:
+        cap = max(MAX_PER_CAT, TARGETS.get(cat, TARGET_PER_CAT) + 4)
+        trimmed.extend(lst[:cap])
+        for d in lst[cap:]:
             removed.append(f"{d.get('id')} (category trim)")
     deals = trimmed + upcoming_deals
 

@@ -816,7 +816,7 @@
     {
       "id": "denon-avr-x3800h",
       "name": "Denon AVR-X3800H 9.4-channel 8K AV Receiver with Dolby Atmos and HEOS",
-      "category": "Home Theater",
+      "category": "AV Receivers",
       "price": 1399.0,
       "previousPrice": 1799.0,
       "lastPrice": 1399.0,
@@ -839,7 +839,7 @@
     {
       "id": "lg-s60t-soundbar-for-tv-with-dolby-audio-3-1-cha-979203",
       "name": "LG S60T Soundbar for TV with Dolby Audio 3.1 channel",
-      "category": "Home Theater",
+      "category": "Soundbars",
       "price": 249.99,
       "previousPrice": 299.99,
       "lastPrice": 249.99,
@@ -863,7 +863,7 @@
     {
       "id": "lg-s70ty-3-1-1-channel-dolby-atmos-soundbar-perf--00147",
       "name": "LG S70TY 3.1.1 Channel Dolby Atmos Soundbar Perfectly Matches QNED TV with WOW Orchestra",
-      "category": "Home Theater",
+      "category": "Soundbars",
       "price": 349.99,
       "previousPrice": 399.99,
       "lastPrice": 349.99,
@@ -887,7 +887,7 @@
     {
       "id": "yamaha-r-n600a-stereo-network-receiver-with-wi-f-971097",
       "name": "YAMAHA R-N600A Stereo Network receiver with Wi-Fi, Bluetooth, and Apple AirPlay 2 -Silver",
-      "category": "Home Theater",
+      "category": "AV Receivers",
       "price": 799.95,
       "previousPrice": 899.95,
       "lastPrice": 799.95,
@@ -914,7 +914,7 @@
     {
       "id": "denon-home-51",
       "name": "Denon Home Wireless 5.1 Home Theater System (Sound Bar, Surrounds, Sub)",
-      "category": "Home Theater",
+      "category": "Soundbars",
       "price": 1699.0,
       "previousPrice": 1846.0,
       "lastPrice": 1699.0,
@@ -937,7 +937,7 @@
     {
       "id": "denon-avr-x2800h",
       "name": "Denon AVR-X2800H 7.2-channel 8K AV Receiver with Dolby Atmos and HEOS",
-      "category": "Home Theater",
+      "category": "AV Receivers",
       "price": 1299.0,
       "previousPrice": null,
       "lastPrice": 1299.0,
@@ -960,7 +960,7 @@
     {
       "id": "logitech-z623-400-watt-home-speaker-system-2-1-s-121048",
       "name": "Logitech Z623 400 Watt Home Speaker System, 2.1 Speaker System - Black",
-      "category": "Home Theater",
+      "category": "Computer Speakers",
       "price": 184.99,
       "previousPrice": null,
       "lastPrice": 184.99,
@@ -987,7 +987,7 @@
     {
       "id": "logitech-z533-2-1-multimedia-speaker-system-with-121203",
       "name": "Logitech Z533 2.1 Multimedia Speaker System with Subwoofer, Powerful Sound, Booming Bass, 3.5mm Audio and RCA Inputs, PC/PS/Xbox/TV/Smartpho",
-      "category": "Home Theater",
+      "category": "Computer Speakers",
       "price": 154.99,
       "previousPrice": null,
       "lastPrice": 154.99,
@@ -1014,7 +1014,7 @@
     {
       "id": "yamaha-audio-sr-b20a-sound-bar-with-built-in-sub-971072",
       "name": "Yamaha Audio SR-B20A Sound Bar with Built-in Subwoofers and Bluetooth, Black",
-      "category": "Home Theater",
+      "category": "Soundbars",
       "price": 219.95,
       "previousPrice": null,
       "lastPrice": 219.95,
@@ -1041,7 +1041,7 @@
     {
       "id": "logitech-g560-pc-gaming-speaker-system-with-7-1-121244",
       "name": "Logitech G560 PC Gaming Speaker System with 7.1 DTS:X Ultra Surround Sound, Game based LIGHTSYNC RGB, Two Speakers and Subwoofer, Immersive ",
-      "category": "Home Theater",
+      "category": "Computer Speakers",
       "price": 249.99,
       "previousPrice": null,
       "lastPrice": 249.99,
@@ -3854,7 +3854,7 @@
     {
       "id": "razer-kraken-v3-x-gaming-headset-7-1-surround-so-153341",
       "name": "Razer Kraken V3 X Gaming Headset: 7.1 Surround Sound - Triforce 40mm Drivers - HyperClear Bendable Cardioid Mic - Chroma RGB Lighting - for PC - Classic Black",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 39.98,
       "previousPrice": 69.99,
       "lastPrice": 39.98,
@@ -3881,7 +3881,7 @@
     {
       "id": "beyerdynamic-aventho-300-wireless-bluetooth-head-380072",
       "name": "Beyerdynamic AVENTHO 300 Wireless Bluetooth Headphones, Over Ear, Active Noise Cancelling, USB-C Charging, 50 Hours Playtime, Ultra Comfortable, Dolby Atmos and Head Tracking (Nordic Grey)",
-      "category": "Headsets",
+      "category": "Headphones",
       "price": 299.99,
       "previousPrice": 499.99,
       "lastPrice": 299.99,
@@ -3905,7 +3905,7 @@
     {
       "id": "razer-barracuda-x-2022-edition-barracuda-x-2022-153347",
       "name": "Razer Barracuda X 2022 Edition Barracuda X 2022 Edition Wireless Stereo Gaming Headset - Mercury RZ04-04430200-R3U1",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 69.0,
       "previousPrice": 99.99,
       "lastPrice": 69.0,
@@ -3932,7 +3932,7 @@
     {
       "id": "logitech-g735-wireless-gaming-headset-customizab-197592",
       "name": "Logitech G735 Wireless Gaming Headset, Customizable LIGHTSYNC RGB Lighting, Lightspeed, Bluetooth, 3.5 MM Aux Compatible with PC, Mobile Devices, Detachable Mic - White Mist",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 179.99,
       "previousPrice": 259.99,
       "lastPrice": 179.99,
@@ -3959,7 +3959,7 @@
     {
       "id": "logitech-g-pro-x-gaming-headset-with-blue-voice-197345",
       "name": "Logitech G PRO X Gaming Headset with Blue Voice, DTS Headphone 7.1 and 50 mm PRO-G Drivers, for PC - Black",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 99.99,
       "previousPrice": 129.99,
       "lastPrice": 99.99,
@@ -3986,7 +3986,7 @@
     {
       "id": "logitech-g-pro-x-wireless-lightspeed-gaming-head--004r6",
       "name": "Logitech G PRO X Wireless LIGHTSPEED Gaming Headset with Blue VO!CE Mic Filter Tech, 50 mm PRO-G Drivers, and DTS Headphone:X 2.0 Surround Sound, 20+ Hour Battery Life - Black",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 149.99,
       "previousPrice": 179.99,
       "lastPrice": 149.99,
@@ -4013,7 +4013,7 @@
     {
       "id": "logitech-g-pro-x-2-lightspeed-wireless-gaming-he-197623",
       "name": "Logitech G PRO X 2 LIGHTSPEED Wireless Gaming Headset, 50mm Graphene Drivers, DTS:X 7.1 Surround Sound, Detachable Mic, PC/PS5",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 234.99,
       "previousPrice": 279.99,
       "lastPrice": 234.99,
@@ -4040,7 +4040,7 @@
     {
       "id": "msi-maestro-500-wireless-gaming-headset-40mm-dri-554092",
       "name": "MSI MAESTRO 500 WIRELESS Gaming Headset, 40mm Drivers, Foldable Design, Active Noise Cancellation, Multi Platform Compatible, Black",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 59.99,
       "previousPrice": 69.99,
       "lastPrice": 59.99,
@@ -4067,7 +4067,7 @@
     {
       "id": "logitech-g-pro-x2-lightspeed-wireless-gaming-hea-197624",
       "name": "Logitech G PRO X2 LIGHTSPEED Wireless Gaming Headset, Detachable Boom Mic, 50mm Graphene Drivers, DTS:X Headphone 2.0—7.1 Surround, Bluetooth/USB/3.5mm Aux, for PC, PS5, PS4, Nintendo Switch - White",
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "price": 239.99,
       "previousPrice": null,
       "lastPrice": 239.99,
@@ -4094,7 +4094,7 @@
     {
       "id": "bose-quietcomfort-ultra-2nd-gen-noise-cancelling-627203",
       "name": "Bose QuietComfort Ultra (2nd Gen) Noise Cancelling Over-Ear Wireless Headphones - Cherry Chocolate",
-      "category": "Headsets",
+      "category": "Headphones",
       "price": 449.0,
       "previousPrice": null,
       "lastPrice": 449.0,
@@ -4361,7 +4361,7 @@
     {
       "id": "ultimate-ears-miniroll-ultra-portable-waterproof-247046",
       "name": "Ultimate Ears MINIROLL Ultra-Portable Waterproof Bluetooth Speaker - Majestic Blue",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 49.99,
       "previousPrice": 79.99,
       "lastPrice": 49.99,
@@ -4385,7 +4385,7 @@
     {
       "id": "jlab-jbuds-party-portable-bluetooth-speaker-syst--00007",
       "name": "JLab JBuds Party Portable Bluetooth Speaker System - 30 W RMS - Cyan - 60 Hz to 20 kHz - Battery Rechargeable",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 69.99,
       "previousPrice": 99.99,
       "lastPrice": 69.99,
@@ -4409,7 +4409,7 @@
     {
       "id": "creative-pebble-v2-usb-c-desktop-speakers-enhanc-116214",
       "name": "Creative Pebble V2 USB-C Desktop Speakers, Enhanced Bass, Far-Field Drivers, Compact PC Speaker System",
-      "category": "Speakers",
+      "category": "Computer Speakers",
       "price": 40.99,
       "previousPrice": null,
       "lastPrice": 40.99,
@@ -4436,7 +4436,7 @@
     {
       "id": "logitech-z207-2-0-stereo-computer-speakers-with-121235",
       "name": "Logitech Z207 2.0 Stereo Computer Speakers with Bluetooth",
-      "category": "Speakers",
+      "category": "Computer Speakers",
       "price": 69.99,
       "previousPrice": null,
       "lastPrice": 69.99,
@@ -4463,7 +4463,7 @@
     {
       "id": "bose-soundlink-flex-bluetooth-speaker-2nd-gen-po-772093",
       "name": "Bose SoundLink Flex Bluetooth Speaker (2nd Gen) - Portable Outdoor Speaker with Hi-Fi Audio, Waterproof and Dustproof, USB-C, Up to 12 Hours Battery Life, Rosewood Mauve - Limited Edition Color",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 159.0,
       "previousPrice": null,
       "lastPrice": 159.0,
@@ -4490,7 +4490,7 @@
     {
       "id": "bose-soundlink-flex-2nd-gen-portable-bluetooth-s-772072",
       "name": "Bose SoundLink Flex (2nd Gen) Portable Bluetooth Speaker with Waterproof/Dustproof Design - Black",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 159.0,
       "previousPrice": null,
       "lastPrice": 159.0,
@@ -4517,7 +4517,7 @@
     {
       "id": "bose-soundlink-micro-portable-speaker-2nd-gen-de-772095",
       "name": "Bose SoundLink Micro Portable Speaker (2nd Gen) - Dewdrop Mint",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 129.0,
       "previousPrice": null,
       "lastPrice": 129.0,
@@ -4541,7 +4541,7 @@
     {
       "id": "edifier-s1000mkii-audiophile-active-bookshelf-2--001f3",
       "name": "Edifier S1000MKII Audiophile Active Bookshelf 2.0 Speakers, Computer Speakers - 120W Optical Input - Bluetooth 5.0 HD - Brown",
-      "category": "Speakers",
+      "category": "Computer Speakers",
       "price": 499.99,
       "previousPrice": null,
       "lastPrice": 499.99,
@@ -4568,7 +4568,7 @@
     {
       "id": "edifier-qs20-bluetooth-portable-speaker-ip67-wat--00007",
       "name": "Edifier QS20 Bluetooth Portable Speaker - IP67 Waterproof - Ambient Light (Black)",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 99.99,
       "previousPrice": null,
       "lastPrice": 99.99,
@@ -4592,7 +4592,7 @@
     {
       "id": "edifier-qd35-tabletop-bluetooth-speaker-white--00120",
       "name": "Edifier QD35 Tabletop Bluetooth Speaker, White",
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "price": 229.99,
       "previousPrice": null,
       "lastPrice": 229.99,
@@ -6800,7 +6800,7 @@
     {
       "id": "costco-2012476-tcl-q6ch-5-1-channel-soundbar-with-wirel",
       "name": "TCL Q6CH 5.1-channel Soundbar with Wireless Subwoofer",
-      "category": "Home Theater",
+      "category": "Soundbars",
       "price": 199.99,
       "previousPrice": 299.99,
       "lastPrice": null,
@@ -6821,7 +6821,7 @@
     {
       "id": "costco-1912780-sonos-arc-ultra-9-1-4-channel-soundbar-b",
       "name": "Sonos Arc Ultra 9.1.4-channel Soundbar Bundle",
-      "category": "Home Theater",
+      "category": "Soundbars",
       "price": 849.99,
       "previousPrice": 1099.99,
       "lastPrice": null,
@@ -6844,7 +6844,7 @@
     {
       "id": "costco-1731876-sonos-era-100-wireless-smart-speaker-2-p",
       "name": "Sonos Era 100 Wireless Smart Speaker, 2-pack",
-      "category": "Home Theater",
+      "category": "Wireless Speakers",
       "price": 329.99,
       "previousPrice": 409.99,
       "lastPrice": null,

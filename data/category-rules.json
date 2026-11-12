@@ -23,7 +23,14 @@
         "amd ryzen 9 desktop processor",
         "intel core ultra desktop processor",
         "amd ryzen 5 desktop processor",
-        "intel core i5 desktop processor"
+        "intel core i5 desktop processor",
+        "amd ryzen 7 9700x processor",
+        "amd ryzen 9 9950x processor",
+        "intel core ultra 5 245k processor",
+        "intel core ultra 9 285k processor",
+        "intel core i5-14600k processor",
+        "intel core i7-14700k processor",
+        "intel core i5-14400 processor"
       ],
       "titleMust": "processor|\\bcpu\\b",
       "titleMustNot": "gaming desktop|desktop (pc|computer)|gaming pc|laptop|cooler|bundle|combo|motherboard|\\b\\d+ ?GB\\b|alienware",
@@ -52,22 +59,69 @@
         "samsung 4k tv",
         "sony bravia tv",
         "tcl qled tv",
-        "hisense 4k tv"
+        "hisense 4k tv",
+        "lg oled evo tv",
+        "samsung crystal uhd tv",
+        "vizio 4k smart tv",
+        "tcl 4k google tv",
+        "hisense uled mini-led tv",
+        "32 inch smart tv"
       ],
       "titleMust": "\\btv\\b|television",
       "titleMustNot": "mount|bracket|antenna|cable|monitor",
-      "minPrice": 250
+      "minPrice": 100
     },
     {
-      "category": "Home Theater",
+      "category": "Soundbars",
       "queries": [
-        "soundbar",
-        "av receiver",
-        "home theater speaker system"
+        "soundbar dolby atmos",
+        "soundbar with wireless subwoofer",
+        "samsung soundbar",
+        "sonos soundbar",
+        "lg soundbar"
       ],
-      "titleMust": "sound ?bar|receiver|speaker|subwoofer|home theater",
-      "titleMustNot": "mount|cable|bracket|car ",
+      "titleMust": "sound ?bar",
+      "titleMustNot": "mount|bracket|cable|remote only|cover|stand only|wall kit",
+      "minPrice": 60
+    },
+    {
+      "category": "AV Receivers",
+      "queries": [
+        "av receiver",
+        "denon av receiver",
+        "yamaha av receiver",
+        "onkyo av receiver",
+        "stereo network receiver"
+      ],
+      "titleMust": "\\breceiver\\b",
+      "titleMustNot": "bluetooth receiver|usb|adapter|dongle|car |fm |antenna|hdmi (extender|transmitter)|transmitter|wireless audio receiver|gps|keyboard|mouse",
+      "minPrice": 150
+    },
+    {
+      "category": "Subwoofers",
+      "queries": [
+        "powered subwoofer",
+        "home theater subwoofer",
+        "klipsch subwoofer",
+        "svs subwoofer",
+        "polk subwoofer"
+      ],
+      "titleMust": "subwoofer",
+      "titleMustNot": "sound ?bar|speaker system|2\\.1|car |marine|boat|truck|cable|amplifier only|enclosure only",
       "minPrice": 80
+    },
+    {
+      "category": "Hi-Fi Speakers",
+      "queries": [
+        "bookshelf speakers",
+        "floorstanding speakers",
+        "center channel speaker",
+        "klipsch reference speakers",
+        "polk audio bookshelf speakers"
+      ],
+      "titleMust": "bookshelf|floor ?standing|tower speakers?|center channel|surround speakers?|home theater speakers?",
+      "titleMustNot": "bluetooth speaker|portable|computer|\\bpc\\b|desktop|sound ?bar|subwoofer|stand only|mount|wire\\b|cable|gaming",
+      "minPrice": 60
     },
     {
       "category": "Art Tablets",
@@ -75,11 +129,17 @@
         "pen display drawing tablet",
         "xp-pen drawing tablet",
         "wacom tablet",
-        "huion drawing tablet"
+        "huion drawing tablet",
+        "wacom cintiq pen display",
+        "wacom one pen display",
+        "huion kamvas pen display",
+        "xp-pen artist pen display",
+        "xp-pen deco pen tablet",
+        "gaomon pen tablet"
       ],
       "titleMust": "drawing|graphics? tablet|pen display|pen tablet|creative tablet",
       "titleMustNot": "ipad|android|surface|windows|snapdragon|\\bssd\\b|case|cover|glove|film|protector|stand",
-      "minPrice": 40
+      "minPrice": 20
     },
     {
       "category": "PSUs",
@@ -214,15 +274,28 @@
       "minPrice": 15
     },
     {
-      "category": "Headsets",
+      "category": "Gaming Headsets",
       "queries": [
         "gaming headset",
         "wireless gaming headset",
-        "over-ear headphones noise cancelling"
+        "pc gaming headset with mic"
       ],
-      "titleMust": "headset|headphones?",
+      "titleMust": "gaming headset|gaming headphones|headset",
       "titleMustNot": "earbuds?|true wireless|in-ear|stand|hanger|holder|cable|adapter|ear ?pads|replacement|case|cushion",
       "minPrice": 15
+    },
+    {
+      "category": "Headphones",
+      "queries": [
+        "noise cancelling headphones",
+        "wireless over-ear headphones",
+        "studio headphones",
+        "sony wh-1000xm",
+        "bose quietcomfort headphones"
+      ],
+      "titleMust": "headphones?",
+      "titleMustNot": "gaming|headset|earbuds?|in-ear|true wireless|stand|hanger|holder|cable|adapter|ear ?pads|replacement|case|cushion|kids?\\b|splitter",
+      "minPrice": 25
     },
     {
       "category": "Earbuds",
@@ -236,14 +309,28 @@
       "minPrice": 15
     },
     {
-      "category": "Speakers",
+      "category": "Wireless Speakers",
       "queries": [
         "bluetooth speaker",
-        "computer speakers",
-        "portable speaker waterproof"
+        "portable speaker waterproof",
+        "jbl bluetooth speaker",
+        "bose soundlink",
+        "smart speaker wifi"
       ],
-      "titleMust": "speakers?",
-      "titleMustNot": "sound ?bar|receiver|subwoofer|home theater|car |marine|mount|stand|bracket|cable|wire|in-wall|ceiling|grille|monitor|\\btv\\b|television|laptop|notebook|headset|projector",
+      "titleMust": "bluetooth speaker|portable speaker|wireless speaker|smart speaker|wi-?fi speaker|party speaker|tabletop speaker|soundlink|outdoor speaker",
+      "titleMustNot": "computer|desktop|\\bpc\\b|sound ?bar|receiver|subwoofer|car |marine|mount|stand|bracket|cable|monitor|\\btv\\b|headset|projector",
+      "minPrice": 15
+    },
+    {
+      "category": "Computer Speakers",
+      "queries": [
+        "computer speakers",
+        "pc gaming speakers",
+        "desktop speakers usb",
+        "2.1 computer speaker system"
+      ],
+      "titleMust": "(computer|desktop|\\bpc\\b|multimedia|gaming) speakers?|speaker system|2\\.[01] (stereo |channel )?speaker|studio monitors?",
+      "titleMustNot": "sound ?bar|receiver|car |marine|mount|stand only|bracket|cable|monitor arm|\\btv\\b|headset|projector|laptop|notebook",
       "minPrice": 15
     },
     {
@@ -340,12 +427,25 @@
       "titleMust": "cpu cooler|air cooler|liquid cooler|liquid cpu cooler|\\baio\\b|tower cooler|cpu air cooler",
       "titleMustNot": "laptop|notebook|thermal paste|thermal pad|bracket|mounting kit|fan hub|replacement fan|\\bgpu\\b|graphics card|cooling pad|phone|ssd heatsink|fan controller",
       "minPrice": 15
+    },
+    {
+      "category": "Cables",
+      "queries": [
+        "hdmi 2.1 cable 8k",
+        "displayport 2.1 cable",
+        "usb c to usb c cable 240w",
+        "cat 8 ethernet cable",
+        "thunderbolt 4 cable"
+      ],
+      "titleMust": "\\bcables?\\b|\\bcord\\b",
+      "titleMustNot": "management|organizer|ties?\\b|sleeve|clips?\\b|tester|crimper|\\bhub\\b|dock|splitter|switch\\b|extender|adapter only|charger|power bank|keyboard|mouse|headset|controller",
+      "minPrice": 6
     }
   ],
   "liveSearchHints": [
     {
       "pattern": "\\b(headset|headphones?|earbuds?|earphones?|earpiece|earbuds)\\b",
-      "category": "Home Theater"
+      "category": "Gaming Headsets"
     },
     {
       "pattern": "\\b(xbox|playstation|\\bps[45]\\b|nintendo\\s*switch|gaming\\s*console|game\\s*console|wireless\\s*controller|game\\s*controller|gamepad)\\b",
@@ -377,7 +477,7 @@
     },
     {
       "pattern": "\\b(soundbar|av\\s*receiver|bookshelf\\s*speaker|floor[\\s-]?standing\\s*speaker|subwoofer|home\\s*theat(?:er|re)|klipsch|surround\\s*speaker)\\b",
-      "category": "Home Theater"
+      "category": "Soundbars"
     },
     {
       "pattern": "\\b(wacom|drawing\\s*tablet|pen\\s*display|art\\s*tablet)\\b",
