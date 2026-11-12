@@ -732,6 +732,18 @@ def main() -> int:
     if args.dry_run:
         return 0
 
+    # regular-price build parts (every few hours), then today's prices into the
+    # price history, which also adds 30-day stats and honest-discount flags
+    if not throttled():
+        refresh_build_parts(api, now, stamp)
+    import price_history  # noqa: E402  (scripts/ is on sys.path)
+    try:
+        pool_parts = json.loads(POOL_PATH.read_text(encoding="utf-8")).get("parts") or []
+    except (OSError, ValueError):
+        pool_parts = []
+    price_history.record(deals, pool_parts, now)
+    data["deals"] = deals
+
     DEALS_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     # delete photos no deal references any more
     used = {d.get("image") for d in deals}
@@ -742,8 +754,6 @@ def main() -> int:
             gone += 1
     print(f"Wrote {DEALS_PATH} ({len(deals)} deals); removed {gone} orphaned photos")
     # rebuild the Builds tab's PCs from the fresh prices
-    if not args.dry_run and not throttled():
-        refresh_build_parts(api, now, stamp)
     import build_pcs  # noqa: E402  (scripts/ is on sys.path)
     build_pcs.main()
     return 0

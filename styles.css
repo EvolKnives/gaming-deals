@@ -2245,3 +2245,263 @@ a.build-part__name:focus-visible {
 .custom-row__empty {
   color: var(--text-tertiary);
 }
+
+/* ---------------------------------------------------------------- Price history */
+.deal-card__unseen {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.65rem;
+  border-radius: 980px;
+  background: color-mix(in srgb, #f5a524 14%, transparent);
+  color: #b26a00;
+  border: 1px solid color-mix(in srgb, #f5a524 35%, transparent);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.1;
+  cursor: help;
+}
+
+@media (prefers-color-scheme: dark) {
+  .deal-card__unseen {
+    color: #ffc14d;
+  }
+}
+
+.deal-card__history {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: -0.15rem 0 0.7rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.deal-card__history:hover,
+.deal-card__history:focus-visible {
+  text-decoration: underline;
+}
+
+html.ph-open {
+  overflow: hidden;
+}
+
+.ph-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.ph-dialog {
+  position: relative;
+  width: min(720px, 100%);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+  padding: 1.3rem 1.4rem 1.2rem;
+}
+
+.ph-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.8rem;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--text-tertiary) 16%, transparent);
+  color: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ph-eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ph-title {
+  margin: 0 2.5rem 0.9rem 0;
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.ph-range {
+  display: inline-flex;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 980px;
+  border: 1px solid var(--card-border);
+  margin-bottom: 0.6rem;
+}
+
+.ph-range button {
+  border: 0;
+  background: none;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 980px;
+  cursor: pointer;
+}
+
+.ph-range button.is-on {
+  background: var(--accent);
+  color: #06121d;
+}
+
+.ph-chart-wrap {
+  position: relative;
+}
+
+.ph-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: pan-y;
+}
+
+.ph-grid {
+  stroke: var(--card-border);
+  stroke-width: 1;
+}
+
+.ph-axis {
+  fill: var(--text-tertiary);
+  font-size: 11px;
+}
+
+.ph-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.ph-area {
+  fill: color-mix(in srgb, var(--accent) 14%, transparent);
+  stroke: none;
+}
+
+.ph-dot {
+  fill: var(--accent);
+  stroke: var(--card);
+  stroke-width: 1.5;
+}
+
+.ph-list {
+  stroke: #f5a524;
+  stroke-width: 1.4;
+  stroke-dasharray: 5 5;
+}
+
+.ph-list-label {
+  fill: #e0951c;
+}
+
+.ph-cursor {
+  stroke: var(--text-tertiary);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.ph-tip {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: var(--text, #111);
+  color: var(--card);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.ph-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 0.8rem 0 0;
+}
+
+.ph-stats div {
+  padding: 0.55rem 0.6rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--text-tertiary) 10%, transparent);
+}
+
+.ph-stats dt {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.ph-stats dd {
+  margin: 0.15rem 0 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ph-verdict {
+  margin: 0.8rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.ph-note {
+  margin: 0.5rem 0 0;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  line-height: 1.45;
+}
+
+@media (max-width: 599px) {
+  .ph-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .ph-dialog {
+    border-radius: var(--radius) var(--radius) 0 0;
+    max-height: 88dvh;
+    padding: 1.1rem 1rem 1.4rem;
+  }
+
+  .ph-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .ph-axis {
+    font-size: 19px; /* the chart scales down ~55% on phones */
+  }
+}

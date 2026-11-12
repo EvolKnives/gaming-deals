@@ -1763,9 +1763,20 @@
         "</figure>";
     }
 
-    var nearLowHtml = nearLow
-      ? '<span class="deal-card__near-low" role="status">Near low</span>'
-      : "";
+    // Honest-discount labels from 30 days of price history (scripts/price_history.py)
+    var nearLowHtml = deal.lowest30
+      ? '<span class="deal-card__near-low" role="status">Lowest in 30 days</span>'
+      : nearLow
+        ? '<span class="deal-card__near-low" role="status">Near low</span>'
+        : "";
+    if (deal.wasUnseen) {
+      nearLowHtml +=
+        '<span class="deal-card__unseen" role="note" title="The store lists ' +
+        escapeAttr(formatMoney(deal.previousPrice)) +
+        " as the regular price, but the highest price we saw in the last 30 days was " +
+        escapeAttr(formatMoney(deal.high30)) +
+        '.">Was-price not seen in 30 days</span>';
+    }
 
     var endingSoonHtml = endingSoon
       ? '<span class="deal-card__ending-soon" role="status">Ending soon</span>'
@@ -1854,6 +1865,12 @@
       "</div>" +
       promoHtml +
       freshnessHtml +
+      (deal.sku && !isFutureDeal(deal)
+        ? '<button type="button" class="deal-card__history" data-history>' +
+          '<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">' +
+          '<path d="M1.5 12.5l4-4 3 2.5 6-6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          "Price history</button>"
+        : "") +
       (deal.sourceUrl
         ? '<p class="deal-card__source">Source: <a href="' +
           escapeAttr(deal.sourceUrl) +
@@ -1885,6 +1902,13 @@
           }
         });
       }
+    }
+
+    var historyBtn = article.querySelector("[data-history]");
+    if (historyBtn) {
+      historyBtn.addEventListener("click", function () {
+        openPriceHistory(deal, historyBtn);
+      });
     }
 
     var shareBtn = article.querySelector("[data-share]");
@@ -2775,6 +2799,266 @@
       var el = dealsEl.querySelector('select[data-slot="' + slot + '"]');
       if (el) el.focus({ preventScroll: true });
     } catch (e) {}
+  }
+
+  // ---------------------------------------------------------------- Price history
+  // data/price-history.json stores only price changes ([hour, price]; a price
+  // holds until the next change) plus the last hour each product was seen.
+  // Drawn as a step chart like Amazon / camelcamelcamel.
+  var priceHistoryData = null;
+  var priceHistoryLoading = null;
+  var DAY_MS = 86400000;
+
+  function loadPriceHistory() {
+    if (priceHistoryData) return Promise.resolve(priceHistoryData);
+    if (!priceHistoryLoading) {
+      priceHistoryLoading = fetch("data/price-history.json?t=" + Date.now(), { cache: "no-store" })
+        .then(function (res) {
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          priceHistoryData = data && data.items ? data : { items: {} };
+          return priceHistoryData;
+        })
+        .catch(function () {
+          priceHistoryLoading = null;
+          return { items: {}, failed: true };
+        });
+    }
+    return priceHistoryLoading;
+  }
+
+  function dayLabel(day, withYear) {
+    return new Date(day * DAY_MS).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: withYear ? "numeric" : undefined,
+      timeZone: "UTC"
+    });
+  }
+
+  // points: [[day (fractional), price], ...] change points; endDay: last seen
+  function historyChartSvg(points, range, listPrice, endDay) {
+    var today = Date.now() / DAY_MS;
+    var start = today - range;
+    var inRange = points.filter(function (p) { return p[0] >= start; });
+    // carry the last price from before the window in, so the line starts at the left edge
+    var before = points.filter(function (p) { return p[0] < start; });
+    if (before.length && before[before.length - 1][1] != null) {
+      inRange.unshift([start, before[before.length - 1][1], true]);
+    }
+    if (!inRange.length) return { svg: "", pts: [] };
+    var W = 640, H = 230, L = 58, R = 14, T = 14, B = 30;
+    var prices = inRange.filter(function (p) { return p[1] != null; }).map(function (p) { return p[1]; });
+    if (!prices.length) return { svg: "", pts: [] };
+    if (Number.isFinite(listPrice) && listPrice > 0) prices.push(listPrice);
+    var lo = Math.min.apply(null, prices), hi = Math.max.apply(null, prices);
+    var pad = Math.max((hi - lo) * 0.12, hi * 0.02, 1);
+    lo = Math.max(0, lo - pad);
+    hi = hi + pad;
+    var x = function (d) { return L + ((d - start) / Math.max(1, today - start)) * (W - L - R); };
+    var y = function (v) { return T + (1 - (v - lo) / (hi - lo)) * (H - T - B); };
+    // step line; a null price is a stretch nobody checked, drawn as a break
+    var path = "", area = "", segStart = null, open = false;
+    var closeSeg = function (endX) {
+      if (!open) return;
+      path += "H" + endX.toFixed(1);
+      area += "H" + endX.toFixed(1) + "V" + (H - B) + "H" + segStart.toFixed(1) + "Z";
+      open = false;
+    };
+    inRange.forEach(function (p) {
+      var px = x(p[0]);
+      if (p[1] == null) {
+        closeSeg(px);
+        return;
+      }
+      var py = y(p[1]).toFixed(1);
+      if (!open) {
+        path += "M" + px.toFixed(1) + " " + py;
+        area += "M" + px.toFixed(1) + " " + py;
+        segStart = px;
+        open = true;
+      } else {
+        path += "H" + px.toFixed(1) + "V" + py;
+        area += "H" + px.toFixed(1) + "V" + py;
+      }
+    });
+    closeSeg(x(Math.min(endDay, today))); // held until last checked
+    var grid = "";
+    for (var g = 0; g <= 3; g++) {
+      var v = lo + ((hi - lo) * g) / 3;
+      var gy = y(v).toFixed(1);
+      grid += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + gy + '" y2="' + gy + '" class="ph-grid"/>' +
+        '<text x="' + (L - 8) + '" y="' + (Number(gy) + 4) + '" class="ph-axis" text-anchor="end">' +
+        escapeHtml(formatMoney(Math.round(v))) + "</text>";
+    }
+    var ticks = "";
+    var step = range <= 30 ? 7 : 30;
+    for (var d = Math.floor(today); d >= start; d -= step) {
+      ticks += '<text x="' + x(d).toFixed(1) + '" y="' + (H - 8) + '" class="ph-axis" text-anchor="middle">' +
+        escapeHtml(dayLabel(d)) + "</text>";
+    }
+    var listLine = Number.isFinite(listPrice) && listPrice > 0
+      ? '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(listPrice).toFixed(1) + '" y2="' + y(listPrice).toFixed(1) +
+        '" class="ph-list"/><text x="' + (W - R) + '" y="' + (y(listPrice) - 6).toFixed(1) +
+        '" class="ph-axis ph-list-label" text-anchor="end">Store’s “was” price ' + escapeHtml(formatMoney(listPrice)) + "</text>"
+      : "";
+    var dots = inRange.filter(function (p) { return !p[2] && p[1] != null; }).map(function (p) {
+      return '<circle cx="' + x(p[0]).toFixed(1) + '" cy="' + y(p[1]).toFixed(1) + '" r="3" class="ph-dot"/>';
+    }).join("");
+    var svg =
+      '<svg class="ph-chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Price over the last ' + range + ' days">' +
+      grid + ticks + listLine +
+      '<path d="' + area + '" class="ph-area"/>' +
+      '<path d="' + path + '" class="ph-line"/>' + dots +
+      '<line class="ph-cursor" x1="0" x2="0" y1="' + T + '" y2="' + (H - B) + '" visibility="hidden"/>' +
+      "</svg>";
+    return {
+      svg: svg,
+      pts: inRange.filter(function (p) { return !p[2] && p[1] != null; }).map(function (p, i) {
+        return { day: p[0], price: p[1], x: x(p[0]) / W, first: i === 0 && p[0] === points[0][0] };
+      })
+    };
+  }
+
+  // Lowest / highest / usual (held longest) price between two days.
+  function heldStats(points, start, end) {
+    var held = {};
+    points.forEach(function (p, i) {
+      var nxt = i + 1 < points.length ? points[i + 1][0] : end;
+      var a = Math.max(p[0], start), b = Math.min(nxt, end);
+      if (b > a && p[1] != null) held[p[1]] = (held[p[1]] || 0) + (b - a);
+    });
+    var prices = Object.keys(held).map(Number);
+    if (!prices.length) return null;
+    var usual = prices.reduce(function (best, v) {
+      return held[v] > held[best] || (held[v] === held[best] && v < best) ? v : best;
+    }, prices[0]);
+    return { low: Math.min.apply(null, prices), high: Math.max.apply(null, prices), usual: usual };
+  }
+
+  function openPriceHistory(deal, opener) {
+    var old = document.querySelector(".ph-modal");
+    if (old) old.remove();
+    var modal = document.createElement("div");
+    modal.className = "ph-modal";
+    modal.innerHTML =
+      '<div class="ph-dialog" role="dialog" aria-modal="true" aria-labelledby="ph-title">' +
+      '<button type="button" class="ph-close" aria-label="Close">×</button>' +
+      '<p class="ph-eyebrow">Price history</p>' +
+      '<h2 class="ph-title" id="ph-title">' + escapeHtml(deal.name) + "</h2>" +
+      '<div class="ph-body"><p class="status">Loading price history…</p></div>' +
+      "</div>";
+    document.body.appendChild(modal);
+    document.documentElement.classList.add("ph-open");
+    var close = function () {
+      modal.remove();
+      document.documentElement.classList.remove("ph-open");
+      document.removeEventListener("keydown", onKey);
+      if (opener) {
+        try { opener.focus(); } catch (e) {}
+      }
+    };
+    var onKey = function (e) {
+      if (e.key === "Escape") close();
+    };
+    document.addEventListener("keydown", onKey);
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) close();
+    });
+    modal.querySelector(".ph-close").addEventListener("click", close);
+    try { modal.querySelector(".ph-close").focus(); } catch (e) {}
+
+    loadPriceHistory().then(function (data) {
+      var body = modal.querySelector(".ph-body");
+      if (!body) return;
+      var key = String(deal.sku || "").toUpperCase();
+      var points = ((data.items || {})[key] || []).map(function (p) { return [p[0] / 24, p[1]]; });
+      var endDay = ((data.seen || {})[key] || 0) / 24 + 1 / 24;
+      if (data.failed || !points.length) {
+        body.innerHTML = '<p class="status">' +
+          (data.failed ? "Couldn’t load price history. Try again in a moment." :
+            "No price history yet. We check this price every hour, so the chart starts filling in from today.") +
+          "</p>";
+        return;
+      }
+      var range = Date.now() / DAY_MS - points[0][0] > 30 ? 90 : 30;
+      var draw = function () {
+        var today = Date.now() / DAY_MS;
+        var lastKnown = Number(deal.price);
+        var st = heldStats(points, today - range, Math.min(endDay, today)) ||
+          { low: lastKnown, high: lastKnown, usual: lastKnown };
+        var low = st.low, high = st.high, typical = st.usual;
+        var chart = historyChartSvg(points, range, Number(deal.previousPrice), endDay);
+        var since = points[0][0];
+        var tracked = Math.floor(today - since) + 1;
+        var lowAt = null;
+        points.forEach(function (p) {
+          if (p[1] != null && p[1] === low && p[0] >= today - range - 1) lowAt = lowAt == null ? p[0] : lowAt;
+        });
+        var verdict = "";
+        if (deal.lowest30) verdict = "Today’s price is the lowest in the last 30 days.";
+        else if (deal.wasUnseen) verdict = "The store’s “was” price of " + formatMoney(deal.previousPrice) +
+          " is higher than anything we saw it charge in the last 30 days, so the discount may be overstated.";
+        else if (Number(deal.price) > low) verdict = "It has been cheaper recently: " + formatMoney(low) +
+          (lowAt != null ? " on " + dayLabel(Math.max(lowAt, today - range)) : "") + ".";
+        body.innerHTML =
+          '<div class="ph-range" role="group" aria-label="Time range">' +
+          [30, 90].map(function (r) {
+            return '<button type="button" data-range="' + r + '" class="' + (r === range ? "is-on" : "") +
+              '" aria-pressed="' + (r === range) + '">' + r + " days</button>";
+          }).join("") +
+          "</div>" +
+          '<div class="ph-chart-wrap">' + chart.svg + '<div class="ph-tip" hidden></div></div>' +
+          '<dl class="ph-stats">' +
+          "<div><dt>Now</dt><dd>" + escapeHtml(formatMoney(Number(deal.price))) + "</dd></div>" +
+          "<div><dt>Lowest</dt><dd>" + escapeHtml(formatMoney(low)) + "</dd></div>" +
+          "<div><dt>Usual</dt><dd>" + escapeHtml(formatMoney(typical)) + "</dd></div>" +
+          "<div><dt>Highest</dt><dd>" + escapeHtml(formatMoney(high)) + "</dd></div>" +
+          "</dl>" +
+          (verdict ? '<p class="ph-verdict">' + escapeHtml(verdict) + "</p>" : "") +
+          '<p class="ph-note">Price at ' + escapeHtml(deal.merchant || "the store") +
+          ", checked hourly; dots mark price changes, and breaks in the line are stretches we weren’t checking. " +
+          "“Usual” is the price it sat at longest. Tracking since " +
+          escapeHtml(dayLabel(since, true)) +
+          (tracked < 14 ? ". The chart fills in as more days are recorded." : ".") + "</p>";
+        body.querySelectorAll("[data-range]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            range = Number(b.getAttribute("data-range"));
+            draw();
+          });
+        });
+        var wrap = body.querySelector(".ph-chart-wrap");
+        var svg = wrap.querySelector("svg");
+        var tip = wrap.querySelector(".ph-tip");
+        var cursor = svg && svg.querySelector(".ph-cursor");
+        var move = function (e) {
+          if (!svg || !chart.pts.length) return;
+          var rect = svg.getBoundingClientRect();
+          var fx = (e.clientX - rect.left) / rect.width;
+          var best = chart.pts[0];
+          chart.pts.forEach(function (p) {
+            if (Math.abs(p.x - fx) < Math.abs(best.x - fx)) best = p;
+          });
+          tip.hidden = false;
+          tip.textContent = (best.first ? "From " : "Changed to ") + formatMoney(best.price) + " · " + dayLabel(best.day);
+          tip.style.left = Math.min(Math.max(best.x * 100, 12), 88) + "%";
+          cursor.setAttribute("x1", (best.x * 640).toFixed(1));
+          cursor.setAttribute("x2", (best.x * 640).toFixed(1));
+          cursor.setAttribute("visibility", "visible");
+        };
+        if (svg) {
+          svg.addEventListener("pointermove", move);
+          svg.addEventListener("pointerdown", move);
+          svg.addEventListener("pointerleave", function () {
+            tip.hidden = true;
+            cursor.setAttribute("visibility", "hidden");
+          });
+        }
+      };
+      draw();
+    });
   }
 
   function scrollTop() {

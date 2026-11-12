@@ -51,6 +51,21 @@ On the site, each part has a menu of other compatible options with prices.
 Picking a graphics card that needs more power, or a motherboard the case
 can't hold, also switches in the cheapest power supply or case that fits.
 
+## Price history
+
+[`scripts/price_history.py`](scripts/price_history.py) runs inside every hourly
+refresh. [`data/price-history.json`](data/price-history.json) stores only price
+**changes** per SKU (`[hour, price]`; a price holds until the next entry) and the
+last hour each product was seen. A product unchecked for over 48 hours gets a
+gap marker (`null` price) instead of an assumed price. Changes are kept 90 days.
+
+From it each deal gets `low30` / `high30` / `typical30` (price held longest) and
+two honest-discount flags, set only after 14 days of observed prices in the
+30-day window: `lowest30` ("Lowest in 30 days") and `wasUnseen` (the store's
+"was" price is above anything charged in 30 days). Cards link to an
+Amazon-style step chart (30 / 90 days). `--backfill` rebuilds the file from the
+git history of `data/deals.json`.
+
 ## Shared category rules
 
 [`data/category-rules.json`](data/category-rules.json) holds the category rules
