@@ -1838,9 +1838,6 @@
       "</div>" +
       promoHtml +
       freshnessHtml +
-      '<p class="deal-card__why">' +
-      escapeHtml(deal.why || "") +
-      "</p>" +
       (deal.sourceUrl
         ? '<p class="deal-card__source">Source: <a href="' +
           escapeAttr(deal.sourceUrl) +
