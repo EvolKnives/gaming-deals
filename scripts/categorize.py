@@ -51,7 +51,8 @@ NOUNS: dict[str, str] = {
     "Motherboards": r"motherboard|mainboard",
     "RAM": r"desktop memory|pc ram|memory kit|\bram\b|\b\d+ ?gb ?\(\d ?x ?\d+ ?gb\)",
     "SSDs": r"\bssd\b|solid state",
-    "PSUs": r"power supply|\bpsu\b(?![^,]{0,8}(mount|shroud|cover|bracket|support))|\b\d{3,4} ?w\b[^,]{0,40}\b80 ?(plus|\+)",
+    "PSUs": r"power supply|\bpsu\b(?![^,]{0,8}(mount|shroud|cover|bracket|support))|"
+            r"\b\d{3,4} ?w\b[^,]{0,40}\b(80 ?(plus|\+)|gold|platinum|bronze|titanium|modular|atx ?3)",
     "Monitors": r"\bmonitor\b(?! (webcam|light|lamp|arm|stand|mount|speakers?|riser))|"
                 r"\bdisplay\b(?=[^,]{0,30}\b\d{2,3} ?hz)|"
                 r"\b\d{2}(\.\d)?[ -]?(inch|in\b|\"|”)[^,]{0,80}?\b(1[0-9]{2}|[2-5]\d{2}) ?hz\b",
@@ -142,15 +143,15 @@ def audit(deals: list[dict[str, Any]]) -> list[tuple[str, str, str | None]]:
     for d in deals:
         if d.get("startsAt") or d.get("category") in (None, "Other"):
             continue
-        if d.get("source") == "brand-site":
-            continue  # sorted when found, using the brand store's own section as a hint
-        t = product_type(str(d.get("name") or ""), "", d.get("price"))
+        brand = d.get("source") == "brand-site"
+        # brand-site deals also use the brand store's own section as a hint
+        t = product_type(str(d.get("name") or ""), d.get("brandHint", "") if brand else "", d.get("price"))
         if t == d["category"]:
             continue
         if t:
             changes.append((d["name"], d["category"], t))
             d["category"] = t
-        elif d.get("autoSeeded"):
+        elif d.get("autoSeeded") or brand:
             changes.append((d["name"], d["category"], None))
             d["_misfit"] = True
     return changes

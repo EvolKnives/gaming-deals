@@ -15408,7 +15408,8 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-glorious-gmmk-3-pro-barebones-keyboard",
@@ -15432,7 +15433,8 @@
       "low30": 64.99,
       "high30": 64.99,
       "typical30": 64.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-satechi-duo-wireless-charger-power-stand",
@@ -15456,7 +15458,8 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-lofree-flow-key-caps-blind-box",
@@ -15480,7 +15483,8 @@
       "low30": 20.0,
       "high30": 20.0,
       "typical30": 20.0,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-keychron-keychron-q8-alice-layout-qmk-custom-mechanical-keyboard-iso-",
@@ -15504,7 +15508,8 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-keychron-keychron-q8-alice-layout-qmk-custom-mechanical-keyboard",
@@ -15528,7 +15533,8 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-keychron-keychron-q3-qmk-custom-mechanical-keyboard-iso-layout-collec",
@@ -15552,7 +15558,8 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-lofree-touch-key-caps-blind-box",
@@ -15576,7 +15583,8 @@
       "low30": 20.0,
       "high30": 20.0,
       "typical30": 20.0,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-jlab-midnight-wireless-gaming-headset-black",
@@ -15600,7 +15608,8 @@
       "low30": 51.99,
       "high30": 51.99,
       "typical30": 51.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-full-size-wired-gaming-keyboard-white",
@@ -15624,7 +15633,8 @@
       "low30": 19.99,
       "high30": 19.99,
       "typical30": 19.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-full-size-wired-gaming-keyboard-pink",
@@ -15648,7 +15658,8 @@
       "low30": 19.99,
       "high30": 19.99,
       "typical30": 19.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-wireless-gaming-mouse-white",
@@ -15672,7 +15683,8 @@
       "low30": 19.99,
       "high30": 19.99,
       "typical30": 19.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-wireless-gaming-mouse-pink",
@@ -15696,7 +15708,8 @@
       "low30": 19.99,
       "high30": 19.99,
       "typical30": 19.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-wireless-gaming-mouse-black",
@@ -15720,7 +15733,8 @@
       "low30": 19.99,
       "high30": 19.99,
       "typical30": 19.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-wired-gaming-headset-black",
@@ -15744,7 +15758,8 @@
       "low30": 21.49,
       "high30": 21.49,
       "typical30": 21.49,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-nightfall-wireless-gaming-headset-white",
@@ -15768,103 +15783,8 @@
       "low30": 32.49,
       "high30": 32.49,
       "typical30": 32.49,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-yeti-c922-combo-988-000432",
-      "name": "Logitech Yeti + C922 Pro Streamer Pack",
-      "category": "Microphones",
-      "price": 129.99,
-      "previousPrice": 229.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $129.99, regularly $229.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/yeti-c922-combo.988-000432",
-      "urlKind": "product",
-      "sku": "LOGITECH-YETI-C922-COMBO-988-000432",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/yeti-c922-bundle-pdp/gallery/yeti-c922-pro-streamer-pack-gallery-1.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 129.99,
-      "high30": 129.99,
-      "typical30": 129.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-audio-radar-943-001567",
-      "name": "Logitech AUDIO RADAR BY AIRDROP GAMING",
-      "category": "Webcams",
-      "price": 199.0,
-      "previousPrice": 349.0,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $199.00, regularly $349.00. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/audio-radar.943-001567",
-      "urlKind": "product",
-      "sku": "LOGITECH-AUDIO-RADAR-943-001567",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/audio-radar-pdp/gallery/audio-radar-gallery-6.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 199.0,
-      "high30": 199.0,
-      "typical30": 199.0,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-g502-hero-gaming-mouse-910-005469",
-      "name": "Logitech G502",
-      "category": "Mice",
-      "price": 39.99,
-      "previousPrice": 69.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $39.99, regularly $69.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/g502-hero-gaming-mouse.910-005469",
-      "urlKind": "product",
-      "sku": "LOGITECH-G502-HERO-GAMING-MOUSE-910-005469",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/non-braid/hyjal-g502-hero/2025/g502-hero-mouse-top-angle-gallery-1.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 39.99,
-      "high30": 39.99,
-      "typical30": 39.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-streamcam-960-001286",
-      "name": "Logitech StreamCam",
-      "category": "Webcams",
-      "price": 99.99,
-      "previousPrice": 169.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $99.99, regularly $169.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/streamcam.960-001286",
-      "urlKind": "product",
-      "sku": "LOGITECH-STREAMCAM-960-001286",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/logitech/en/products/webcams/streamcam/gallery/streamcam-gallery-1-graphite.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 99.99,
-      "high30": 99.99,
-      "typical30": 99.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-epomaker-epomaker-carbonis-mouse",
@@ -15888,7 +15808,8 @@
       "low30": 53.99,
       "high30": 53.99,
       "typical30": 53.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-glorious-model-o-3-wireless-mouse",
@@ -15912,7 +15833,8 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-fifine-fifine-sc3-gaming-audio-mixer-xlr-cable",
@@ -15936,31 +15858,8 @@
       "low30": 58.99,
       "high30": 58.99,
       "typical30": 58.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-g309-lightspeed-gaming-mouse-910-007205",
-      "name": "Logitech G309 LIGHTSPEED",
-      "category": "Mice",
-      "price": 59.99,
-      "previousPrice": 89.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $59.99, regularly $89.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/g309-lightspeed-gaming-mouse.910-007205",
-      "urlKind": "product",
-      "sku": "LOGITECH-G309-LIGHTSPEED-GAMING-MOUSE-910-007205",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/G309-Lightspeed-Gaming-Mouse/gallery/g309-lightspeed-wireless-mouse-white-gallery-1.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 59.99,
-      "high30": 59.99,
-      "typical30": 59.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "microphone"
     },
     {
       "id": "brand-fifine-fifine-am8-microphone-official",
@@ -15984,7 +15883,8 @@
       "low30": 57.99,
       "high30": 57.99,
       "typical30": 57.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "microphone"
     },
     {
       "id": "brand-jlab-go-lux-headphones-mauve-go-pop-plus-earbuds-mauve",
@@ -16008,7 +15908,8 @@
       "low30": 54.98,
       "high30": 54.98,
       "typical30": 54.98,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-logitech-g735-wireless-bluetooth-headset-981-001082",
@@ -16032,7 +15933,8 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "gaming headset"
     },
     {
       "id": "brand-jlab-mystery-go-pop-true-wireless-earbud-2-pack",
@@ -16056,12 +15958,13 @@
       "low30": 37.49,
       "high30": 37.49,
       "typical30": 37.49,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-satechi-magnetic-wireless-charging-cable",
       "name": "Satechi USB-C Magnetic Wireless Charging Cable",
-      "category": "Charging",
+      "category": "Cables",
       "price": 20.99,
       "previousPrice": 29.99,
       "lastPrice": null,
@@ -16080,55 +15983,8 @@
       "low30": 20.99,
       "high30": 20.99,
       "typical30": 20.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-satechi-usb-c-wireless-charging-dock-for-airpods",
-      "name": "Satechi USB-C Wireless Charging Dock for AirPods",
-      "category": "Charging",
-      "price": 20.99,
-      "previousPrice": 29.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Satechi's own site: $20.99, regularly $29.99. Confirm the cart total before buying.",
-      "merchant": "Satechi",
-      "url": "https://satechi.net/products/usb-c-wireless-charging-dock-for-airpods",
-      "urlKind": "product",
-      "sku": "SATECHI-USB-C-WIRELESS-CHARGING-DOCK-FOR-AIRPODS",
-      "image": "https://cdn.shopify.com/s/files/1/1520/4366/products/usb-c-wireless-charging-dock-for-apple-airpods-ships-in-may-usb-c-satechi-791914.jpg?v=1762440417",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 20.99,
-      "high30": 20.99,
-      "typical30": 20.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-jlab-jbuds-mini-color-bundle",
-      "name": "JLab JBuds Mini Color Bundle",
-      "category": "Earbuds",
-      "price": 139.99,
-      "previousPrice": 199.95,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on JLab's own site: $139.99, regularly $199.95. Confirm the cart total before buying.",
-      "merchant": "JLab",
-      "url": "https://www.jlab.com/products/jbuds-mini-color-bundle",
-      "urlKind": "product",
-      "sku": "JLAB-JBUDS-MINI-COLOR-BUNDLE",
-      "image": "https://cdn.shopify.com/s/files/1/0240/9337/files/Group.png?v=1762445970",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 139.99,
-      "high30": 139.99,
-      "typical30": 139.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-fifine-fifine-amplitank-tank6-microphone",
@@ -16152,79 +16008,8 @@
       "low30": 114.99,
       "high30": 114.99,
       "typical30": 114.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-satechi-vegan-leather-magnetic-case-for-ipad-pro",
-      "name": "Satechi Vegan-Leather Magnetic Case For iPad Pro",
-      "category": "Cases",
-      "price": 31.99,
-      "previousPrice": 44.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Satechi's own site: $31.99, regularly $44.99. Confirm the cart total before buying.",
-      "merchant": "Satechi",
-      "url": "https://satechi.net/products/vegan-leather-magnetic-case-for-ipad-pro",
-      "urlKind": "product",
-      "sku": "SATECHI-VEGAN-LEATHER-MAGNETIC-CASE-FOR-IPAD-PRO",
-      "image": "https://cdn.shopify.com/s/files/1/1520/4366/products/vegan-leather-magnetic-case-for-ipad-pro-case-satechi-11-253781.png?v=1762441457",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 31.99,
-      "high30": 31.99,
-      "typical30": 31.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-jlab-jbuds-lux-mauve-go-pop-plus-black",
-      "name": "JLab JBuds Lux ANC Headphones & Go Pop+ Black Gift Set",
-      "category": "Headphones",
-      "price": 79.98,
-      "previousPrice": 111.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on JLab's own site: $79.98, regularly $111.98. Confirm the cart total before buying.",
-      "merchant": "JLab",
-      "url": "https://www.jlab.com/products/jbuds-lux-mauve-go-pop-plus-black",
-      "urlKind": "product",
-      "sku": "JLAB-JBUDS-LUX-MAUVE-GO-POP-PLUS-BLACK",
-      "image": "https://cdn.shopify.com/s/files/1/0240/9337/files/adac1dc204764658be2a49d00cfea442_17dd5b38-2ea9-4e37-95c4-4c9b8d2e13a2.jpg?v=1778715258",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 79.98,
-      "high30": 79.98,
-      "typical30": 79.98,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-jlab-jbuds-lux-mauve-go-pop-plus-mauve",
-      "name": "JLab JBuds Lux ANC Headphones & Go Pop+ Mauve Gift Set",
-      "category": "Headphones",
-      "price": 79.98,
-      "previousPrice": 111.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on JLab's own site: $79.98, regularly $111.98. Confirm the cart total before buying.",
-      "merchant": "JLab",
-      "url": "https://www.jlab.com/products/jbuds-lux-mauve-go-pop-plus-mauve",
-      "urlKind": "product",
-      "sku": "JLAB-JBUDS-LUX-MAUVE-GO-POP-PLUS-MAUVE",
-      "image": "https://cdn.shopify.com/s/files/1/0240/9337/files/PopPlusandLuxMauve.jpg?v=1762447014",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 79.98,
-      "high30": 79.98,
-      "typical30": 79.98,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "microphone"
     },
     {
       "id": "brand-jlab-epic-party-portable-bluetooth-speaker-black-2-pack",
@@ -16248,79 +16033,8 @@
       "low30": 271.98,
       "high30": 271.98,
       "typical30": 271.98,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-jlab-jbuds-lux-anc-headphones-jbuds-mini-sage-bundle",
-      "name": "JLab JBuds Lux ANC Headphones & JBuds Mini Sage Bundle",
-      "category": "Headphones",
-      "price": 89.98,
-      "previousPrice": 124.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on JLab's own site: $89.98, regularly $124.98. Confirm the cart total before buying.",
-      "merchant": "JLab",
-      "url": "https://www.jlab.com/products/jbuds-lux-anc-headphones-jbuds-mini-sage-bundle",
-      "urlKind": "product",
-      "sku": "JLAB-JBUDS-LUX-ANC-HEADPHONES-JBUDS-MINI-SAGE-BUNDLE",
-      "image": "https://cdn.shopify.com/s/files/1/0240/9337/files/luxminisagebundle.jpg?v=1783015615",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 89.98,
-      "high30": 89.98,
-      "typical30": 89.98,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-fifine-fifine-ampligame-am8prot-xlr-usb-microphone-sc8-audio-mixer-",
-      "name": "FIFINE Streaming & Podcast Bundle: AM8PROT XLR/USB Microphone + SC8 Audio Mixer",
-      "category": "Microphones",
-      "price": 127.48,
-      "previousPrice": 174.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Fifine's own site: $127.48, regularly $174.98. Confirm the cart total before buying.",
-      "merchant": "Fifine",
-      "url": "https://fifinemicrophone.com/products/fifine-ampligame-am8prot-xlr-usb-microphone-sc8-audio-mixer-bundle",
-      "urlKind": "product",
-      "sku": "FIFINE-FIFINE-AMPLIGAME-AM8PROT-XLR-USB-MICROPHONE-SC8-AUDIO-MIXER-",
-      "image": "https://cdn.shopify.com/s/files/1/0064/7557/9457/files/FIFINE-AM8PROT-microphone-SC8-mixer-bundle-black_68560cac-b46e-4464-807d-6587593c2ba9.png?v=1768892381",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 127.48,
-      "high30": 127.48,
-      "typical30": 127.48,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-fifine-fifine-ampligame-streaming-bundle-am8prot-microphone-xlr-cab",
-      "name": "FIFINE Streaming Bundle: AM8PROT Microphone Kit + XLR Cable",
-      "category": "Cables",
-      "price": 88.38,
-      "previousPrice": 118.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Fifine's own site: $88.38, regularly $118.98. Confirm the cart total before buying.",
-      "merchant": "Fifine",
-      "url": "https://fifinemicrophone.com/products/fifine-ampligame-streaming-bundle-am8prot-microphone-xlr-cable",
-      "urlKind": "product",
-      "sku": "FIFINE-FIFINE-AMPLIGAME-STREAMING-BUNDLE-AM8PROT-MICROPHONE-XLR-CAB",
-      "image": "https://cdn.shopify.com/s/files/1/0064/7557/9457/files/FIFINE-AM8PROT-microphone-L9-xlr-cable-black-bundle.png?v=1773308023",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 88.38,
-      "high30": 88.38,
-      "typical30": 88.38,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-glorious-model-o-eternal",
@@ -16344,151 +16058,8 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-ue-150-in-ear-monitors-985-001212",
-      "name": "Logitech UE 150",
-      "category": "Gaming Headsets",
-      "price": 149.25,
-      "previousPrice": 199.0,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $149.25, regularly $199.00. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/ue-150-in-ear-monitors.985-001212",
-      "urlKind": "product",
-      "sku": "LOGITECH-UE-150-IN-EAR-MONITORS-985-001212",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/ue/en/products/in-ear-monitors/ue-150-in-ear-monitors/gallery/ue-150-in-ear-monitors-product-gallery-1.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 149.25,
-      "high30": 149.25,
-      "typical30": 149.25,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-ue-250-in-ear-monitors-985-001213",
-      "name": "Logitech UE 250",
-      "category": "Gaming Headsets",
-      "price": 224.25,
-      "previousPrice": 299.0,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $224.25, regularly $299.00. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/ue-250-in-ear-monitors.985-001213",
-      "urlKind": "product",
-      "sku": "LOGITECH-UE-250-IN-EAR-MONITORS-985-001213",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/ue/en/products/in-ear-monitors/ue-250-in-ear-monitors/gallery/ue-250-in-ear-monitors-product-gallery-1-update.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 224.25,
-      "high30": 224.25,
-      "typical30": 224.25,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-fifine-fifine-ampligame-streaming-bundle-am8-microphone-sc3-audio-m",
-      "name": "FIFINE Streaming Bundle: AM8 Dynamic Microphone + SC3 Audio Mixer + XLR Cable",
-      "category": "Cables",
-      "price": 100.99,
-      "previousPrice": 133.97,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Fifine's own site: $100.99, regularly $133.97. Confirm the cart total before buying.",
-      "merchant": "Fifine",
-      "url": "https://fifinemicrophone.com/products/fifine-ampligame-streaming-bundle-am8-microphone-sc3-audio-mixer-xlr-cable",
-      "urlKind": "product",
-      "sku": "FIFINE-FIFINE-AMPLIGAME-STREAMING-BUNDLE-AM8-MICROPHONE-SC3-AUDIO-M",
-      "image": "https://cdn.shopify.com/s/files/1/0064/7557/9457/files/FIFINE-KS5-microphone.png?v=1777458013",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 100.99,
-      "high30": 100.99,
-      "typical30": 100.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-fifine-fifine-streaming-gaming-bundle-am8prot-microphone-sc8-audio-",
-      "name": "FIFINE Streaming & Gaming Ultimate Bundle Kit: AM8PROT Microphone Kit + SC8 Audio Mixer + H13 Headset",
-      "category": "Phones",
-      "price": 174.22,
-      "previousPrice": 229.97,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Fifine's own site: $174.22, regularly $229.97. Confirm the cart total before buying.",
-      "merchant": "Fifine",
-      "url": "https://fifinemicrophone.com/products/fifine-streaming-gaming-bundle-am8prot-microphone-sc8-audio-mixer-h13-headset",
-      "urlKind": "product",
-      "sku": "FIFINE-FIFINE-STREAMING-GAMING-BUNDLE-AM8PROT-MICROPHONE-SC8-AUDIO-",
-      "image": "https://cdn.shopify.com/s/files/1/0064/7557/9457/files/FIFINE-AM8PROT-microphone-SC8-mixer-H13-headset-bundle-black-01.png?v=1768888524",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 174.22,
-      "high30": 174.22,
-      "typical30": 174.22,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-fifine-fifine-ampligame-bundle-am8prot-usb-xlr-microphone-h13-gamin",
-      "name": "FIFINE Streaming Bundle: AM8PROT USB/XLR Microphone + H13 Gaming Headset",
-      "category": "Gaming Headsets",
-      "price": 114.73,
-      "previousPrice": 149.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Fifine's own site: $114.73, regularly $149.98. Confirm the cart total before buying.",
-      "merchant": "Fifine",
-      "url": "https://fifinemicrophone.com/products/fifine-ampligame-bundle-am8prot-usb-xlr-microphone-h13-gaming-headset",
-      "urlKind": "product",
-      "sku": "FIFINE-FIFINE-AMPLIGAME-BUNDLE-AM8PROT-USB-XLR-MICROPHONE-H13-GAMIN",
-      "image": "https://cdn.shopify.com/s/files/1/0064/7557/9457/files/FIFINE-AM8PROT-microphone-H13-headset-black-bundle.png?v=1773308068",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 114.73,
-      "high30": 114.73,
-      "typical30": 114.73,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-boom-4-984-002004",
-      "name": "Logitech BOOM 4",
-      "category": "Computer Speakers",
-      "price": 114.99,
-      "previousPrice": 149.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $114.99, regularly $149.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/boom-4.984-002004",
-      "urlKind": "product",
-      "sku": "LOGITECH-BOOM-4-984-002004",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/ue/en/products/wireless-speakers/boom-4/gallery/boom4-gallery-raspberry-front.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 114.99,
-      "high30": 114.99,
-      "typical30": 114.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-glorious-ghs-eternal-rgb-audio-headset",
@@ -16512,7 +16083,8 @@
       "low30": 69.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-keychron-keychron-m2-wireless-mouse",
@@ -16536,7 +16108,8 @@
       "low30": 54.99,
       "high30": 54.99,
       "typical30": 54.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "keyboard"
     },
     {
       "id": "brand-logitech-yeti-premium-usb-microphone-988-000100",
@@ -16560,31 +16133,8 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-yeti-studio-988-000564",
-      "name": "Logitech YETI STUDIO",
-      "category": "Phones",
-      "price": 299.99,
-      "previousPrice": 379.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $299.99, regularly $379.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/yeti-studio.988-000564",
-      "urlKind": "product",
-      "sku": "LOGITECH-YETI-STUDIO-988-000564",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/streaming-gear/yeti-studio/product-gallery/yeti-studio-microphone-white-gallery-1.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 299.99,
-      "high30": 299.99,
-      "typical30": 299.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "microphone"
     },
     {
       "id": "brand-jlab-pop-party-ultra-portable-bluetooth-speaker-navy-2-pack",
@@ -16608,7 +16158,8 @@
       "low30": 39.98,
       "high30": 39.98,
       "typical30": 39.98,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-jlab-pop-party-ultra-portable-bluetooth-speaker-mulberry-2-pack",
@@ -16632,31 +16183,8 @@
       "low30": 39.98,
       "high30": 39.98,
       "typical30": 39.98,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-jlab-epic-lux-lab-anc-jbuds-lux-anc-headphones-gift-set",
-      "name": "JLab Epic Lux Lab ANC & JBuds Lux ANC Headphones Gift Set",
-      "category": "Phones",
-      "price": 235.98,
-      "previousPrice": 294.98,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on JLab's own site: $235.98, regularly $294.98. Confirm the cart total before buying.",
-      "merchant": "JLab",
-      "url": "https://www.jlab.com/products/epic-lux-lab-anc-jbuds-lux-anc-headphones-gift-set",
-      "urlKind": "product",
-      "sku": "JLAB-EPIC-LUX-LAB-ANC-JBUDS-LUX-ANC-HEADPHONES-GIFT-SET",
-      "image": "https://cdn.shopify.com/s/files/1/0240/9337/files/ShopifyBundles_7.jpg?v=1781148462",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 235.98,
-      "high30": 235.98,
-      "typical30": 235.98,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": ""
     },
     {
       "id": "brand-razer-razer-blackshark-v3-pro",
@@ -16680,55 +16208,8 @@
       "low30": 209.99,
       "high30": 209.99,
       "typical30": 209.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-wonderboom-4-984-001876",
-      "name": "Logitech WONDERBOOM 4",
-      "category": "Computer Speakers",
-      "price": 64.99,
-      "previousPrice": 79.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $64.99, regularly $79.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/wonderboom-4.984-001876",
-      "urlKind": "product",
-      "sku": "LOGITECH-WONDERBOOM-4-984-001876",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/ue/en/products/wireless-speakers/wonderboom-4/gallery/wonderboom4-gallery-black-front.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 64.99,
-      "high30": 64.99,
-      "typical30": 64.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-miniroll-984-002020",
-      "name": "Logitech MINIROLL",
-      "category": "Computer Speakers",
-      "price": 49.99,
-      "previousPrice": 59.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $49.99, regularly $59.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/miniroll.984-002020",
-      "urlKind": "product",
-      "sku": "LOGITECH-MINIROLL-984-002020",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/ue/en/products/wireless-speakers/miniroll/gallery/miniroll-gallery-blue-front-new.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 49.99,
-      "high30": 49.99,
-      "typical30": 49.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "gaming headset"
     },
     {
       "id": "brand-logitech-yeti-nano-usb-microphone-988-000088",
@@ -16752,31 +16233,8 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 1
-    },
-    {
-      "id": "brand-logitech-litra-beam-lx-led-light-946-000013",
-      "name": "Logitech Litra Beam LX",
-      "category": "Webcams",
-      "price": 139.99,
-      "previousPrice": 159.99,
-      "lastPrice": null,
-      "priceDropped": false,
-      "currency": "USD",
-      "why": "On sale on Logitech's own site: $139.99, regularly $159.99. Confirm the cart total before buying.",
-      "merchant": "Logitech",
-      "url": "https://www.logitechg.com/en-us/shop/p/litra-beam-lx-led-light.946-000013",
-      "urlKind": "product",
-      "sku": "LOGITECH-LITRA-BEAM-LX-LED-LIGHT-946-000013",
-      "image": "https://resource.logitechg.com/c_fill,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/plp-cameras-lighting/pdp-litra-beam-lx-led-light/litra-beam-gallery-5.png",
-      "imageSource": "brand-site",
-      "verifiedAt": "2026-11-12T08:01:00Z",
-      "updatedAt": "2026-11-12T08:01:00Z",
-      "source": "brand-site",
-      "low30": 139.99,
-      "high30": 139.99,
-      "typical30": 139.99,
-      "historyDays": 1
+      "historyDays": 1,
+      "brandHint": "microphone"
     }
   ]
 }

@@ -57,7 +57,13 @@ RAZER_PRICE = re.compile(
     re.S)
 
 
+# several products sold together: hard to file under one tab, so skipped
+MULTI = re.compile(r"\bbundle\b|gift set|\bcombo\b|\bkit\b[^,]{0,40}\+|\s\+\s[^,]{0,40}\+", re.I)
+
+
 def _sort_into_tab(classify: Callable, name: str, hint: str, price: float) -> str | None:
+    if MULTI.search(name):
+        return None
     cat = classify(name, hint, price)
     if cat and cat not in ACCESSORY_TABS and ACCESSORY.search(name):
         return None
@@ -86,7 +92,7 @@ def _slug(text: str) -> str:
 
 
 def _deal(brand: str, key: str, name: str, price: float, was: float, url: str,
-          image: str | None, category: str, stamp: str) -> dict[str, Any]:
+          image: str | None, category: str, stamp: str, hint: str = "") -> dict[str, Any]:
     return {
         "id": f"brand-{_slug(brand)}-{_slug(key)}",
         "name": name, "category": category, "price": price, "previousPrice": was,
@@ -97,6 +103,7 @@ def _deal(brand: str, key: str, name: str, price: float, was: float, url: str,
         "sku": f"{_slug(brand).upper()}-{_slug(key).upper()}",
         "image": image, "imageSource": "brand-site",
         "verifiedAt": stamp, "updatedAt": stamp, "source": "brand-site",
+        "brandHint": hint.strip(),  # the brand store's own section, used to re-check the tab
     }
 
 
@@ -137,7 +144,8 @@ def shopify(store: dict[str, Any], s: requests.Session, classify: Callable, stam
             if not cat:
                 continue
             out.append(_deal(store["brand"], str(p.get("handle") or p.get("id")), name, price, was,
-                             f"{base}/products/{p.get('handle')}", p["images"][0].get("src"), cat, stamp))
+                             f"{base}/products/{p.get('handle')}", p["images"][0].get("src"), cat, stamp,
+                             f"{ptype} {store.get('hint', '')}"))
         if len(products) < 250:
             break
     return out
@@ -203,7 +211,7 @@ def logitech(store: dict[str, Any], s: requests.Session, classify: Callable, sta
             if not img:
                 continue
             out.append(_deal(store["brand"], href.rsplit("/", 1)[-1], full, price, was,
-                             base + href, img, cat, stamp))
+                             base + href, img, cat, stamp, hint))
     return out
 
 
@@ -259,7 +267,7 @@ def razer(store: dict[str, Any], s: requests.Session, classify: Callable, stamp:
         cat = _sort_into_tab(classify, name, hint, price) if name else None
         if cat and img:
             prev[url] = _deal(store["brand"], url.rstrip("/").rsplit("/", 1)[-1], name, price, was,
-                              url, img, cat, stamp)
+                              url, img, cat, stamp, hint)
     state["razerSales"] = list(prev.values())
     log["checked"] = len(batch)
     return state["razerSales"]
@@ -275,7 +283,14 @@ def refresh(classify: Callable[[str, str, float], str | None], now: datetime) ->
         state = {}
     fetched = state.get("fetchedAt")
     if fetched and datetime.fromisoformat(fetched.replace("Z", "+00:00")) > now - timedelta(hours=FETCH_EVERY_HOURS):
-        return state.get("deals") or []
+        # cached sales are re-sorted every run, so rule fixes apply right away
+        out = []
+        for d in state.get("deals") or []:
+            cat = _sort_into_tab(classify, d.get("name", ""), d.get("brandHint", ""), float(d.get("price") or 0))
+            if cat:
+                d["category"] = cat
+                out.append(d)
+        return out
     stores = json.loads(STORES_PATH.read_text(encoding="utf-8"))["stores"]
     s = requests.Session()
     s.headers.update({"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"})
