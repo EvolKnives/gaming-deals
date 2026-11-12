@@ -848,8 +848,6 @@ def main() -> int:
     img = check_images.audit(deals, now)
     img.update(check_images.fill_missing(
         deals, lambda d: None if throttled() else find_photo(api, d), now))
-    import cutouts  # noqa: E402
-    img.update(cutouts.update(deals))
     print(f"Images: {img}")
     last_refresh.update({k: v for k, v in img.items() if not isinstance(v, list)})
     data["deals"] = deals

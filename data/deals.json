@@ -51,8 +51,7 @@
       "low30": 1034.99,
       "high30": 1034.99,
       "typical30": 1034.99,
-      "historyDays": 1,
-      "cutout": "images/cut/756500d9d5b33b4a.webp"
+      "historyDays": 1
     },
     {
       "id": "gigabyte-low-profile-geforce-rtx-5060-8gb-gddr7-932801",
@@ -79,8 +78,7 @@
       "low30": 509.99,
       "high30": 509.99,
       "typical30": 509.99,
-      "historyDays": 1,
-      "cutout": "images/cut/00f428abb9fc8057.webp"
+      "historyDays": 1
     },
     {
       "id": "gigabyte-gaming-geforce-rtx-5060-ti-8gb-gddr7-pc-932793",
@@ -107,8 +105,7 @@
       "low30": 569.99,
       "high30": 569.99,
       "typical30": 569.99,
-      "historyDays": 1,
-      "cutout": "images/cut/214594c0700b3ea8.webp"
+      "historyDays": 1
     },
     {
       "id": "gigabyte-eagle-geforce-rtx-5060-ti-8gb-gddr7-pci-932812",
@@ -216,8 +213,7 @@
       "low30": 919.99,
       "high30": 919.99,
       "typical30": 919.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8491776d36cc8dcc.webp"
+      "historyDays": 1
     },
     {
       "id": "asrock-steel-legend-radeon-rx-9070-xt-16gb-gddr6-930136",
@@ -244,8 +240,7 @@
       "low30": 969.99,
       "high30": 969.99,
       "typical30": 969.99,
-      "historyDays": 1,
-      "cutout": "images/cut/1f522311f92a6fee.webp"
+      "historyDays": 1
     },
     {
       "id": "asus-tuf-gaming-geforce-rtx-5060-ti-8gb-128-bit-126792",
@@ -299,8 +294,7 @@
       "low30": 539.99,
       "high30": 539.99,
       "typical30": 539.99,
-      "historyDays": 1,
-      "cutout": "images/cut/db602d77da8ae340.webp"
+      "historyDays": 1
     },
     {
       "id": "asus-prime-radeon-rx-9070-xt-16gb-256-bit-gddr6-126746",
@@ -354,8 +348,7 @@
       "low30": 749.99,
       "high30": 749.99,
       "typical30": 749.99,
-      "historyDays": 1,
-      "cutout": "images/cut/87e6223fbad3aaa8.webp"
+      "historyDays": 1
     },
     {
       "id": "sapphire-pulse-radeon-rx-9060-xt-16gb-gddr6-pci-202457",
@@ -382,8 +375,7 @@
       "low30": 749.99,
       "high30": 749.99,
       "typical30": 749.99,
-      "historyDays": 1,
-      "cutout": "images/cut/d6f7bb696a499ff4.webp"
+      "historyDays": 1
     },
     {
       "id": "asrock-challenger-radeon-rx-9070-xt-16gb-gddr6-p-930145",
@@ -433,7 +425,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/0f95c4440fd545a0.webp",
       "low30": 1469.99,
       "high30": 1469.99,
       "typical30": 1469.99,
@@ -460,7 +451,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T02:32:12Z",
       "updatedAt": "2026-11-12T02:32:12Z",
-      "cutout": "images/cut/5810ca9214fc6424.webp",
       "low30": 939.99,
       "high30": 939.99,
       "typical30": 939.99,
@@ -487,7 +477,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/5ff3d4914f13119b.webp",
       "low30": 949.99,
       "high30": 949.99,
       "typical30": 949.99,
@@ -514,7 +503,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/1a11ef875dce14c4.webp",
       "low30": 1059.99,
       "high30": 1059.99,
       "typical30": 1059.99,
@@ -541,7 +529,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/111a6fabd570a799.webp",
       "low30": 1019.99,
       "high30": 1019.99,
       "typical30": 1019.99,
@@ -568,7 +555,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/1588510a49c6da5d.webp",
       "low30": 2199.99,
       "high30": 2199.99,
       "typical30": 2199.99,
@@ -626,8 +612,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 1,
-      "cutout": "images/cut/b1a6611e6c71d935.webp"
+      "historyDays": 1
     },
     {
       "id": "acer-nitro-24-inch-24-1-viewable-full-hd-1080p-6-011528",
@@ -681,8 +666,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 1,
-      "cutout": "images/cut/3265f53731bb0303.webp"
+      "historyDays": 1
     },
     {
       "id": "acer-nitro-27-inch-qhd-2k-1440p-170hz-with-amd-f-011453",
@@ -922,8 +906,7 @@
       "low30": 399.99,
       "high30": 399.99,
       "typical30": 399.99,
-      "historyDays": 1,
-      "cutout": "images/cut/62aa78ffc75d27f3.webp"
+      "historyDays": 1
     },
     {
       "id": "lg-ultragear-evo-ai-27-inch-dual-mode-5k-165hz-q-026527",
@@ -1159,8 +1142,7 @@
       "low30": 99.9,
       "high30": 99.9,
       "typical30": 99.9,
-      "historyDays": 1,
-      "cutout": "images/cut/f97af7e1c9e1483f.webp"
+      "historyDays": 1
     },
     {
       "id": "asrock-pro-series-pro-750g-750-w-atx-3-1-compati-955023",
@@ -1210,7 +1192,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/6654c10645bf2fbf.webp",
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
@@ -1268,8 +1249,7 @@
       "low30": 89.9,
       "high30": 89.9,
       "typical30": 89.9,
-      "historyDays": 1,
-      "cutout": "images/cut/69395d8dae1ca1ef.webp"
+      "historyDays": 1
     },
     {
       "id": "thermaltake-gf1-2024-fully-modular-atx-850w-powe-153460",
@@ -1296,8 +1276,7 @@
       "low30": 76.99,
       "high30": 76.99,
       "typical30": 76.99,
-      "historyDays": 1,
-      "cutout": "images/cut/a69fa151d6fff3c2.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-rm750e-fully-modular-low-noise-atx-power-139340",
@@ -1351,8 +1330,7 @@
       "low30": 109.9,
       "high30": 109.9,
       "typical30": 109.9,
-      "historyDays": 1,
-      "cutout": "images/cut/3d45aac9b9483c5f.webp"
+      "historyDays": 1
     },
     {
       "id": "asrock-challenger-cl-650g-650w-80-plus-gold-cert-955016",
@@ -1406,8 +1384,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 1,
-      "cutout": "images/cut/26cea49fed941c25.webp"
+      "historyDays": 1
     },
     {
       "id": "rosewill-cmg5-1000w-atx-3-0-3-1-compatible-80-go-182453",
@@ -1434,8 +1411,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 1,
-      "cutout": "images/cut/1ca5969fd55a5767.webp"
+      "historyDays": 1
     },
     {
       "id": "be-quiet-pure-power-13-m-1000w-atx-3-1-power-sup-222042",
@@ -1462,8 +1438,7 @@
       "low30": 139.9,
       "high30": 139.9,
       "typical30": 139.9,
-      "historyDays": 1,
-      "cutout": "images/cut/a9404f64cd16d72f.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-rme-series-rm850e-850-w-atx-3-1-compatib-139336",
@@ -1517,8 +1492,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 1,
-      "cutout": "images/cut/d9dce5bc2f0d5f0c.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-rme-series-rm1000e-1000-w-atx-3-1-compat-139337",
@@ -1568,7 +1542,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/f2d55f25401bace5.webp",
       "low30": 169.99,
       "high30": 169.99,
       "typical30": 169.99,
@@ -1622,7 +1595,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/4fa2f164818895ed.webp",
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
@@ -1649,7 +1621,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/a21d1f1cf3e784bc.webp",
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
@@ -1673,7 +1644,6 @@
       "why": "Sold by Denon at $1,399.00 (MSRP $1,799.00). Official sale on a 9.4-ch 8K Atmos receiver with HEOS streaming.",
       "verifiedAt": "2026-11-12T08:10:26Z",
       "updatedAt": "2026-11-12T08:10:26Z",
-      "cutout": "images/cut/8f4ed936fe4d6331.webp",
       "low30": 1399.0,
       "high30": 1399.0,
       "typical30": 1399.0,
@@ -1724,7 +1694,6 @@
       "why": "Sold by Denon at $999.00 (MSRP $1,299.00). Official sale on a 7.2-ch 8K Atmos receiver for medium rooms.",
       "verifiedAt": "2026-11-12T08:10:26Z",
       "updatedAt": "2026-11-12T08:10:26Z",
-      "cutout": "images/cut/f074f093b4491c72.webp",
       "low30": 1299.0,
       "high30": 1299.0,
       "typical30": 1299.0,
@@ -1857,8 +1826,7 @@
       "low30": 327.99,
       "high30": 327.99,
       "typical30": 327.99,
-      "historyDays": 1,
-      "cutout": "images/cut/a54c6349f83cb772.webp"
+      "historyDays": 1
     },
     {
       "id": "yamaha-r-s202bl-natural-sound-2-ch-hifi-stereo-r--00293",
@@ -2025,7 +1993,6 @@
       "why": "Sold by Denon at $1,699.00 (MSRP $1,846.00). Official bundle cut on a wireless Dolby Atmos 5.1 Denon Home system.",
       "verifiedAt": "2026-11-12T08:10:26Z",
       "updatedAt": "2026-11-12T08:10:26Z",
-      "cutout": "images/cut/f40e606e4e666271.webp",
       "low30": 1699.0,
       "high30": 1699.0,
       "typical30": 1699.0,
@@ -2773,8 +2740,7 @@
       "low30": 37.99,
       "high30": 37.99,
       "typical30": 37.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8b2cda001ff675ca.webp"
+      "historyDays": 1
     },
     {
       "id": "edifier-bookshelf-speakers-66w-rms-desktop-speak--001f7",
@@ -2996,8 +2962,7 @@
       "low30": 399.99,
       "high30": 399.99,
       "typical30": 399.99,
-      "historyDays": 1,
-      "cutout": "images/cut/48c5ba31aef83a98.webp"
+      "historyDays": 1
     },
     {
       "id": "edifier-s351db-bluetooth-multi-media-bookshelf-s--00118",
@@ -3021,8 +2986,7 @@
       "low30": 549.99,
       "high30": 549.99,
       "typical30": 549.99,
-      "historyDays": 1,
-      "cutout": "images/cut/53923d987d1924d3.webp"
+      "historyDays": 1
     },
     {
       "id": "edifier-qr65-active-monitor-speakers-with-65w-ga--001c8",
@@ -3124,8 +3088,7 @@
       "low30": 73.99,
       "high30": 73.99,
       "typical30": 73.99,
-      "historyDays": 1,
-      "cutout": "images/cut/621bbb4d585c827f.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-diy-s05-bk-black-usb3-0-steel-atx-mid-towe-353265",
@@ -3148,7 +3111,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/3c2546aa0a19ad29.webp",
       "low30": 34.98,
       "high30": 34.98,
       "typical30": 34.98,
@@ -3179,8 +3141,7 @@
       "low30": 64.98,
       "high30": 64.98,
       "typical30": 64.98,
-      "historyDays": 1,
-      "cutout": "images/cut/23db198fd6950b83.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-diy-g18-wd-black-usb3-0-type-c-atx-mid-tow-353276",
@@ -3207,8 +3168,7 @@
       "low30": 53.97,
       "high30": 53.97,
       "typical30": 53.97,
-      "historyDays": 1,
-      "cutout": "images/cut/781bed0ad6908baa.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-argb-n5-bk-black-usb3-0-type-c-atx-mid-tow-353257",
@@ -3231,7 +3191,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/215d11317dea8772.webp",
       "low30": 59.97,
       "high30": 59.97,
       "typical30": 59.97,
@@ -3262,8 +3221,7 @@
       "low30": 35.98,
       "high30": 35.98,
       "typical30": 35.98,
-      "historyDays": 1,
-      "cutout": "images/cut/b778b135dcc1a355.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-diy-cube03-bk-black-dual-usb3-0-tempered-g-353286",
@@ -3290,8 +3248,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 1,
-      "cutout": "images/cut/e660e0383eef86e4.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-diy-v2-microatx-black-usb3-0-type-c-temper-353297",
@@ -3318,8 +3275,7 @@
       "low30": 37.98,
       "high30": 37.98,
       "typical30": 37.98,
-      "historyDays": 1,
-      "cutout": "images/cut/e575baddbb2eafab.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-idx6-atx-argb-black-dual-usb3-0-type-c-tem-353300",
@@ -3346,8 +3302,7 @@
       "low30": 58.94,
       "high30": 58.94,
       "typical30": 58.94,
-      "historyDays": 1,
-      "cutout": "images/cut/64939076d6053e82.webp"
+      "historyDays": 1
     },
     {
       "id": "diypc-diy-matx06-wood-black-usb3-0-type-c-micro-353273",
@@ -3374,8 +3329,7 @@
       "low30": 66.98,
       "high30": 66.98,
       "typical30": 66.98,
-      "historyDays": 1,
-      "cutout": "images/cut/39019e6e83c17097.webp"
+      "historyDays": 1
     },
     {
       "id": "antec-nx200m-micro-atx-tower-mini-tower-computer--001d4",
@@ -3425,7 +3379,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/5eaf26c9914ceb3c.webp",
       "low30": 209.37,
       "high30": 209.37,
       "typical30": 209.37,
@@ -3452,7 +3405,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/6853f834cfdad191.webp",
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
@@ -3557,7 +3509,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/8b437695558b02f0.webp",
       "low30": 119.0,
       "high30": 119.0,
       "typical30": 119.0,
@@ -3610,7 +3561,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/83f7f76ba12d8f32.webp",
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
@@ -3641,8 +3591,7 @@
       "low30": 279.99,
       "high30": 279.99,
       "typical30": 279.99,
-      "historyDays": 1,
-      "cutout": "images/cut/cbc03eb156c620cd.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-vengeance-rgb-32gb-2-x-16gb-288-pin-pc-r-982337",
@@ -3665,7 +3614,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/539009ffd3bb0a03.webp",
       "low30": 509.99,
       "high30": 509.99,
       "typical30": 509.99,
@@ -3693,8 +3641,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 1,
-      "cutout": "images/cut/eaed66558a01c46a.webp"
+      "historyDays": 1
     },
     {
       "id": "patriot-viper-steel-16gb-288-pin-pc-ram-ddr4-320-225169",
@@ -3721,8 +3668,7 @@
       "low30": 117.99,
       "high30": 117.99,
       "typical30": 117.99,
-      "historyDays": 1,
-      "cutout": "images/cut/1e8e5d22549348d7.webp"
+      "historyDays": 1
     },
     {
       "id": "pny-16gb-1-x-16gb-288-pin-pc-ram-ddr4-3200-pc4-2-177135",
@@ -3749,8 +3695,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 1,
-      "cutout": "images/cut/77f9686bd3136c29.webp"
+      "historyDays": 1
     },
     {
       "id": "team-t-force-delta-rgb-16gb-2-x-8gb-288-pin-pc-r-331859",
@@ -3777,8 +3722,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 1,
-      "cutout": "images/cut/3e49accb318f481a.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-vengeance-lpx-32gb-2-x-16gb-288-pin-pc-r-236541",
@@ -3805,8 +3749,7 @@
       "low30": 269.99,
       "high30": 269.99,
       "typical30": 269.99,
-      "historyDays": 1,
-      "cutout": "images/cut/60e0027d71cf3477.webp"
+      "historyDays": 1
     },
     {
       "id": "v-color-manta-xsky-ddr5-32gb-2x16gb-6000mhz-cl26--000u1",
@@ -3860,8 +3803,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 1,
-      "cutout": "images/cut/7e729fbec5c6ba2f.webp"
+      "historyDays": 1
     },
     {
       "id": "g-skill-ripjaws-v-series-16gb-2-x-8gb-288-pin-pc-231941",
@@ -3888,8 +3830,7 @@
       "low30": 134.99,
       "high30": 134.99,
       "typical30": 134.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8b1a4445b96f37e3.webp"
+      "historyDays": 1
     },
     {
       "id": "g-skill-8gb-ddr4-3200-pc4-25600-desktop-memory-m-374299",
@@ -3913,8 +3854,7 @@
       "low30": 65.99,
       "high30": 65.99,
       "typical30": 65.99,
-      "historyDays": 1,
-      "cutout": "images/cut/2691543ee41eff5f.webp"
+      "historyDays": 1
     },
     {
       "id": "g-skill-tridentz-rgb-series-16gb-2-x-8gb-288-pin-232476",
@@ -3941,8 +3881,7 @@
       "low30": 142.99,
       "high30": 142.99,
       "typical30": 142.99,
-      "historyDays": 1,
-      "cutout": "images/cut/2d64b6c81b4a6a94.webp"
+      "historyDays": 1
     },
     {
       "id": "g-skill-flare-x5-32gb-2-x-16gb-288-pin-pc-ram-dd-374783",
@@ -3992,7 +3931,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/bd0329d6bec9166f.webp",
       "low30": 599.99,
       "high30": 599.99,
       "typical30": 599.99,
@@ -4077,8 +4015,7 @@
       "low30": 1029.99,
       "high30": 1029.99,
       "typical30": 1029.99,
-      "historyDays": 1,
-      "cutout": "images/cut/90e2e4d8cd1c0f8a.webp"
+      "historyDays": 1
     },
     {
       "id": "v-color-manta-xfinity-rgb-ddr5-32gb-16gbx2-6000m--000w3",
@@ -4181,7 +4118,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/c7c3311d0557b561.webp",
       "low30": 389.99,
       "high30": 389.99,
       "typical30": 389.99,
@@ -4212,8 +4148,7 @@
       "low30": 294.99,
       "high30": 294.99,
       "typical30": 294.99,
-      "historyDays": 1,
-      "cutout": "images/cut/65f4ffe28202338f.webp"
+      "historyDays": 1
     },
     {
       "id": "samsung-ssd-9100-pro-1tb-pcie-5-0x4-m-2-2280-seq-147902",
@@ -4236,7 +4171,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/b04fa0e3b908d38c.webp",
       "low30": 249.99,
       "high30": 249.99,
       "typical30": 249.99,
@@ -4267,8 +4201,7 @@
       "low30": 259.99,
       "high30": 259.99,
       "typical30": 259.99,
-      "historyDays": 1,
-      "cutout": "images/cut/eaabed3371ff488b.webp"
+      "historyDays": 1
     },
     {
       "id": "kingston-nv3-m-2-2280-1tb-pcie-4-0-x4-nvme-inter-242902",
@@ -4295,8 +4228,7 @@
       "low30": 179.84,
       "high30": 179.84,
       "typical30": 179.84,
-      "historyDays": 1,
-      "cutout": "images/cut/490c1caa8b512276.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-mp700-pro-2tb-pcie-gen5-x4-nvme-2-0-m-2-982118",
@@ -4374,8 +4306,7 @@
       "low30": 519.99,
       "high30": 519.99,
       "typical30": 519.99,
-      "historyDays": 1,
-      "cutout": "images/cut/1404cdb7a1f4a616.webp"
+      "historyDays": 1
     },
     {
       "id": "gigastone-game-pro-1tb-ssd-sata-iii-6gb-s-3d-nan--00035",
@@ -4426,8 +4357,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 1,
-      "cutout": "images/cut/f39ad459e7557bd7.webp"
+      "historyDays": 1
     },
     {
       "id": "crucial-e100-2tb-m-2-2280-nvme-pci-express-4-0-x--00346",
@@ -4508,8 +4438,7 @@
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
-      "historyDays": 1,
-      "cutout": "images/cut/3e858c917f326c0e.webp"
+      "historyDays": 1
     },
     {
       "id": "kingspec-oneboom-x500-1tb-m-2-2280-pcie-5-0-nvme-971003",
@@ -4536,8 +4465,7 @@
       "low30": 189.99,
       "high30": 189.99,
       "typical30": 189.99,
-      "historyDays": 1,
-      "cutout": "images/cut/503de793af9687f4.webp"
+      "historyDays": 1
     },
     {
       "id": "kingfast-1tb-m-2-2280-pcie-4-0-nvme-ssd-up-to-4-967003",
@@ -4591,8 +4519,7 @@
       "low30": 189.99,
       "high30": 189.99,
       "typical30": 189.99,
-      "historyDays": 1,
-      "cutout": "images/cut/190dae424ce4abc7.webp"
+      "historyDays": 1
     },
     {
       "id": "wd-black-2tb-sn8100-nvme-ssd-internal-solid-stat-250279",
@@ -4619,8 +4546,7 @@
       "low30": 479.99,
       "high30": 479.99,
       "typical30": 479.99,
-      "historyDays": 1,
-      "cutout": "images/cut/c6827c833544cb09.webp"
+      "historyDays": 1
     },
     {
       "id": "team-group-nv5000-m-2-2280-500gb-pcie-4-0-x4-wit-985376",
@@ -4644,8 +4570,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 1,
-      "cutout": "images/cut/e82984d557f81767.webp"
+      "historyDays": 1
     },
     {
       "id": "sandisk-extreme-m-2-2280-1tb-pci-express-4-0-int-173652",
@@ -4692,7 +4617,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/7700ca60fe577a9e.webp",
       "low30": 136.99,
       "high30": 136.99,
       "typical30": 136.99,
@@ -5389,8 +5313,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 1,
-      "cutout": "images/cut/253d2e0b91e2cd29.webp"
+      "historyDays": 1
     },
     {
       "id": "gigabyte-b650-aorus-elite-ax-am5-lga-1718-amd-b6-145412",
@@ -5519,7 +5442,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/1191b78eccf1f62c.webp",
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
@@ -5602,8 +5524,7 @@
       "low30": 549.99,
       "high30": 549.99,
       "typical30": 549.99,
-      "historyDays": 1,
-      "cutout": "images/cut/702e936b06445ea9.webp"
+      "historyDays": 1
     },
     {
       "id": "asrock-b760m-pro-rs-wifi-lga-1700-intel-b760-mic-162228",
@@ -5657,8 +5578,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1,
-      "cutout": "images/cut/038f5d0c5cdd5a86.webp"
+      "historyDays": 1
     },
     {
       "id": "gigabyte-b550m-k-am4-amd-b550-micro-atx-motherbo-145434",
@@ -5685,8 +5605,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 1,
-      "cutout": "images/cut/852bbac4649482b9.webp"
+      "historyDays": 1
     },
     {
       "id": "asus-b760m-ayw-wifi-d4-ii-intel-b760-lga-1700-mi-119744",
@@ -5767,8 +5686,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1,
-      "cutout": "images/cut/b02f1c9dd386928b.webp"
+      "historyDays": 1
     },
     {
       "id": "asus-rog-strix-x870e-e-gaming-wifi-amd-am5-x870-119682",
@@ -5795,8 +5713,7 @@
       "low30": 351.99,
       "high30": 351.99,
       "typical30": 351.99,
-      "historyDays": 1,
-      "cutout": "images/cut/f7ca91b90adc668b.webp"
+      "historyDays": 1
     },
     {
       "id": "asrock-b760m-pro-rs-lga-1700-intel-b760-micro-at-162132",
@@ -5846,7 +5763,6 @@
       "ratingSource": "newegg-api",
       "verifiedAt": "2026-11-12T07:17:01Z",
       "updatedAt": "2026-11-12T07:17:01Z",
-      "cutout": "images/cut/d791021344e31cd4.webp",
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
@@ -6145,8 +6061,7 @@
       "low30": 1699.99,
       "high30": 1699.99,
       "typical30": 1699.99,
-      "historyDays": 1,
-      "cutout": "images/cut/139b2255f985ca9b.webp"
+      "historyDays": 1
     },
     {
       "id": "acer-predator-helios-neo-18-ai-18-0-intel-core-u-360388",
@@ -6168,7 +6083,6 @@
       "rating": 4.0,
       "ratingSource": "newegg-api",
       "ratingCount": 12,
-      "cutout": "images/cut/356dec51097c3020.webp",
       "low30": 2184.99,
       "high30": 2184.99,
       "typical30": 2184.99,
@@ -6218,7 +6132,6 @@
       "rating": 5.0,
       "ratingSource": "newegg-api",
       "ratingCount": 1,
-      "cutout": "images/cut/a9fffc6d9d8175d1.webp",
       "low30": 2049.0,
       "high30": 2049.0,
       "typical30": 2049.0,
@@ -6408,8 +6321,7 @@
       "low30": 315.0,
       "high30": 315.0,
       "typical30": 315.0,
-      "historyDays": 1,
-      "cutout": "images/cut/ba891c2bcf33285e.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-5500-ryzen-5-5000-series-cezanne-zen-113737",
@@ -6436,8 +6348,7 @@
       "low30": 99.0,
       "high30": 99.0,
       "typical30": 99.0,
-      "historyDays": 1,
-      "cutout": "images/cut/ed5ea882911fadbb.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-7-5700x-ryzen-7-5000-series-8-core-3-4-113735",
@@ -6464,8 +6375,7 @@
       "low30": 189.0,
       "high30": 189.0,
       "typical30": 189.0,
-      "historyDays": 1,
-      "cutout": "images/cut/25bf557384245496.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-7600x-zen-4-6-core-4-7-ghz-socket-am-113770",
@@ -6492,8 +6402,7 @@
       "low30": 199.0,
       "high30": 199.0,
       "typical30": 199.0,
-      "historyDays": 1,
-      "cutout": "images/cut/4cbe3155c6fa9d86.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-9-9900x-ryzen-9-9000-series-granite-ri-113842",
@@ -6547,8 +6456,7 @@
       "low30": 219.0,
       "high30": 219.0,
       "typical30": 219.0,
-      "historyDays": 1,
-      "cutout": "images/cut/6abf5d3f1770d910.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-i9-12900k-core-i9-12th-gen-alder-lake-118339",
@@ -6575,8 +6483,7 @@
       "low30": 439.99,
       "high30": 439.99,
       "typical30": 439.99,
-      "historyDays": 1,
-      "cutout": "images/cut/0c36360f3c08f3f0.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-i5-14400-core-i5-14th-gen-raptor-lake-118480",
@@ -6603,8 +6510,7 @@
       "low30": 208.41,
       "high30": 208.41,
       "typical30": 208.41,
-      "historyDays": 1,
-      "cutout": "images/cut/bd508111e8035886.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-5-5600x-ryzen-5-5000-series-6-core-3-7-113666",
@@ -6631,8 +6537,7 @@
       "low30": 159.0,
       "high30": 159.0,
       "typical30": 159.0,
-      "historyDays": 1,
-      "cutout": "images/cut/1f7d4e3924d99461.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-7-7800x3d-ryzen-7-7000-series-zen-4-8-113793",
@@ -6686,8 +6591,7 @@
       "low30": 539.99,
       "high30": 539.99,
       "typical30": 539.99,
-      "historyDays": 1,
-      "cutout": "images/cut/289604610df33cb0.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-i5-14600kf-core-i5-14th-gen-14-core-6-118472",
@@ -6714,8 +6618,7 @@
       "low30": 232.08,
       "high30": 232.08,
       "typical30": 232.08,
-      "historyDays": 1,
-      "cutout": "images/cut/38b35b5d8a6d0162.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-i9-14900kf-core-i9-14th-gen-24-core-8-118464",
@@ -6742,8 +6645,7 @@
       "low30": 469.99,
       "high30": 469.99,
       "typical30": 469.99,
-      "historyDays": 1,
-      "cutout": "images/cut/89f96c1f20f41b3f.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-i5-14400f-core-i5-14th-gen-raptor-lak-118489",
@@ -6770,8 +6672,7 @@
       "low30": 161.1,
       "high30": 161.1,
       "typical30": 161.1,
-      "historyDays": 1,
-      "cutout": "images/cut/794d41e43b8420b8.webp"
+      "historyDays": 1
     },
     {
       "id": "amd-ryzen-7-9800x3d-ryzen-7-9000-series-zen-5-8-113877",
@@ -6825,8 +6726,7 @@
       "low30": 134.99,
       "high30": 134.99,
       "typical30": 134.99,
-      "historyDays": 1,
-      "cutout": "images/cut/7be5d7cb9b3cc8ec.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-i7-12700k-core-i7-12th-gen-alder-lake-118343",
@@ -6880,8 +6780,7 @@
       "low30": 104.0,
       "high30": 104.0,
       "typical30": 104.0,
-      "historyDays": 1,
-      "cutout": "images/cut/2fb2f8a712fca0a0.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-ultra-7-270k-plus-processor-24-cores-118628",
@@ -6908,8 +6807,7 @@
       "low30": 330.0,
       "high30": 330.0,
       "typical30": 330.0,
-      "historyDays": 1,
-      "cutout": "images/cut/07eb9c495d93a269.webp"
+      "historyDays": 1
     },
     {
       "id": "intel-core-ultra-9-285-core-ultra-9-series-2-24-118574",
@@ -6936,8 +6834,7 @@
       "low30": 639.99,
       "high30": 639.99,
       "typical30": 639.99,
-      "historyDays": 1,
-      "cutout": "images/cut/435154a5701deac7.webp"
+      "historyDays": 1
     },
     {
       "id": "supersonic-sc-2420vtv-24-inch-smart-ac-dc-led-tv--000j5",
@@ -7033,8 +6930,7 @@
       "low30": 899.99,
       "high30": 899.99,
       "typical30": 899.99,
-      "historyDays": 1,
-      "cutout": "images/cut/d8fc069985542464.webp"
+      "historyDays": 1
     },
     {
       "id": "lg-stanbyme-2-tv-27-inch-4k-smart-touch-screen-w--007j9",
@@ -7058,8 +6954,7 @@
       "low30": 899.99,
       "high30": 899.99,
       "typical30": 899.99,
-      "historyDays": 1,
-      "cutout": "images/cut/94d878d3187fe239.webp"
+      "historyDays": 1
     },
     {
       "id": "wacom-intuos-wireless-graphics-drawing-tablet-wi-100233",
@@ -7086,8 +6981,7 @@
       "low30": 79.15,
       "high30": 79.15,
       "typical30": 79.15,
-      "historyDays": 1,
-      "cutout": "images/cut/b3d42306bfd898de.webp"
+      "historyDays": 1
     },
     {
       "id": "adesso-12-x-7-graphic-tablet-graphics-tablet-12--00018",
@@ -7366,8 +7260,7 @@
       "low30": 592.99,
       "high30": 592.99,
       "typical30": 592.99,
-      "historyDays": 1,
-      "cutout": "images/cut/06b3dff2d1d5f222.webp"
+      "historyDays": 1
     },
     {
       "id": "samsung-galaxy-z-fold8-ultra-sm-f976u-1-tb-smart--020w9",
@@ -7490,8 +7383,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 1,
-      "cutout": "images/cut/edd54d30b72cfb07.webp"
+      "historyDays": 1
     },
     {
       "id": "razer-basilisk-v3-pro-wireless-gaming-mouse-cust-153335",
@@ -7518,8 +7410,7 @@
       "low30": 99.0,
       "high30": 99.0,
       "typical30": 99.0,
-      "historyDays": 1,
-      "cutout": "images/cut/eb241fc18b71694a.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-hero-high-performance-wired-gaming--00002",
@@ -7573,8 +7464,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 1,
-      "cutout": "images/cut/d2f8dafba4d180da.webp"
+      "historyDays": 1
     },
     {
       "id": "razer-basilisk-v3-pro-customizable-wireless-gami--00011",
@@ -7649,8 +7539,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 1,
-      "cutout": "images/cut/a230b6a15a2d0754.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-x-wired-gaming-mouse-lightforce-hy-197555",
@@ -7677,8 +7566,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 1,
-      "cutout": "images/cut/82e07f1369f97cea.webp"
+      "historyDays": 1
     },
     {
       "id": "razer-viper-v3-pro-ultra-lightweight-wireless-sy--00003",
@@ -7786,8 +7674,7 @@
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
-      "historyDays": 1,
-      "cutout": "images/cut/83f850c268345bbd.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g502-x-lightspeed-wireless-gaming-mouse-197557",
@@ -7814,8 +7701,7 @@
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
-      "historyDays": 1,
-      "cutout": "images/cut/233e5bdba0e98bb8.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-m510-wireless-computer-mouse-for-pc-wit-104382",
@@ -7842,8 +7728,7 @@
       "low30": 80.99,
       "high30": 80.99,
       "typical30": 80.99,
-      "historyDays": 1,
-      "cutout": "images/cut/4822464758a8e8b1.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g305-lightspeed-wireless-gaming-mouse-h-197308",
@@ -7870,8 +7755,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 1,
-      "cutout": "images/cut/cb8d885cf16a0827.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g203-wired-gaming-mouse-8-000-dpi-rainb-197406",
@@ -7898,8 +7782,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 1,
-      "cutout": "images/cut/b5bcd4341b3e2a3a.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-scimitar-rgb-elite-moba-mmo-gaming-mouse-816160",
@@ -7926,8 +7809,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 1,
-      "cutout": "images/cut/eda2439c2ba929b8.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-nightsword-rgb-performance-tunable-fps-m-816133",
@@ -7954,8 +7836,7 @@
       "low30": 95.76,
       "high30": 95.76,
       "typical30": 95.76,
-      "historyDays": 1,
-      "cutout": "images/cut/f90fc0eea3e4c1fe.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g703-lightspeed-wireless-gaming-mouse-w-197342",
@@ -7982,8 +7863,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 1,
-      "cutout": "images/cut/07324307098d4dc6.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-m330-silent-wireless-mouse-2-4ghz-with-197220",
@@ -8037,8 +7917,7 @@
       "low30": 39.98,
       "high30": 39.98,
       "typical30": 39.98,
-      "historyDays": 1,
-      "cutout": "images/cut/df2b0e4ff5f0f242.webp"
+      "historyDays": 1
     },
     {
       "id": "razer-barracuda-x-2022-edition-barracuda-x-2022-153347",
@@ -8065,8 +7944,7 @@
       "low30": 69.0,
       "high30": 69.0,
       "typical30": 69.0,
-      "historyDays": 1,
-      "cutout": "images/cut/d1bef1861cdd8f34.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g735-wireless-gaming-headset-customizab-197592",
@@ -8093,8 +7971,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1,
-      "cutout": "images/cut/7157c85fdb45ff8b.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x-gaming-headset-with-blue-voice-197345",
@@ -8121,8 +7998,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 1,
-      "cutout": "images/cut/da2a514f3119c846.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x-wireless-lightspeed-gaming-head--004r6",
@@ -8230,8 +8106,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1,
-      "cutout": "images/cut/16513f38631b3ab3.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-arctis-nova-7x-wireless-gen-2-gaming-249302",
@@ -8258,8 +8133,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 1,
-      "cutout": "images/cut/c475245b953b9afb.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-arctis-nova-3x-wireless-multi-platfo-249292",
@@ -8283,8 +8157,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 1,
-      "cutout": "images/cut/7e123d6497faa3a6.webp"
+      "historyDays": 1
     },
     {
       "id": "razer-kraken-kitty-v3-x-wired-gaming-headset-kit-153388",
@@ -8308,8 +8181,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 1,
-      "cutout": "images/cut/0ebfc3eb81b2e903.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-arctis-nova-3-wireless-gaming-headse-249307",
@@ -8357,8 +8229,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 1,
-      "cutout": "images/cut/717377fa7df16781.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-arctis-nova-7p-wireless-gen-2-gaming-249299",
@@ -8382,8 +8253,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 1,
-      "cutout": "images/cut/05f459aeadc25531.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-arctis-nova-3p-wireless-multi-platfo-249288",
@@ -8431,8 +8301,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1,
-      "cutout": "images/cut/04802b127fe93707.webp"
+      "historyDays": 1
     },
     {
       "id": "hyperx-cloud-iii-wired-gaming-headset-pc-ps5-xbo--00019",
@@ -8558,8 +8427,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 1,
-      "cutout": "images/cut/62a84b59d86700bf.webp"
+      "historyDays": 1
     },
     {
       "id": "yamaha-yh-l500a-wireless-over-ear-headphones-sou--000x4",
@@ -8634,8 +8502,7 @@
       "low30": 49.0,
       "high30": 49.0,
       "typical30": 49.0,
-      "historyDays": 1,
-      "cutout": "images/cut/3e8697c5833714e2.webp"
+      "historyDays": 1
     },
     {
       "id": "koss-pro4aa-studio-quality-over-ear-headphones-r--00024",
@@ -8659,8 +8526,7 @@
       "low30": 84.99,
       "high30": 84.99,
       "typical30": 84.99,
-      "historyDays": 1,
-      "cutout": "images/cut/dd0e1d7488dbf241.webp"
+      "historyDays": 1
     },
     {
       "id": "audio-technica-ath-m20xbt-wireless-over-ear-head-402291",
@@ -8687,8 +8553,7 @@
       "low30": 89.0,
       "high30": 89.0,
       "typical30": 89.0,
-      "historyDays": 1,
-      "cutout": "images/cut/06ed5f61ac5ea9a4.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-go-lux-anc-on-ear-headphones-stereo-bluetoo-487111",
@@ -8712,8 +8577,7 @@
       "low30": 52.99,
       "high30": 52.99,
       "typical30": 52.99,
-      "historyDays": 1,
-      "cutout": "images/cut/fb68bb270a155de8.webp"
+      "historyDays": 1
     },
     {
       "id": "motorola-sound-moto-xt220-bluetooth-wireless-hea-555017",
@@ -8737,8 +8601,7 @@
       "low30": 47.99,
       "high30": 47.99,
       "typical30": 47.99,
-      "historyDays": 1,
-      "cutout": "images/cut/5e9191495e037d21.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-studio-2-wired-on-ear-headphones-stereo-min-487115",
@@ -8762,8 +8625,7 @@
       "low30": 26.99,
       "high30": 26.99,
       "typical30": 26.99,
-      "historyDays": 1,
-      "cutout": "images/cut/e08c198ad50d614e.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-studio-2-wired-headphones-black-487092",
@@ -8862,8 +8724,7 @@
       "low30": 57.99,
       "high30": 57.99,
       "typical30": 57.99,
-      "historyDays": 1,
-      "cutout": "images/cut/9199d5abe6cdee6b.webp"
+      "historyDays": 1
     },
     {
       "id": "motorola-xt500-wireless-over-ear-bluetooth-headp-555018",
@@ -8887,8 +8748,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 1,
-      "cutout": "images/cut/3d8cffcd9fa7fe68.webp"
+      "historyDays": 1
     },
     {
       "id": "monoprice-116150-modern-retro-over-ear-headphone--000b4",
@@ -9059,8 +8919,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 1,
-      "cutout": "images/cut/37bccf91edcaa348.webp"
+      "historyDays": 1
     },
     {
       "id": "dell-pro-plus-eb525-microsoft-teams-certificatio-675057",
@@ -9204,8 +9063,7 @@
       "low30": 209.99,
       "high30": 209.99,
       "typical30": 209.99,
-      "historyDays": 1,
-      "cutout": "images/cut/f6714163ee721eeb.webp"
+      "historyDays": 1
     },
     {
       "id": "google-pixel-buds-pro-2-wireless-earbuds-with-ac--00083",
@@ -9229,8 +9087,7 @@
       "low30": 210.99,
       "high30": 210.99,
       "typical30": 210.99,
-      "historyDays": 1,
-      "cutout": "images/cut/59c9e95571e4865c.webp"
+      "historyDays": 1
     },
     {
       "id": "morpheus-360-nemesis-anc-wireless-noise-cancelli--00028",
@@ -9278,8 +9135,7 @@
       "low30": 279.99,
       "high30": 279.99,
       "typical30": 279.99,
-      "historyDays": 1,
-      "cutout": "images/cut/08fbcd525bd75ebd.webp"
+      "historyDays": 1
     },
     {
       "id": "bose-quietcomfort-earbuds-true-wireless-bluetoot-627155",
@@ -9306,8 +9162,7 @@
       "low30": 179.0,
       "high30": 179.0,
       "typical30": 179.0,
-      "historyDays": 1,
-      "cutout": "images/cut/cc41ccd41592fac0.webp"
+      "historyDays": 1
     },
     {
       "id": "bose-quietcomfort-earbuds-true-wireless-bluetoot-627201",
@@ -9361,8 +9216,7 @@
       "low30": 299.0,
       "high30": 299.0,
       "typical30": 299.0,
-      "historyDays": 1,
-      "cutout": "images/cut/2260d7140ba61581.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-epic-sport-anc-3-stereo-true-wireless-bluet-487127",
@@ -9386,8 +9240,7 @@
       "low30": 104.99,
       "high30": 104.99,
       "typical30": 104.99,
-      "historyDays": 1,
-      "cutout": "images/cut/a5e8299f53d911b0.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-go-air-sport-true-wireless-earbuds-stereo-t-487136",
@@ -9411,8 +9264,7 @@
       "low30": 35.99,
       "high30": 35.99,
       "typical30": 35.99,
-      "historyDays": 1,
-      "cutout": "images/cut/7f2dc2d18cd468ad.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-buds-sport-anc-4-true-wireless-earbuds-siri-487131",
@@ -9436,8 +9288,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 1,
-      "cutout": "images/cut/b6997086f50e6c96.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-arctis-gamebuds-gaming-earset-stereo-249308",
@@ -9485,8 +9336,7 @@
       "low30": 104.99,
       "high30": 104.99,
       "typical30": 104.99,
-      "historyDays": 1,
-      "cutout": "images/cut/3381896f111b1c3a.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-go-pop-anc-true-wireless-earbuds-stereo-tru-487126",
@@ -9510,8 +9360,7 @@
       "low30": 36.99,
       "high30": 36.99,
       "typical30": 36.99,
-      "historyDays": 1,
-      "cutout": "images/cut/2fefe7e9f6833d60.webp"
+      "historyDays": 1
     },
     {
       "id": "jlab-jbuds-pods-anc-true-wireless-earbuds-mauve-487108",
@@ -9535,8 +9384,7 @@
       "low30": 64.99,
       "high30": 64.99,
       "typical30": 64.99,
-      "historyDays": 1,
-      "cutout": "images/cut/243a97c837aaeaa8.webp"
+      "historyDays": 1
     },
     {
       "id": "ultimate-ears-everboom-wireless-bluetooth-speake-247042",
@@ -9932,8 +9780,7 @@
       "low30": 269.0,
       "high30": 269.0,
       "typical30": 269.0,
-      "historyDays": 1,
-      "cutout": "images/cut/6384b336d701753d.webp"
+      "historyDays": 1
     },
     {
       "id": "bose-soundlink-max-portable-bluetooth-speaker-bl-772064",
@@ -10182,8 +10029,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 1,
-      "cutout": "images/cut/08c1a86cc0a0283b.webp"
+      "historyDays": 1
     },
     {
       "id": "xbox-elite-series-2-wireless-controller-core-whi-103724",
@@ -10318,8 +10164,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8e9b423c0df323b0.webp"
+      "historyDays": 1
     },
     {
       "id": "ps5-dualsense-wireless-controller-starlight-blue-966015",
@@ -10529,8 +10374,7 @@
       "low30": 143.99,
       "high30": 143.99,
       "typical30": 143.99,
-      "historyDays": 1,
-      "cutout": "images/cut/13f9e051862380e0.webp"
+      "historyDays": 1
     },
     {
       "id": "xbox-wireless-controller-gears-of-war-e-day-limi-103775",
@@ -10605,8 +10449,7 @@
       "low30": 80.99,
       "high30": 80.99,
       "typical30": 80.99,
-      "historyDays": 1,
-      "cutout": "images/cut/5bfee25545de7e3b.webp"
+      "historyDays": 1
     },
     {
       "id": "creative-labs-live-cam-sync-2k-webcam--000d3",
@@ -10657,8 +10500,7 @@
       "low30": 41.99,
       "high30": 41.99,
       "typical30": 41.99,
-      "historyDays": 1,
-      "cutout": "images/cut/acca7a93f076f909.webp"
+      "historyDays": 1
     },
     {
       "id": "hp-435-fhd-webcam--002v3",
@@ -10733,8 +10575,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 1,
-      "cutout": "images/cut/e69902bffe452b14.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-4k-pro-webcam-with-hdr-and-noise-cancel--007a9",
@@ -10761,8 +10602,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 1,
-      "cutout": "images/cut/a638ae51cda083aa.webp"
+      "historyDays": 1
     },
     {
       "id": "creative-labs-live-cam-sync-1080p-v2-webcam--00032",
@@ -10816,8 +10656,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 1,
-      "cutout": "images/cut/fd405af648811e6e.webp"
+      "historyDays": 1
     },
     {
       "id": "lenovo-4k-pro-webcam--001g1",
@@ -10964,8 +10803,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 1,
-      "cutout": "images/cut/31459fb97c911bd9.webp"
+      "historyDays": 1
     },
     {
       "id": "razer-seiren-v3-mini-wired-ultra-compact-condens--00010",
@@ -11220,8 +11058,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 1,
-      "cutout": "images/cut/1f3ba2d60eb62fd4.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-alias-pro-kit-xlr-mic-stream-mixer-3--00011",
@@ -11845,8 +11682,7 @@
       "low30": 61.99,
       "high30": 61.99,
       "typical30": 61.99,
-      "historyDays": 1,
-      "cutout": "images/cut/361763c35459244f.webp"
+      "historyDays": 1
     },
     {
       "id": "sandisk-cruzer-glide-64-gb-usb-2-0-flash-drive-b-171764",
@@ -11873,8 +11709,7 @@
       "low30": 27.01,
       "high30": 27.01,
       "typical30": 27.01,
-      "historyDays": 1,
-      "cutout": "images/cut/6b23c7dd59e55050.webp"
+      "historyDays": 1
     },
     {
       "id": "gigastone-256gb-microsd-express-card-works-with--001g1",
@@ -11925,8 +11760,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 1,
-      "cutout": "images/cut/6ee5df862dea147f.webp"
+      "historyDays": 1
     },
     {
       "id": "kingspec-memostone-1tb-portable-ssd-usb-3-2-gen-971005",
@@ -11950,8 +11784,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 1,
-      "cutout": "images/cut/6d587bb7f53f2a28.webp"
+      "historyDays": 1
     },
     {
       "id": "wd-5tb-my-passport-portable-storage-external-har-234398",
@@ -11978,8 +11811,7 @@
       "low30": 209.99,
       "high30": 209.99,
       "typical30": 209.99,
-      "historyDays": 1,
-      "cutout": "images/cut/f8c8e5fb6b9c8455.webp"
+      "historyDays": 1
     },
     {
       "id": "teamgroup-c175-128gb-usb-3-2-gen-1-flash-drive-r-331073",
@@ -12006,8 +11838,7 @@
       "low30": 14.99,
       "high30": 14.99,
       "typical30": 14.99,
-      "historyDays": 1,
-      "cutout": "images/cut/75946aca33f1d68d.webp"
+      "historyDays": 1
     },
     {
       "id": "teamgroup-c175-32gb-usb-3-2-gen-1-flash-drive-ro-331071",
@@ -12034,8 +11865,7 @@
       "low30": 9.99,
       "high30": 9.99,
       "typical30": 9.99,
-      "historyDays": 1,
-      "cutout": "images/cut/3bded72dd6839770.webp"
+      "historyDays": 1
     },
     {
       "id": "team-group-256gb-elite-microsdxc-uhs-i-u3-v30-a1-331312",
@@ -12140,8 +11970,7 @@
       "low30": 16.99,
       "high30": 16.99,
       "typical30": 16.99,
-      "historyDays": 1,
-      "cutout": "images/cut/6b4d13148464c08e.webp"
+      "historyDays": 1
     },
     {
       "id": "kingspec-z5-portable-ssd-with-rgb-1tb-up-to-2100--00023",
@@ -12222,8 +12051,7 @@
       "low30": 56.99,
       "high30": 56.99,
       "typical30": 56.99,
-      "historyDays": 1,
-      "cutout": "images/cut/4d261aa882cdd6e3.webp"
+      "historyDays": 1
     },
     {
       "id": "teamgroup-c175-256gb-usb-3-2-gen-1-flash-drive-r-331812",
@@ -12250,8 +12078,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 1,
-      "cutout": "images/cut/c3010ac218ae97d2.webp"
+      "historyDays": 1
     },
     {
       "id": "team-256gb-dash-card-microsdxc-uhs-i-u1-class-10-985170",
@@ -12278,8 +12105,7 @@
       "low30": 46.99,
       "high30": 46.99,
       "typical30": 46.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8f029a0fc783262c.webp"
+      "historyDays": 1
     },
     {
       "id": "team-256gb-apex-sd7-1-ultra-fast-microsdxc-uhs-i-985323",
@@ -12306,8 +12132,7 @@
       "low30": 54.99,
       "high30": 54.99,
       "typical30": 54.99,
-      "historyDays": 1,
-      "cutout": "images/cut/4a57578a343a68f9.webp"
+      "historyDays": 1
     },
     {
       "id": "team-128gb-c162-usb-3-2-gen-1-flash-drive-up-to-331684",
@@ -12334,8 +12159,7 @@
       "low30": 23.99,
       "high30": 23.99,
       "typical30": 23.99,
-      "historyDays": 1,
-      "cutout": "images/cut/9b69df0a4c39b254.webp"
+      "historyDays": 1
     },
     {
       "id": "team-256gb-pro-microsdxc-uhs-i-u3-class-10-memor-985049",
@@ -12362,8 +12186,7 @@
       "low30": 48.99,
       "high30": 48.99,
       "typical30": 48.99,
-      "historyDays": 1,
-      "cutout": "images/cut/fc71526a78a37bb7.webp"
+      "historyDays": 1
     },
     {
       "id": "wd-black-5tb-p10-game-drive-portable-external-ha-234385",
@@ -12390,8 +12213,7 @@
       "low30": 214.99,
       "high30": 214.99,
       "typical30": 214.99,
-      "historyDays": 1,
-      "cutout": "images/cut/9860b0cde80e6383.webp"
+      "historyDays": 1
     },
     {
       "id": "compact-usb-c-wall-charger-18w-pd-charging-gan-t-886022",
@@ -12925,8 +12747,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 1,
-      "cutout": "images/cut/517518e38766de1c.webp"
+      "historyDays": 1
     },
     {
       "id": "samsung-8-galaxy-tab-active5-rugged-tablet-samsu--00bt1",
@@ -14353,8 +14174,7 @@
       "low30": 23.63,
       "high30": 23.63,
       "typical30": 23.63,
-      "historyDays": 1,
-      "cutout": "images/cut/d05b843d737ec676.webp"
+      "historyDays": 1
     },
     {
       "id": "nippon-labs-30awg-8k-hdmi-cable-6ft-hdmi-2-1-cab-816058",
@@ -14402,8 +14222,7 @@
       "low30": 39.53,
       "high30": 39.53,
       "typical30": 39.53,
-      "historyDays": 1,
-      "cutout": "images/cut/141adfbc58e54490.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-9-8ft-3m-hdmi-2-1-cable-8k-certified-ul--000y5",
@@ -14427,8 +14246,7 @@
       "low30": 37.99,
       "high30": 37.99,
       "typical30": 37.99,
-      "historyDays": 1,
-      "cutout": "images/cut/85511076e210220b.webp"
+      "historyDays": 1
     },
     {
       "id": "nippon-labs-30awg-8k-hdmi-cable-3-ft-hdmi-2-1-ca-816059",
@@ -14479,8 +14297,7 @@
       "low30": 40.82,
       "high30": 40.82,
       "typical30": 40.82,
-      "historyDays": 1,
-      "cutout": "images/cut/3a123b97f18dc0fc.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-6ft-mini-displayport-to-displayport-1-2-300092",
@@ -14585,8 +14402,7 @@
       "low30": 24.32,
       "high30": 24.32,
       "typical30": 24.32,
-      "historyDays": 1,
-      "cutout": "images/cut/0b50fb4d79e9a02f.webp"
+      "historyDays": 1
     },
     {
       "id": "omni-gear-hdmi-2-hdmi-6-ft-black-hdmi-to-hdmi-2-189053",
@@ -14613,8 +14429,7 @@
       "low30": 20.99,
       "high30": 20.99,
       "typical30": 20.99,
-      "historyDays": 1,
-      "cutout": "images/cut/e9b688bbab649793.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-com-displport15l-displayport-cable-15-f-200851",
@@ -14641,8 +14456,7 @@
       "low30": 40.99,
       "high30": 40.99,
       "typical30": 40.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8733cedd25a1f3f1.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-com-3-ft-displayport-1-2-cable-with-lat-200686",
@@ -14669,8 +14483,7 @@
       "low30": 15.99,
       "high30": 15.99,
       "typical30": 15.99,
-      "historyDays": 1,
-      "cutout": "images/cut/aeb95b4c217f4e34.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-com-displport1l-displayport-cable-1-ft-203096",
@@ -14724,8 +14537,7 @@
       "low30": 24.99,
       "high30": 24.99,
       "typical30": 24.99,
-      "historyDays": 1,
-      "cutout": "images/cut/142e0cc1875880b4.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-com-6in-black-usb-3-0-extension-adapter-400621",
@@ -14752,8 +14564,7 @@
       "low30": 20.99,
       "high30": 20.99,
       "typical30": 20.99,
-      "historyDays": 1,
-      "cutout": "images/cut/eb06ceef7605ff80.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-com-dp2dvi2mm3-displayport-to-dvi-conve-400659",
@@ -14780,8 +14591,7 @@
       "low30": 26.99,
       "high30": 26.99,
       "typical30": 26.99,
-      "historyDays": 1,
-      "cutout": "images/cut/14530819c290f280.webp"
+      "historyDays": 1
     },
     {
       "id": "startech-com-dp2hdmm1mb-displayport-to-hdmi-conv-949023",
@@ -14934,8 +14744,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 1,
-      "cutout": "images/cut/840f42c52c164661.webp"
+      "historyDays": 1
     },
     {
       "id": "keytok-keycaps-five-side-dye-sub-pbt-115-keys-ch-939001",
@@ -15010,8 +14819,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 1,
-      "cutout": "images/cut/eab67373d91da8f8.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-pebble-keys-2-k380s-multi-device-blueto--011b4",
@@ -15035,8 +14843,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 1,
-      "cutout": "images/cut/8d01e3f93a27daff.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-mx-keys-mini-minimalist-wireless-illumi-126644",
@@ -15063,8 +14870,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 1,
-      "cutout": "images/cut/220fdf38b0c795b7.webp"
+      "historyDays": 1
     },
     {
       "id": "corsair-vanguard-96-wireless-mechanical-gaming-k-816184",
@@ -15088,8 +14894,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 1,
-      "cutout": "images/cut/2eb3b09294d7c62f.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g915-x-lightspeed-tkl-wireless-mechanic-126755",
@@ -15116,8 +14921,7 @@
       "low30": 209.99,
       "high30": 209.99,
       "typical30": 209.99,
-      "historyDays": 1,
-      "cutout": "images/cut/1029a9a5c7f29976.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g515-compact-low-profile-tkl-wired-gami-126758",
@@ -15141,8 +14945,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 1,
-      "cutout": "images/cut/9de809e2a071bae5.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-mechanical-gaming-keyboard-ultra--00dj7",
@@ -15196,8 +14999,7 @@
       "low30": 119.99,
       "high30": 119.99,
       "typical30": 119.99,
-      "historyDays": 1,
-      "cutout": "images/cut/5aeb1ef1f5674b13.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g-pro-x-60-lightspeed-wireless-gaming-k-126736",
@@ -15221,8 +15023,7 @@
       "low30": 164.99,
       "high30": 164.99,
       "typical30": 164.99,
-      "historyDays": 1,
-      "cutout": "images/cut/6ed60b0a681deecd.webp"
+      "historyDays": 1
     },
     {
       "id": "steelseries-apex-pro-tkl-gen-3-gaming-keyboard-o-239070",
@@ -15246,8 +15047,7 @@
       "low30": 207.99,
       "high30": 207.99,
       "typical30": 207.99,
-      "historyDays": 1,
-      "cutout": "images/cut/302f15cad4301910.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g915-x-lightspeed-low-profile-wireless-126751",
@@ -15274,8 +15074,7 @@
       "low30": 259.99,
       "high30": 259.99,
       "typical30": 259.99,
-      "historyDays": 1,
-      "cutout": "images/cut/565968b66c85c776.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g915-x-low-profile-mechanical-gaming-ke-126757",
@@ -15302,8 +15101,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 1,
-      "cutout": "images/cut/931a489ce14296a5.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-ergo-k860-split-wireless-keyboard-for-b-126663",
@@ -15330,8 +15128,7 @@
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
-      "historyDays": 1,
-      "cutout": "images/cut/ce20329373804f70.webp"
+      "historyDays": 1
     },
     {
       "id": "logitech-g413-tkl-se-mechanical-gaming-keyboard-126669",
@@ -15381,8 +15178,7 @@
       "updatedAt": "2026-11-12T02:27:27Z",
       "upcoming": true,
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-011-452-12.jpg",
-      "imageSource": "newegg-api-match",
-      "cutout": "images/cut/b1a6611e6c71d935.webp"
+      "imageSource": "newegg-api-match"
     },
     {
       "id": "costco-2080469-lg-32-ultragear-200hz-qhd-gaming-monitor",
@@ -15405,8 +15201,7 @@
       "updatedAt": "2026-11-12T02:27:27Z",
       "upcoming": true,
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-026-520-01.jpg",
-      "imageSource": "newegg-api-match",
-      "cutout": "images/cut/12d6d6c22479137d.webp"
+      "imageSource": "newegg-api-match"
     },
     {
       "id": "costco-8590920-samsung-49-odyssey-g95c-240hz-dqhd-curve",

@@ -90,14 +90,6 @@ New deals must classify as the tab they were searched for; every existing deal
 is re-checked each hourly run (misfiled ones move, auto-added ones that fit no
 tab are dropped); build parts and brand-site sales use the same check.
 
-## Cut-out photos
-
-[`scripts/cutouts.py`](scripts/cutouts.py) (hourly, up to 250 new photos per
-run) removes the white backdrop from product photos and saves transparent WebP
-cut-outs in `images/cut/`; cards show them on a themed spotlight background.
-Photos that aren't on plain white are left as they are, and the zoomed view
-still uses the original photo.
-
 ## Price history
 
 [`scripts/price_history.py`](scripts/price_history.py) runs inside every hourly

@@ -1755,14 +1755,11 @@
     var mediaHtml = "";
     if (deal.image) {
       mediaHtml =
-        '<figure class="deal-card__figure deal-card__figure--zoom' +
-        (deal.cutout ? " deal-card__figure--cut" : "") +
-        '" tabindex="0" role="button" aria-label="View photo of ' +
+        '<figure class="deal-card__figure deal-card__figure--zoom" tabindex="0" role="button" aria-label="View photo of ' +
         escapeAttr(deal.name) +
         '">' +
         '<img src="' +
-        // background-free cut-out when one exists (scripts/cutouts.py)
-        escapeAttr(deal.cutout || cardImageSrc(deal.image)) +
+        escapeAttr(cardImageSrc(deal.image)) +
         '" data-full="' +
         escapeAttr(deal.image) +
         '" alt="' +
@@ -2045,8 +2042,6 @@
     img.addEventListener("error", function onErr() {
       var full = img.getAttribute("data-full");
       if (full && img.getAttribute("src") !== full) {
-        var cutFig = img.closest(".deal-card__figure--cut");
-        if (cutFig) cutFig.classList.remove("deal-card__figure--cut"); // back to the plain photo tile
         img.setAttribute("src", full);
         return;
       }
