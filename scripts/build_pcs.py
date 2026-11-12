@@ -232,7 +232,10 @@ def candidates(deals: list[dict[str, Any]], now: datetime,
             out["board"].append({**d, "_sock": sock, "_mem": mem, "_size": board_size(d["name"])})
     for d in by.get("RAM", []):
         kind, gb = ram_info(d["name"])
-        if kind and gb and gb >= 16:
+        # single sticks run in single-channel mode, which slows games: only use
+        # memory whose title confirms a 2- or 4-stick kit
+        kit = re.search(r"\b[24] ?x ?\d+ ?gb|\bkit\b|dual[- ]channel|\d+gbx[24]\b", d["name"], re.I)
+        if kind and gb and gb >= 16 and kit:
             out["ram"].append({**d, "_mem": kind, "_gb": gb})
     for d in by.get("GPUs", []):
         score = first_score(GPU_SCORES, d["name"])
