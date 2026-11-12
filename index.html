@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="What's A Good Deal? — all the best current and future deals for the tech you love.">
   <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0d0f14" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>What's A Good Deal?</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2026-11-11">
 </head>
 <body>
   <header class="site-header" id="site-header">
@@ -25,21 +25,26 @@
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero__inner">
-        <h1 id="hero-title">What's A<br>Good Deal?</h1>
-        <p class="hero__lede">All the best current and future deals for the tech you love.</p>
+        <p class="hero__eyebrow"><span class="hero__pulse" aria-hidden="true"></span>Verified retailer prices</p>
+        <h1 id="hero-title">What's A <span class="hero__accent">Good Deal?</span></h1>
+        <p class="hero__lede">The best current and upcoming deals on the tech you love.</p>
       </div>
     </section>
 
-    <section class="filters" id="filters" aria-label="Filter by category" hidden>
-      <div class="filters__inner" id="filter-buttons"></div>
-    </section>
-
-    <section class="filters filters--budget" id="budget-filters" aria-label="Filter by budget" hidden>
-      <div class="filters__inner filters__inner--budget" id="budget-buttons"></div>
-    </section>
-
-    <section class="filters filters--sort" id="sort-filters" aria-label="Sort deals" hidden>
-      <div class="filters__inner filters__inner--sort" id="sort-buttons"></div>
+    <section class="filters" id="filters" aria-label="Filter deals" hidden>
+      <div class="filters__bar">
+        <div class="filters__inner" id="filter-buttons" role="toolbar" aria-label="Categories"></div>
+        <div class="filter-tools">
+          <div class="tool-wrap">
+            <button type="button" class="tool-btn" id="budget-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="budget-menu" aria-label="Price filter"></button>
+            <div class="tool-menu" id="budget-menu" role="menu" aria-label="Price filter" hidden></div>
+          </div>
+          <div class="tool-wrap">
+            <button type="button" class="tool-btn" id="sort-toggle" aria-haspopup="menu" aria-expanded="false" aria-controls="sort-menu" aria-label="Sort deals"></button>
+            <div class="tool-menu" id="sort-menu" role="menu" aria-label="Sort deals" hidden></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="search-panel" id="search-panel" hidden aria-label="Search deals">
@@ -85,6 +90,6 @@
     </figure>
   </div>
 
-  <script src="app.js" defer></script>
+  <script src="app.js?v=2026-11-11" defer></script>
 </body>
 </html>

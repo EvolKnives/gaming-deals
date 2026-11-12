@@ -69,7 +69,7 @@ SEEDS: dict[str, tuple[list[str], str, str | None, float]] = {
     "Monitors": (["27 inch gaming monitor", "oled gaming monitor", "1440p 165hz monitor"],
                  r"monitor", r"\barm\b|mount|stand only|cable", 120),
     "TVs": (["4k smart tv", "oled tv", "qled tv", "samsung 4k tv", "sony bravia tv", "tcl qled tv", "hisense 4k tv"],
-            r"\btv\b|television", r"mount|\bstand\b|remote|antenna|stanbyme|battery|monitor", 250),
+            r"\btv\b|television", r"mount|bracket|antenna|cable|monitor", 250),
     "Home Theater": (["soundbar", "av receiver", "home theater speaker system"],
                      r"sound ?bar|receiver|speaker|subwoofer|home theater", r"mount|cable|bracket|car ", 80),
     "Art Tablets": (["pen display drawing tablet", "xp-pen drawing tablet", "wacom tablet", "huion drawing tablet"],
@@ -296,7 +296,10 @@ def fits_category(d: dict[str, Any]) -> bool:
         return True
     _, must, mustnot, floor = spec
     title = str(d.get("name") or "")
-    if not re.search(must, title, re.I) or BAD_TITLE.search(title):
+    # names saved before Nov 2026 were cut at 140 chars, so the keyword may be missing
+    if len(title) < 140 and not re.search(must, title, re.I):
+        return False
+    if BAD_TITLE.search(title):
         return False
     if mustnot and re.search(mustnot, title, re.I):
         return False
@@ -419,7 +422,7 @@ def main() -> int:
                     did = f"{slugify(title, sku)}-{n}"
                     n += 1
                 deal = {
-                    "id": did, "name": title[:140], "category": cat,
+                    "id": did, "name": title, "category": cat,
                     "price": off["price"], "previousPrice": off["was"],
                     "lastPrice": None, "priceDropped": False, "currency": "USD",
                     "why": why_line(off["price"], off["was"]), "merchant": "Newegg",

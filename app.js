@@ -7,10 +7,6 @@
   var headerEl = document.getElementById("site-header");
   var filtersEl = document.getElementById("filters");
   var filterButtonsEl = document.getElementById("filter-buttons");
-  var budgetFiltersEl = document.getElementById("budget-filters");
-  var budgetButtonsEl = document.getElementById("budget-buttons");
-  var sortFiltersEl = document.getElementById("sort-filters");
-  var sortButtonsEl = document.getElementById("sort-buttons");
   var searchPanelEl = document.getElementById("search-panel");
   var searchInputEl = document.getElementById("deal-search");
   var searchClearEl = document.getElementById("deal-search-clear");
@@ -1381,123 +1377,145 @@
     return price >= opt.min && price < opt.max;
   }
 
-  function ensureBudgetDom() {
-    if (budgetFiltersEl && budgetButtonsEl) return true;
-    var filters = document.getElementById("filters");
-    if (!filters || !filters.parentNode) return false;
-    var section = document.getElementById("budget-filters");
-    if (!section) {
-      section = document.createElement("section");
-      section.className = "filters filters--budget";
-      section.id = "budget-filters";
-      section.setAttribute("aria-label", "Filter by budget");
-      section.hidden = true;
-      var inner = document.createElement("div");
-      inner.className = "filters__inner filters__inner--budget";
-      inner.id = "budget-buttons";
-      section.appendChild(inner);
-      filters.parentNode.insertBefore(section, filters.nextSibling);
+  var FUNNEL_SVG =
+    '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">' +
+    '<path d="M4 5.5h16l-6.2 7.3v5.4l-3.6 1.8v-7.2L4 5.5z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/>' +
+    "</svg>";
+  var SORT_SVG =
+    '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">' +
+    '<path d="M7 4.5v15M7 19.5l-3-3M7 19.5l3-3M17 19.5v-15M17 4.5l-3 3M17 4.5l3 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>' +
+    "</svg>";
+  var CHECK_SVG =
+    '<svg class="tool-menu__check" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">' +
+    '<path d="M3.2 8.4l3 3 6.6-6.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+    "</svg>";
+  var openToolMenu = null;
+
+  function closeToolMenu(restoreFocus) {
+    if (!openToolMenu) return;
+    var m = openToolMenu;
+    openToolMenu = null;
+    m.menu.hidden = true;
+    m.btn.setAttribute("aria-expanded", "false");
+    m.btn.classList.remove("is-open");
+    if (restoreFocus) {
+      try {
+        m.btn.focus();
+      } catch (e) {}
     }
-    budgetFiltersEl = section;
-    budgetButtonsEl = document.getElementById("budget-buttons");
-    return !!(budgetFiltersEl && budgetButtonsEl);
+  }
+
+  function toggleToolMenu(btn, menu) {
+    if (openToolMenu && openToolMenu.menu === menu) {
+      closeToolMenu(false);
+      return;
+    }
+    closeToolMenu(false);
+    menu.hidden = false;
+    btn.setAttribute("aria-expanded", "true");
+    btn.classList.add("is-open");
+    openToolMenu = { btn: btn, menu: menu };
+    var checked = menu.querySelector('[aria-checked="true"]') || menu.querySelector("button");
+    if (checked) {
+      try {
+        checked.focus({ preventScroll: true });
+      } catch (e) {}
+    }
+  }
+
+  document.addEventListener("pointerdown", function (e) {
+    if (!openToolMenu) return;
+    var wrap = openToolMenu.btn.parentNode;
+    if (wrap && wrap.contains(e.target)) return;
+    closeToolMenu(false);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (!openToolMenu) return;
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeToolMenu(true);
+      return;
+    }
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      var items = Array.prototype.slice.call(openToolMenu.menu.querySelectorAll("button"));
+      var i = items.indexOf(document.activeElement);
+      var next = e.key === "ArrowDown" ? i + 1 : i - 1;
+      if (next < 0) next = items.length - 1;
+      if (next >= items.length) next = 0;
+      e.preventDefault();
+      items[next].focus();
+    }
+  });
+  window.addEventListener("resize", function () {
+    closeToolMenu(false);
+  });
+
+  /**
+   * Price filter + sort as two compact icon buttons with popover menus.
+   * Same option ids / behavior as the old pill rows.
+   */
+  function renderToolMenu(kind) {
+    var isBudget = kind === "budget";
+    var btn = document.getElementById(isBudget ? "budget-toggle" : "sort-toggle");
+    var menu = document.getElementById(isBudget ? "budget-menu" : "sort-menu");
+    if (!btn || !menu) return;
+    var options = isBudget ? BUDGET_OPTIONS : SORT_OPTIONS;
+    var current = isBudget ? activeBudget : activeSort;
+    var defaultId = isBudget ? "All" : "savings";
+    var currentLabel = "";
+    options.forEach(function (o) {
+      if (o.id === current) currentLabel = o.label;
+    });
+
+    if (!btn.dataset.ready) {
+      btn.dataset.ready = "1";
+      btn.innerHTML = (isBudget ? FUNNEL_SVG : SORT_SVG) + '<span class="tool-btn__dot" aria-hidden="true"></span>';
+      btn.addEventListener("click", function () {
+        pressFlash(btn);
+        toggleToolMenu(btn, menu);
+      });
+    }
+    var nonDefault = current !== defaultId;
+    btn.classList.toggle("is-active", nonDefault);
+    btn.setAttribute(
+      "aria-label",
+      (isBudget ? "Price filter: " : "Sort: ") + currentLabel
+    );
+    btn.title = (isBudget ? "Price: " : "Sort: ") + currentLabel;
+
+    menu.innerHTML =
+      '<p class="tool-menu__title">' + (isBudget ? "Price" : "Sort by") + "</p>";
+    options.forEach(function (opt) {
+      var item = document.createElement("button");
+      item.type = "button";
+      item.setAttribute("role", "menuitemradio");
+      var on = opt.id === current;
+      item.setAttribute("aria-checked", on ? "true" : "false");
+      item.className = "tool-menu__item" + (on ? " is-on" : "");
+      item.innerHTML = '<span class="tool-menu__label">' + escapeHtml(opt.label) + "</span>" + CHECK_SVG;
+      item.addEventListener("click", function () {
+        if (isBudget) {
+          if (opt.id !== activeBudget) {
+            activeBudget = opt.id;
+            renderDeals(allDeals);
+          }
+        } else if (opt.id !== activeSort) {
+          activeSort = opt.id;
+          renderDeals(allDeals);
+        }
+        closeToolMenu(true);
+        renderToolMenu(kind);
+      });
+      menu.appendChild(item);
+    });
   }
 
   function renderBudgetFilters() {
-    if (!ensureBudgetDom()) return;
-    budgetButtonsEl.innerHTML = "";
-    BUDGET_OPTIONS.forEach(function (opt) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "filter-btn filter-btn--budget" + (opt.id === activeBudget ? " is-on" : "");
-      btn.textContent = opt.label;
-      btn.setAttribute("aria-pressed", opt.id === activeBudget ? "true" : "false");
-      btn.dataset.budget = opt.id;
-      btn.addEventListener("click", function () {
-        if (opt.id === activeBudget) {
-          pressFlash(btn);
-          return;
-        }
-        activeBudget = opt.id;
-        Array.prototype.forEach.call(budgetButtonsEl.children, function (b) {
-          var on = b.dataset.budget === activeBudget;
-          b.classList.toggle("is-on", on);
-          b.setAttribute("aria-pressed", on ? "true" : "false");
-        });
-        pressFlash(btn);
-        try {
-          btn.scrollIntoView({
-            inline: "nearest",
-            block: "nearest",
-            behavior: reduceMotion ? "auto" : "smooth"
-          });
-        } catch (e) {}
-        renderDeals(allDeals);
-      });
-      budgetButtonsEl.appendChild(btn);
-    });
-    budgetFiltersEl.hidden = false;
-  }
-
-
-  function ensureSortDom() {
-    if (sortFiltersEl && sortButtonsEl) return true;
-    var budget = document.getElementById("budget-filters");
-    var filters = document.getElementById("filters");
-    var anchor = budget || filters;
-    if (!anchor || !anchor.parentNode) return false;
-    var section = document.getElementById("sort-filters");
-    if (!section) {
-      section = document.createElement("section");
-      section.className = "filters filters--sort";
-      section.id = "sort-filters";
-      section.setAttribute("aria-label", "Sort deals");
-      section.hidden = true;
-      var inner = document.createElement("div");
-      inner.className = "filters__inner filters__inner--sort";
-      inner.id = "sort-buttons";
-      section.appendChild(inner);
-      anchor.parentNode.insertBefore(section, anchor.nextSibling);
-    }
-    sortFiltersEl = section;
-    sortButtonsEl = document.getElementById("sort-buttons");
-    return !!(sortFiltersEl && sortButtonsEl);
+    renderToolMenu("budget");
   }
 
   function renderSortFilters() {
-    if (!ensureSortDom()) return;
-    sortButtonsEl.innerHTML = "";
-    SORT_OPTIONS.forEach(function (opt) {
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "filter-btn filter-btn--sort" + (opt.id === activeSort ? " is-on" : "");
-      btn.textContent = opt.label;
-      btn.setAttribute("aria-pressed", opt.id === activeSort ? "true" : "false");
-      btn.dataset.sort = opt.id;
-      btn.addEventListener("click", function () {
-        if (opt.id === activeSort) {
-          pressFlash(btn);
-          return;
-        }
-        activeSort = opt.id;
-        Array.prototype.forEach.call(sortButtonsEl.children, function (b) {
-          var on = b.dataset.sort === activeSort;
-          b.classList.toggle("is-on", on);
-          b.setAttribute("aria-pressed", on ? "true" : "false");
-        });
-        pressFlash(btn);
-        try {
-          btn.scrollIntoView({
-            inline: "nearest",
-            block: "nearest",
-            behavior: reduceMotion ? "auto" : "smooth"
-          });
-        } catch (e) {}
-        renderDeals(allDeals);
-      });
-      sortButtonsEl.appendChild(btn);
-    });
-    sortFiltersEl.hidden = false;
+    renderToolMenu("sort");
   }
 
   function renderFilters(deals) {
@@ -1796,7 +1814,6 @@
       '" target="_blank" rel="noopener noreferrer">View at ' +
       escapeHtml(deal.merchant || "retailer") +
       "</a>" +
-      '<button type="button" class="deal-card__share" data-share>Share</button>' +
       "</div></div>";
 
     if (deal.image) {
