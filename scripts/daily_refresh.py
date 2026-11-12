@@ -430,6 +430,21 @@ def product_key(title: str) -> str:
     return re.sub(r"\W+", "", t)[:50]
 
 
+def classify(title: str, hint: str, price: float) -> str | None:
+    """Tab for a product from another store: the first category whose title
+    rules match (hint words such as "gaming mouse" count as title words; the
+    must-not list is checked against the real title only)."""
+    if BAD_TITLE.search(title):
+        return None
+    text = f"{title} {hint}"
+    for cat, (_q, must, mustnot, floor) in SEEDS.items():
+        if price < floor:
+            continue
+        if re.search(must, text, re.I) and not (mustnot and re.search(mustnot, title, re.I)):
+            return cat
+    return None
+
+
 def fits_category(d: dict[str, Any]) -> bool:
     spec = SEEDS.get(str(d.get("category")))
     if not spec:
@@ -586,6 +601,20 @@ def main() -> int:
             continue
         deduped.append(d)
     deals = deduped
+
+    # sales on brands' own websites (re-read every few hours): replace the
+    # previous set so items no longer on sale drop off
+    if not args.dry_run:
+        import brand_sales  # noqa: E402  (scripts/ is on sys.path)
+        try:
+            brand = brand_sales.refresh(classify, now)
+        except Exception as e:  # noqa: BLE001 — never let a brand site break the run
+            print(f"Brand sales skipped: {e}", file=sys.stderr)
+            brand = [d for d in deals if d.get("source") == "brand-site"]
+        ids_now = {d.get("id") for d in deals if d.get("source") != "brand-site"}
+        deals = [d for d in deals if d.get("source") != "brand-site"] + [
+            d for d in brand if d.get("id") not in ids_now]
+        stats["brand_sales"] = len(brand)
 
     # 4. seed
     added = 0
@@ -755,6 +784,13 @@ def main() -> int:
     except (OSError, ValueError):
         pool_parts = []
     price_history.record(deals, pool_parts, now)
+    # photo audit: drop photos that no longer load (cards then show an icon)
+    import check_images  # noqa: E402
+    img = check_images.audit(deals, now)
+    img.update(check_images.fill_missing(
+        deals, lambda d: None if throttled() else find_photo(api, d), now))
+    print(f"Images: {img}")
+    last_refresh.update(img)
     data["deals"] = deals
 
     DEALS_PATH.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

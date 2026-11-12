@@ -1,0 +1,134 @@
+{
+  "_about": "Brand stores checked every 6 hours by scripts/brand_sales.py for sales on the brand's own site. 'hint' words help sort products into tabs.",
+  "stores": [
+    {
+      "brand": "Logitech",
+      "type": "logitech",
+      "base": "https://www.logitechg.com",
+      "paths": {
+        "/en-us/shop/c/keyboards": "keyboard",
+        "/en-us/shop/c/mice": "mouse",
+        "/en-us/shop/c/headsets": "gaming headset",
+        "/en-us/shop/c/webcams": "webcam",
+        "/en-us/shop/c/speakers": "computer speakers",
+        "/en-us/shop/c/microphones": "microphone",
+        "/en-us/shop/c/gaming-keyboards": "gaming keyboard",
+        "/en-us/shop/c/gaming-mice": "gaming mouse",
+        "/en-us/shop/c/gaming-headsets": "gaming headset"
+      }
+    },
+    {
+      "brand": "Razer",
+      "type": "razer",
+      "base": "https://www.razer.com",
+      "sitemap": "https://www.razer.com/sitemap.xml",
+      "extraSitemaps": [
+        "https://sitemap-xml.razer.com/pro-sitemaps-4237407.php?sn=sitemap1.xml",
+        "https://sitemap-xml.razer.com/pro-sitemaps-4237407.php?sn=sitemap2.xml",
+        "https://sitemap-xml.razer.com/pro-sitemaps-4237407.php?sn=sitemap3.xml"
+      ],
+      "sections": {
+        "gaming-mice": "gaming mouse",
+        "gaming-keyboards": "gaming keyboard",
+        "gaming-headsets": "gaming headset",
+        "gaming-speakers": "computer speakers",
+        "streaming-microphones": "usb microphone",
+        "streaming-cameras": "webcam",
+        "console-controllers": "game controller",
+        "pc-controllers": "game controller",
+        "gaming-laptops": "gaming laptop rtx"
+      },
+      "perRun": 30
+    },
+    {
+      "brand": "Keychron",
+      "type": "shopify",
+      "base": "https://www.keychron.com",
+      "hint": "keyboard"
+    },
+    {
+      "brand": "Glorious",
+      "type": "shopify",
+      "base": "https://www.gloriousgaming.com",
+      "hint": ""
+    },
+    {
+      "brand": "NuPhy",
+      "type": "shopify",
+      "base": "https://nuphy.com",
+      "hint": "keyboard"
+    },
+    {
+      "brand": "Epomaker",
+      "type": "shopify",
+      "base": "https://epomaker.com",
+      "hint": "keyboard"
+    },
+    {
+      "brand": "Lofree",
+      "type": "shopify",
+      "base": "https://www.lofree.co",
+      "hint": "keyboard"
+    },
+    {
+      "brand": "Akko",
+      "type": "shopify",
+      "base": "https://en.akkogear.com",
+      "hint": "keyboard"
+    },
+    {
+      "brand": "Lamzu",
+      "type": "shopify",
+      "base": "https://www.lamzu.com",
+      "hint": "gaming mouse"
+    },
+    {
+      "brand": "Pulsar",
+      "type": "shopify",
+      "base": "https://www.pulsar.gg",
+      "hint": ""
+    },
+    {
+      "brand": "Fifine",
+      "type": "shopify",
+      "base": "https://fifinemicrophone.com",
+      "hint": "microphone"
+    },
+    {
+      "brand": "Anker",
+      "type": "shopify",
+      "base": "https://www.anker.com",
+      "hint": ""
+    },
+    {
+      "brand": "UGREEN",
+      "type": "shopify",
+      "base": "https://www.ugreen.com",
+      "hint": ""
+    },
+    {
+      "brand": "JLab",
+      "type": "shopify",
+      "base": "https://www.jlab.com",
+      "hint": ""
+    },
+    {
+      "brand": "Satechi",
+      "type": "shopify",
+      "base": "https://satechi.net",
+      "hint": ""
+    },
+    {
+      "brand": "Nothing",
+      "type": "shopify",
+      "base": "https://us.nothing.tech",
+      "hint": ""
+    },
+    {
+      "brand": "Edifier",
+      "type": "shopify",
+      "base": "https://www.edifier.com/us",
+      "hint": "speakers"
+    }
+  ]
+}

@@ -51,6 +51,35 @@ On the site, each part has a menu of other compatible options with prices.
 Picking a graphics card that needs more power, or a motherboard the case
 can't hold, also switches in the cheapest power supply or case that fits.
 
+## Sales on brand websites
+
+[`scripts/brand_sales.py`](scripts/brand_sales.py) checks the stores in
+[`data/brand-stores.json`](data/brand-stores.json) every 6 hours and adds
+products that are on sale on the brand's own site (at least 5% below the
+brand's regular price), linked to the brand's product page:
+
+- **Shopify stores** (Keychron and other accessory brands): the public
+  `products.json` feed (`price` vs `compare_at_price`)
+- **Logitech**: server-rendered store listings (sale price + struck-through
+  regular price); the product page supplies the photo
+- **Razer**: product pages from the sitemap, a rotating batch of 30 per
+  refresh; each page embeds the regular and markdown prices
+
+Only paths each site's robots.txt allows are read, with a pause between
+requests. Products are sorted into tabs with the same category rules as
+Newegg deals; accessories (cases, keycaps, docks…) are skipped. Results and a
+per-store log are in `data/brand-sales.json`. Add a store by adding a line.
+
+## Photos (automatic)
+
+[`scripts/check_images.py`](scripts/check_images.py) runs inside every hourly
+refresh: it re-checks every product photo about once a day (≈150 per run),
+removes photos that no longer load, and looks for a photo for every deal that
+has none — the product page's og:image / schema.org image (stores that block
+automated visits, like Costco, are skipped), then a matching Newegg listing.
+A candidate is used only after it is confirmed to load. Deals still without a
+photo show a category icon and are listed in the run log (`photos_missing`).
+
 ## Price history
 
 [`scripts/price_history.py`](scripts/price_history.py) runs inside every hourly
