@@ -23,6 +23,9 @@
   var allDeals = [];
   var BUILDS_MODE = "Builds"; // tab of complete PCs from data/builds.json
   var allBuilds = null;
+  var partsCatalog = null; // data/parts-catalog.json, loaded when "Build your own" opens
+  var buildsView = storeGet("buildsView") === "custom" ? "custom" : "recommended";
+  var customPick = readCustomPick();
   var activeFilter = "All";
   var activeBudget = "All";
   var activeSort = "savings";
@@ -2388,6 +2391,11 @@
       dealsEl.appendChild(wait);
       return;
     }
+    dealsEl.appendChild(buildsSwitch());
+    if (buildsView === "custom") {
+      renderCustom();
+      return;
+    }
     var builds = allBuilds.builds || [];
     var catalog = allBuilds.parts || {};
     var intro = document.createElement("p");
@@ -2438,6 +2446,335 @@
       group.appendChild(row);
       dealsEl.appendChild(group);
     });
+  }
+
+  // ---------------------------------------------------------------- Build your own
+  // Pick each part yourself; every list only offers parts that work with the
+  // parts already picked (socket, memory type, board size vs case, PSU power).
+  var CUSTOM_SLOTS = [
+    { slot: "cpu", label: "Processor", noun: "a processor" },
+    { slot: "cooler", label: "CPU cooler", noun: "a CPU cooler" },
+    { slot: "board", label: "Motherboard", noun: "a motherboard" },
+    { slot: "ram", label: "Memory", noun: "memory" },
+    { slot: "gpu", label: "Graphics card", noun: "a graphics card" },
+    { slot: "ssd", label: "Storage", noun: "storage" },
+    { slot: "psu", label: "Power supply", noun: "a power supply" },
+    { slot: "case", label: "Case", noun: "a case" }
+  ];
+  var SOCKET_LABEL = { AM4: "AMD AM4", AM5: "AMD AM5", LGA1700: "Intel LGA 1700", LGA1851: "Intel LGA 1851" };
+  // memory types each CPU socket can use (the board decides when one is picked)
+  var SOCKET_MEMORY = { AM4: ["DDR4"], AM5: ["DDR5"], LGA1851: ["DDR5"], LGA1700: ["DDR4", "DDR5"] };
+
+  function storeGet(key) {
+    try {
+      return window.localStorage.getItem("wagd:" + key);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function storeSet(key, value) {
+    try {
+      if (value == null) window.localStorage.removeItem("wagd:" + key);
+      else window.localStorage.setItem("wagd:" + key, value);
+    } catch (e) {}
+  }
+
+  function readCustomPick() {
+    var fromUrl = "";
+    try {
+      fromUrl = new URLSearchParams(location.search || "").get("build") || "";
+    } catch (e) {}
+    var raw = fromUrl || storeGet("customBuild") || "";
+    var pick = {};
+    raw.split(",").forEach(function (pair) {
+      var i = pair.indexOf(":");
+      if (i > 0) pick[pair.slice(0, i)] = decodeURIComponent(pair.slice(i + 1));
+    });
+    if (fromUrl) buildsView = "custom";
+    return pick;
+  }
+
+  function customPickString() {
+    return CUSTOM_SLOTS.filter(function (s) { return customPick[s.slot]; })
+      .map(function (s) { return s.slot + ":" + encodeURIComponent(customPick[s.slot]); })
+      .join(",");
+  }
+
+  function saveCustomPick() {
+    storeSet("customBuild", customPickString() || null);
+  }
+
+  function buildsSwitch() {
+    var wrap = document.createElement("div");
+    wrap.className = "builds-switch";
+    wrap.setAttribute("role", "tablist");
+    [["recommended", "Recommended"], ["custom", "Build your own"]].forEach(function (v) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "builds-switch__btn" + (buildsView === v[0] ? " is-on" : "");
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", buildsView === v[0] ? "true" : "false");
+      b.textContent = v[1];
+      b.addEventListener("click", function () {
+        if (buildsView === v[0]) return;
+        buildsView = v[0];
+        storeSet("buildsView", buildsView);
+        renderBuilds();
+      });
+      wrap.appendChild(b);
+    });
+    return wrap;
+  }
+
+  function loadPartsCatalog() {
+    return fetch("data/parts-catalog.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        partsCatalog = data && data.slots ? data : { slots: {}, parts: {} };
+      })
+      .catch(function () {
+        partsCatalog = partsCatalog || { slots: {}, parts: {}, failed: true };
+      })
+      .then(function () {
+        if (activeFilter === BUILDS_MODE && buildsView === "custom") renderBuilds();
+      });
+  }
+
+  function pickedParts() {
+    var out = {};
+    var parts = (partsCatalog && partsCatalog.parts) || {};
+    CUSTOM_SLOTS.forEach(function (s) {
+      var id = customPick[s.slot];
+      if (id && parts[id]) out[s.slot] = parts[id];
+    });
+    return out;
+  }
+
+  // Does part `p` (for `slot`) work with everything else already picked?
+  function customFits(slot, p, sel) {
+    var cpu = slot === "cpu" ? p : sel.cpu;
+    var board = slot === "board" ? p : sel.board;
+    var ram = slot === "ram" ? p : sel.ram;
+    var gpu = slot === "gpu" ? p : sel.gpu;
+    var psu = slot === "psu" ? p : sel.psu;
+    var kase = slot === "case" ? p : sel["case"];
+    if (cpu && board && cpu.sock !== board.sock) return false;
+    if (board && ram && board.mem !== ram.mem) return false;
+    if (cpu && ram && !board && (SOCKET_MEMORY[cpu.sock] || []).indexOf(ram.mem) === -1) return false;
+    if (board && kase && (kase.fits || []).indexOf(board.size) === -1) return false;
+    if (gpu && psu && gpu.need > psu.w) return false;
+    return true;
+  }
+
+  function optionGroupKey(slot, p) {
+    if (slot === "cpu" || slot === "board") return SOCKET_LABEL[p.sock] || p.sock || "";
+    if (slot === "ram") return p.mem || "";
+    return "";
+  }
+
+  function customRowHtml(def, sel, parts) {
+    var picked = sel[def.slot];
+    var cat = BUILD_ROLE_CATEGORY[def.label] || "";
+    var others = {};
+    Object.keys(sel).forEach(function (k) {
+      if (k !== def.slot) others[k] = sel[k];
+    });
+    var ids = ((partsCatalog.slots || {})[def.slot] || []).filter(function (id) {
+      return parts[id] && customFits(def.slot, parts[id], others);
+    });
+    var groups = {};
+    var order = [];
+    ids.forEach(function (id) {
+      var g = optionGroupKey(def.slot, parts[id]);
+      if (!groups[g]) {
+        groups[g] = [];
+        order.push(g);
+      }
+      groups[g].push(id);
+    });
+    order.sort();
+    var optHtml = function (id) {
+      var o = parts[id];
+      return (
+        '<option value="' + escapeAttr(id) + '"' + (picked && picked.id === id ? " selected" : "") + ">" +
+        escapeHtml(formatMoney(Number(o.price)) + " · " + shortOption(o.name) + (partOnSale(o) ? " · sale" : "")) +
+        "</option>"
+      );
+    };
+    var select =
+      '<select data-slot="' + escapeAttr(def.slot) + '" aria-label="Choose ' + escapeAttr(def.noun) + '">' +
+      '<option value="">' +
+      escapeHtml((picked ? "Change " : "Choose ") + def.noun + " (" + ids.length + " option" + (ids.length === 1 ? "" : "s") + ")") +
+      "</option>" +
+      order
+        .map(function (g) {
+          var inner = groups[g].map(optHtml).join("");
+          return g ? '<optgroup label="' + escapeAttr(g) + '">' + inner + "</optgroup>" : inner;
+        })
+        .join("") +
+      "</select>";
+    var body;
+    if (picked) {
+      var thumb = picked.image
+        ? '<img src="' + escapeAttr(cardImageSrc(picked.image)) + '" data-full="' + escapeAttr(picked.image) +
+          '" data-cat="' + escapeAttr(cat) + '" alt="" loading="lazy" decoding="async">'
+        : categoryIconSvg(cat, "build-part__icon");
+      var sale = partOnSale(picked);
+      body =
+        '<span class="build-part__thumb">' + thumb + "</span>" +
+        '<span class="build-part__info">' +
+        '<span class="build-part__role">' + escapeHtml(def.label) +
+        (picked.merchant ? " · " + escapeHtml(picked.merchant) : "") + " · " +
+        (sale ? '<span class="build-part__sale">on sale</span>' : "regular price") + "</span>" +
+        '<a class="build-part__name" href="' + escapeAttr(picked.url) + '" target="_blank" rel="noopener noreferrer">' +
+        escapeHtml(picked.name) + "</a>" +
+        '<span class="build-part__swap custom-row__controls">' + select +
+        '<button type="button" class="custom-row__clear" data-clear="' + escapeAttr(def.slot) + '" aria-label="Remove ' +
+        escapeAttr(def.label) + '">Remove</button></span>' +
+        "</span>" +
+        '<span class="build-part__price">' + escapeHtml(formatMoney(Number(picked.price))) +
+        (sale ? '<span class="build-part__was">' + escapeHtml(formatMoney(Number(picked.previousPrice))) + "</span>" : "") +
+        "</span>";
+    } else {
+      body =
+        '<span class="build-part__thumb build-part__thumb--empty">' + categoryIconSvg(cat, "build-part__icon") + "</span>" +
+        '<span class="build-part__info">' +
+        '<span class="build-part__role">' + escapeHtml(def.label) + "</span>" +
+        '<span class="build-part__swap">' + select + "</span>" +
+        (ids.length ? "" : '<span class="custom-row__none">Nothing fits your other picks. Remove one to see more.</span>') +
+        "</span>" +
+        '<span class="build-part__price custom-row__empty">—</span>';
+    }
+    return '<li class="build-part custom-row' + (picked ? "" : " is-empty") + '">' + body + "</li>";
+  }
+
+  function customWarnings(sel) {
+    var w = [];
+    var missing = CUSTOM_SLOTS.filter(function (s) {
+      if (s.slot === "cooler") return false;
+      return !sel[s.slot];
+    }).map(function (s) { return s.label.toLowerCase(); });
+    if (sel.cpu && !sel.cpu.boxed && !sel.cooler) w.push("This processor has no cooler in the box. Pick a CPU cooler.");
+    if (sel.cpu && sel.cpu.boxed && !sel.cooler) w.push("The processor comes with its own cooler.");
+    if (sel.gpu && !sel.psu) w.push("This graphics card needs a power supply of at least " + sel.gpu.need + "W.");
+    if (sel.cooler && sel.cpu) w.push("Make sure the cooler lists " + (SOCKET_LABEL[sel.cpu.sock] || sel.cpu.sock) + " support (most current coolers do).");
+    if (sel.gpu && sel["case"]) w.push("Check that the graphics card fits the case before buying.");
+    if (missing.length && missing.length < 7) w.push("Still to pick: " + missing.join(", ") + ".");
+    return w;
+  }
+
+  function renderCustom() {
+    if (!partsCatalog) {
+      var wait = document.createElement("p");
+      wait.className = "status";
+      wait.textContent = "Loading parts…";
+      dealsEl.appendChild(wait);
+      loadPartsCatalog();
+      return;
+    }
+    if (partsCatalog.failed) {
+      var err = document.createElement("p");
+      err.className = "status status--error";
+      err.textContent = "Couldn’t load parts. Try again in a moment.";
+      dealsEl.appendChild(err);
+      return;
+    }
+    var parts = partsCatalog.parts || {};
+    var sel = pickedParts();
+    var chosen = Object.keys(sel).map(function (k) { return sel[k]; });
+    var total = chosen.reduce(function (t, p) { return t + Number(p.price || 0); }, 0);
+    var was = chosen.reduce(function (t, p) {
+      return t + (partOnSale(p) ? Number(p.previousPrice) : Number(p.price || 0));
+    }, 0);
+    var save = Math.max(0, was - total);
+    var card = document.createElement("article");
+    card.className = "build-card custom-build";
+    var warnings = customWarnings(sel);
+    card.innerHTML =
+      '<header class="build-card__head">' +
+      "<div>" +
+      '<p class="build-card__eyebrow">Build your own</p>' +
+      '<h2 class="build-card__title">' +
+      escapeHtml(sel.cpu && sel.gpu ? shortPartName(sel.cpu.name) + " + " + shortPartName(sel.gpu.name) : "Your gaming PC") +
+      "</h2>" +
+      '<p class="build-card__meta">' +
+      (chosen.length
+        ? chosen.length + " part" + (chosen.length === 1 ? "" : "s") + " · " + chosen.filter(partOnSale).length + " on sale" +
+          ' · <button type="button" class="build-card__reset" data-act="share">Copy share link</button>' +
+          ' · <button type="button" class="build-card__reset" data-act="clear">Start over</button>'
+        : "Pick parts in any order. Every list only shows parts that fit your other picks.") +
+      "</p>" +
+      "</div>" +
+      '<div class="build-card__total">' +
+      '<span class="build-card__price">' + escapeHtml(formatMoney(Math.round(total * 100) / 100)) + "</span>" +
+      (save > 0.5 ? '<span class="deal-card__badge">save ' + escapeHtml(formatMoney(Math.round(save))) + "</span>" : "") +
+      "</div>" +
+      "</header>" +
+      '<ol class="build-card__parts">' +
+      CUSTOM_SLOTS.map(function (def) { return customRowHtml(def, sel, parts); }).join("") +
+      "</ol>" +
+      (warnings.length
+        ? '<ul class="build-card__notes">' + warnings.map(function (n) { return "<li>" + escapeHtml(n) + "</li>"; }).join("") + "</ul>"
+        : "");
+    card.querySelectorAll("select[data-slot]").forEach(function (sl) {
+      sl.addEventListener("change", function () {
+        if (!sl.value) return;
+        customPick[sl.getAttribute("data-slot")] = sl.value;
+        saveCustomPick();
+        rerenderCustomKeepingFocus(sl.getAttribute("data-slot"));
+      });
+    });
+    card.querySelectorAll("[data-clear]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        delete customPick[b.getAttribute("data-clear")];
+        saveCustomPick();
+        rerenderCustomKeepingFocus(b.getAttribute("data-clear"));
+      });
+    });
+    card.querySelectorAll(".build-part__thumb img").forEach(function (img) {
+      img.addEventListener("error", function onErr() {
+        var full = img.getAttribute("data-full");
+        if (full && img.getAttribute("src") !== full) {
+          img.setAttribute("src", full);
+          return;
+        }
+        img.removeEventListener("error", onErr);
+        img.outerHTML = categoryIconSvg(img.getAttribute("data-cat") || "", "build-part__icon");
+      });
+    });
+    var actions = card.querySelectorAll("[data-act]");
+    actions.forEach(function (b) {
+      b.addEventListener("click", function () {
+        if (b.getAttribute("data-act") === "clear") {
+          customPick = {};
+          saveCustomPick();
+          renderBuilds();
+          return;
+        }
+        var link = location.origin + location.pathname + "?tab=Builds&build=" + customPickString();
+        var done = function () { showToast("Link copied"); };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(link).then(done, function () { window.prompt("Copy this link", link); });
+        } else {
+          window.prompt("Copy this link", link);
+        }
+      });
+    });
+    dealsEl.appendChild(card);
+  }
+
+  function rerenderCustomKeepingFocus(slot) {
+    var y = window.scrollY;
+    renderBuilds();
+    try {
+      window.scrollTo(0, y);
+      var el = dealsEl.querySelector('select[data-slot="' + slot + '"]');
+      if (el) el.focus({ preventScroll: true });
+    } catch (e) {}
   }
 
   function scrollTop() {

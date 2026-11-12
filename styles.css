@@ -2163,3 +2163,85 @@ a.build-part__name:focus-visible {
   font-size: 0.76rem;
   color: var(--accent);
 }
+
+/* Builds tab: Recommended / Build your own switch and the custom picker */
+.builds-switch {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px;
+  gap: 3px;
+  border-radius: 980px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+.builds-switch__btn {
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 0.45rem 0.95rem;
+  border-radius: 980px;
+  cursor: pointer;
+}
+
+.builds-switch__btn.is-on {
+  background: var(--accent);
+  color: #06121d;
+}
+
+.builds-switch__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.custom-build .build-card__parts {
+  grid-template-columns: 1fr;
+}
+
+.custom-row.is-empty .build-part__thumb {
+  opacity: 0.55;
+}
+
+.custom-row__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.custom-row__controls select {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.custom-row__clear {
+  margin-top: 0.35rem;
+  border: 0;
+  background: none;
+  padding: 0.3rem 0.2rem;
+  color: var(--text-tertiary);
+  font: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+  text-decoration: underline;
+  flex-shrink: 0;
+}
+
+.custom-row__clear:hover,
+.custom-row__clear:focus-visible {
+  color: var(--accent);
+}
+
+.custom-row__none {
+  margin-top: 0.3rem;
+  font-size: 0.76rem;
+  color: #ff6b5f;
+}
+
+.custom-row__empty {
+  color: var(--text-tertiary);
+}

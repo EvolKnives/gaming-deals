@@ -40,6 +40,13 @@ memory type, motherboard size vs case, and power supply wattage vs graphics
 card. The graphics card is weighted 3x the processor, and builds from $2,000
 up use at least 32GB of memory. Budgets no build can meet are skipped.
 
+**Build your own** (a switch at the top of the Builds tab) lets visitors pick
+every part from [`data/parts-catalog.json`](data/parts-catalog.json), which
+`build_pcs.py` writes each hour: every part whose compatibility facts could be
+read. Each list only offers parts that fit the other picks (socket, DDR4 vs
+DDR5, board size vs case, PSU wattage vs graphics card). The build is kept in
+the visitor's browser and can be shared as a link (`?tab=Builds&build=…`).
+
 On the site, each part has a menu of other compatible options with prices.
 Picking a graphics card that needs more power, or a motherboard the case
 can't hold, also switches in the cheapest power supply or case that fits.

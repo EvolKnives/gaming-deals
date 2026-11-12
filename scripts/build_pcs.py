@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEALS_PATH = ROOT / "data" / "deals.json"
 BUILDS_PATH = ROOT / "data" / "builds.json"
 POOL_PATH = ROOT / "data" / "build-parts.json"  # regular-price parts (daily_refresh.py)
+CATALOG_PATH = ROOT / "data" / "parts-catalog.json"  # every usable part, for "Build your own"
 
 BUDGETS = [1200, 1500, 2000, 3000]
 PLATFORMS = {"AMD": {"AM4", "AM5"}, "Intel": {"LGA1700", "LGA1851"}}
@@ -69,7 +70,8 @@ GPU_PSU_WATTS = [  # recommended whole-system PSU
 ]
 # CPUs sold with a cooler in the box
 BOXED_COOLER = re.compile(
-    r"\b(5500|5600|5600x|7600|8600g|8700g)\b(?!x)|wraith|with cooler|cooler included|"
+    r"\b(5500|5600|5600x|5600xt|5600t|5700|5800xt|5900xt|7600|8600g|8700g)\b(?!x)|"
+    r"wraith|with cooler|cooler included|"
     r"\bi[3579]-1[234]\d{3}f?\b(?!k)",
     re.I,
 )
@@ -305,11 +307,11 @@ def best_build(c: dict[str, list[dict[str, Any]]], budget: float,
 def meta(role: str, d: dict[str, Any]) -> dict[str, Any]:
     """Compatibility facts the site uses to keep swaps compatible."""
     if role == "cpu":
-        return {"sock": d["_sock"]}
+        return {"sock": d["_sock"], "boxed": d["_boxed"]}
     if role == "board":
         return {"sock": d["_sock"], "mem": d["_mem"], "size": d["_size"]}
     if role == "ram":
-        return {"mem": d["_mem"]}
+        return {"mem": d["_mem"], "gb": d["_gb"]}
     if role == "gpu":
         return {"need": d["_need"]}
     if role == "psu":
@@ -389,6 +391,25 @@ def short(name: str) -> str:
     return name.split(" - ")[0][:40]
 
 
+def write_catalog(full: dict[str, list[dict[str, Any]]], now: datetime) -> None:
+    """Every part whose compatibility facts could be read, grouped by slot,
+    cheapest first, for the site's "Build your own" picker."""
+    slots: dict[str, list[str]] = {}
+    parts: dict[str, dict[str, Any]] = {}
+    for slot in ("cpu", "cooler", "board", "ram", "gpu", "ssd", "psu", "case"):
+        ids = []
+        for d in sorted(full.get(slot, []), key=lambda x: x["price"]):
+            entry = {**catalog_entry(part(d, "")), **meta(slot, d)}
+            if slot == "ssd":
+                entry["gb"] = d["_gb"]
+            parts[d["id"]] = entry
+            ids.append(d["id"])
+        slots[slot] = ids
+    out = {"updatedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "slots": slots, "parts": parts}
+    CATALOG_PATH.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n",
+                            encoding="utf-8")
+
+
 def main() -> int:
     deals = json.loads(DEALS_PATH.read_text(encoding="utf-8")).get("deals") or []
     try:
@@ -417,6 +438,7 @@ def main() -> int:
                 if "options" in p:
                     p["options"] = [o["id"] for o in p["options"]]
             builds.append(built)
+    write_catalog(c["_all"], now)
     out = {"updatedAt": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "budgets": BUDGETS,
            "platforms": list(PLATFORMS), "parts": catalog, "builds": builds}
     BUILDS_PATH.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n",
