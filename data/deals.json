@@ -1,24 +1,24 @@
 {
-  "updatedAt": "2026-11-14T06:21:10Z",
+  "updatedAt": "2026-11-14T07:21:16Z",
   "weekLabel": "Week of Nov 9",
   "title": "What's A Good Deal?",
   "catalogueRevision": 47,
   "lastRefresh": {
-    "at": "2026-11-14T06:21:10Z",
+    "at": "2026-11-14T07:21:16Z",
     "source": "hourly_refresh",
     "before": 662,
     "after": 662,
     "added": 0,
     "removed": 17,
-    "newegg_verified": 569,
+    "newegg_checked_recently": 569,
     "newegg_not_found": 22,
     "denon_verified": 3,
-    "newegg_checked_recently": 1,
+    "newegg_verified": 1,
     "upcoming_kept": 10,
     "brand_sales_found": 319,
     "brand_sales_shown": 57,
-    "apiCalls": 747,
-    "images_checked": 1,
+    "apiCalls": 165,
+    "images_checked": 0,
     "images_removed": 0,
     "photos_found": 0,
     "photos_missing": 1
@@ -77,7 +77,7 @@
       "low30": 509.99,
       "high30": 509.99,
       "typical30": 509.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -189,7 +189,7 @@
       "low30": 529.99,
       "high30": 529.99,
       "typical30": 529.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -217,7 +217,7 @@
       "low30": 919.99,
       "high30": 919.99,
       "typical30": 919.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -245,7 +245,7 @@
       "low30": 679.99,
       "high30": 679.99,
       "typical30": 679.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -273,7 +273,7 @@
       "low30": 539.99,
       "high30": 539.99,
       "typical30": 539.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -301,7 +301,7 @@
       "low30": 1079.99,
       "high30": 1079.99,
       "typical30": 1079.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -329,7 +329,7 @@
       "low30": 749.99,
       "high30": 749.99,
       "typical30": 749.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -357,7 +357,7 @@
       "low30": 749.99,
       "high30": 749.99,
       "typical30": 749.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -385,7 +385,7 @@
       "low30": 949.99,
       "high30": 949.99,
       "typical30": 949.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -413,7 +413,7 @@
       "low30": 969.99,
       "high30": 999.99,
       "typical30": 969.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -631,7 +631,7 @@
       "low30": 468.99,
       "high30": 468.99,
       "typical30": 468.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -687,7 +687,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -744,7 +744,7 @@
       "high30": 179.99,
       "typical30": 179.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "acer-nitro-27-inch-qhd-2k-1440p-180hz-ips-amd-fr--00nn9",
@@ -768,7 +768,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -796,7 +796,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -824,7 +824,7 @@
       "low30": 249.99,
       "high30": 249.99,
       "typical30": 249.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -880,7 +880,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -908,7 +908,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1017,7 +1017,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1042,7 +1042,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1209,7 +1209,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1348,7 +1348,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1404,7 +1404,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1432,7 +1432,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1460,7 +1460,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1488,7 +1488,7 @@
       "low30": 139.9,
       "high30": 139.9,
       "typical30": 139.9,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1516,7 +1516,7 @@
       "low30": 114.93,
       "high30": 114.93,
       "typical30": 114.93,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1544,7 +1544,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1572,7 +1572,7 @@
       "low30": 151.99,
       "high30": 151.99,
       "typical30": 151.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1627,7 +1627,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1700,8 +1700,8 @@
       "image": "images/denon-avr-x3800h.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $1,399.00 (MSRP $1,799.00). Official sale on a 9.4-ch 8K Atmos receiver with HEOS streaming.",
-      "verifiedAt": "2026-11-14T06:21:10Z",
-      "updatedAt": "2026-11-14T06:21:10Z",
+      "verifiedAt": "2026-11-14T07:21:16Z",
+      "updatedAt": "2026-11-14T07:21:16Z",
       "low30": 1399.0,
       "high30": 1399.0,
       "typical30": 1399.0,
@@ -1752,8 +1752,8 @@
       "image": "images/denon-avr-x2800h.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $999.00 (MSRP $1,299.00). Official sale on a 7.2-ch 8K Atmos receiver for medium rooms.",
-      "verifiedAt": "2026-11-14T06:21:10Z",
-      "updatedAt": "2026-11-14T06:21:10Z",
+      "verifiedAt": "2026-11-14T07:21:16Z",
+      "updatedAt": "2026-11-14T07:21:16Z",
       "low30": 1299.0,
       "high30": 1299.0,
       "typical30": 1299.0,
@@ -1785,7 +1785,7 @@
       "low30": 649.95,
       "high30": 649.95,
       "typical30": 649.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1813,7 +1813,7 @@
       "low30": 1199.95,
       "high30": 1199.95,
       "typical30": 1199.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1841,7 +1841,7 @@
       "low30": 849.95,
       "high30": 849.95,
       "typical30": 849.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1866,7 +1866,7 @@
       "low30": 399.95,
       "high30": 399.95,
       "typical30": 399.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1891,7 +1891,7 @@
       "low30": 327.99,
       "high30": 327.99,
       "typical30": 327.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1919,7 +1919,7 @@
       "low30": 249.95,
       "high30": 249.95,
       "typical30": 249.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1944,7 +1944,7 @@
       "low30": 1399.95,
       "high30": 1399.95,
       "typical30": 1399.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1969,7 +1969,7 @@
       "low30": 396.99,
       "high30": 396.99,
       "typical30": 396.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -1994,7 +1994,7 @@
       "low30": 248.99,
       "high30": 248.99,
       "typical30": 248.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2024,7 +2024,7 @@
       "low30": 369.0,
       "high30": 549.0,
       "typical30": 549.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2093,8 +2093,8 @@
       "image": "images/denon-home-51.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $1,699.00 (MSRP $1,846.00). Official bundle cut on a wireless Dolby Atmos 5.1 Denon Home system.",
-      "verifiedAt": "2026-11-14T06:21:10Z",
-      "updatedAt": "2026-11-14T06:21:10Z",
+      "verifiedAt": "2026-11-14T07:21:16Z",
+      "updatedAt": "2026-11-14T07:21:16Z",
       "low30": 1699.0,
       "high30": 1699.0,
       "typical30": 1699.0,
@@ -2154,7 +2154,7 @@
       "low30": 64.99,
       "high30": 64.99,
       "typical30": 64.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2182,7 +2182,7 @@
       "low30": 299.99,
       "high30": 299.99,
       "typical30": 299.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2210,7 +2210,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2238,7 +2238,7 @@
       "low30": 399.95,
       "high30": 399.95,
       "typical30": 399.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2263,7 +2263,7 @@
       "low30": 279.95,
       "high30": 279.95,
       "typical30": 279.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2288,7 +2288,7 @@
       "low30": 1099.0,
       "high30": 1099.0,
       "typical30": 1099.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2313,7 +2313,7 @@
       "low30": 169.99,
       "high30": 169.99,
       "typical30": 169.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2338,7 +2338,7 @@
       "low30": 799.99,
       "high30": 799.99,
       "typical30": 799.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2363,7 +2363,7 @@
       "low30": 299.95,
       "high30": 299.95,
       "typical30": 299.95,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2388,7 +2388,7 @@
       "low30": 299.0,
       "high30": 299.0,
       "typical30": 299.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2413,7 +2413,7 @@
       "low30": 399.99,
       "high30": 399.99,
       "typical30": 399.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2438,7 +2438,7 @@
       "low30": 202.99,
       "high30": 202.99,
       "typical30": 202.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2463,7 +2463,7 @@
       "low30": 169.99,
       "high30": 169.99,
       "typical30": 169.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2488,7 +2488,7 @@
       "low30": 64.99,
       "high30": 64.99,
       "typical30": 64.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2541,7 +2541,7 @@
       "low30": 119.99,
       "high30": 119.99,
       "typical30": 119.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2566,7 +2566,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2591,7 +2591,7 @@
       "low30": 265.99,
       "high30": 265.99,
       "typical30": 265.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2676,7 +2676,7 @@
       "high30": 40.99,
       "typical30": 40.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-z207-2-0-stereo-computer-speakers-with-121235",
@@ -2704,7 +2704,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "edifier-s1000mkii-audiophile-active-bookshelf-2--001f3",
@@ -2732,7 +2732,7 @@
       "high30": 499.99,
       "typical30": 499.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "creative-pebble-v3-usb-c-2-0-bluetooth-speaker-s-116226",
@@ -2759,7 +2759,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2787,7 +2787,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2812,7 +2812,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2840,7 +2840,7 @@
       "low30": 227.99,
       "high30": 227.99,
       "typical30": 227.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2868,7 +2868,7 @@
       "low30": 37.99,
       "high30": 37.99,
       "typical30": 37.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2893,7 +2893,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2918,7 +2918,7 @@
       "low30": 349.99,
       "high30": 349.99,
       "typical30": 349.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2943,7 +2943,7 @@
       "low30": 69.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2968,7 +2968,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -2993,7 +2993,7 @@
       "low30": 249.99,
       "high30": 249.99,
       "typical30": 249.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3021,7 +3021,7 @@
       "low30": 169.99,
       "high30": 169.99,
       "typical30": 169.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3049,7 +3049,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3074,7 +3074,7 @@
       "low30": 399.99,
       "high30": 399.99,
       "typical30": 399.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3099,7 +3099,7 @@
       "low30": 549.99,
       "high30": 549.99,
       "typical30": 549.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3124,7 +3124,7 @@
       "low30": 499.99,
       "high30": 499.99,
       "typical30": 499.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3152,7 +3152,7 @@
       "low30": 999.99,
       "high30": 999.99,
       "typical30": 999.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3177,7 +3177,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3232,7 +3232,7 @@
       "low30": 73.99,
       "high30": 81.98,
       "typical30": 81.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3260,7 +3260,7 @@
       "low30": 64.98,
       "high30": 64.98,
       "typical30": 64.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3288,7 +3288,7 @@
       "low30": 53.97,
       "high30": 53.97,
       "typical30": 53.97,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3343,7 +3343,7 @@
       "low30": 35.98,
       "high30": 35.98,
       "typical30": 35.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3371,7 +3371,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3399,7 +3399,7 @@
       "low30": 37.98,
       "high30": 37.98,
       "typical30": 37.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3427,7 +3427,7 @@
       "low30": 58.94,
       "high30": 58.94,
       "typical30": 58.94,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3455,7 +3455,7 @@
       "low30": 66.98,
       "high30": 66.98,
       "typical30": 66.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3483,7 +3483,7 @@
       "low30": 42.99,
       "high30": 42.99,
       "typical30": 42.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3727,7 +3727,7 @@
       "low30": 279.99,
       "high30": 279.99,
       "typical30": 279.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3779,7 +3779,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3807,7 +3807,7 @@
       "low30": 117.99,
       "high30": 117.99,
       "typical30": 117.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3835,7 +3835,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3863,7 +3863,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3891,7 +3891,7 @@
       "low30": 269.99,
       "high30": 269.99,
       "typical30": 269.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3919,7 +3919,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3947,7 +3947,7 @@
       "low30": 134.99,
       "high30": 134.99,
       "typical30": 134.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -3975,7 +3975,7 @@
       "low30": 65.99,
       "high30": 65.99,
       "typical30": 65.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4031,7 +4031,7 @@
       "low30": 142.99,
       "high30": 142.99,
       "typical30": 142.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4363,7 +4363,7 @@
       "low30": 2749.99,
       "high30": 2999.99,
       "typical30": 2749.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4391,7 +4391,7 @@
       "low30": 259.99,
       "high30": 259.99,
       "typical30": 259.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4475,7 +4475,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4584,7 +4584,7 @@
       "low30": 159.99,
       "high30": 159.99,
       "typical30": 159.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4612,7 +4612,7 @@
       "low30": 189.99,
       "high30": 189.99,
       "typical30": 189.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4640,7 +4640,7 @@
       "low30": 144.99,
       "high30": 144.99,
       "typical30": 144.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4668,7 +4668,7 @@
       "low30": 189.99,
       "high30": 189.99,
       "typical30": 189.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -4696,7 +4696,7 @@
       "low30": 479.99,
       "high30": 479.99,
       "typical30": 479.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5079,7 +5079,7 @@
       "high30": 1699.99,
       "typical30": 1699.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "abs-stratos-ii-aqua-prebuilt-gaming-pc-windows-1-360994",
@@ -5106,7 +5106,7 @@
       "low30": 2549.99,
       "high30": 2549.99,
       "typical30": 2549.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5134,7 +5134,7 @@
       "low30": 1969.99,
       "high30": 1999.99,
       "typical30": 1969.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5162,7 +5162,7 @@
       "low30": 1199.99,
       "high30": 1199.99,
       "typical30": 1199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5190,7 +5190,7 @@
       "low30": 1799.99,
       "high30": 1799.99,
       "typical30": 1799.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5218,7 +5218,7 @@
       "low30": 1039.99,
       "high30": 1039.99,
       "typical30": 1039.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5246,7 +5246,7 @@
       "low30": 1299.99,
       "high30": 1299.99,
       "typical30": 1299.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5274,7 +5274,7 @@
       "low30": 1299.99,
       "high30": 1299.99,
       "typical30": 1299.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5302,7 +5302,7 @@
       "low30": 1999.0,
       "high30": 1999.0,
       "typical30": 1999.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5330,7 +5330,7 @@
       "low30": 1999.99,
       "high30": 1999.99,
       "typical30": 1999.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5358,7 +5358,7 @@
       "low30": 1999.99,
       "high30": 1999.99,
       "typical30": 1999.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5386,7 +5386,7 @@
       "low30": 799.99,
       "high30": 799.99,
       "typical30": 799.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5411,7 +5411,7 @@
       "low30": 2159.99,
       "high30": 2159.99,
       "typical30": 2159.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5436,7 +5436,7 @@
       "low30": 2239.99,
       "high30": 2239.99,
       "typical30": 2239.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5461,7 +5461,7 @@
       "low30": 3159.99,
       "high30": 3159.99,
       "typical30": 3159.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5489,7 +5489,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5517,7 +5517,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5572,7 +5572,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5764,7 +5764,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5820,7 +5820,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5848,7 +5848,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5876,7 +5876,7 @@
       "low30": 461.99,
       "high30": 461.99,
       "typical30": 461.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5904,7 +5904,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5932,7 +5932,7 @@
       "low30": 351.99,
       "high30": 351.99,
       "typical30": 351.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -5960,7 +5960,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6058,8 +6058,8 @@
       "sku": "2WC-0001-05Z58",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AKVUD26091001NKKJ4E.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-14T04:21:03Z",
-      "updatedAt": "2026-11-14T04:21:03Z",
+      "verifiedAt": "2026-11-14T07:21:16Z",
+      "updatedAt": "2026-11-14T07:21:16Z",
       "autoSeeded": true,
       "low30": 1599.99,
       "high30": 1749.99,
@@ -6142,7 +6142,7 @@
       "low30": 1029.99,
       "high30": 1029.99,
       "typical30": 1029.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6267,7 +6267,7 @@
       "low30": 4149.99,
       "high30": 4149.99,
       "typical30": 4149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6292,7 +6292,7 @@
       "low30": 1199.99,
       "high30": 1199.99,
       "typical30": 1199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6317,7 +6317,7 @@
       "low30": 1699.99,
       "high30": 1699.99,
       "typical30": 1699.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6397,7 +6397,7 @@
       "low30": 3489.99,
       "high30": 3489.99,
       "typical30": 3489.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6425,7 +6425,7 @@
       "low30": 2158.99,
       "high30": 2158.99,
       "typical30": 2158.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6453,7 +6453,7 @@
       "low30": 3099.99,
       "high30": 3099.99,
       "typical30": 3099.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6481,7 +6481,7 @@
       "low30": 2600.99,
       "high30": 2600.99,
       "typical30": 2600.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6509,7 +6509,7 @@
       "low30": 2072.99,
       "high30": 2093.99,
       "typical30": 2093.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6534,7 +6534,7 @@
       "low30": 4299.99,
       "high30": 4299.99,
       "typical30": 4299.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6732,7 +6732,7 @@
       "low30": 439.99,
       "high30": 439.99,
       "typical30": 439.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6760,7 +6760,7 @@
       "low30": 208.41,
       "high30": 208.41,
       "typical30": 208.41,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6844,7 +6844,7 @@
       "low30": 539.99,
       "high30": 539.99,
       "typical30": 539.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6872,7 +6872,7 @@
       "low30": 232.08,
       "high30": 232.08,
       "typical30": 232.08,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6900,7 +6900,7 @@
       "low30": 469.99,
       "high30": 469.99,
       "typical30": 469.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6928,7 +6928,7 @@
       "low30": 161.08,
       "high30": 161.1,
       "typical30": 161.1,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -6984,7 +6984,7 @@
       "low30": 134.99,
       "high30": 134.99,
       "typical30": 134.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7012,7 +7012,7 @@
       "low30": 299.99,
       "high30": 299.99,
       "typical30": 299.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7040,7 +7040,7 @@
       "low30": 104.0,
       "high30": 104.0,
       "typical30": 104.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7096,7 +7096,7 @@
       "low30": 639.99,
       "high30": 639.99,
       "typical30": 639.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7121,7 +7121,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7591,7 +7591,7 @@
       "low30": 999.99,
       "high30": 999.99,
       "typical30": 999.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7616,7 +7616,7 @@
       "low30": 1399.99,
       "high30": 1399.99,
       "typical30": 1399.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7641,7 +7641,7 @@
       "low30": 959.99,
       "high30": 959.99,
       "typical30": 959.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -7668,7 +7668,7 @@
       "high30": 2060.99,
       "typical30": 2060.99,
       "historyDays": 2,
-      "trackedDays30": 1.7
+      "trackedDays30": 1.8
     },
     {
       "id": "samsung-galaxy-a17-5g-128gb-unlocked-black-healt--020t1",
@@ -7693,7 +7693,7 @@
       "high30": 299.99,
       "typical30": 299.99,
       "historyDays": 2,
-      "trackedDays30": 1.4
+      "trackedDays30": 1.5
     },
     {
       "id": "razer-deathadder-v3-pro-wireless-gaming-mouse-63-153334",
@@ -7887,7 +7887,7 @@
       "low30": 69.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8056,7 +8056,7 @@
       "low30": 32.0,
       "high30": 32.0,
       "typical30": 32.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8084,7 +8084,7 @@
       "low30": 92.99,
       "high30": 92.99,
       "typical30": 92.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8112,7 +8112,7 @@
       "low30": 80.99,
       "high30": 80.99,
       "typical30": 80.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8140,7 +8140,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8170,7 +8170,7 @@
       "low30": 32.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8198,7 +8198,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8226,7 +8226,7 @@
       "low30": 95.76,
       "high30": 95.76,
       "typical30": 95.76,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8254,7 +8254,7 @@
       "low30": 25.99,
       "high30": 25.99,
       "typical30": 25.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8283,7 +8283,7 @@
       "high30": 39.98,
       "typical30": 39.98,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "razer-barracuda-x-2022-edition-barracuda-x-2022-153347",
@@ -8311,7 +8311,7 @@
       "high30": 69.0,
       "typical30": 69.0,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-g735-wireless-gaming-headset-customizab-197592",
@@ -8339,7 +8339,7 @@
       "high30": 179.99,
       "typical30": 179.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-g-pro-x-gaming-headset-with-blue-voice-197345",
@@ -8367,7 +8367,7 @@
       "high30": 99.99,
       "typical30": 99.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-g-pro-x-wireless-lightspeed-gaming-head--004r6",
@@ -8395,7 +8395,7 @@
       "high30": 149.99,
       "typical30": 149.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-g-pro-x-2-lightspeed-wireless-gaming-he-197623",
@@ -8423,7 +8423,7 @@
       "high30": 234.99,
       "typical30": 234.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "msi-maestro-500-wireless-gaming-headset-40mm-dri-554092",
@@ -8451,7 +8451,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "razer-kraken-v4-full-spectrum-immersion-wireless-153367",
@@ -8478,7 +8478,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8506,7 +8506,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8531,7 +8531,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8556,7 +8556,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8581,7 +8581,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8606,7 +8606,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8631,7 +8631,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8656,7 +8656,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8681,7 +8681,7 @@
       "low30": 179.99,
       "high30": 179.99,
       "typical30": 179.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8709,7 +8709,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8837,7 +8837,7 @@
       "low30": 137.13,
       "high30": 137.13,
       "typical30": 137.13,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8890,7 +8890,7 @@
       "low30": 49.0,
       "high30": 49.0,
       "typical30": 49.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8915,7 +8915,7 @@
       "low30": 84.99,
       "high30": 84.99,
       "typical30": 84.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8943,7 +8943,7 @@
       "low30": 89.0,
       "high30": 89.0,
       "typical30": 89.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8968,7 +8968,7 @@
       "low30": 52.99,
       "high30": 52.99,
       "typical30": 52.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -8993,7 +8993,7 @@
       "low30": 47.99,
       "high30": 47.99,
       "typical30": 47.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9018,7 +9018,7 @@
       "low30": 26.99,
       "high30": 26.99,
       "typical30": 26.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9043,7 +9043,7 @@
       "low30": 28.99,
       "high30": 28.99,
       "typical30": 28.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9068,7 +9068,7 @@
       "low30": 38.99,
       "high30": 38.99,
       "typical30": 38.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9093,7 +9093,7 @@
       "low30": 149.0,
       "high30": 149.0,
       "typical30": 149.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9325,7 +9325,7 @@
       "high30": 139.99,
       "typical30": 139.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "dell-pro-plus-eb525-microsoft-teams-certificatio-675057",
@@ -9350,7 +9350,7 @@
       "high30": 160.49,
       "typical30": 160.49,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "nank-clip-pro-clip-on-wireless-bluetooth-earbuds-677004",
@@ -9375,7 +9375,7 @@
       "high30": 39.99,
       "typical30": 39.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "nank-ultra-clip-on-earbuds-wireless-bluetooth-5--02ds5",
@@ -9400,7 +9400,7 @@
       "high30": 79.99,
       "typical30": 79.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "epos-adapt-e1-true-wireless-bluetooth-earbuds-he--000d6",
@@ -9425,7 +9425,7 @@
       "high30": 145.99,
       "typical30": 145.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "epos-adapt-e1-true-wireless-bluetooth-earbuds-he--000d5",
@@ -9450,7 +9450,7 @@
       "high30": 152.99,
       "typical30": 152.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "google-pixel-pro-2-wireless-earbuds-with-active--00085",
@@ -9475,7 +9475,7 @@
       "high30": 209.99,
       "typical30": 209.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "google-pixel-buds-pro-2-wireless-earbuds-with-ac--00083",
@@ -9500,7 +9500,7 @@
       "high30": 210.99,
       "typical30": 210.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "morpheus-360-nemesis-anc-wireless-noise-cancelli--00028",
@@ -9525,7 +9525,7 @@
       "high30": 37.99,
       "typical30": 37.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "beyerdynamic-amiron-300-true-wireless-noise-canc-380073",
@@ -9550,7 +9550,7 @@
       "high30": 279.99,
       "typical30": 279.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "bose-quietcomfort-earbuds-true-wireless-bluetoot-627155",
@@ -9577,7 +9577,7 @@
       "low30": 179.0,
       "high30": 179.0,
       "typical30": 179.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9605,7 +9605,7 @@
       "low30": 179.0,
       "high30": 179.0,
       "typical30": 179.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9633,7 +9633,7 @@
       "low30": 299.0,
       "high30": 299.0,
       "typical30": 299.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9658,7 +9658,7 @@
       "low30": 104.99,
       "high30": 104.99,
       "typical30": 104.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9683,7 +9683,7 @@
       "low30": 35.99,
       "high30": 35.99,
       "typical30": 35.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9708,7 +9708,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9733,7 +9733,7 @@
       "low30": 192.99,
       "high30": 192.99,
       "typical30": 192.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9758,7 +9758,7 @@
       "low30": 104.99,
       "high30": 104.99,
       "typical30": 104.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9783,7 +9783,7 @@
       "low30": 36.99,
       "high30": 36.99,
       "typical30": 36.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9808,7 +9808,7 @@
       "low30": 64.99,
       "high30": 64.99,
       "typical30": 64.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9833,7 +9833,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9858,7 +9858,7 @@
       "low30": 29.97,
       "high30": 29.97,
       "typical30": 29.97,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9889,7 +9889,7 @@
       "high30": 159.0,
       "typical30": 159.0,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "bose-soundlink-flex-wireless-portable-bluetooth-772091",
@@ -9918,7 +9918,7 @@
       "low30": 99.0,
       "high30": 159.0,
       "typical30": 159.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9944,7 +9944,7 @@
       "high30": 49.99,
       "typical30": 49.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "ultimate-ears-wonderboom-4-wireless-bluetooth-sp-247030",
@@ -9971,7 +9971,7 @@
       "low30": 64.99,
       "high30": 64.99,
       "typical30": 64.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -9996,7 +9996,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10022,7 +10022,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "ultimate-ears-boom-4-portable-wireless-bluetooth-247034",
@@ -10046,7 +10046,7 @@
       "low30": 114.99,
       "high30": 114.99,
       "typical30": 114.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10071,7 +10071,7 @@
       "low30": 114.99,
       "high30": 114.99,
       "typical30": 114.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10096,7 +10096,7 @@
       "low30": 114.99,
       "high30": 114.99,
       "typical30": 114.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10121,7 +10121,7 @@
       "low30": 279.99,
       "high30": 279.99,
       "typical30": 279.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10150,7 +10150,7 @@
       "high30": 159.0,
       "typical30": 159.0,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "bose-soundlink-micro-portable-speaker-2nd-gen-de-772095",
@@ -10175,7 +10175,7 @@
       "high30": 129.0,
       "typical30": 129.0,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "edifier-qs20-bluetooth-portable-speaker-ip67-wat--00007",
@@ -10200,7 +10200,7 @@
       "high30": 99.99,
       "typical30": 99.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "bose-soundlink-plus-portable-bluetooth-speaker-w-627176",
@@ -10224,7 +10224,7 @@
       "low30": 269.0,
       "high30": 269.0,
       "typical30": 269.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10249,7 +10249,7 @@
       "low30": 399.0,
       "high30": 399.0,
       "typical30": 399.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10274,7 +10274,7 @@
       "low30": 129.0,
       "high30": 129.0,
       "typical30": 129.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10299,7 +10299,7 @@
       "low30": 129.0,
       "high30": 129.0,
       "typical30": 129.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10350,7 +10350,7 @@
       "high30": 37.99,
       "typical30": 37.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-wireless-controller-deep-pink-for-xbox-seri-103760",
@@ -10378,7 +10378,7 @@
       "high30": 62.99,
       "typical30": 62.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-accessory-hyperkin-duchess-wired-controller--00026",
@@ -10403,7 +10403,7 @@
       "high30": 50.99,
       "typical30": 50.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-accessory-hyperkin-the-competitor-wired-con--00027",
@@ -10428,7 +10428,7 @@
       "high30": 57.99,
       "typical30": 57.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-wireless-controller-forza-horizon-6-limited-103774",
@@ -10456,7 +10456,7 @@
       "high30": 82.99,
       "typical30": 82.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-f310-wired-gamepad-controller-console-l-104402",
@@ -10484,7 +10484,7 @@
       "high30": 29.99,
       "typical30": 29.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-elite-series-2-wireless-controller-core-whi-103724",
@@ -10512,7 +10512,7 @@
       "high30": 149.99,
       "typical30": 149.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-wireless-controller-ice-breaker-special-edi-103769",
@@ -10540,7 +10540,7 @@
       "high30": 79.99,
       "typical30": 79.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-wireless-controller-heart-breaker-special-e-103767",
@@ -10568,7 +10568,7 @@
       "high30": 79.99,
       "typical30": 79.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "xbox-wireless-controller-storm-breaker-special-e-103768",
@@ -10596,7 +10596,7 @@
       "high30": 79.99,
       "typical30": 79.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-f710-wireless-gamepad-2-4-ghz-wireless-104403",
@@ -10623,7 +10623,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10651,7 +10651,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10679,7 +10679,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10707,7 +10707,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10735,7 +10735,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10763,7 +10763,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10791,7 +10791,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10816,7 +10816,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10841,7 +10841,7 @@
       "low30": 143.99,
       "high30": 144.99,
       "typical30": 143.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10866,7 +10866,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10892,7 +10892,7 @@
       "high30": 52.99,
       "typical30": 52.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "creative-labs-live-cam-sync-1080p-v2-webcam--00032",
@@ -10922,7 +10922,7 @@
       "high30": 39.99,
       "typical30": 39.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "creative-labs-live-cam-sync-2k-webcam--000d3",
@@ -10949,7 +10949,7 @@
       "low30": 44.99,
       "high30": 45.99,
       "typical30": 44.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -10978,7 +10978,7 @@
       "high30": 80.99,
       "typical30": 80.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "adesso-cybertrackh3-2-0-m-effective-pixels-usb-w-150058",
@@ -11002,7 +11002,7 @@
       "low30": 41.99,
       "high30": 41.99,
       "typical30": 41.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11028,7 +11028,7 @@
       "high30": 84.99,
       "typical30": 84.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "hp-435-fhd-webcam--002v3",
@@ -11052,7 +11052,7 @@
       "low30": 77.99,
       "high30": 79.99,
       "typical30": 77.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11081,7 +11081,7 @@
       "high30": 129.99,
       "typical30": 129.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-4k-pro-webcam-with-hdr-and-noise-cancel--007a9",
@@ -11109,7 +11109,7 @@
       "high30": 199.99,
       "typical30": 199.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-brio-500-hd-1080p-webcam-4-megapixels-g--00d11",
@@ -11137,7 +11137,7 @@
       "high30": 129.99,
       "typical30": 129.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "lenovo-4k-pro-webcam--001g1",
@@ -11161,7 +11161,7 @@
       "low30": 151.99,
       "high30": 151.99,
       "typical30": 151.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11186,7 +11186,7 @@
       "low30": 96.99,
       "high30": 96.99,
       "typical30": 96.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11211,7 +11211,7 @@
       "low30": 55.99,
       "high30": 57.99,
       "typical30": 55.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11236,7 +11236,7 @@
       "low30": 68.99,
       "high30": 68.99,
       "typical30": 68.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11265,7 +11265,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 2,
-      "trackedDays30": 1.7
+      "trackedDays30": 1.8
     },
     {
       "id": "insta360-link-2-pro-4k-ultra-hd-2-axis-gimbal-ai--00022",
@@ -11315,7 +11315,7 @@
       "high30": 92.99,
       "typical30": 92.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "razer-seiren-v3-chroma-rgb-usb-microphone-with-t--00009",
@@ -11343,7 +11343,7 @@
       "high30": 99.99,
       "typical30": 99.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "razer-seiren-v3-mini-wired-ultra-compact-condens--00010",
@@ -11371,7 +11371,7 @@
       "high30": 49.0,
       "typical30": 49.0,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "jlab-jbuds-talk-wired-condenser-dynamic-micropho-984001",
@@ -11396,7 +11396,7 @@
       "high30": 89.99,
       "typical30": 89.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "blue-yeti-usb-microphone-for-pc-mac-gaming-recor-431024",
@@ -11424,7 +11424,7 @@
       "high30": 109.99,
       "typical30": 109.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-blue-yeti-usb-microphone-multi-pattern-847001",
@@ -11452,7 +11452,7 @@
       "high30": 109.99,
       "typical30": 109.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-g-yeti-orb-condenser-rgb-gaming-microph-121273",
@@ -11480,7 +11480,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "blue-yeti-condenser-microphone-for-gaming-live-s-121269",
@@ -11508,7 +11508,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "aluratek-aum01f-black-usb-connector-usb-micropho-310003",
@@ -11532,7 +11532,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11557,7 +11557,7 @@
       "low30": 56.99,
       "high30": 56.99,
       "typical30": 56.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11582,7 +11582,7 @@
       "low30": 90.99,
       "high30": 90.99,
       "typical30": 90.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11607,7 +11607,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11632,7 +11632,7 @@
       "low30": 360.99,
       "high30": 360.99,
       "typical30": 360.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11657,7 +11657,7 @@
       "low30": 60.99,
       "high30": 60.99,
       "typical30": 60.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11761,7 +11761,7 @@
       "high30": 98.99,
       "typical30": 98.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "asus-zenwifi-bq16-pro-quad-band-wifi-7-mesh-rout-320597",
@@ -11789,7 +11789,7 @@
       "high30": 999.99,
       "typical30": 999.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "msi-ax1800-wifi-6-dual-band-usb-adapter-wlan-up-158035",
@@ -11817,7 +11817,7 @@
       "high30": 24.99,
       "typical30": 24.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tp-link-wifi-7-be9300-pcie-wifi-card-for-desktop-704745",
@@ -11845,7 +11845,7 @@
       "high30": 64.97,
       "typical30": 64.97,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tp-link-ax3000-whole-home-mesh-wifi-6-system-dua-704626",
@@ -11873,7 +11873,7 @@
       "high30": 149.96,
       "typical30": 149.96,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "eero-6-ax3000-dual-band-mesh-wi-fi-6-system-2-pa-565030",
@@ -11898,7 +11898,7 @@
       "high30": 159.99,
       "typical30": 159.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tp-link-dual-band-deco-be25-2-pack-be5000-wi-fi-704772",
@@ -11923,7 +11923,7 @@
       "high30": 159.98,
       "typical30": 159.98,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tp-link-archer-tbe400e-be6500-wi-fi-7-bluetooth-704763",
@@ -11972,7 +11972,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -11997,7 +11997,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12050,7 +12050,7 @@
       "low30": 54.99,
       "high30": 54.99,
       "typical30": 54.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12075,7 +12075,7 @@
       "low30": 25.99,
       "high30": 25.99,
       "typical30": 25.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12100,7 +12100,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12125,7 +12125,7 @@
       "low30": 204.99,
       "high30": 204.99,
       "typical30": 204.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12153,7 +12153,7 @@
       "low30": 74.99,
       "high30": 74.99,
       "typical30": 74.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12178,7 +12178,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12203,7 +12203,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12256,7 +12256,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12285,7 +12285,7 @@
       "high30": 27.01,
       "typical30": 27.01,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "nusyn-1tb-nsp30-portable-ssd-high-speed-up-to-10-524009",
@@ -12313,7 +12313,7 @@
       "high30": 89.99,
       "typical30": 84.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "gigastone-256gb-microsd-express-card-works-with--001g1",
@@ -12338,7 +12338,7 @@
       "high30": 54.99,
       "typical30": 54.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "teamgroup-c175-128gb-usb-3-2-gen-1-flash-drive-r-331073",
@@ -12366,7 +12366,7 @@
       "high30": 14.99,
       "typical30": 14.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "teamgroup-c175-32gb-usb-3-2-gen-1-flash-drive-ro-331071",
@@ -12394,7 +12394,7 @@
       "high30": 10.99,
       "typical30": 10.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "team-group-256gb-elite-microsdxc-uhs-i-u3-v30-a1-331312",
@@ -12422,7 +12422,7 @@
       "high30": 29.99,
       "typical30": 29.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "team-group-64gb-elite-microsdxc-uhs-i-u3-v30-a1-331310",
@@ -12450,7 +12450,7 @@
       "high30": 12.99,
       "typical30": 12.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "sandisk-extreme-fit-usb-c-flash-drive-up-to-300m-173691",
@@ -12474,7 +12474,7 @@
       "low30": 24.99,
       "high30": 24.99,
       "typical30": 24.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12502,7 +12502,7 @@
       "low30": 16.99,
       "high30": 16.99,
       "typical30": 16.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12530,7 +12530,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12558,7 +12558,7 @@
       "low30": 314.99,
       "high30": 314.99,
       "typical30": 314.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12586,7 +12586,7 @@
       "low30": 56.99,
       "high30": 56.99,
       "typical30": 56.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12614,7 +12614,7 @@
       "low30": 29.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12642,7 +12642,7 @@
       "low30": 46.99,
       "high30": 46.99,
       "typical30": 46.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12670,7 +12670,7 @@
       "low30": 54.99,
       "high30": 54.99,
       "typical30": 54.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12698,7 +12698,7 @@
       "low30": 23.99,
       "high30": 23.99,
       "typical30": 23.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12727,7 +12727,7 @@
       "high30": 209.99,
       "typical30": 209.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "team-256gb-pro-microsdxc-uhs-i-u3-class-10-memor-985049",
@@ -12754,7 +12754,7 @@
       "low30": 48.99,
       "high30": 48.99,
       "typical30": 48.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -12783,7 +12783,7 @@
       "high30": 214.99,
       "typical30": 214.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "kingspec-memostone-1tb-portable-ssd-usb-3-2-gen-971005",
@@ -12808,7 +12808,7 @@
       "high30": 149.99,
       "typical30": 109.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "compact-usb-c-wall-charger-18w-pd-charging-gan-t-886022",
@@ -12833,7 +12833,7 @@
       "high30": 47.99,
       "typical30": 47.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-65w-usb-c-fast-charger-4ft-usb-c-cable-4-p-814016",
@@ -12858,7 +12858,7 @@
       "high30": 34.99,
       "typical30": 34.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-8-in-1-mag-safe-charger-stand-140w-chargin-811019",
@@ -12883,7 +12883,7 @@
       "high30": 139.99,
       "typical30": 139.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-4-in-1-mag-safe-wireless-charger-45w-gan-c-811006",
@@ -12908,7 +12908,7 @@
       "high30": 48.99,
       "typical30": 48.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-3c-certified-power-bank-10000mah-20w-fast-817004",
@@ -12933,7 +12933,7 @@
       "high30": 24.99,
       "typical30": 24.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-3c-certified-power-bank-20000mah-67w-ccc-p-817007",
@@ -12958,7 +12958,7 @@
       "high30": 49.99,
       "typical30": 49.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tripp-lite-u280-q01fl-bk-black-wireless-phone-ch-886008",
@@ -12983,7 +12983,7 @@
       "high30": 40.99,
       "typical30": 40.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-powerlink-x2-2-in-1-fast-charging-10000mah-817014",
@@ -13008,7 +13008,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-colorful-power-bank-with-integrated-cables-817012",
@@ -13033,7 +13033,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "pisen-power-glamvolt-5000mah-30w-fast-charging-p-817010",
@@ -13057,7 +13057,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13082,7 +13082,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13107,7 +13107,7 @@
       "low30": 41.99,
       "high30": 41.99,
       "typical30": 41.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13132,7 +13132,7 @@
       "low30": 25.99,
       "high30": 25.99,
       "typical30": 25.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13157,7 +13157,7 @@
       "low30": 88.99,
       "high30": 88.99,
       "typical30": 88.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13182,7 +13182,7 @@
       "low30": 62.99,
       "high30": 62.99,
       "typical30": 62.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13207,7 +13207,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13234,7 +13234,7 @@
       "low30": 645.99,
       "high30": 650.99,
       "typical30": 650.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13262,7 +13262,7 @@
       "low30": 32.99,
       "high30": 33.99,
       "typical30": 32.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13287,7 +13287,7 @@
       "low30": 35.99,
       "high30": 35.99,
       "typical30": 35.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13342,7 +13342,7 @@
       "low30": 134.99,
       "high30": 179.99,
       "typical30": 134.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13368,7 +13368,7 @@
       "high30": 129.99,
       "typical30": 124.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "samsung-8-galaxy-tab-active5-rugged-tablet-samsu--00bt1",
@@ -13393,7 +13393,7 @@
       "high30": 529.99,
       "typical30": 529.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "samsung-galaxy-tab-active5-8-tablet-unlocked-5g--00bm4",
@@ -13418,7 +13418,7 @@
       "high30": 619.99,
       "typical30": 619.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "microsoft-surface-pro-12th-edition-tablet-13-pix-820176",
@@ -13471,7 +13471,7 @@
       "high30": 149.99,
       "typical30": 149.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "microsoft-surface-pro-12-tablet-12-pixelsense-di-820366",
@@ -13545,7 +13545,7 @@
       "low30": 2399.99,
       "high30": 2399.99,
       "typical30": 2399.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13620,7 +13620,7 @@
       "low30": 1695.99,
       "high30": 1695.99,
       "typical30": 1695.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13648,7 +13648,7 @@
       "low30": 1299.99,
       "high30": 1299.99,
       "typical30": 1299.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13673,7 +13673,7 @@
       "low30": 435.99,
       "high30": 435.99,
       "typical30": 435.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13698,7 +13698,7 @@
       "low30": 562.99,
       "high30": 562.99,
       "typical30": 562.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13723,7 +13723,7 @@
       "low30": 259.99,
       "high30": 259.99,
       "typical30": 259.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13748,7 +13748,7 @@
       "low30": 530.99,
       "high30": 530.99,
       "typical30": 530.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -13852,7 +13852,7 @@
       "high30": 49.99,
       "typical30": 49.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "sudokoo-sk620-white-am5-air-cooler-6-heatpipes-d--00006",
@@ -13880,7 +13880,7 @@
       "high30": 56.49,
       "typical30": 56.49,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "cooler-master-atmos-stealth-aio-cpu-liquid-coole-103376",
@@ -13908,7 +13908,7 @@
       "high30": 79.99,
       "typical30": 79.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "msi-mag-coreliquid-e360-white-aio-argb-cpu-liqui-846051",
@@ -13936,7 +13936,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "gamdias-aura-glv2-360mm-aio-liquid-cpu-cooler-ro-099039",
@@ -13964,7 +13964,7 @@
       "high30": 49.99,
       "typical30": 49.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "gamdias-chione-p5-240-liquid-cpu-cooler-240mm-ai-099037",
@@ -13992,7 +13992,7 @@
       "high30": 64.99,
       "typical30": 64.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "gamdias-aura-gl240-v2-white-240mm-aio-liquid-cpu-099042",
@@ -14017,7 +14017,7 @@
       "high30": 44.99,
       "typical30": 44.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "gamdias-chione-e4-360mm-v2-aio-cpu-cooler-argb-l-099045",
@@ -14042,7 +14042,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "gamdias-boreas-m2-51d-white-argb-cpu-air-cooler-099046",
@@ -14070,7 +14070,7 @@
       "high30": 39.99,
       "typical30": 39.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "sudokoo-sk620v-cpu-air-cooler-6-heatpipes-dual-t--00007",
@@ -14098,7 +14098,7 @@
       "high30": 94.99,
       "typical30": 94.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tryx-turris-620-cpu-air-cooler-5-0-ips-customiza--00002",
@@ -14125,7 +14125,7 @@
       "low30": 114.99,
       "high30": 114.99,
       "typical30": 114.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14150,7 +14150,7 @@
       "low30": 79.9,
       "high30": 79.9,
       "typical30": 79.9,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14178,7 +14178,7 @@
       "low30": 79.9,
       "high30": 79.9,
       "typical30": 79.9,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14206,7 +14206,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14234,7 +14234,7 @@
       "low30": 99.9,
       "high30": 99.9,
       "typical30": 99.9,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14262,7 +14262,7 @@
       "low30": 199.98,
       "high30": 199.98,
       "typical30": 199.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14290,7 +14290,7 @@
       "low30": 351.99,
       "high30": 351.99,
       "typical30": 351.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14318,7 +14318,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14346,7 +14346,7 @@
       "low30": 24.98,
       "high30": 24.98,
       "typical30": 24.98,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14374,7 +14374,7 @@
       "low30": 162.99,
       "high30": 162.99,
       "typical30": 162.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14401,7 +14401,7 @@
       "low30": 429.0,
       "high30": 549.0,
       "typical30": 549.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14429,7 +14429,7 @@
       "low30": 899.0,
       "high30": 899.0,
       "typical30": 899.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14457,7 +14457,7 @@
       "low30": 349.99,
       "high30": 349.99,
       "typical30": 349.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14482,7 +14482,7 @@
       "low30": 199.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14557,7 +14557,7 @@
       "low30": 229.99,
       "high30": 229.99,
       "typical30": 229.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14582,7 +14582,7 @@
       "low30": 269.0,
       "high30": 269.0,
       "typical30": 269.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14607,7 +14607,7 @@
       "low30": 399.0,
       "high30": 399.0,
       "typical30": 399.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14635,7 +14635,7 @@
       "low30": 189.99,
       "high30": 189.99,
       "typical30": 189.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14663,7 +14663,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14691,7 +14691,7 @@
       "low30": 219.99,
       "high30": 219.99,
       "typical30": 219.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14719,7 +14719,7 @@
       "low30": 479.99,
       "high30": 479.99,
       "typical30": 479.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14747,7 +14747,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14772,7 +14772,7 @@
       "low30": 269.0,
       "high30": 269.0,
       "typical30": 269.0,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14797,7 +14797,7 @@
       "low30": 229.99,
       "high30": 229.99,
       "typical30": 229.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14822,7 +14822,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14848,7 +14848,7 @@
       "high30": 699.99,
       "typical30": 699.99,
       "historyDays": 1,
-      "trackedDays30": 0.9
+      "trackedDays30": 1.0
     },
     {
       "id": "kanto-renmw-bluetooth-powered-bookshelf-speakers--00026",
@@ -14873,7 +14873,7 @@
       "high30": 699.99,
       "typical30": 699.99,
       "historyDays": 1,
-      "trackedDays30": 0.9
+      "trackedDays30": 1.0
     },
     {
       "id": "c2g-2-5ft-thunderbolt-4-usb-c-cable-usb-c-to-usb--00my2",
@@ -14925,7 +14925,7 @@
       "low30": 23.63,
       "high30": 23.63,
       "typical30": 23.63,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14950,7 +14950,7 @@
       "low30": 23.23,
       "high30": 23.23,
       "typical30": 23.23,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -14975,7 +14975,7 @@
       "low30": 39.53,
       "high30": 39.53,
       "typical30": 39.53,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15000,7 +15000,7 @@
       "low30": 37.99,
       "high30": 37.99,
       "typical30": 37.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15025,7 +15025,7 @@
       "low30": 27.01,
       "high30": 27.01,
       "typical30": 27.01,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15053,7 +15053,7 @@
       "low30": 40.82,
       "high30": 40.82,
       "typical30": 40.82,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15078,7 +15078,7 @@
       "low30": 89.57,
       "high30": 89.57,
       "typical30": 89.57,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15106,7 +15106,7 @@
       "low30": 22.18,
       "high30": 22.18,
       "typical30": 22.18,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15134,7 +15134,7 @@
       "low30": 21.75,
       "high30": 21.75,
       "typical30": 21.75,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15162,7 +15162,7 @@
       "low30": 24.32,
       "high30": 24.32,
       "typical30": 24.32,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15190,7 +15190,7 @@
       "low30": 20.99,
       "high30": 20.99,
       "typical30": 20.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15218,7 +15218,7 @@
       "low30": 40.99,
       "high30": 40.99,
       "typical30": 40.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15246,7 +15246,7 @@
       "low30": 15.99,
       "high30": 15.99,
       "typical30": 15.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15274,7 +15274,7 @@
       "low30": 25.99,
       "high30": 25.99,
       "typical30": 25.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15302,7 +15302,7 @@
       "low30": 24.99,
       "high30": 24.99,
       "typical30": 24.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15330,7 +15330,7 @@
       "low30": 20.99,
       "high30": 20.99,
       "typical30": 20.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15358,7 +15358,7 @@
       "low30": 26.99,
       "high30": 26.99,
       "typical30": 26.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15386,7 +15386,7 @@
       "low30": 30.99,
       "high30": 30.99,
       "typical30": 30.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15414,7 +15414,7 @@
       "low30": 35.99,
       "high30": 35.99,
       "typical30": 35.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15552,7 +15552,7 @@
       "low30": 19.99,
       "high30": 19.99,
       "typical30": 19.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15607,7 +15607,7 @@
       "low30": 169.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15688,7 +15688,7 @@
       "low30": 44.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15716,7 +15716,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15794,7 +15794,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15822,7 +15822,7 @@
       "low30": 109.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15850,7 +15850,7 @@
       "low30": 119.99,
       "high30": 119.99,
       "typical30": 119.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15875,7 +15875,7 @@
       "low30": 164.99,
       "high30": 164.99,
       "typical30": 164.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15900,7 +15900,7 @@
       "low30": 207.99,
       "high30": 207.99,
       "typical30": 207.99,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -15925,7 +15925,7 @@
       "low30": 25.96,
       "high30": 29.99,
       "typical30": 25.96,
-      "historyDays": 2,
+      "historyDays": 3,
       "trackedDays30": 2.0
     },
     {
@@ -17327,7 +17327,7 @@
       "high30": 114.99,
       "typical30": 114.99,
       "historyDays": 1,
-      "trackedDays30": 0.0
+      "trackedDays30": 0.1
     },
     {
       "id": "brand-glorious-ghs-eternal-rgb-audio-headset",
