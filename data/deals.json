@@ -1,24 +1,24 @@
 {
-  "updatedAt": "2026-11-21T05:21:11Z",
+  "updatedAt": "2026-11-21T06:21:07Z",
   "weekLabel": "Week of Nov 16",
   "title": "What's A Good Deal?",
-  "catalogueRevision": 159,
+  "catalogueRevision": 160,
   "lastRefresh": {
-    "at": "2026-11-21T05:21:11Z",
+    "at": "2026-11-21T06:21:07Z",
     "source": "hourly_refresh",
-    "before": 678,
+    "before": 677,
     "after": 677,
     "added": 0,
-    "removed": 18,
-    "newegg_checked_recently": 26,
-    "newegg_verified": 519,
+    "removed": 17,
+    "newegg_verified": 21,
+    "newegg_checked_recently": 523,
     "newegg_not_found": 46,
     "denon_verified": 3,
     "upcoming_kept": 1,
     "brand_sales_found": 657,
     "brand_sales_shown": 74,
-    "apiCalls": 757,
-    "images_checked": 3,
+    "apiCalls": 249,
+    "images_checked": 0,
     "images_removed": 0,
     "photos_found": 0,
     "photos_missing": 1
@@ -30,7 +30,7 @@
       "category": "GPUs",
       "price": 1439.99,
       "previousPrice": 1632.49,
-      "lastPrice": null,
+      "lastPrice": 1439.99,
       "priceDropped": false,
       "currency": "USD",
       "why": "Newegg price $1,439.99, down from $1,632.49 (save $192.50). Verified by the daily refresh — confirm the cart total before buying.",
@@ -40,8 +40,8 @@
       "sku": "N82E16814137931",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-137-931-05.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 4.6,
       "ratingSource": "newegg-api",
@@ -68,8 +68,8 @@
       "sku": "N82E16814932793",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-932-793-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "rating": 4.6,
       "ratingSource": "newegg-api",
       "ratingCount": 119,
@@ -292,8 +292,8 @@
       "sku": "N82E16814126793",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-126-793-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
@@ -302,7 +302,7 @@
       "high30": 609.89,
       "typical30": 609.89,
       "historyDays": 9,
-      "trackedDays30": 8.7
+      "trackedDays30": 8.8
     },
     {
       "id": "gigabyte-gaming-radeon-rx-9060-xt-16gb-gddr6-pci-932824",
@@ -634,7 +634,7 @@
       "high30": 499.99,
       "typical30": 499.99,
       "historyDays": 5,
-      "trackedDays30": 4.9
+      "trackedDays30": 5.0
     },
     {
       "id": "acer-nitro-27-inch-wqhd-2k-1440p-240hz-ips-0-5ms-011485",
@@ -661,7 +661,7 @@
       "low30": 159.99,
       "high30": 179.99,
       "typical30": 159.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -898,11 +898,11 @@
       "sku": "N82E16824281399",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/24-281-399-10.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
-      "ratingCount": 56,
+      "ratingCount": 57,
       "autoSeeded": true,
       "low30": 369.99,
       "high30": 399.99,
@@ -1680,8 +1680,8 @@
       "image": "images/denon-avr-x3800h.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $1,399.00 (MSRP $1,799.00). Official sale on a 9.4-ch 8K Atmos receiver with HEOS streaming.",
-      "verifiedAt": "2026-11-21T05:21:11Z",
-      "updatedAt": "2026-11-21T05:21:11Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "low30": 1399.0,
       "high30": 1399.0,
       "typical30": 1399.0,
@@ -1732,8 +1732,8 @@
       "image": "images/denon-avr-x2800h.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $999.00 (MSRP $1,299.00). Official sale on a 7.2-ch 8K Atmos receiver for medium rooms.",
-      "verifiedAt": "2026-11-21T05:21:11Z",
-      "updatedAt": "2026-11-21T05:21:11Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "low30": 899.0,
       "high30": 1299.0,
       "typical30": 899.0,
@@ -2249,8 +2249,8 @@
       "image": "images/denon-home-51.jpg",
       "imageSource": "product-page",
       "why": "Sold by Denon at $1,699.00 (MSRP $1,846.00). Official bundle cut on a wireless Dolby Atmos 5.1 Denon Home system.",
-      "verifiedAt": "2026-11-21T05:21:11Z",
-      "updatedAt": "2026-11-21T05:21:11Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "low30": 1515.0,
       "high30": 1699.0,
       "typical30": 1699.0,
@@ -2541,7 +2541,7 @@
       "high30": 99.99,
       "typical30": 99.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "logitech-g560-pc-gaming-speaker-system-with-7-1-121244",
@@ -2727,7 +2727,7 @@
       "low30": 40.99,
       "high30": 40.99,
       "typical30": 40.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -2755,7 +2755,7 @@
       "low30": 69.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -2783,7 +2783,7 @@
       "low30": 499.99,
       "high30": 499.99,
       "typical30": 499.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -3173,8 +3173,8 @@
       "sku": "N82E16811119484",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/11-119-484-01.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 59.99,
       "high30": 59.99,
@@ -3998,8 +3998,8 @@
       "sku": "N82E16820331859",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-331-859-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 4.6,
       "ratingSource": "newegg-api",
@@ -4036,7 +4036,7 @@
       "high30": 267.99,
       "typical30": 267.99,
       "historyDays": 9,
-      "trackedDays30": 5.0
+      "trackedDays30": 5.1
     },
     {
       "id": "g-skill-tridentz-rgb-series-16gb-2-x-8gb-288-pin-232476",
@@ -4305,10 +4305,10 @@
       "image": "images/samsung-ssd-9100-pro-1tb-pcie-5-0x4-m-2-2280-seq-147902.jpg",
       "imageSource": "product-page",
       "rating": 4.9,
-      "ratingCount": 1297,
+      "ratingCount": 1298,
       "ratingSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "low30": 209.99,
       "high30": 249.99,
       "typical30": 249.99,
@@ -4369,7 +4369,7 @@
       "high30": 89.99,
       "typical30": 89.99,
       "historyDays": 2,
-      "trackedDays30": 1.5
+      "trackedDays30": 1.6
     },
     {
       "id": "kingfast-1tb-m-2-2280-pcie-4-0-nvme-ssd-up-to-4-967003",
@@ -4508,7 +4508,7 @@
       "high30": 169.99,
       "typical30": 169.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "gigastone-game-pro-1tb-ssd-sata-iii-6gb-s-3d-nan--00035",
@@ -5060,7 +5060,7 @@
       "low30": 1699.99,
       "high30": 1699.99,
       "typical30": 1699.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -5406,8 +5406,8 @@
       "sku": "N82E16883100141",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/83-100-141-07.png",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 4.5,
       "ratingSource": "newegg-api",
@@ -6046,7 +6046,7 @@
       "high30": 1339.99,
       "typical30": 1339.99,
       "historyDays": 1,
-      "trackedDays30": 0.5
+      "trackedDays30": 0.6
     },
     {
       "id": "msi-vector-16-hx-ai-16-gaming-laptop-intel-core--0jj10",
@@ -6099,7 +6099,7 @@
       "high30": 3199.99,
       "typical30": 3199.99,
       "historyDays": 2,
-      "trackedDays30": 1.5
+      "trackedDays30": 1.6
     },
     {
       "id": "gigabyte-eagle-16-gaming-laptop-amd-ryzen-5-7533-233653",
@@ -6132,7 +6132,7 @@
       "category": "Laptops",
       "price": 1499.99,
       "previousPrice": 1799.99,
-      "lastPrice": null,
+      "lastPrice": 1499.99,
       "priceDropped": false,
       "currency": "USD",
       "why": "Newegg price $1,499.99, down from $1,799.99 (save $300.00). Verified by the daily refresh — confirm the cart total before buying.",
@@ -6142,14 +6142,14 @@
       "sku": "N82E16834233651",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/34-233-651-24.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 1499.99,
       "high30": 1499.99,
       "typical30": 1499.99,
       "historyDays": 1,
-      "trackedDays30": 0.1
+      "trackedDays30": 0.2
     },
     {
       "id": "acer-nitro-v-16s-ai-16-gaming-laptop-intel-core-360451",
@@ -6506,8 +6506,8 @@
       "sku": "N82E16819113769",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-769-02.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 4.8,
       "ratingSource": "newegg-api",
@@ -6562,8 +6562,8 @@
       "sku": "N82E16819113735",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-735-V01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "rating": 4.7,
       "ratingSource": "newegg-api",
       "ratingCount": 434,
@@ -6674,9 +6674,12 @@
       "sku": "274-000M-002F9",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A0ZXD2610190IC4SW61.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
+      "rating": 5.0,
+      "ratingSource": "newegg-api",
+      "ratingCount": 1,
       "low30": 89.99,
       "high30": 116.84,
       "typical30": 89.99,
@@ -7307,7 +7310,7 @@
       "autoSeeded": true,
       "low30": 656.99,
       "high30": 657.99,
-      "typical30": 656.99,
+      "typical30": 657.99,
       "historyDays": 10,
       "trackedDays30": 9.2
     },
@@ -7705,7 +7708,7 @@
       "high30": 32.99,
       "typical30": 24.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "logitech-g703-lightspeed-wireless-gaming-mouse-w-197342",
@@ -7807,8 +7810,8 @@
       "sku": "32K-000N-00375",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A17PD2403260DVJDL5F.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
@@ -7817,7 +7820,7 @@
       "high30": 42.99,
       "typical30": 42.99,
       "historyDays": 5,
-      "trackedDays30": 4.9
+      "trackedDays30": 5.0
     },
     {
       "id": "razer-basilisk-v3-pro-wireless-gaming-mouse-cust-153335",
@@ -8007,7 +8010,7 @@
       "high30": 29.99,
       "typical30": 29.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "logitech-g305-lightspeed-wireless-gaming-mouse-h-197308",
@@ -8025,8 +8028,8 @@
       "sku": "N82E16826197308",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-197-308-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 4.6,
       "ratingSource": "newegg-api",
@@ -8203,7 +8206,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 2,
-      "trackedDays30": 1.0
+      "trackedDays30": 1.1
     },
     {
       "id": "logitech-g735-wireless-gaming-headset-customizab-197592",
@@ -8230,7 +8233,7 @@
       "low30": 169.99,
       "high30": 259.99,
       "typical30": 179.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -8249,8 +8252,8 @@
       "sku": "N82E16826153347",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-153-347-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
@@ -8258,7 +8261,7 @@
       "low30": 69.0,
       "high30": 69.0,
       "typical30": 69.0,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -8338,7 +8341,7 @@
       "high30": 94.99,
       "typical30": 94.99,
       "historyDays": 5,
-      "trackedDays30": 4.8
+      "trackedDays30": 4.9
     },
     {
       "id": "razer-blackshark-v2-x-gaming-headset-7-1-surroun--001f0",
@@ -8421,7 +8424,7 @@
       "low30": 99.99,
       "high30": 129.99,
       "typical30": 99.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -8502,7 +8505,7 @@
       "high30": 79.99,
       "typical30": 79.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "razer-kraken-v4-full-spectrum-immersion-wireless-153367",
@@ -8557,7 +8560,7 @@
       "low30": 234.99,
       "high30": 279.99,
       "typical30": 279.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -8585,7 +8588,7 @@
       "low30": 59.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -8689,7 +8692,7 @@
       "high30": 279.99,
       "typical30": 279.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "new-steelseries-arctis-nova-1-multi-system-gamin--00017",
@@ -8714,7 +8717,7 @@
       "high30": 67.99,
       "typical30": 67.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "beyerdynamic-aventho-100-wireless-on-ear-headpho-380083",
@@ -8739,7 +8742,7 @@
       "high30": 139.99,
       "typical30": 139.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "beyerdynamic-dt-990-pro-250-ohm-studio-headphone--00003",
@@ -8767,7 +8770,7 @@
       "high30": 199.99,
       "typical30": 139.99,
       "historyDays": 9,
-      "trackedDays30": 1.6
+      "trackedDays30": 1.7
     },
     {
       "id": "yamaha-yh-l500a-wireless-over-ear-headphones-sou--000x4",
@@ -8817,7 +8820,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "audio-technica-sonicpro-ath-avc200-dynamic-over-402257",
@@ -9076,7 +9079,7 @@
       "high30": 57.99,
       "typical30": 57.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "motorola-xt500-wireless-over-ear-bluetooth-headp-555018",
@@ -9101,7 +9104,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "monoprice-116150-modern-retro-over-ear-headphone--000b4",
@@ -9129,7 +9132,7 @@
       "high30": 55.99,
       "typical30": 55.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "monoprice-bt-300anc-bluetooth-wireless-over-ear--000v7",
@@ -9154,7 +9157,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "belkin-soundform-isolate-wireless-active-noise-c--000n9",
@@ -9179,7 +9182,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "audio-technica-ath-s300btbk-bluetooth-active-noi--008r0",
@@ -9204,7 +9207,7 @@
       "high30": 149.0,
       "typical30": 149.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "adesso-xtream-p800-bluetooth-headphones-with-act--000b9",
@@ -9229,7 +9232,7 @@
       "high30": 54.99,
       "typical30": 54.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "nank-ultra-clip-on-earbuds-wireless-bluetooth-5--02ds5",
@@ -9255,7 +9258,7 @@
       "low30": 59.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9280,7 +9283,7 @@
       "low30": 139.99,
       "high30": 139.99,
       "typical30": 139.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9307,7 +9310,7 @@
       "low30": 169.99,
       "high30": 279.99,
       "typical30": 279.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9332,7 +9335,7 @@
       "low30": 160.49,
       "high30": 160.49,
       "typical30": 160.49,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9357,7 +9360,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9382,7 +9385,7 @@
       "low30": 199.0,
       "high30": 209.99,
       "typical30": 209.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9407,7 +9410,7 @@
       "low30": 199.0,
       "high30": 210.99,
       "typical30": 210.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9432,7 +9435,7 @@
       "low30": 145.99,
       "high30": 145.99,
       "typical30": 145.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9457,7 +9460,7 @@
       "low30": 152.99,
       "high30": 152.99,
       "typical30": 152.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9538,7 +9541,7 @@
       "low30": 37.99,
       "high30": 37.99,
       "typical30": 37.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9872,7 +9875,7 @@
       "low30": 99.0,
       "high30": 159.0,
       "typical30": 99.0,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -9925,7 +9928,7 @@
       "low30": 49.99,
       "high30": 59.99,
       "typical30": 49.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10101,7 +10104,7 @@
       "high30": 399.0,
       "typical30": 399.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "jlab-jbuds-party-portable-bluetooth-speaker-syst--00007",
@@ -10125,7 +10128,7 @@
       "low30": 69.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10223,7 +10226,7 @@
       "low30": 129.0,
       "high30": 129.0,
       "typical30": 129.0,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10248,7 +10251,7 @@
       "low30": 99.99,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10441,7 +10444,7 @@
       "low30": 59.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10497,7 +10500,7 @@
       "low30": 64.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10525,7 +10528,7 @@
       "low30": 53.99,
       "high30": 62.99,
       "typical30": 62.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10553,7 +10556,7 @@
       "low30": 65.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10578,7 +10581,7 @@
       "low30": 37.99,
       "high30": 37.99,
       "typical30": 37.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10606,7 +10609,7 @@
       "low30": 72.99,
       "high30": 82.99,
       "typical30": 82.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10634,7 +10637,7 @@
       "low30": 24.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10659,7 +10662,7 @@
       "low30": 57.99,
       "high30": 57.99,
       "typical30": 57.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10684,7 +10687,7 @@
       "low30": 50.99,
       "high30": 52.99,
       "typical30": 50.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10712,7 +10715,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10843,7 +10846,7 @@
       "low30": 52.99,
       "high30": 52.99,
       "typical30": 52.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10871,7 +10874,7 @@
       "low30": 149.99,
       "high30": 199.99,
       "typical30": 199.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10899,7 +10902,7 @@
       "low30": 99.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -10953,7 +10956,7 @@
       "high30": 249.99,
       "typical30": 249.99,
       "historyDays": 8,
-      "trackedDays30": 7.2
+      "trackedDays30": 7.3
     },
     {
       "id": "creative-labs-live-cam-sync-1080p-v2-webcam--00032",
@@ -10980,7 +10983,7 @@
       "low30": 37.99,
       "high30": 39.99,
       "typical30": 37.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11008,7 +11011,7 @@
       "low30": 80.99,
       "high30": 80.99,
       "typical30": 80.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11033,7 +11036,7 @@
       "low30": 81.99,
       "high30": 86.99,
       "typical30": 84.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11111,7 +11114,7 @@
       "low30": 129.99,
       "high30": 129.99,
       "typical30": 129.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11264,7 +11267,7 @@
       "low30": 92.99,
       "high30": 92.99,
       "typical30": 92.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11293,7 +11296,7 @@
       "high30": 92.99,
       "typical30": 92.99,
       "historyDays": 2,
-      "trackedDays30": 1.9
+      "trackedDays30": 2.0
     },
     {
       "id": "logitech-blue-yeti-usb-microphone-multi-pattern-847001",
@@ -11320,7 +11323,7 @@
       "low30": 69.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11348,7 +11351,7 @@
       "low30": 74.99,
       "high30": 109.99,
       "typical30": 109.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11376,7 +11379,7 @@
       "low30": 47.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11404,7 +11407,7 @@
       "low30": 49.0,
       "high30": 49.0,
       "typical30": 49.0,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11429,7 +11432,7 @@
       "low30": 89.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11457,7 +11460,7 @@
       "low30": 69.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11633,7 +11636,7 @@
       "high30": 119.0,
       "typical30": 119.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "adesso-xtream-m1-omnidirectional-usb-table-top-m--00002",
@@ -11658,7 +11661,7 @@
       "high30": 26.99,
       "typical30": 26.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "cyber-acoustics-teton-cvl-2009-wired-microphone--00099",
@@ -11683,7 +11686,7 @@
       "high30": 37.99,
       "typical30": 37.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "dji-mic-3-2-tx-1-rx-charging-case-975047",
@@ -11751,14 +11754,14 @@
       "sku": "N82E16882998090",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/A8UT_1_201706131594635997.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 38.99,
       "high30": 38.99,
       "typical30": 38.99,
       "historyDays": 1,
-      "trackedDays30": 0.6
+      "trackedDays30": 0.7
     },
     {
       "id": "tp-link-archer-tx20e-ieee-802-11ax-ax1800-wi-fi--00011",
@@ -11815,7 +11818,7 @@
       "high30": 79.99,
       "typical30": 55.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "tp-link-axe5400-tri-band-wifi-6e-router-archer-a-704658",
@@ -11844,7 +11847,7 @@
       "low30": 89.99,
       "high30": 179.99,
       "typical30": 129.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11874,7 +11877,7 @@
       "low30": 61.59,
       "high30": 99.99,
       "typical30": 99.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11901,7 +11904,7 @@
       "low30": 149.99,
       "high30": 229.99,
       "typical30": 199.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11926,7 +11929,7 @@
       "low30": 159.99,
       "high30": 239.99,
       "typical30": 159.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -11952,7 +11955,7 @@
       "high30": 94.99,
       "typical30": 94.99,
       "historyDays": 3,
-      "trackedDays30": 2.0
+      "trackedDays30": 2.1
     },
     {
       "id": "tp-link-archer-be260-be5000-dual-band-wi-fi-7-ro-704806",
@@ -11979,7 +11982,7 @@
       "high30": 129.99,
       "typical30": 129.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "eero-max-7-be20800-tri-band-mesh-wi-fi-7-router--00005",
@@ -11997,14 +12000,14 @@
       "sku": "26J-05FR-00005",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26J-05FR-00005-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 419.99,
       "high30": 419.99,
       "typical30": 419.99,
       "historyDays": 2,
-      "trackedDays30": 1.1
+      "trackedDays30": 1.2
     },
     {
       "id": "tp-link-archer-ax55-wifi-6-ax3000-smart-wifi-rou-704603",
@@ -12247,7 +12250,7 @@
       "low30": 142.39,
       "high30": 229.99,
       "typical30": 229.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12276,7 +12279,7 @@
       "high30": 61.99,
       "typical30": 61.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "wavlink-ax5400-usb-wifi-6e-adapter-for-desktop-p-932007",
@@ -12328,7 +12331,7 @@
       "low30": 27.01,
       "high30": 27.01,
       "typical30": 27.01,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12356,7 +12359,7 @@
       "low30": 69.99,
       "high30": 89.99,
       "typical30": 89.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12403,8 +12406,8 @@
       "sku": "N82E16820141683",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/20-141-683-01.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 136.99,
       "high30": 136.99,
@@ -12434,7 +12437,7 @@
       "low30": 54.99,
       "high30": 54.99,
       "typical30": 54.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12462,7 +12465,7 @@
       "low30": 11.99,
       "high30": 12.99,
       "typical30": 12.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12490,7 +12493,7 @@
       "low30": 14.99,
       "high30": 14.99,
       "typical30": 14.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12518,7 +12521,7 @@
       "low30": 9.99,
       "high30": 10.99,
       "typical30": 10.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12739,7 +12742,7 @@
       "low30": 22.99,
       "high30": 29.99,
       "typical30": 29.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12795,7 +12798,7 @@
       "low30": 209.99,
       "high30": 284.99,
       "typical30": 284.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12823,7 +12826,7 @@
       "low30": 214.99,
       "high30": 313.99,
       "typical30": 289.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12848,7 +12851,7 @@
       "low30": 109.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12873,7 +12876,7 @@
       "low30": 25.99,
       "high30": 49.99,
       "typical30": 34.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12898,7 +12901,7 @@
       "low30": 39.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12923,7 +12926,7 @@
       "low30": 39.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12948,7 +12951,7 @@
       "low30": 99.0,
       "high30": 139.99,
       "typical30": 99.0,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12973,7 +12976,7 @@
       "low30": 47.99,
       "high30": 47.99,
       "typical30": 47.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -12998,7 +13001,7 @@
       "low30": 38.99,
       "high30": 48.99,
       "typical30": 48.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13023,7 +13026,7 @@
       "low30": 40.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13152,7 +13155,7 @@
       "low30": 39.99,
       "high30": 40.99,
       "typical30": 40.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13230,7 +13233,7 @@
       "low30": 24.99,
       "high30": 26.99,
       "typical30": 24.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13362,7 +13365,7 @@
       "high30": 147.99,
       "typical30": 147.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "lenovo-idea-tab-pro-gen-2-tb390fu-tablet-qualcom--006k5",
@@ -13411,7 +13414,7 @@
       "low30": 529.99,
       "high30": 529.99,
       "typical30": 529.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13436,7 +13439,7 @@
       "low30": 124.99,
       "high30": 219.99,
       "typical30": 124.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13461,7 +13464,7 @@
       "low30": 619.99,
       "high30": 619.99,
       "typical30": 619.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13514,7 +13517,7 @@
       "low30": 149.99,
       "high30": 149.99,
       "typical30": 149.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13743,7 +13746,7 @@
       "high30": 641.99,
       "typical30": 641.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "samsung-galaxy-tab-a11-sm-x230-tablet-11-wuxga-m--00fw7",
@@ -13768,7 +13771,7 @@
       "high30": 314.99,
       "typical30": 314.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "microsoft-surface-pro-12-copilot-pc-tablet-13-pi-820322",
@@ -13793,7 +13796,7 @@
       "high30": 3549.99,
       "typical30": 3549.99,
       "historyDays": 6,
-      "trackedDays30": 5.5
+      "trackedDays30": 5.6
     },
     {
       "id": "microsoft-surface-pro-10-tablet-13-64-gb-1-tb-ss-820079",
@@ -13818,7 +13821,7 @@
       "high30": 3999.99,
       "typical30": 3999.99,
       "historyDays": 6,
-      "trackedDays30": 5.2
+      "trackedDays30": 5.3
     },
     {
       "id": "samsung-galaxy-tab-s12-5g-sm-x848u-tablet-12-6-w--00g57",
@@ -13898,7 +13901,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13954,7 +13957,7 @@
       "low30": 79.99,
       "high30": 79.99,
       "typical30": 79.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -13979,7 +13982,7 @@
       "low30": 39.99,
       "high30": 44.99,
       "typical30": 44.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14007,7 +14010,7 @@
       "low30": 69.99,
       "high30": 69.99,
       "typical30": 69.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14060,7 +14063,7 @@
       "low30": 49.99,
       "high30": 49.99,
       "typical30": 49.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14088,7 +14091,7 @@
       "low30": 64.99,
       "high30": 79.99,
       "typical30": 64.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14141,7 +14144,7 @@
       "low30": 59.99,
       "high30": 59.99,
       "typical30": 59.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14197,7 +14200,7 @@
       "low30": 39.99,
       "high30": 39.99,
       "typical30": 39.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14225,7 +14228,7 @@
       "low30": 94.99,
       "high30": 94.99,
       "typical30": 94.99,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14281,7 +14284,7 @@
       "low30": 56.49,
       "high30": 79.99,
       "typical30": 56.49,
-      "historyDays": 9,
+      "historyDays": 10,
       "trackedDays30": 9.0
     },
     {
@@ -14300,8 +14303,8 @@
       "sku": "13C-012U-00001",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/BZH7S2508120YYVJYA8.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "rating": 5.0,
       "ratingSource": "newegg-api",
@@ -14472,7 +14475,7 @@
       "high30": 899.0,
       "typical30": 899.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "bose-lifestyle-ultra-subwoofer-893955-1100-black-942100",
@@ -14497,7 +14500,7 @@
       "high30": 899.0,
       "typical30": 899.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "bose-bass-module-700-wireless-subwoofer-black-942056",
@@ -14628,7 +14631,7 @@
       "high30": 83.99,
       "typical30": 83.99,
       "historyDays": 4,
-      "trackedDays30": 3.9
+      "trackedDays30": 4.0
     },
     {
       "id": "audio-technica-at-sp3xwh-bluetooth-bookshelf-spe-361028",
@@ -14936,8 +14939,8 @@
       "sku": "2MA-00SC-00026",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AE2JS25041811TQHKA6.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 699.99,
       "high30": 699.99,
@@ -14968,7 +14971,7 @@
       "high30": 249.99,
       "typical30": 249.99,
       "historyDays": 3,
-      "trackedDays30": 2.3
+      "trackedDays30": 2.4
     },
     {
       "id": "kanto-yu4pg2vmb-passive-gen-2-bookshelf-speakers--00272",
@@ -15018,7 +15021,7 @@
       "high30": 249.99,
       "typical30": 249.99,
       "historyDays": 2,
-      "trackedDays30": 1.9
+      "trackedDays30": 2.0
     },
     {
       "id": "startech-com-15-ft-4-6-m-displayport-cable-with--00061",
@@ -15036,14 +15039,14 @@
       "sku": "2A6-0075-00061",
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/AFYUD200830PN08S.jpg",
       "imageSource": "newegg-api",
-      "verifiedAt": "2026-11-21T03:21:04Z",
-      "updatedAt": "2026-11-21T03:21:04Z",
+      "verifiedAt": "2026-11-21T06:21:07Z",
+      "updatedAt": "2026-11-21T06:21:07Z",
       "autoSeeded": true,
       "low30": 230.83,
       "high30": 230.83,
       "typical30": 230.83,
       "historyDays": 1,
-      "trackedDays30": 0.6
+      "trackedDays30": 0.7
     },
     {
       "id": "nippon-labs-cat-8-ethernet-cable-7-ft-blue-2ghz-816697",
@@ -15068,7 +15071,7 @@
       "high30": 122.93,
       "typical30": 122.93,
       "historyDays": 6,
-      "trackedDays30": 5.9
+      "trackedDays30": 6.0
     },
     {
       "id": "nippon-labs-displayport-cable-dp-cable-15ft-4k-6-816165",
@@ -16094,7 +16097,7 @@
       "high30": 159.99,
       "typical30": 159.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "costco-1749471-nex-playground-12-month-play-pass-bundle",
@@ -16166,7 +16169,7 @@
       "high30": 9.99,
       "typical30": 9.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-satechi-duo-wireless-charger-power-stand",
@@ -16192,7 +16195,7 @@
       "high30": 29.99,
       "typical30": 29.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-lofree-flow-key-caps-blind-box",
@@ -16218,7 +16221,7 @@
       "high30": 20.0,
       "typical30": 20.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-keychron-keychron-q8-alice-layout-qmk-custom-mechanical-keyboard-iso-",
@@ -16244,7 +16247,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-keychron-keychron-q8-alice-layout-qmk-custom-mechanical-keyboard",
@@ -16270,7 +16273,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-keychron-keychron-q3-qmk-custom-mechanical-keyboard-iso-layout-collec",
@@ -16296,7 +16299,7 @@
       "high30": 59.99,
       "typical30": 59.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-logitech-g502-x-wired-lightforce-910-006144",
@@ -16322,7 +16325,7 @@
       "high30": 39.99,
       "typical30": 39.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-pulsar-iso-pcmk-2he-tkl-mechanical-gaming-keyboard",
@@ -16348,7 +16351,7 @@
       "high30": 63.98,
       "typical30": 63.98,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-pulsar-ansi-pcmk-2he-tkl-mechanical-gaming-keyboard",
@@ -16374,7 +16377,7 @@
       "high30": 63.98,
       "typical30": 63.98,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-lofree-touch-key-caps-blind-box",
@@ -16400,7 +16403,7 @@
       "high30": 20.0,
       "typical30": 20.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-satechi-trio-wireless-charging-pad",
@@ -16452,7 +16455,7 @@
       "high30": 29.99,
       "typical30": 29.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-logitech-g502-hero-gaming-mouse-910-005469",
@@ -16504,7 +16507,7 @@
       "high30": 9.99,
       "typical30": 9.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-logitech-megaboom-3-984-001394",
@@ -16530,7 +16533,7 @@
       "high30": 89.99,
       "typical30": 89.99,
       "historyDays": 9,
-      "trackedDays30": 8.3
+      "trackedDays30": 8.4
     },
     {
       "id": "brand-glorious-gmmk-3-pro-barebones-keyboard",
@@ -16556,7 +16559,7 @@
       "high30": 109.99,
       "typical30": 64.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-glorious-gmmk-3-pro-he-prebuilt-keyboard",
@@ -16582,7 +16585,7 @@
       "high30": 164.99,
       "typical30": 164.99,
       "historyDays": 2,
-      "trackedDays30": 1.5
+      "trackedDays30": 1.6
     },
     {
       "id": "brand-fifine-fifine-x3",
@@ -16608,7 +16611,7 @@
       "high30": 18.89,
       "typical30": 18.89,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-jlab-epic-open-sport-air-conduction-wireless-earbuds-black",
@@ -16634,7 +16637,7 @@
       "high30": 52.44,
       "typical30": 52.44,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-jlab-jbuds-lux-anc-jelle-headphones-royal-caviar",
@@ -16660,7 +16663,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 9,
-      "trackedDays30": 8.3
+      "trackedDays30": 8.4
     },
     {
       "id": "brand-jlab-jbuds-lux-anc-jelle-headphones-gold-digger",
@@ -16686,7 +16689,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 9,
-      "trackedDays30": 8.3
+      "trackedDays30": 8.4
     },
     {
       "id": "brand-jlab-jbuds-lux-anc-jelle-headphones-pearl-next-door",
@@ -16738,7 +16741,7 @@
       "high30": 50.0,
       "typical30": 50.0,
       "historyDays": 8,
-      "trackedDays30": 7.2
+      "trackedDays30": 7.3
     },
     {
       "id": "brand-pulsar-zywoo-the-chosen-mouse",
@@ -16764,7 +16767,7 @@
       "high30": 64.97,
       "typical30": 64.97,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-pulsar-zywoo-the-chosen-mouse-mini",
@@ -16790,7 +16793,7 @@
       "high30": 64.97,
       "typical30": 64.97,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-logitech-yeti-premium-usb-microphone-988-000100",
@@ -16816,7 +16819,7 @@
       "high30": 109.99,
       "typical30": 109.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-logitech-yeti-c922-combo-988-000432",
@@ -16868,7 +16871,7 @@
       "high30": 13.09,
       "typical30": 13.09,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-satechi-satechi-usb4-c-to-c-cable",
@@ -16894,7 +16897,7 @@
       "high30": 15.74,
       "typical30": 15.74,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-logitech-yeti-gx-gaming-microphone-988-000574",
@@ -16920,7 +16923,7 @@
       "high30": 89.99,
       "typical30": 89.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-razer-razer-cobra-pro",
@@ -16972,7 +16975,7 @@
       "high30": 199.0,
       "typical30": 199.0,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-satechi-vegan-leather-magnetic-case-for-ipad-pro",
@@ -16998,7 +17001,7 @@
       "high30": 31.99,
       "typical30": 31.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-logitech-streamcam-960-001286",
@@ -17024,7 +17027,7 @@
       "high30": 99.99,
       "typical30": 99.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-razer-razer-basilisk-v3-pro-35k",
@@ -17076,7 +17079,7 @@
       "high30": 53.99,
       "typical30": 53.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-razer-razer-kiyo-v2-x",
@@ -17128,7 +17131,7 @@
       "high30": 23.05,
       "typical30": 23.05,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-jlab-go-pop-anc-true-wireless-earbuds-cloud",
@@ -17154,7 +17157,7 @@
       "high30": 19.99,
       "typical30": 19.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-glorious-ghs-eternal-audio-headset",
@@ -17180,7 +17183,7 @@
       "high30": 37.99,
       "typical30": 37.99,
       "historyDays": 2,
-      "trackedDays30": 1.5
+      "trackedDays30": 1.6
     },
     {
       "id": "brand-fifine-fifine-ampligame-amx3-microphone",
@@ -17232,7 +17235,7 @@
       "high30": 5.82,
       "typical30": 5.82,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-pulsar-usb-c-cable-for-pulsar-mice-and-keyboards",
@@ -17258,7 +17261,7 @@
       "high30": 5.82,
       "typical30": 5.82,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-glorious-ghs-wireless-infiniteplay-audio-headset",
@@ -17310,7 +17313,7 @@
       "high30": 58.99,
       "typical30": 58.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-jlab-epic-party-portable-bluetooth-speaker-black-2-pack",
@@ -17336,7 +17339,7 @@
       "high30": 271.98,
       "typical30": 271.98,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-jlab-jbuds-party-portable-bluetooth-speaker-black-2-pack",
@@ -17414,7 +17417,7 @@
       "high30": 69.99,
       "typical30": 69.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-logitech-boom-4-984-002004",
@@ -17466,7 +17469,7 @@
       "high30": 16.78,
       "typical30": 16.78,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-fifine-fifine-microphone-usb-microphone-669",
@@ -17492,7 +17495,7 @@
       "high30": 23.99,
       "typical30": 23.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-fifine-fifine-amplitank-k688-microphone",
@@ -17544,7 +17547,7 @@
       "high30": 31.49,
       "typical30": 31.49,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-satechi-vegan-leather-findall-glasses-case",
@@ -17570,7 +17573,7 @@
       "high30": 34.99,
       "typical30": 34.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-razer-razer-kraken-kitty-v2",
@@ -17648,7 +17651,7 @@
       "high30": 22.49,
       "typical30": 22.49,
       "historyDays": 2,
-      "trackedDays30": 1.5
+      "trackedDays30": 1.6
     },
     {
       "id": "brand-logitech-wonderboom-4-984-001878",
@@ -17752,7 +17755,7 @@
       "high30": 89.99,
       "typical30": 89.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-logitech-a50-x-astro-wireless-headset-939-002132",
@@ -17778,7 +17781,7 @@
       "high30": 299.99,
       "typical30": 299.99,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-logitech-ue-150-in-ear-monitors-985-001212",
@@ -17804,7 +17807,7 @@
       "high30": 149.25,
       "typical30": 149.25,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-fifine-fifine-ampligame-sc3-audio-mixer-xlr-cable-gaming-kit",
@@ -17830,7 +17833,7 @@
       "high30": 60.99,
       "typical30": 60.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-razer-razer-wolverine-v3-tournament-edition",
@@ -17908,7 +17911,7 @@
       "high30": 159.99,
       "typical30": 159.99,
       "historyDays": 3,
-      "trackedDays30": 2.9
+      "trackedDays30": 3.0
     },
     {
       "id": "brand-razer-razer-seiren-v3-mini",
@@ -17960,7 +17963,7 @@
       "high30": 20.39,
       "typical30": 20.39,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-fifine-fifine-h8-headphone",
@@ -17986,7 +17989,7 @@
       "high30": 29.74,
       "typical30": 29.74,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-fifine-fifine-amplitank-hd18-lite-open-back-monitoring-headset",
@@ -18012,7 +18015,7 @@
       "high30": 57.99,
       "typical30": 57.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     },
     {
       "id": "brand-fifine-fifine-ampligame-d6pro-stream-controller-with-15-macro-keys",
@@ -18038,7 +18041,7 @@
       "high30": 55.24,
       "typical30": 55.24,
       "historyDays": 2,
-      "trackedDays30": 1.8
+      "trackedDays30": 1.9
     },
     {
       "id": "brand-fifine-fifine-ampligame-d6-stream-deck",
@@ -18064,7 +18067,7 @@
       "high30": 64.99,
       "typical30": 64.99,
       "historyDays": 9,
-      "trackedDays30": 8.9
+      "trackedDays30": 9.0
     }
   ]
 }
